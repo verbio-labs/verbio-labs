@@ -1,0 +1,2140 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Verbio Labs — AI for human language</title>
+<meta name="description" content="AI for human language. Built in Busan, Korea.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Instrument+Serif:ital@0;1&family=Pretendard:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+
+  :root {
+    --apple-black: #1d1d1f;
+    --apple-white: #ffffff;
+    --apple-gray-bg: #f5f5f7;
+    --apple-gray-text: #6e6e73;
+    --apple-gray-text-light: #86868b;
+    --apple-gray-line: #d2d2d7;
+    --apple-blue: #0066cc;
+    --apple-blue-bright: #2997ff;
+
+    /* Typography system */
+    --font-sans: 'Inter', 'Pretendard', -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;
+    --font-kr: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-serif: 'Instrument Serif', 'Times New Roman', Georgia, serif;
+
+    --ease-out-quart: cubic-bezier(0.165, 0.84, 0.44, 1);
+    --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
+    --ease-default: cubic-bezier(0.4, 0, 0.6, 1);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--apple-white);
+    color: var(--apple-black);
+    font-family: var(--font-sans);
+    font-size: 17px;
+    line-height: 1.47059;
+    letter-spacing: -0.022em;
+    overflow-x: hidden;
+  }
+
+  /* 한국어가 포함된 요소는 Pretendard 우선 */
+  :lang(ko), .stage-subtitle, .product-feature-label, .why-item-desc,
+  .tile-subtitle, .course-desc, .footer-disclaimer, .tv-uni-quote,
+  .tv-uni-attr, .stage-eyebrow, .why-eyebrow, .stats-eyebrow,
+  .tile-grid-eyebrow, .courses-eyebrow {
+    font-family: var(--font-kr);
+  }
+
+  ::selection {
+    background: var(--apple-blue);
+    color: white;
+  }
+
+  /* ════════════════════ NAV ════════════════════ */
+  .global-nav {
+    position: sticky;
+    top: 0;
+    height: 48px;
+    background: rgba(0, 0, 0, 0.72);
+    backdrop-filter: saturate(180%) blur(20px);
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 0.5px solid rgba(255,255,255,0.08);
+  }
+
+  .global-nav-inner {
+    width: 100%;
+    max-width: 1024px;
+    padding: 0 22px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+  }
+
+  .global-nav-brand {
+    color: rgba(255, 255, 255, 0.95);
+    font-size: 17px;
+    font-weight: 600;
+    letter-spacing: -0.026em;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 1px;
+    transition: opacity 0.32s var(--ease-default);
+  }
+
+  .global-nav-brand:hover {
+    opacity: 0.85;
+  }
+
+  .global-nav-brand-mark {
+    display: inline-flex;
+    align-items: center;
+    margin-right: 7px;
+  }
+
+  .global-nav-brand-mark svg {
+    width: 22px;
+    height: 22px;
+    display: block;
+  }
+
+  .global-nav-brand-name {
+    font-weight: 600;
+    letter-spacing: -0.026em;
+  }
+
+  .global-nav-brand-name em {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-weight: 400;
+    color: rgba(255,255,255,0.55);
+    margin-left: 5px;
+    letter-spacing: -0.01em;
+    font-size: 0.92em;
+  }
+
+  .global-nav-links {
+    display: flex;
+    list-style: none;
+    height: 100%;
+  }
+
+  .global-nav-links li { display: flex; align-items: center; }
+
+  .global-nav-links a {
+    color: rgba(255, 255, 255, 0.85);
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    padding: 0 12px;
+    transition: color 0.32s var(--ease-default);
+  }
+
+  .global-nav-links a:hover { color: rgba(255, 255, 255, 1); }
+
+  @media (max-width: 833px) { .global-nav-links { display: none; } }
+
+  /* ════════════════════ HERO ════════════════════ */
+  .hero {
+    background: #000;
+    color: var(--apple-white);
+    text-align: center;
+    padding: 80px 22px 60px;
+    overflow: hidden;
+    position: relative;
+    min-height: calc(100vh - 48px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  /* Single focused glow - Apple iPhone Pro signature */
+  .hero::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 1400px;
+    height: 1000px;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(ellipse at center, rgba(41,151,255,0.12) 0%, rgba(41,151,255,0.04) 40%, transparent 70%);
+    pointer-events: none;
+    animation: glowPulse 10s ease-in-out infinite;
+  }
+
+  @keyframes glowPulse {
+    0%, 100% { opacity: 0.85; }
+    50% { opacity: 1; }
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 1200px;
+    width: 100%;
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 14px 6px 12px;
+    background: rgba(255,255,255,0.06);
+    border: 0.5px solid rgba(255,255,255,0.12);
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    color: rgba(255,255,255,0.95);
+    margin-bottom: 32px;
+    backdrop-filter: blur(12px);
+    animation: fadeInUp 0.8s var(--ease-out-quart) 0.1s both;
+  }
+
+  .hero-badge em {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-weight: 400;
+    font-size: 13px;
+    letter-spacing: -0.005em;
+    margin-left: 2px;
+  }
+
+  .hero-badge-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.95);
+    box-shadow: 0 0 12px rgba(255,255,255,0.6);
+    animation: pulse 2s var(--ease-out-quart) infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+
+  .hero-title {
+    font-size: clamp(56px, 9vw, 120px);
+    font-weight: 600;
+    line-height: 1;
+    letter-spacing: -0.028em;
+    margin-bottom: 24px;
+    animation: fadeInUp 0.9s var(--ease-out-quart) 0.2s both;
+  }
+
+  .hero-title-italic {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-weight: 400;
+    font-size: 1.05em;
+    letter-spacing: -0.02em;
+    background: linear-gradient(135deg, #fff 0%, #d8e7ff 50%, #5e9eff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    padding: 0 0.05em;
+  }
+
+  .hero-title-accent {
+    font-weight: 600;
+  }
+
+  .hero-subtitle {
+    font-size: clamp(20px, 2.4vw, 28px);
+    font-weight: 400;
+    line-height: 1.3;
+    letter-spacing: -0.005em;
+    color: rgba(255,255,255,0.7);
+    margin-bottom: 40px;
+    max-width: 680px;
+    margin-left: auto;
+    margin-right: auto;
+    animation: fadeInUp 0.9s var(--ease-out-quart) 0.35s both;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 80px;
+    animation: fadeInUp 0.9s var(--ease-out-quart) 0.5s both;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 28px;
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    border-radius: 999px;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s var(--ease-out-quart);
+  }
+
+  .btn-primary {
+    background: white;
+    color: var(--apple-black);
+    box-shadow: 0 1px 2px rgba(0,0,0,0.1), 0 4px 12px rgba(255,255,255,0.05);
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 1px 2px rgba(0,0,0,0.12), 0 8px 24px rgba(255,255,255,0.15);
+  }
+
+  .btn-secondary {
+    background: rgba(255,255,255,0.08);
+    color: white;
+    border: 0.5px solid rgba(255,255,255,0.18);
+    backdrop-filter: blur(12px);
+  }
+
+  .btn-secondary:hover {
+    background: rgba(255,255,255,0.14);
+    border-color: rgba(255,255,255,0.28);
+    transform: translateY(-1px);
+  }
+
+  .btn-arrow {
+    width: 16px;
+    height: 16px;
+    transition: transform 0.3s var(--ease-out-quart);
+  }
+
+  .btn:hover .btn-arrow { transform: translateX(4px); }
+
+  /* ════════════════════ HERO VISUAL — 거대 음성 파형 ════════════════════ */
+  /* mockup 대신 추상적이고 의미있는 비주얼 */
+  .hero-visual {
+    width: 100%;
+    max-width: 1100px;
+    height: 30vh;
+    min-height: 240px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: fadeIn 1.2s var(--ease-out-quart) 0.7s both;
+  }
+
+  /* 큰 음성 파형 — Apple Siri / Music 페이지 스타일 */
+  .hero-waveform {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    width: 100%;
+    height: 100%;
+    padding: 0 40px;
+  }
+
+  .hero-wave-bar {
+    flex: 1;
+    max-width: 8px;
+    background: linear-gradient(180deg,
+      rgba(94,158,255,0.3) 0%,
+      #2997ff 30%,
+      #5e9eff 50%,
+      #2997ff 70%,
+      rgba(94,158,255,0.3) 100%);
+    border-radius: 4px;
+    box-shadow: 0 0 20px rgba(41,151,255,0.4);
+    animation: heroWave 3s var(--ease-out-quart) infinite;
+    transform-origin: center;
+    height: 100%;
+  }
+
+  /* 각 막대 base scale을 다르게 — 진짜 음성 파형 */
+  @keyframes heroWave1 { 0%, 100% { transform: scaleY(0.10); } 50% { transform: scaleY(0.18); } }
+  @keyframes heroWave2 { 0%, 100% { transform: scaleY(0.15); } 50% { transform: scaleY(0.32); } }
+  @keyframes heroWave3 { 0%, 100% { transform: scaleY(0.20); } 50% { transform: scaleY(0.45); } }
+  @keyframes heroWave4 { 0%, 100% { transform: scaleY(0.28); } 50% { transform: scaleY(0.62); } }
+  @keyframes heroWave5 { 0%, 100% { transform: scaleY(0.35); } 50% { transform: scaleY(0.78); } }
+  @keyframes heroWave6 { 0%, 100% { transform: scaleY(0.42); } 50% { transform: scaleY(0.92); } }
+  @keyframes heroWave7 { 0%, 100% { transform: scaleY(0.45); } 50% { transform: scaleY(0.98); } }
+  @keyframes heroWave8 { 0%, 100% { transform: scaleY(0.38); } 50% { transform: scaleY(0.85); } }
+  @keyframes heroWave9 { 0%, 100% { transform: scaleY(0.30); } 50% { transform: scaleY(0.72); } }
+  @keyframes heroWave10 { 0%, 100% { transform: scaleY(0.40); } 50% { transform: scaleY(0.88); } }
+  @keyframes heroWave11 { 0%, 100% { transform: scaleY(0.25); } 50% { transform: scaleY(0.58); } }
+  @keyframes heroWave12 { 0%, 100% { transform: scaleY(0.32); } 50% { transform: scaleY(0.75); } }
+  @keyframes heroWave13 { 0%, 100% { transform: scaleY(0.43); } 50% { transform: scaleY(0.95); } }
+  @keyframes heroWave14 { 0%, 100% { transform: scaleY(0.46); } 50% { transform: scaleY(1); } }
+  @keyframes heroWave15 { 0%, 100% { transform: scaleY(0.35); } 50% { transform: scaleY(0.78); } }
+  @keyframes heroWave16 { 0%, 100% { transform: scaleY(0.20); } 50% { transform: scaleY(0.48); } }
+  @keyframes heroWave17 { 0%, 100% { transform: scaleY(0.28); } 50% { transform: scaleY(0.65); } }
+  @keyframes heroWave18 { 0%, 100% { transform: scaleY(0.40); } 50% { transform: scaleY(0.88); } }
+  @keyframes heroWave19 { 0%, 100% { transform: scaleY(0.45); } 50% { transform: scaleY(0.98); } }
+  @keyframes heroWave20 { 0%, 100% { transform: scaleY(0.32); } 50% { transform: scaleY(0.72); } }
+
+  .hero-wave-bar:nth-child(1)  { animation: heroWave1 2.4s var(--ease-out-quart) infinite; animation-delay: 0.00s; }
+  .hero-wave-bar:nth-child(2)  { animation: heroWave2 2.4s var(--ease-out-quart) infinite; animation-delay: 0.04s; }
+  .hero-wave-bar:nth-child(3)  { animation: heroWave3 2.4s var(--ease-out-quart) infinite; animation-delay: 0.08s; }
+  .hero-wave-bar:nth-child(4)  { animation: heroWave4 2.4s var(--ease-out-quart) infinite; animation-delay: 0.12s; }
+  .hero-wave-bar:nth-child(5)  { animation: heroWave5 2.4s var(--ease-out-quart) infinite; animation-delay: 0.16s; }
+  .hero-wave-bar:nth-child(6)  { animation: heroWave6 2.4s var(--ease-out-quart) infinite; animation-delay: 0.20s; }
+  .hero-wave-bar:nth-child(7)  { animation: heroWave7 2.4s var(--ease-out-quart) infinite; animation-delay: 0.24s; }
+  .hero-wave-bar:nth-child(8)  { animation: heroWave8 2.4s var(--ease-out-quart) infinite; animation-delay: 0.28s; }
+  .hero-wave-bar:nth-child(9)  { animation: heroWave9 2.4s var(--ease-out-quart) infinite; animation-delay: 0.32s; }
+  .hero-wave-bar:nth-child(10) { animation: heroWave10 2.4s var(--ease-out-quart) infinite; animation-delay: 0.36s; }
+  .hero-wave-bar:nth-child(11) { animation: heroWave11 2.4s var(--ease-out-quart) infinite; animation-delay: 0.40s; }
+  .hero-wave-bar:nth-child(12) { animation: heroWave12 2.4s var(--ease-out-quart) infinite; animation-delay: 0.44s; }
+  .hero-wave-bar:nth-child(13) { animation: heroWave13 2.4s var(--ease-out-quart) infinite; animation-delay: 0.48s; }
+  .hero-wave-bar:nth-child(14) { animation: heroWave14 2.4s var(--ease-out-quart) infinite; animation-delay: 0.52s; }
+  .hero-wave-bar:nth-child(15) { animation: heroWave15 2.4s var(--ease-out-quart) infinite; animation-delay: 0.56s; }
+  .hero-wave-bar:nth-child(16) { animation: heroWave16 2.4s var(--ease-out-quart) infinite; animation-delay: 0.60s; }
+  .hero-wave-bar:nth-child(17) { animation: heroWave17 2.4s var(--ease-out-quart) infinite; animation-delay: 0.64s; }
+  .hero-wave-bar:nth-child(18) { animation: heroWave18 2.4s var(--ease-out-quart) infinite; animation-delay: 0.68s; }
+  .hero-wave-bar:nth-child(19) { animation: heroWave19 2.4s var(--ease-out-quart) infinite; animation-delay: 0.72s; }
+  .hero-wave-bar:nth-child(20) { animation: heroWave20 2.4s var(--ease-out-quart) infinite; animation-delay: 0.76s; }
+  .hero-wave-bar:nth-child(21) { animation: heroWave1 2.4s var(--ease-out-quart) infinite; animation-delay: 0.80s; }
+  .hero-wave-bar:nth-child(22) { animation: heroWave5 2.4s var(--ease-out-quart) infinite; animation-delay: 0.84s; }
+  .hero-wave-bar:nth-child(23) { animation: heroWave12 2.4s var(--ease-out-quart) infinite; animation-delay: 0.88s; }
+  .hero-wave-bar:nth-child(24) { animation: heroWave18 2.4s var(--ease-out-quart) infinite; animation-delay: 0.92s; }
+  .hero-wave-bar:nth-child(25) { animation: heroWave14 2.4s var(--ease-out-quart) infinite; animation-delay: 0.96s; }
+  .hero-wave-bar:nth-child(26) { animation: heroWave9 2.4s var(--ease-out-quart) infinite; animation-delay: 1.00s; }
+  .hero-wave-bar:nth-child(27) { animation: heroWave3 2.4s var(--ease-out-quart) infinite; animation-delay: 1.04s; }
+  .hero-wave-bar:nth-child(28) { animation: heroWave6 2.4s var(--ease-out-quart) infinite; animation-delay: 1.08s; }
+  .hero-wave-bar:nth-child(29) { animation: heroWave11 2.4s var(--ease-out-quart) infinite; animation-delay: 1.12s; }
+  .hero-wave-bar:nth-child(30) { animation: heroWave17 2.4s var(--ease-out-quart) infinite; animation-delay: 1.16s; }
+  .hero-wave-bar:nth-child(31) { animation: heroWave20 2.4s var(--ease-out-quart) infinite; animation-delay: 1.20s; }
+  .hero-wave-bar:nth-child(32) { animation: heroWave13 2.4s var(--ease-out-quart) infinite; animation-delay: 1.24s; }
+  .hero-wave-bar:nth-child(33) { animation: heroWave7 2.4s var(--ease-out-quart) infinite; animation-delay: 1.28s; }
+  .hero-wave-bar:nth-child(34) { animation: heroWave4 2.4s var(--ease-out-quart) infinite; animation-delay: 1.32s; }
+  .hero-wave-bar:nth-child(35) { animation: heroWave8 2.4s var(--ease-out-quart) infinite; animation-delay: 1.36s; }
+  .hero-wave-bar:nth-child(36) { animation: heroWave15 2.4s var(--ease-out-quart) infinite; animation-delay: 1.40s; }
+  .hero-wave-bar:nth-child(37) { animation: heroWave19 2.4s var(--ease-out-quart) infinite; animation-delay: 1.44s; }
+  .hero-wave-bar:nth-child(38) { animation: heroWave14 2.4s var(--ease-out-quart) infinite; animation-delay: 1.48s; }
+  .hero-wave-bar:nth-child(39) { animation: heroWave10 2.4s var(--ease-out-quart) infinite; animation-delay: 1.52s; }
+  .hero-wave-bar:nth-child(40) { animation: heroWave2 2.4s var(--ease-out-quart) infinite; animation-delay: 1.56s; }
+  .hero-wave-bar:nth-child(41) { animation: heroWave6 2.4s var(--ease-out-quart) infinite; animation-delay: 1.60s; }
+  .hero-wave-bar:nth-child(42) { animation: heroWave11 2.4s var(--ease-out-quart) infinite; animation-delay: 1.64s; }
+  .hero-wave-bar:nth-child(43) { animation: heroWave16 2.4s var(--ease-out-quart) infinite; animation-delay: 1.68s; }
+  .hero-wave-bar:nth-child(44) { animation: heroWave19 2.4s var(--ease-out-quart) infinite; animation-delay: 1.72s; }
+  .hero-wave-bar:nth-child(45) { animation: heroWave12 2.4s var(--ease-out-quart) infinite; animation-delay: 1.76s; }
+  .hero-wave-bar:nth-child(46) { animation: heroWave8 2.4s var(--ease-out-quart) infinite; animation-delay: 1.80s; }
+  .hero-wave-bar:nth-child(47) { animation: heroWave5 2.4s var(--ease-out-quart) infinite; animation-delay: 1.84s; }
+  .hero-wave-bar:nth-child(48) { animation: heroWave10 2.4s var(--ease-out-quart) infinite; animation-delay: 1.88s; }
+  .hero-wave-bar:nth-child(49) { animation: heroWave14 2.4s var(--ease-out-quart) infinite; animation-delay: 1.92s; }
+  .hero-wave-bar:nth-child(50) { animation: heroWave9 2.4s var(--ease-out-quart) infinite; animation-delay: 1.96s; }
+  .hero-wave-bar:nth-child(51) { animation: heroWave6 2.4s var(--ease-out-quart) infinite; animation-delay: 2.00s; }
+  .hero-wave-bar:nth-child(52) { animation: heroWave11 2.4s var(--ease-out-quart) infinite; animation-delay: 2.04s; }
+  .hero-wave-bar:nth-child(53) { animation: heroWave7 2.4s var(--ease-out-quart) infinite; animation-delay: 2.08s; }
+  .hero-wave-bar:nth-child(54) { animation: heroWave4 2.4s var(--ease-out-quart) infinite; animation-delay: 2.12s; }
+  .hero-wave-bar:nth-child(55) { animation: heroWave3 2.4s var(--ease-out-quart) infinite; animation-delay: 2.16s; }
+  .hero-wave-bar:nth-child(56) { animation: heroWave2 2.4s var(--ease-out-quart) infinite; animation-delay: 2.20s; }
+  .hero-wave-bar:nth-child(57) { animation: heroWave1 2.4s var(--ease-out-quart) infinite; animation-delay: 2.24s; }
+  .hero-wave-bar:nth-child(58) { animation: heroWave1 2.4s var(--ease-out-quart) infinite; animation-delay: 2.28s; }
+  .hero-wave-bar:nth-child(59) { animation: heroWave1 2.4s var(--ease-out-quart) infinite; animation-delay: 2.32s; }
+  .hero-wave-bar:nth-child(60) { animation: heroWave1 2.4s var(--ease-out-quart) infinite; animation-delay: 2.36s; }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (max-width: 734px) {
+    .hero-title { font-size: 48px; }
+    .hero-subtitle { font-size: 18px; }
+    .hero-visual { min-height: 180px; }
+    .hero-wave-bar { gap: 3px; }
+  }
+
+  /* ════════════════════ MISSION (Apple gradient text) ════════════════════ */
+  .mission {
+    background: var(--apple-black);
+    color: var(--apple-white);
+    padding: 140px 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 70vh;
+  }
+
+  .mission-text {
+    max-width: 1140px;
+    text-align: center;
+    font-size: clamp(28px, 4.8vw, 68px);
+    font-weight: 500;
+    line-height: 1.18;
+    letter-spacing: -0.022em;
+    background: linear-gradient(
+      to right,
+      rgba(255,255,255,1) 0%,
+      rgba(255,255,255,1) var(--scroll, 0%),
+      rgba(255,255,255,0.16) var(--scroll, 0%),
+      rgba(255,255,255,0.16) 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    transition: background 0.05s linear;
+  }
+
+  .mission-text em {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-weight: 400;
+    font-size: 1.08em;
+    letter-spacing: -0.02em;
+    padding: 0 0.06em;
+  }
+
+  /* ════════════════════ STAGE (제품 풀블리드) ════════════════════ */
+  .stage {
+    padding: 110px 22px 0;
+    text-align: center;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .stage-light { background: var(--apple-white); color: var(--apple-black); }
+  .stage-dark {
+    background: linear-gradient(180deg, #1d1d1f 0%, #0a0a0c 100%);
+    color: var(--apple-white);
+  }
+
+  .stage-eyebrow {
+    font-size: 21px;
+    font-weight: 600;
+    line-height: 1.19048;
+    letter-spacing: 0.011em;
+    margin-bottom: 8px;
+  }
+
+  .stage-light .stage-eyebrow { color: var(--apple-gray-text); }
+  .stage-dark .stage-eyebrow { color: rgba(255,255,255,0.5); }
+
+  .stage-title {
+    font-size: clamp(44px, 6vw, 80px);
+    font-weight: 600;
+    line-height: 1.05;
+    letter-spacing: -0.024em;
+    margin-bottom: 6px;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .stage-title em {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-weight: 400;
+    letter-spacing: -0.015em;
+    padding: 0 0.04em;
+  }
+
+  .stage-subtitle {
+    font-size: clamp(21px, 2.4vw, 28px);
+    font-weight: 400;
+    line-height: 1.21;
+    letter-spacing: 0.005em;
+    margin: 18px auto 28px;
+    max-width: 700px;
+  }
+
+  .stage-light .stage-subtitle { color: var(--apple-gray-text); }
+  .stage-dark .stage-subtitle { color: rgba(255,255,255,0.72); }
+
+  .stage-links {
+    display: flex;
+    gap: 32px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 56px;
+  }
+
+  .stage-link {
+    color: var(--apple-blue);
+    text-decoration: none;
+    font-size: 21px;
+    font-weight: 400;
+    line-height: 1.38;
+    letter-spacing: 0.011em;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .stage-dark .stage-link { color: var(--apple-blue-bright); }
+  .stage-link:hover { text-decoration: underline; }
+  .stage-link::after {
+    content: "›";
+    font-size: 24px;
+    transition: transform 0.3s var(--ease-out-quart);
+  }
+  .stage-link:hover::after { transform: translateX(3px); }
+
+  /* ════════════════════ PRODUCT VISUAL (mockup 대체) ════════════════════ */
+  .product-visual {
+    height: 70vh;
+    min-height: 540px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 0 22px;
+  }
+
+  /* SpeakCoach 비주얼 — 큰 따옴표 + 음성 파형 */
+  .pv-speakcoach {
+    max-width: 900px;
+    width: 100%;
+    text-align: center;
+    position: relative;
+  }
+
+  .pv-quote-container {
+    position: relative;
+    padding: 60px 40px;
+  }
+
+  .pv-quote-mark-tl {
+    position: absolute;
+    top: -50px;
+    left: -30px;
+    font-size: clamp(220px, 28vw, 360px);
+    line-height: 0.7;
+    color: rgba(0,0,0,0.05);
+    font-family: var(--font-serif);
+    font-weight: 400;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  .pv-quote-mark-br {
+    position: absolute;
+    bottom: -100px;
+    right: -30px;
+    font-size: clamp(220px, 28vw, 360px);
+    line-height: 0.7;
+    color: rgba(0,0,0,0.05);
+    font-family: var(--font-serif);
+    font-weight: 400;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  .stage-dark .pv-quote-mark-tl,
+  .stage-dark .pv-quote-mark-br {
+    color: rgba(255,255,255,0.06);
+  }
+
+  .pv-quote-text {
+    font-size: clamp(36px, 5vw, 64px);
+    font-weight: 600;
+    line-height: 1.15;
+    letter-spacing: -0.028em;
+    margin-bottom: 24px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .pv-quote-text-accent {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    background: linear-gradient(135deg, #0066cc 0%, #2997ff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    padding: 0 0.04em;
+  }
+
+  .pv-meta {
+    display: flex;
+    gap: 32px;
+    justify-content: center;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+    position: relative;
+    z-index: 2;
+  }
+
+  .pv-meta-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .pv-meta-num {
+    font-size: 32px;
+    font-weight: 500;
+    letter-spacing: -0.03em;
+    line-height: 1;
+    color: var(--apple-blue);
+    font-feature-settings: "tnum";
+  }
+
+  .stage-dark .pv-meta-num { color: var(--apple-blue-bright); }
+
+  .pv-meta-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--apple-gray-text);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .stage-dark .pv-meta-label { color: rgba(255,255,255,0.5); }
+
+  /* 큰 음성 파형 (제품 섹션용) */
+  .pv-waveform {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    height: 120px;
+    padding: 0 20px;
+    margin-top: 32px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .pv-wave-bar {
+    flex: 1;
+    max-width: 6px;
+    background: linear-gradient(180deg,
+      rgba(41,151,255,0.4) 0%,
+      var(--apple-blue) 30%,
+      var(--apple-blue-bright) 50%,
+      var(--apple-blue) 70%,
+      rgba(41,151,255,0.4) 100%);
+    border-radius: 3px;
+    box-shadow: 0 0 12px rgba(41,151,255,0.3);
+    animation: pvWave 2.4s var(--ease-out-quart) infinite;
+    transform-origin: center;
+  }
+
+  @keyframes pvWave {
+    0%, 100% { transform: scaleY(0.15); opacity: 0.5; }
+    50% { transform: scaleY(1); opacity: 1; }
+  }
+
+  /* 40개 막대 */
+  .pv-wave-bar:nth-child(1)  { animation-delay: 0.00s; }
+  .pv-wave-bar:nth-child(2)  { animation-delay: 0.05s; }
+  .pv-wave-bar:nth-child(3)  { animation-delay: 0.10s; }
+  .pv-wave-bar:nth-child(4)  { animation-delay: 0.15s; }
+  .pv-wave-bar:nth-child(5)  { animation-delay: 0.20s; }
+  .pv-wave-bar:nth-child(6)  { animation-delay: 0.25s; }
+  .pv-wave-bar:nth-child(7)  { animation-delay: 0.30s; }
+  .pv-wave-bar:nth-child(8)  { animation-delay: 0.35s; }
+  .pv-wave-bar:nth-child(9)  { animation-delay: 0.40s; }
+  .pv-wave-bar:nth-child(10) { animation-delay: 0.45s; }
+  .pv-wave-bar:nth-child(11) { animation-delay: 0.50s; }
+  .pv-wave-bar:nth-child(12) { animation-delay: 0.55s; }
+  .pv-wave-bar:nth-child(13) { animation-delay: 0.60s; }
+  .pv-wave-bar:nth-child(14) { animation-delay: 0.65s; }
+  .pv-wave-bar:nth-child(15) { animation-delay: 0.70s; }
+  .pv-wave-bar:nth-child(16) { animation-delay: 0.75s; }
+  .pv-wave-bar:nth-child(17) { animation-delay: 0.80s; }
+  .pv-wave-bar:nth-child(18) { animation-delay: 0.85s; }
+  .pv-wave-bar:nth-child(19) { animation-delay: 0.90s; }
+  .pv-wave-bar:nth-child(20) { animation-delay: 0.95s; }
+  .pv-wave-bar:nth-child(21) { animation-delay: 1.00s; }
+  .pv-wave-bar:nth-child(22) { animation-delay: 1.05s; }
+  .pv-wave-bar:nth-child(23) { animation-delay: 1.10s; }
+  .pv-wave-bar:nth-child(24) { animation-delay: 1.15s; }
+  .pv-wave-bar:nth-child(25) { animation-delay: 1.20s; }
+  .pv-wave-bar:nth-child(26) { animation-delay: 1.25s; }
+  .pv-wave-bar:nth-child(27) { animation-delay: 1.30s; }
+  .pv-wave-bar:nth-child(28) { animation-delay: 1.35s; }
+  .pv-wave-bar:nth-child(29) { animation-delay: 1.40s; }
+  .pv-wave-bar:nth-child(30) { animation-delay: 1.45s; }
+  .pv-wave-bar:nth-child(31) { animation-delay: 1.50s; }
+  .pv-wave-bar:nth-child(32) { animation-delay: 1.55s; }
+  .pv-wave-bar:nth-child(33) { animation-delay: 1.60s; }
+  .pv-wave-bar:nth-child(34) { animation-delay: 1.65s; }
+  .pv-wave-bar:nth-child(35) { animation-delay: 1.70s; }
+  .pv-wave-bar:nth-child(36) { animation-delay: 1.75s; }
+  .pv-wave-bar:nth-child(37) { animation-delay: 1.80s; }
+  .pv-wave-bar:nth-child(38) { animation-delay: 1.85s; }
+  .pv-wave-bar:nth-child(39) { animation-delay: 1.90s; }
+  .pv-wave-bar:nth-child(40) { animation-delay: 1.95s; }
+
+  /* TopikIQ 비주얼 — 거대 한국어 + 자모 분해 시각화 */
+  .pv-topikiq {
+    max-width: 1100px;
+    width: 100%;
+    text-align: center;
+    position: relative;
+  }
+
+  .pv-hangul-main {
+    font-family: var(--font-kr);
+    font-size: clamp(140px, 22vw, 320px);
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: -0.04em;
+    background: linear-gradient(180deg, #ffffff 0%, #5e5e63 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 56px;
+  }
+
+  /* 자모 분해 라인 — 한국어의 본질 */
+  .pv-jamo-line {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: clamp(12px, 2vw, 24px);
+    flex-wrap: wrap;
+    color: rgba(255,255,255,0.5);
+    font-size: clamp(14px, 1.2vw, 16px);
+    letter-spacing: -0.005em;
+  }
+
+  .pv-jamo-piece {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .pv-jamo-char {
+    font-family: var(--font-kr);
+    font-size: clamp(28px, 3vw, 40px);
+    font-weight: 500;
+    color: rgba(255,255,255,0.95);
+    letter-spacing: 0;
+    line-height: 1;
+  }
+
+  .pv-jamo-char.accent {
+    background: linear-gradient(135deg, #2997ff 0%, #5e9eff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .pv-jamo-label {
+    font-size: 11px;
+    color: rgba(255,255,255,0.4);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .pv-jamo-divider {
+    color: rgba(255,255,255,0.2);
+    font-weight: 300;
+  }
+
+  @media (max-width: 734px) {
+    .stage { padding: 70px 22px 0; }
+    .stage-title { font-size: 40px; }
+    .stage-subtitle { font-size: 19px; }
+    .stage-eyebrow, .stage-link { font-size: 17px; }
+    .product-visual { min-height: 420px; }
+    .pv-quote-text { font-size: 32px; }
+  }
+
+  /* ════════════════════ STATS ════════════════════ */
+  .stats-band {
+    background: var(--apple-gray-bg);
+    padding: 110px 22px;
+    border-top: 0.5px solid var(--apple-gray-line);
+    text-align: center;
+  }
+
+  .stats-eyebrow {
+    font-size: 21px;
+    font-weight: 600;
+    color: var(--apple-gray-text);
+    margin-bottom: 8px;
+    letter-spacing: 0.011em;
+  }
+
+  .stats-title {
+    font-size: clamp(32px, 4.5vw, 48px);
+    font-weight: 600;
+    line-height: 1.08;
+    letter-spacing: -0.022em;
+    margin-bottom: 64px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .stats-title em {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-weight: 400;
+    color: var(--apple-gray-text-light);
+    letter-spacing: -0.015em;
+  }
+
+  .stats-grid {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+  }
+
+  @media (max-width: 734px) {
+    .stats-grid { grid-template-columns: 1fr 1fr; gap: 32px 16px; }
+  }
+
+  .stat {
+    text-align: center;
+    padding: 0 16px;
+    position: relative;
+  }
+
+  .stat:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    right: -12px;
+    top: 25%;
+    bottom: 25%;
+    width: 0.5px;
+    background: var(--apple-gray-line);
+  }
+
+  @media (max-width: 734px) {
+    .stat:nth-child(2)::after { display: none; }
+  }
+
+  .stat-num {
+    font-size: clamp(56px, 6vw, 80px);
+    font-weight: 500;
+    letter-spacing: -0.04em;
+    line-height: 1;
+    margin-bottom: 14px;
+    color: var(--apple-black);
+    font-feature-settings: "tnum";
+  }
+
+  .stat-num em {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-weight: 400;
+    font-size: 0.55em;
+    color: var(--apple-gray-text);
+    margin-left: 4px;
+  }
+
+  .stat-label {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--apple-black);
+    margin-bottom: 4px;
+    letter-spacing: -0.01em;
+  }
+
+  .stat-context {
+    font-size: 13px;
+    color: var(--apple-gray-text);
+    line-height: 1.4;
+    letter-spacing: -0.005em;
+  }
+
+  /* ════════════════════ WHY VERBIO ════════════════════ */
+  .why {
+    background: var(--apple-gray-bg);
+    padding: 120px 22px 100px;
+    text-align: center;
+  }
+
+  .why-eyebrow {
+    font-size: 21px;
+    font-weight: 600;
+    color: var(--apple-gray-text);
+    margin-bottom: 8px;
+    letter-spacing: 0.011em;
+  }
+
+  .why-title {
+    font-size: clamp(36px, 5.5vw, 72px);
+    font-weight: 600;
+    line-height: 1.07;
+    letter-spacing: -0.024em;
+    max-width: 900px;
+    margin: 0 auto 72px;
+  }
+
+  .why-title strong { color: var(--apple-black); font-weight: 600; }
+
+  .why-title-soft {
+    color: var(--apple-gray-text-light);
+    font-weight: 600;
+  }
+
+  .why-title em {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-weight: 400;
+    color: var(--apple-gray-text-light);
+    letter-spacing: -0.015em;
+  }
+
+  .why-grid {
+    max-width: 1024px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+  }
+
+  @media (max-width: 734px) {
+    .why-grid { grid-template-columns: 1fr; }
+  }
+
+  .why-item {
+    text-align: left;
+    padding: 36px 32px;
+    background: var(--apple-white);
+    border-radius: 22px;
+    transition: all 0.4s var(--ease-out-quart);
+    position: relative;
+    overflow: hidden;
+    cursor: default;
+  }
+
+  .why-item::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at 30% 30%, rgba(41,151,255,0.08), transparent 50%);
+    opacity: 0;
+    transition: opacity 0.4s var(--ease-out-quart);
+  }
+
+  .why-item:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.06);
+  }
+
+  .why-item:hover::before { opacity: 1; }
+
+  .why-item-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #1d1d1f, #2c2c2e);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 24px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .why-item-icon svg { width: 22px; height: 22px; }
+
+  .why-item-title {
+    font-size: 22px;
+    font-weight: 600;
+    line-height: 1.18;
+    margin-bottom: 10px;
+    letter-spacing: -0.012em;
+    position: relative;
+    z-index: 1;
+  }
+
+  .why-item-desc {
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--apple-gray-text);
+    letter-spacing: -0.005em;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ════════════════════ TILE GRID ════════════════════ */
+  .tile-grid-section {
+    background: var(--apple-gray-bg);
+    padding: 12px 0;
+  }
+
+  .tile-grid-header {
+    text-align: center;
+    padding: 100px 22px 16px;
+  }
+
+  .tile-grid-eyebrow {
+    font-size: 21px;
+    font-weight: 600;
+    line-height: 1.19;
+    letter-spacing: 0.011em;
+    margin-bottom: 8px;
+  }
+
+  .tile-grid-title {
+    font-size: clamp(32px, 5vw, 56px);
+    font-weight: 600;
+    line-height: 1.07;
+    letter-spacing: -0.018em;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .tile-grid-title em,
+  .tile-grid-title .title-soft {
+    color: var(--apple-gray-text-light);
+    font-weight: 600;
+    font-style: normal;
+    font-family: var(--font-sans);
+    letter-spacing: -0.018em;
+  }
+
+  .tile-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 12px;
+  }
+
+  @media (max-width: 734px) {
+    .tile-grid { grid-template-columns: 1fr; padding: 0 8px; }
+  }
+
+  .tile {
+    background: var(--apple-white);
+    border-radius: 22px;
+    padding: 56px 40px 44px;
+    text-align: center;
+    overflow: hidden;
+    position: relative;
+    min-height: 580px;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.5s var(--ease-out-quart);
+    cursor: default;
+  }
+
+  .tile:hover { transform: translateY(-4px); }
+
+  .tile-dark {
+    background: linear-gradient(160deg, #1d1d1f 0%, #2c2c2e 50%, #1a1a1c 100%);
+    color: var(--apple-white);
+  }
+
+  .tile-eyebrow {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 6px;
+    opacity: 0.7;
+  }
+
+  .tile-title {
+    font-size: clamp(32px, 4vw, 44px);
+    font-weight: 600;
+    line-height: 1.08;
+    letter-spacing: -0.022em;
+    margin-bottom: 6px;
+  }
+
+  .tile-subtitle {
+    font-size: 19px;
+    font-weight: 400;
+    line-height: 1.21;
+    letter-spacing: 0.012em;
+    margin-bottom: 18px;
+    max-width: 480px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .tile-dark .tile-subtitle { color: rgba(255,255,255,0.85); }
+
+  .tile-links {
+    display: flex;
+    gap: 24px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .tile-link {
+    color: var(--apple-blue);
+    text-decoration: none;
+    font-size: 17px;
+  }
+
+  .tile-dark .tile-link { color: var(--apple-blue-bright); }
+  .tile-link:hover { text-decoration: underline; }
+  .tile-link::after { content: " ›"; }
+
+  .tile-visual {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 32px;
+    position: relative;
+  }
+
+  .tv-samsung-wrap {
+    text-align: center;
+    position: relative;
+  }
+
+  .tv-samsung-num {
+    font-size: clamp(120px, 18vw, 220px);
+    font-weight: 500;
+    line-height: 1;
+    letter-spacing: -0.05em;
+    background: linear-gradient(180deg, #ffffff 0%, #6e6e73 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    display: inline-flex;
+    align-items: baseline;
+    position: relative;
+    font-feature-settings: "tnum";
+  }
+
+  .tv-samsung-num .plus {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-weight: 400;
+    font-size: 0.45em;
+    margin-left: 6px;
+    background: linear-gradient(180deg, #2997ff 0%, #0066cc 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .tv-samsung-label {
+    font-size: 13px;
+    color: rgba(255,255,255,0.5);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    margin-top: 8px;
+  }
+
+  .tv-samsung-detail {
+    margin-top: 18px;
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+  }
+
+  .tv-samsung-tag {
+    font-size: 10px;
+    font-weight: 600;
+    padding: 4px 10px;
+    background: rgba(255,255,255,0.06);
+    border: 0.5px solid rgba(255,255,255,0.1);
+    border-radius: 999px;
+    color: rgba(255,255,255,0.7);
+    letter-spacing: 0.02em;
+  }
+
+  .tv-uni {
+    width: 100%;
+    max-width: 320px;
+    padding: 24px;
+    text-align: left;
+    position: relative;
+  }
+
+  .tv-uni-quote {
+    font-size: clamp(20px, 2vw, 24px);
+    font-weight: 600;
+    line-height: 1.35;
+    letter-spacing: -0.018em;
+    color: var(--apple-black);
+    margin-bottom: 16px;
+    position: relative;
+  }
+
+  .tv-uni-quote::before {
+    content: "\201C";
+    position: absolute;
+    left: -8px;
+    top: -12px;
+    font-size: 80px;
+    line-height: 1;
+    color: rgba(0,0,0,0.12);
+    font-family: var(--font-serif);
+    font-weight: 400;
+  }
+
+  .tv-uni-attr {
+    font-size: 12px;
+    color: var(--apple-gray-text);
+    letter-spacing: -0.005em;
+    font-weight: 500;
+  }
+
+  .tv-skills {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    width: 220px;
+  }
+
+  .tv-skill {
+    aspect-ratio: 1;
+    background: rgba(0,0,0,0.04);
+    border: 0.5px solid rgba(0,0,0,0.06);
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--apple-gray-text);
+    letter-spacing: -0.01em;
+    transition: all 0.4s var(--ease-out-quart);
+  }
+
+  .tv-skill.active {
+    background: linear-gradient(135deg, #1d1d1f, #2c2c2e);
+    color: var(--apple-white);
+    border-color: var(--apple-black);
+    transform: scale(1.05);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+  }
+
+  .tile:hover .tv-skill.active { transform: scale(1.08); }
+
+  .tv-network {
+    width: 220px;
+    height: 220px;
+    border-radius: 32px;
+    background: linear-gradient(135deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+    border: 0.5px solid rgba(255,255,255,0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .tv-network::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(41,151,255,0.1), transparent 50%);
+    animation: rotateBg 20s linear infinite;
+  }
+
+  @keyframes rotateBg {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  .tv-network svg {
+    width: 140px;
+    height: 140px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ════════════════════ COMMUNITY ════════════════════ */
+  .community-visual {
+    height: 60vh;
+    min-height: 380px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  .community-bigtype {
+    font-size: clamp(120px, 22vw, 320px);
+    font-weight: 400;
+    font-family: var(--font-serif);
+    font-style: italic;
+    letter-spacing: -0.04em;
+    line-height: 0.9;
+    background: linear-gradient(180deg, #ffffff 0%, #6e6e73 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* ════════════════════ COURSES ════════════════════ */
+  .courses {
+    background: var(--apple-white);
+    padding: 110px 22px 90px;
+  }
+
+  .courses-inner {
+    max-width: 1024px;
+    margin: 0 auto;
+  }
+
+  .courses-eyebrow {
+    font-size: 21px;
+    font-weight: 600;
+    color: var(--apple-gray-text);
+    margin-bottom: 8px;
+    letter-spacing: 0.011em;
+    text-align: center;
+  }
+
+  .courses-title {
+    font-size: clamp(36px, 5vw, 56px);
+    font-weight: 600;
+    color: var(--apple-black);
+    margin: 0 auto 56px;
+    line-height: 1.07;
+    letter-spacing: -0.022em;
+    max-width: 800px;
+    text-align: center;
+  }
+
+  .courses-title em,
+  .courses-title .title-soft {
+    color: var(--apple-gray-text-light);
+    font-weight: 600;
+    font-style: normal;
+    font-family: var(--font-sans);
+    letter-spacing: -0.022em;
+  }
+
+  .courses-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+  }
+
+  @media (max-width: 734px) {
+    .courses-row { grid-template-columns: 1fr; }
+  }
+
+  .course-card {
+    background: var(--apple-gray-bg);
+    border-radius: 22px;
+    padding: 36px 32px 32px;
+    text-align: left;
+    transition: all 0.4s var(--ease-out-quart);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .course-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #2997ff, #5e9eff);
+    opacity: 0;
+    transition: opacity 0.4s var(--ease-out-quart);
+  }
+
+  .course-card:hover {
+    background: white;
+    box-shadow: 0 16px 40px rgba(0,0,0,0.06), 0 0 0 0.5px var(--apple-gray-line);
+    transform: translateY(-4px);
+  }
+
+  .course-card:hover::before { opacity: 1; }
+
+  .course-status {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--apple-gray-text);
+    margin-bottom: 16px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: 4px 10px;
+    background: rgba(0,0,0,0.05);
+    border-radius: 6px;
+  }
+
+  .course-status.production {
+    background: var(--apple-black);
+    color: var(--apple-white);
+  }
+
+  .course-title {
+    font-size: 22px;
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: -0.012em;
+    margin-bottom: 10px;
+  }
+
+  .course-desc {
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--apple-gray-text);
+    margin-bottom: 24px;
+    letter-spacing: -0.005em;
+  }
+
+  .course-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 16px;
+    border-top: 0.5px solid var(--apple-gray-line);
+  }
+
+  .course-duration {
+    font-size: 12px;
+    color: var(--apple-gray-text-light);
+    font-feature-settings: "tnum";
+  }
+
+  .course-link {
+    color: var(--apple-blue);
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 500;
+  }
+
+  .course-link::after { content: " ›"; }
+
+  /* ════════════════════ FOOTER ════════════════════ */
+  .footer {
+    background: var(--apple-gray-bg);
+    color: var(--apple-gray-text);
+    padding: 0 22px;
+    font-size: 12px;
+    line-height: 1.33;
+  }
+
+  .footer-inner { max-width: 1024px; margin: 0 auto; }
+
+  .footer-disclaimer {
+    padding: 20px 0;
+    border-bottom: 0.5px solid var(--apple-gray-line);
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .footer-disclaimer-en {
+    font-family: var(--font-sans);
+    color: var(--apple-gray-text);
+  }
+
+  .footer-disclaimer-kr {
+    font-family: var(--font-kr);
+    color: var(--apple-gray-text-light);
+    font-size: 11px;
+  }
+
+  .footer-cols {
+    padding: 32px 0;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 40px;
+    border-bottom: 0.5px solid var(--apple-gray-line);
+  }
+
+  @media (max-width: 734px) {
+    .footer-cols { grid-template-columns: 1fr 1fr; gap: 32px; }
+  }
+
+  .footer-col h4 {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--apple-black);
+    margin-bottom: 12px;
+  }
+
+  .footer-col ul { list-style: none; }
+  .footer-col li { margin-bottom: 7px; }
+  .footer-col a, .footer-col span {
+    color: var(--apple-gray-text);
+    text-decoration: none;
+    font-size: 12px;
+    transition: color 0.32s var(--ease-default);
+  }
+  .footer-col a:hover {
+    color: var(--apple-black);
+    text-decoration: underline;
+  }
+
+  .footer-legal {
+    padding: 24px 0 20px;
+    border-bottom: 0.5px solid var(--apple-gray-line);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    font-family: var(--font-kr);
+  }
+
+  .footer-legal-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 11px;
+  }
+
+  .footer-legal-label {
+    color: var(--apple-gray-text-light);
+    font-weight: 500;
+    letter-spacing: 0;
+  }
+
+  .footer-legal-value {
+    color: var(--apple-gray-text);
+    font-weight: 500;
+    letter-spacing: -0.005em;
+  }
+
+  @media (max-width: 734px) {
+    .footer-legal { gap: 12px 24px; }
+  }
+
+  .footer-bottom {
+    padding: 17px 0;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  /* Reveal */
+  .reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 1.2s var(--ease-out-quart), transform 1.2s var(--ease-out-quart);
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .scale-in {
+    opacity: 0;
+    transform: scale(0.96);
+    transition: opacity 1.4s var(--ease-out-quart), transform 1.4s var(--ease-out-quart);
+  }
+
+  .scale-in.visible {
+    opacity: 1;
+    transform: scale(1);
+  }
+</style>
+</head>
+<body>
+
+  <!-- GLOBAL NAV -->
+  <nav class="global-nav">
+    <div class="global-nav-inner">
+      <a href="#" class="global-nav-brand">
+        <span class="global-nav-brand-mark">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M3 5L12 19L21 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="12" cy="19" r="1.5" fill="currentColor"/>
+          </svg>
+        </span>
+        <span class="global-nav-brand-name">Verbio<em>Labs</em></span>
+      </a>
+      <ul class="global-nav-links">
+        <li><a href="#speakcoach">SpeakCoach</a></li>
+        <li><a href="#topikiq">TopikIQ</a></li>
+        <li><a href="#why">Why Verbio</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#community">Community</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-badge">
+        <span class="hero-badge-dot"></span>
+        <span>Now in Beta · <em>Built in Busan, Korea</em></span>
+      </div>
+      <h1 class="hero-title">
+        AI for<br>
+        <span class="hero-title-italic">human</span> <span class="hero-title-accent">language.</span>
+      </h1>
+      <p class="hero-subtitle">
+        We build intelligent systems that teach, understand, and amplify the way people learn languages.
+      </p>
+      <div class="hero-actions">
+        <a href="#speakcoach" class="btn btn-primary">
+          Explore products
+          <svg class="btn-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+        <a href="#why" class="btn btn-secondary">Why Verbio</a>
+      </div>
+    </div>
+
+    <!-- mockup 대신: 거대한 음성 파형 (60개 막대) -->
+    <div class="hero-visual">
+      <div class="hero-waveform">
+        <div class="hero-wave-bar"></div><div class="hero-wave-bar"></div><div class="hero-wave-bar"></div><div class="hero-wave-bar"></div>
+        <div class="hero-wave-bar"></div><div class="hero-wave-bar"></div><div class="hero-wave-bar"></div><div class="hero-wave-bar"></div>
+        <div class="hero-wave-bar"></div><div class="hero-wave-bar"></div><div class="hero-wave-bar"></div><div class="hero-wave-bar"></div>
+        <div class="hero-wave-bar"></div><div class="hero-wave-bar"></div><div class="hero-wave-bar"></div><div class="hero-wave-bar"></div>
+        <div class="hero-wave-bar"></div><div class="hero-wave-bar"></div><div class="hero-wave-bar"></div><div class="hero-wave-bar"></div>
+        <div class="hero-wave-bar"></div><div class="hero-wave-bar"></div><div class="hero-wave-bar"></div><div class="hero-wave-bar"></div>
+        <div class="hero-wave-bar"></div><div class="hero-wave-bar"></div><div class="hero-wave-bar"></div><div class="hero-wave-bar"></div>
+        <div class="hero-wave-bar"></div><div class="hero-wave-bar"></div><div class="hero-wave-bar"></div><div class="hero-wave-bar"></div>
+        <div class="hero-wave-bar"></div><div class="hero-wave-bar"></div><div class="hero-wave-bar"></div><div class="hero-wave-bar"></div>
+        <div class="hero-wave-bar"></div><div class="hero-wave-bar"></div><div class="hero-wave-bar"></div><div class="hero-wave-bar"></div>
+        <div class="hero-wave-bar"></div><div class="hero-wave-bar"></div><div class="hero-wave-bar"></div><div class="hero-wave-bar"></div>
+        <div class="hero-wave-bar"></div><div class="hero-wave-bar"></div><div class="hero-wave-bar"></div><div class="hero-wave-bar"></div>
+        <div class="hero-wave-bar"></div><div class="hero-wave-bar"></div><div class="hero-wave-bar"></div><div class="hero-wave-bar"></div>
+        <div class="hero-wave-bar"></div><div class="hero-wave-bar"></div><div class="hero-wave-bar"></div><div class="hero-wave-bar"></div>
+        <div class="hero-wave-bar"></div><div class="hero-wave-bar"></div><div class="hero-wave-bar"></div><div class="hero-wave-bar"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MISSION -->
+  <section class="mission" id="mission">
+    <div class="mission-text" id="missionText">
+      Language is how humans become <em>human</em>. We build AI that <em>honors</em> that.
+    </div>
+  </section>
+
+  <!-- SPEAKCOACH AI: 거대 quote + waveform -->
+  <section class="stage stage-light" id="speakcoach">
+    <div class="stage-eyebrow reveal">SpeakCoach AI</div>
+    <h2 class="stage-title reveal">English, spoken better.</h2>
+    <p class="stage-subtitle reveal">한국 OPIc 수험생을 위한 AI 회화 코치.<br>실시간 피드백으로 진짜 영어 실력을 키웁니다.</p>
+    <div class="stage-links reveal">
+      <a href="https://sikbang-eng.replit.app/" target="_blank" rel="noopener" class="stage-link">Try SpeakCoach</a>
+      <a href="https://sikbang.co" target="_blank" rel="noopener" class="stage-link">Learn more</a>
+    </div>
+    <div class="product-visual scale-in">
+      <div class="pv-speakcoach">
+        <div class="pv-quote-container">
+          <span class="pv-quote-mark-tl">&ldquo;</span>
+          <h3 class="pv-quote-text">
+            I usually take<br>the <span class="pv-quote-text-accent">subway</span> to work.
+          </h3>
+          <div class="pv-meta">
+            <div class="pv-meta-item">
+              <div class="pv-meta-num">92</div>
+              <div class="pv-meta-label">Pronunciation</div>
+            </div>
+            <div class="pv-meta-item">
+              <div class="pv-meta-num">88</div>
+              <div class="pv-meta-label">Fluency</div>
+            </div>
+            <div class="pv-meta-item">
+              <div class="pv-meta-num">+12</div>
+              <div class="pv-meta-label">vs. last week</div>
+            </div>
+          </div>
+          <div class="pv-waveform">
+            <div class="pv-wave-bar"></div><div class="pv-wave-bar"></div><div class="pv-wave-bar"></div><div class="pv-wave-bar"></div>
+            <div class="pv-wave-bar"></div><div class="pv-wave-bar"></div><div class="pv-wave-bar"></div><div class="pv-wave-bar"></div>
+            <div class="pv-wave-bar"></div><div class="pv-wave-bar"></div><div class="pv-wave-bar"></div><div class="pv-wave-bar"></div>
+            <div class="pv-wave-bar"></div><div class="pv-wave-bar"></div><div class="pv-wave-bar"></div><div class="pv-wave-bar"></div>
+            <div class="pv-wave-bar"></div><div class="pv-wave-bar"></div><div class="pv-wave-bar"></div><div class="pv-wave-bar"></div>
+            <div class="pv-wave-bar"></div><div class="pv-wave-bar"></div><div class="pv-wave-bar"></div><div class="pv-wave-bar"></div>
+            <div class="pv-wave-bar"></div><div class="pv-wave-bar"></div><div class="pv-wave-bar"></div><div class="pv-wave-bar"></div>
+            <div class="pv-wave-bar"></div><div class="pv-wave-bar"></div><div class="pv-wave-bar"></div><div class="pv-wave-bar"></div>
+            <div class="pv-wave-bar"></div><div class="pv-wave-bar"></div><div class="pv-wave-bar"></div><div class="pv-wave-bar"></div>
+            <div class="pv-wave-bar"></div><div class="pv-wave-bar"></div><div class="pv-wave-bar"></div><div class="pv-wave-bar"></div>
+          </div>
+          <span class="pv-quote-mark-br">&rdquo;</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TOPIKIQ: 거대 한글 + grid -->
+  <section class="stage stage-dark" id="topikiq">
+    <div class="stage-eyebrow reveal">TopikIQ</div>
+    <h2 class="stage-title reveal">Korean, learned smarter.</h2>
+    <p class="stage-subtitle reveal">전 세계 한국어 학습자를 위한 AI 학습 앱.<br>iOS &amp; Android 곧 출시.</p>
+    <div class="stage-links reveal">
+      <a href="https://topikiq.com" target="_blank" rel="noopener" class="stage-link">Visit topikiq.com</a>
+      <a href="https://topikiq.com" target="_blank" rel="noopener" class="stage-link">Get notified</a>
+    </div>
+    <div class="product-visual scale-in">
+      <div class="pv-topikiq">
+        <div class="pv-hangul-main">한국어</div>
+        <div class="pv-jamo-line">
+          <div class="pv-jamo-piece">
+            <span class="pv-jamo-char">한</span>
+            <span class="pv-jamo-label">han</span>
+          </div>
+          <span class="pv-jamo-divider">→</span>
+          <div class="pv-jamo-piece">
+            <span class="pv-jamo-char accent">ㅎ</span>
+            <span class="pv-jamo-label">ieung</span>
+          </div>
+          <span class="pv-jamo-divider">+</span>
+          <div class="pv-jamo-piece">
+            <span class="pv-jamo-char accent">ㅏ</span>
+            <span class="pv-jamo-label">a</span>
+          </div>
+          <span class="pv-jamo-divider">+</span>
+          <div class="pv-jamo-piece">
+            <span class="pv-jamo-char accent">ㄴ</span>
+            <span class="pv-jamo-label">nieun</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <section class="stats-band">
+    <div class="stats-eyebrow">By the numbers</div>
+    <h2 class="stats-title">Real work. <em>Real results.</em></h2>
+    <div class="stats-grid">
+      <div class="stat">
+        <div class="stat-num">3</div>
+        <div class="stat-label">AI Products</div>
+        <div class="stat-context">Active &amp; in development</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">200<em>+</em></div>
+        <div class="stat-label">Engineers</div>
+        <div class="stat-context">Trained at Samsung</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">4,600</div>
+        <div class="stat-label">Subscribers</div>
+        <div class="stat-context">Reading our newsletter</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">5<em>yr</em></div>
+        <div class="stat-label">Teaching</div>
+        <div class="stat-context">AI &amp; Deep Learning</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY VERBIO -->
+  <section class="why" id="why">
+    <div class="why-eyebrow">Why Verbio</div>
+    <h2 class="why-title">
+      <strong>Built by people who teach AI.</strong>
+      <br><span class="why-title-soft">Used by people who learn languages.</span>
+    </h2>
+    <div class="why-grid">
+      <div class="why-item reveal">
+        <div class="why-item-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 2L2 7l10 5 10-5-10-5z" stroke-linejoin="round"/>
+            <path d="M2 17l10 5 10-5M2 12l10 5 10-5" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="why-item-title">Research-grounded</div>
+        <div class="why-item-desc">5년간 대학과 글로벌 기업에서 AI를 가르쳐온 깊이. 우리는 만들기 전에 이해합니다.</div>
+      </div>
+      <div class="why-item reveal">
+        <div class="why-item-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="9" cy="7" r="4" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="why-item-title">Built for learners</div>
+        <div class="why-item-desc">실제 학습자와 매일 소통하며 만든 제품. 마케팅용이 아닌, 진짜 효과있는 AI 학습 도구.</div>
+      </div>
+      <div class="why-item reveal">
+        <div class="why-item-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="why-item-title">From Busan to the world</div>
+        <div class="why-item-desc">한국어와 영어, 두 언어의 특성을 깊이 이해한 한국 기반 팀이 만드는 글로벌 AI.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EDUCATION TILE GRID -->
+  <section class="tile-grid-section" id="education">
+    <div class="tile-grid-header">
+      <div class="tile-grid-eyebrow">AI Education</div>
+      <h2 class="tile-grid-title">Teaching what comes next. <span class="title-soft">From classrooms to corporations.</span></h2>
+    </div>
+    <div class="tile-grid">
+      <div class="tile tile-dark">
+        <div>
+          <div class="tile-eyebrow">Featured · 2025</div>
+          <h3 class="tile-title">Samsung Electronics</h3>
+          <p class="tile-subtitle">200+ engineers. One deep learning seminar.</p>
+          <div class="tile-links">
+            <a href="#" class="tile-link">Read about it</a>
+          </div>
+        </div>
+        <div class="tile-visual">
+          <div class="tv-samsung-wrap">
+            <div class="tv-samsung-num">200<span class="plus">+</span></div>
+            <div class="tv-samsung-label">Engineers Trained</div>
+            <div class="tv-samsung-detail">
+              <span class="tv-samsung-tag">Deep Learning</span>
+              <span class="tv-samsung-tag">LLM</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tile">
+        <div>
+          <div class="tile-eyebrow">University</div>
+          <h3 class="tile-title">AI &amp; Deep Learning</h3>
+          <p class="tile-subtitle">정규 학기 강의로 차세대 AI 엔지니어를 양성합니다.</p>
+          <div class="tile-links">
+            <a href="#" class="tile-link">Course outline</a>
+            <a href="#" class="tile-link">Inquire</a>
+          </div>
+        </div>
+        <div class="tile-visual">
+          <div class="tv-uni">
+            <div class="tv-uni-quote">AI를 가르치는 가장 좋은 방법은, 만들 줄 아는 사람이 가르치는 것.</div>
+            <div class="tv-uni-attr">— Jacob, Founder</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tile">
+        <div>
+          <div class="tile-eyebrow">Industry Seminar</div>
+          <h3 class="tile-title">For your team.</h3>
+          <p class="tile-subtitle">기업 임직원 대상 맞춤형 AI 교육 프로그램.</p>
+          <div class="tile-links">
+            <a href="#" class="tile-link">Request a seminar</a>
+          </div>
+        </div>
+        <div class="tile-visual">
+          <div class="tv-skills">
+            <div class="tv-skill active">AI</div>
+            <div class="tv-skill">ML</div>
+            <div class="tv-skill">LLM</div>
+            <div class="tv-skill">DL</div>
+            <div class="tv-skill active">CV</div>
+            <div class="tv-skill">NLP</div>
+            <div class="tv-skill">RL</div>
+            <div class="tv-skill">GAN</div>
+            <div class="tv-skill active">RAG</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tile tile-dark">
+        <div>
+          <div class="tile-eyebrow">AI Consulting</div>
+          <h3 class="tile-title">Strategy, not slides.</h3>
+          <p class="tile-subtitle">기업의 AI 전략 수립과 실행을 함께합니다.</p>
+          <div class="tile-links">
+            <a href="#" class="tile-link">Get in touch</a>
+          </div>
+        </div>
+        <div class="tile-visual">
+          <div class="tv-network">
+            <svg viewBox="0 0 140 140" fill="none">
+              <defs>
+                <linearGradient id="netGrad" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0%" stop-color="#ffffff" stop-opacity="1"/>
+                  <stop offset="100%" stop-color="#5e9eff" stop-opacity="0.6"/>
+                </linearGradient>
+              </defs>
+              <line x1="40" y1="40" x2="100" y2="40" stroke="rgba(255,255,255,0.4)" stroke-width="1.5"/>
+              <line x1="40" y1="40" x2="70" y2="80" stroke="rgba(255,255,255,0.4)" stroke-width="1.5"/>
+              <line x1="100" y1="40" x2="70" y2="80" stroke="rgba(255,255,255,0.4)" stroke-width="1.5"/>
+              <line x1="70" y1="80" x2="30" y2="110" stroke="rgba(255,255,255,0.4)" stroke-width="1.5"/>
+              <line x1="70" y1="80" x2="110" y2="110" stroke="rgba(255,255,255,0.4)" stroke-width="1.5"/>
+              <circle cx="40" cy="40" r="7" fill="url(#netGrad)"/>
+              <circle cx="100" cy="40" r="7" fill="url(#netGrad)"/>
+              <circle cx="70" cy="80" r="9" fill="white"/>
+              <circle cx="30" cy="110" r="6" fill="url(#netGrad)"/>
+              <circle cx="110" cy="110" r="6" fill="url(#netGrad)"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMMUNITY -->
+  <section class="stage stage-dark" id="community">
+    <div class="stage-eyebrow reveal">AI Cartel · Busan</div>
+    <h2 class="stage-title reveal">For people who love AI.</h2>
+    <p class="stage-subtitle reveal">부산 기반 AI 커뮤니티.<br>매주 모이고, 만들고, 나눕니다.</p>
+    <div class="stage-links reveal">
+      <a href="#" class="stage-link">Join the Cartel</a>
+      <a href="#" class="stage-link">See past meetups</a>
+    </div>
+    <div class="community-visual scale-in">
+      <div class="community-bigtype">Busan.</div>
+    </div>
+  </section>
+
+  <!-- COURSES -->
+  <section class="courses" id="courses">
+    <div class="courses-inner">
+      <div class="courses-eyebrow reveal">Online Courses</div>
+      <h2 class="courses-title reveal">Coming soon. <span class="title-soft">Learn from us, at your pace.</span></h2>
+      <div class="courses-row">
+        <div class="course-card reveal">
+          <span class="course-status">Q3 2026</span>
+          <div class="course-title">LLM for Professionals</div>
+          <p class="course-desc">실무자를 위한 ChatGPT·Claude 활용법. 프롬프트 엔지니어링부터 워크플로우 자동화까지.</p>
+          <div class="course-meta">
+            <span class="course-duration">8 weeks · 24 lessons</span>
+            <a href="#" class="course-link">Notify me</a>
+          </div>
+        </div>
+        <div class="course-card reveal">
+          <span class="course-status">Q4 2026</span>
+          <div class="course-title">English Learning, AI Era</div>
+          <p class="course-desc">AI 시대의 영어 학습 프레임워크. 식빵영어 5년 운영 노하우와 AI를 결합한 새로운 방법론.</p>
+          <div class="course-meta">
+            <span class="course-duration">6 weeks · 18 lessons</span>
+            <a href="#" class="course-link">Notify me</a>
+          </div>
+        </div>
+        <div class="course-card reveal">
+          <span class="course-status production">In Production</span>
+          <div class="course-title">Deep Learning, From Scratch</div>
+          <p class="course-desc">대학 강의를 온라인으로. 수학적 직관과 실전 코드를 균형있게 다루는 입문 과정.</p>
+          <div class="course-meta">
+            <span class="course-duration">12 weeks · 36 lessons</span>
+            <a href="#" class="course-link">Notify me</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer" id="contact">
+    <div class="footer-inner">
+      <div class="footer-disclaimer">
+        <span class="footer-disclaimer-en">Verbio Labs is an AI research &amp; education company based in Busan, Korea. All products are designed and built in Korea.</span>
+        <span class="footer-disclaimer-kr">베르비오 랩스는 부산에 위치한 AI 연구·교육 기업입니다. 모든 제품은 한국에서 설계되고 개발됩니다.</span>
+      </div>
+      <div class="footer-cols">
+        <div class="footer-col">
+          <h4>Products</h4>
+          <ul>
+            <li><a href="https://sikbang-eng.replit.app/" target="_blank" rel="noopener">SpeakCoach AI</a></li>
+            <li><a href="https://topikiq.com" target="_blank" rel="noopener">TopikIQ</a></li>
+            <li><a href="https://sikbang.co" target="_blank" rel="noopener">Sikbang English</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Education</h4>
+          <ul>
+            <li><a href="#education">University Lectures</a></li>
+            <li><a href="#education">Industry Seminars</a></li>
+            <li><a href="#education">AI Consulting</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Learn</h4>
+          <ul>
+            <li><a href="#courses">Online Courses</a></li>
+            <li><a href="#community">AI Cartel Busan</a></li>
+            <li><a href="#">Newsletter</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <ul>
+            <li><a href="mailto:lulu05@naver.com">lulu05@naver.com</a></li>
+            <li><span>Busan, Korea</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-legal">
+        <div class="footer-legal-row">
+          <span class="footer-legal-label">상호</span>
+          <span class="footer-legal-value">식빵영어 (Sikbang English)</span>
+        </div>
+        <div class="footer-legal-row">
+          <span class="footer-legal-label">대표</span>
+          <span class="footer-legal-value">안준영 (Jacob)</span>
+        </div>
+        <div class="footer-legal-row">
+          <span class="footer-legal-label">소재지</span>
+          <span class="footer-legal-value">부산광역시 (Busan, Korea)</span>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>Copyright © 2026 Verbio Labs. All rights reserved.</span>
+        <span>Privacy Policy · Terms of Use</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const missionText = document.getElementById('missionText');
+    const missionSection = document.getElementById('mission');
+
+    function updateMissionGradient() {
+      if (!missionText || !missionSection) return;
+      const rect = missionSection.getBoundingClientRect();
+      const windowHeight = window.innerHeight;
+      const start = windowHeight * 0.85;
+      const end = -rect.height * 0.5;
+      const progress = Math.max(0, Math.min(100, ((start - rect.top) / (start - end)) * 100));
+      missionText.style.setProperty('--scroll', `${progress}%`);
+    }
+
+    window.addEventListener('scroll', updateMissionGradient, { passive: true });
+    window.addEventListener('resize', updateMissionGradient);
+    updateMissionGradient();
+
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -80px 0px' });
+
+    document.querySelectorAll('.reveal, .scale-in').forEach(el => revealObserver.observe(el));
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>
