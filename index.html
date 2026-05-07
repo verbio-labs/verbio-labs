@@ -86,6 +86,11 @@
     color: white;
   }
 
+  /* 모바일에서는 의도적인 강제 줄바꿈을 숨겨 자연 줄바꿈으로 전환 */
+  @media (max-width: 600px) {
+    .br-md-hide { display: none; }
+  }
+
   /* ════════════════════ NAV ════════════════════ */
   .global-nav {
     position: sticky;
@@ -648,7 +653,7 @@
     position: absolute;
     top: -50px;
     left: -30px;
-    font-size: clamp(220px, 28vw, 360px);
+    font-size: clamp(140px, 28vw, 360px);
     line-height: 0.7;
     color: rgba(0,0,0,0.05);
     font-family: var(--font-serif);
@@ -661,7 +666,7 @@
     position: absolute;
     bottom: -100px;
     right: -30px;
-    font-size: clamp(220px, 28vw, 360px);
+    font-size: clamp(140px, 28vw, 360px);
     line-height: 0.7;
     color: rgba(0,0,0,0.05);
     font-family: var(--font-serif);
@@ -820,7 +825,7 @@
 
   .pv-hangul-main {
     font-family: var(--font-kr);
-    font-size: clamp(140px, 22vw, 320px);
+    font-size: clamp(84px, 22vw, 320px);
     font-weight: 700;
     line-height: 1;
     letter-spacing: -0.04em;
@@ -1628,6 +1633,8 @@
     align-items: center;
     gap: 8px;
     font-size: 11px;
+    flex-wrap: wrap;
+    min-width: 0;
   }
 
   .footer-legal-label {
@@ -1644,6 +1651,11 @@
 
   @media (max-width: 734px) {
     .footer-legal { gap: 12px 24px; }
+  }
+
+  @media (max-width: 480px) {
+    .footer-legal { flex-direction: column; gap: 10px; }
+    .footer-legal-row { width: 100%; }
   }
 
   .footer-bottom {
@@ -1663,6 +1675,10 @@
   .footer-bottom a:hover {
     color: var(--apple-black);
     text-decoration: underline;
+  }
+
+  @media (max-width: 600px) {
+    .footer-bottom { flex-direction: column; align-items: flex-start; gap: 8px; }
   }
 
   /* Reveal */
@@ -1772,7 +1788,7 @@
   <section class="stage stage-light" id="speakcoach">
     <div class="stage-eyebrow reveal">SpeakCoach AI</div>
     <h2 class="stage-title reveal">English, spoken better.</h2>
-    <p class="stage-subtitle reveal">한국 OPIc 수험생을 위한 AI 회화 코치.<br>실시간 피드백으로 진짜 영어 실력을 키웁니다.</p>
+    <p class="stage-subtitle reveal">한국 OPIc 수험생을 위한 AI 회화 코치. <br class="br-md-hide">실시간 피드백으로 진짜 영어 실력을 키웁니다.</p>
     <div class="stage-links reveal">
       <a href="https://sikbang-eng.replit.app/" target="_blank" rel="noopener" class="stage-link">Try SpeakCoach</a>
       <a href="https://sikbang.co" target="_blank" rel="noopener" class="stage-link">Learn more</a>
@@ -1820,7 +1836,7 @@
   <section class="stage stage-dark" id="topikiq">
     <div class="stage-eyebrow reveal">TopikIQ</div>
     <h2 class="stage-title reveal">Korean, learned smarter.</h2>
-    <p class="stage-subtitle reveal">전 세계 한국어 학습자를 위한 AI 학습 앱.<br>iOS &amp; Android 곧 출시.</p>
+    <p class="stage-subtitle reveal">전 세계 한국어 학습자를 위한 AI 학습 앱. <br class="br-md-hide">iOS &amp; Android 곧 출시.</p>
     <div class="stage-links reveal">
       <a href="https://topikiq.com" target="_blank" rel="noopener" class="stage-link">Visit topikiq.com</a>
       <a href="https://topikiq.com" target="_blank" rel="noopener" class="stage-link">Get notified</a>
@@ -2032,7 +2048,7 @@
   <section class="stage stage-dark" id="community">
     <div class="stage-eyebrow reveal">AI Cartel · Busan</div>
     <h2 class="stage-title reveal">For people who love AI.</h2>
-    <p class="stage-subtitle reveal">부산 기반 AI 커뮤니티.<br>매주 모이고, 만들고, 나눕니다.</p>
+    <p class="stage-subtitle reveal">부산 기반 AI 커뮤니티. <br class="br-md-hide">매주 모이고, 만들고, 나눕니다.</p>
     <div class="stage-links reveal">
       <a href="#" class="stage-link">Join the Cartel</a>
       <a href="#" class="stage-link">See past meetups</a>
