@@ -1626,6 +1626,17 @@
     gap: 12px;
   }
 
+  .footer-bottom a {
+    color: var(--apple-gray-text-light);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .footer-bottom a:hover {
+    color: var(--apple-black);
+    text-decoration: underline;
+  }
+
   /* Reveal */
   .reveal {
     opacity: 0;
@@ -2104,7 +2115,13 @@
       </div>
       <div class="footer-bottom">
         <span>Copyright © 2026 Verbio Labs. All rights reserved.</span>
-        <span>Privacy Policy · Terms of Use</span>
+        <span>
+          <a href="/privacy.html">개인정보처리방침</a>
+          ·
+          <a href="/terms.html">이용약관</a>
+          ·
+          <a href="/refund.html">환불 정책</a>
+        </span>
       </div>
     </div>
   </footer>
