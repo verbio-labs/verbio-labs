@@ -5,6 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Verbio Labs — AI for human language</title>
 <meta name="description" content="AI for human language. Built in Busan, Korea.">
+<link rel="canonical" href="https://verbiolabs.com/">
+<meta name="robots" content="index, follow">
+<meta name="author" content="Verbio Labs (Sikbang English)">
 
 <!-- Favicons -->
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
@@ -32,6 +35,58 @@
 <meta name="twitter:title" content="Verbio Labs — AI 언어·교육 랩">
 <meta name="twitter:description" content="AI for human language. 부산에서 만드는 AI 언어·교육 제품.">
 <meta name="twitter:image" content="https://verbiolabs.com/og-image.png">
+
+<!-- Structured data (Organization + WebSite) — improves Google rich results -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://verbiolabs.com/#org",
+      "name": "Verbio Labs",
+      "alternateName": "식빵영어",
+      "url": "https://verbiolabs.com/",
+      "logo": "https://verbiolabs.com/favicon-512.png",
+      "image": "https://verbiolabs.com/og-image.png",
+      "description": "AI for human language. 부산에서 만드는 AI 언어·교육 제품.",
+      "email": "lulu066666@gmail.com",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "만리산로98",
+        "addressLocality": "부산진구",
+        "addressRegion": "부산광역시",
+        "addressCountry": "KR"
+      },
+      "founder": {
+        "@type": "Person",
+        "name": "안준영 (Jacob)"
+      }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://verbiolabs.com/#website",
+      "url": "https://verbiolabs.com/",
+      "name": "Verbio Labs",
+      "publisher": { "@id": "https://verbiolabs.com/#org" },
+      "inLanguage": ["ko-KR", "en-US"]
+    }
+  ]
+}
+</script>
+
+<!-- Analytics (Plausible) — replace data-domain after creating an account at plausible.io -->
+<script defer data-domain="verbiolabs.com" src="https://plausible.io/js/script.js"></script>
+<!--
+  Alternative: Google Analytics 4 — uncomment and replace G-XXXXXXXXXX with your Measurement ID.
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX');
+  </script>
+-->
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -89,6 +144,24 @@
   /* 모바일에서는 의도적인 강제 줄바꿈을 숨겨 자연 줄바꿈으로 전환 */
   @media (max-width: 600px) {
     .br-md-hide { display: none; }
+  }
+
+  /* 접근성: 모션 감소 선호 사용자에게는 애니메이션 제거 */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+      scroll-behavior: auto !important;
+    }
+    .reveal, .scale-in { opacity: 1 !important; transform: none !important; }
+  }
+
+  /* 키보드 포커스 표시 — 마우스 사용자에겐 안 보이고 키보드 탭 사용자에게만 표시 */
+  :focus-visible {
+    outline: 2px solid var(--apple-blue);
+    outline-offset: 3px;
+    border-radius: 4px;
   }
 
   /* ════════════════════ NAV ════════════════════ */
@@ -1224,6 +1297,16 @@
   .tile-link:hover { text-decoration: underline; }
   .tile-link::after { content: " ›"; }
 
+  .tile-link.is-soon,
+  .footer-col a.is-soon {
+    color: var(--apple-gray-text-light);
+    pointer-events: none;
+    cursor: default;
+  }
+  .tile-link.is-soon::after,
+  .footer-col a.is-soon::after { content: " · Coming soon"; font-size: 0.85em; opacity: 0.7; }
+  .footer-col a.is-soon { display: inline-flex; align-items: baseline; gap: 0; }
+
   .tile-visual {
     flex: 1;
     display: flex;
@@ -1850,7 +1933,7 @@
     <div class="global-nav-inner">
       <a href="#" class="global-nav-brand">
         <span class="global-nav-brand-mark">
-          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Verbio Labs">
             <g transform="translate(3.994 20.103) scale(0.02367 -0.02367)" fill="currentColor">
               <path d="M168 -10Q164 -10 160.0 -7.0Q156 -4 156 6L145 640Q144 668 138.0 679.0Q132 690 113 694L100 697Q88 700 88 709Q88 720 105 720H270Q283 720 283 710Q283 699 263 697L243 695Q226 694 219.5 684.5Q213 675 213 653L218 180Q218 170 224.0 169.0Q230 168 234 176L453 632Q481 689 435 695L421 697Q406 700 406 709Q406 720 423 720H568Q580 720 580 710Q580 701 564 697L548 694Q528 690 514.0 674.5Q500 659 486 631L187 6Q183 -4 177.5 -7.0Q172 -10 168 -10Z"/>
             </g>
@@ -2091,7 +2174,7 @@
           <h3 class="tile-title">Samsung Electronics</h3>
           <p class="tile-subtitle">200+ engineers. One deep learning seminar.</p>
           <div class="tile-links">
-            <a href="#" class="tile-link">Read about it</a>
+            <a class="tile-link is-soon" aria-disabled="true">Read about it</a>
           </div>
         </div>
         <div class="tile-visual">
@@ -2112,8 +2195,8 @@
           <h3 class="tile-title">AI &amp; Deep Learning</h3>
           <p class="tile-subtitle">정규 학기 강의로 차세대 AI 엔지니어를 양성합니다.</p>
           <div class="tile-links">
-            <a href="#" class="tile-link">Course outline</a>
-            <a href="#" class="tile-link">Inquire</a>
+            <a class="tile-link is-soon" aria-disabled="true">Course outline</a>
+            <a href="mailto:lulu066666@gmail.com?subject=University%20Lecture%20Inquiry" class="tile-link">Inquire</a>
           </div>
         </div>
         <div class="tile-visual">
@@ -2130,7 +2213,7 @@
           <h3 class="tile-title">For your team.</h3>
           <p class="tile-subtitle">기업 임직원 대상 맞춤형 AI 교육 프로그램.</p>
           <div class="tile-links">
-            <a href="#" class="tile-link">Request a seminar</a>
+            <a href="mailto:lulu066666@gmail.com?subject=Industry%20Seminar%20Request" class="tile-link">Request a seminar</a>
           </div>
         </div>
         <div class="tile-visual">
@@ -2298,7 +2381,7 @@
           <ul>
             <li><a href="#courses">Online Courses</a></li>
             <li><a href="#community">AI Cartel Busan</a></li>
-            <li><a href="#">Newsletter</a></li>
+            <li><a class="is-soon" aria-disabled="true">Newsletter</a></li>
           </ul>
         </div>
         <div class="footer-col">
