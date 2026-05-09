@@ -1406,6 +1406,144 @@
     position: relative;
   }
 
+  /* ════════════════════ CARTEL MANIFESTO (expandable) ════════════════════ */
+  .manifesto-wrap {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 22px;
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: max-height 1s var(--ease-out-quart),
+                opacity 0.7s ease,
+                margin-top 0.7s ease;
+  }
+
+  .manifesto-wrap.open {
+    max-height: 2400px;
+    opacity: 1;
+    margin-top: 24px;
+  }
+
+  .manifesto-inner {
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding: 80px 0 24px;
+    text-align: left;
+  }
+
+  .manifesto-eyebrow {
+    font-family: var(--font-sans);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.42);
+    margin-bottom: 18px;
+  }
+
+  .manifesto-title {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: clamp(40px, 5.4vw, 60px);
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    color: white;
+    margin-bottom: 12px;
+    line-height: 1.05;
+  }
+
+  .manifesto-lead {
+    font-family: var(--font-kr);
+    font-size: 19px;
+    color: rgba(255,255,255,0.7);
+    margin-bottom: 56px;
+    font-weight: 500;
+    letter-spacing: -0.008em;
+    line-height: 1.5;
+  }
+
+  .manifesto-intro {
+    font-family: var(--font-kr);
+    font-size: 17px;
+    line-height: 1.78;
+    color: rgba(255,255,255,0.82);
+    margin-bottom: 64px;
+    letter-spacing: -0.005em;
+  }
+
+  .manifesto-pillars {
+    display: grid;
+    gap: 56px;
+    margin-bottom: 64px;
+  }
+
+  .pillar-label {
+    font-family: var(--font-kr);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    color: rgba(255,255,255,0.48);
+    margin-bottom: 14px;
+    text-transform: none;
+  }
+
+  .pillar-text {
+    font-family: var(--font-kr);
+    font-size: 17px;
+    line-height: 1.78;
+    color: white;
+    letter-spacing: -0.005em;
+  }
+
+  .pillar-text em {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-weight: 400;
+    color: white;
+    background: linear-gradient(135deg, #fff 0%, #d8e7ff 50%, #5e9eff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    padding: 0 0.04em;
+  }
+
+  .manifesto-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 28px;
+    background: white;
+    color: var(--apple-black);
+    border-radius: 999px;
+    font-family: var(--font-sans);
+    font-size: 15px;
+    font-weight: 500;
+    text-decoration: none;
+    letter-spacing: -0.01em;
+    transition: transform 0.3s var(--ease-out-quart), background 0.3s ease;
+  }
+
+  .manifesto-cta:hover {
+    transform: translateY(-1px);
+    background: rgba(255,255,255,0.92);
+  }
+
+  .manifesto-cta-arrow {
+    font-size: 18px;
+    line-height: 1;
+    transition: transform 0.3s var(--ease-out-quart);
+  }
+
+  .manifesto-cta:hover .manifesto-cta-arrow { transform: translateX(3px); }
+
+  @media (max-width: 600px) {
+    .manifesto-inner { padding: 56px 0 16px; }
+    .manifesto-lead { font-size: 17px; margin-bottom: 40px; }
+    .manifesto-intro { font-size: 16px; margin-bottom: 48px; }
+    .manifesto-pillars { gap: 40px; margin-bottom: 48px; }
+    .pillar-text { font-size: 16px; }
+  }
+
   .community-bigtype {
     font-size: clamp(120px, 22vw, 320px);
     font-weight: 400;
@@ -2052,8 +2190,43 @@
     <p class="stage-subtitle reveal">부산 기반 AI 커뮤니티. <br class="br-md-hide">매주 모이고, 만들고, 나눕니다.</p>
     <div class="stage-links reveal">
       <a href="https://forms.gle/NCvozZkZSnYgUk6WA" target="_blank" rel="noopener" class="stage-link">Join the Cartel</a>
-      <a href="#" class="stage-link">See past meetups</a>
+      <a href="#manifesto" class="stage-link" id="manifestoToggle">What we believe</a>
     </div>
+
+    <!-- MANIFESTO (expandable) -->
+    <div class="manifesto-wrap" id="manifesto">
+      <div class="manifesto-inner">
+        <div class="manifesto-eyebrow">Manifesto</div>
+        <h3 class="manifesto-title">부산 AI Cartel</h3>
+        <p class="manifesto-lead">부산 최대 AI 커뮤니티가 될, 첫 번째 결속.</p>
+
+        <p class="manifesto-intro">
+          우리는 무엇인가를 가르치는 강의도, 단순한 친목 모임도 아닙니다. AI 시대를 같은 속도로 헤쳐 나가려는 사람들이, 서로의 시점에서 인사이트를 나누고 함께 깊이를 쌓는 모임입니다.
+        </p>
+
+        <div class="manifesto-pillars">
+          <div class="manifesto-pillar">
+            <div class="pillar-label">우리가 믿는 것</div>
+            <p class="pillar-text">
+              혼자서는 닿을 수 없는 곳에, 함께라면 닿을 수 있다고 믿습니다. 한 사람이 일주일 동안 발견한 인사이트가 여섯 명에게 6배로 돌아오는 <em>복리의 힘</em>. 한 사람에게 들어온 기회가 모두에게 열리는 <em>네트워크의 힘</em>.
+            </p>
+          </div>
+
+          <div class="manifesto-pillar">
+            <div class="pillar-label">우리가 만드는 것</div>
+            <p class="pillar-text">
+              인사이트를 나누고, 성장을 가속하고, 기회를 연결합니다. 우리의 작은 모임이 <em>부산 AI 씬의 시작</em>이 됩니다.
+            </p>
+          </div>
+        </div>
+
+        <a href="https://forms.gle/NCvozZkZSnYgUk6WA" target="_blank" rel="noopener" class="manifesto-cta">
+          Join the Cartel
+          <span class="manifesto-cta-arrow">›</span>
+        </a>
+      </div>
+    </div>
+
     <div class="community-visual scale-in">
       <div class="community-bigtype">Busan.</div>
     </div>
@@ -2199,9 +2372,20 @@
 
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function(e) {
-        const target = document.querySelector(this.getAttribute('href'));
+        const href = this.getAttribute('href');
+        if (href === '#') return;
+        const target = document.querySelector(href);
         if (target) {
           e.preventDefault();
+          // Special-case: manifesto link expands the section before scrolling
+          if (href === '#manifesto') {
+            target.classList.add('open');
+            // Wait one frame so layout settles, then scroll
+            requestAnimationFrame(() => {
+              setTimeout(() => target.scrollIntoView({ behavior: 'smooth', block: 'start' }), 80);
+            });
+            return;
+          }
           target.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
       });
