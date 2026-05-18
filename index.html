@@ -1996,6 +1996,96 @@
 
   .level-link::after { content: " ›"; }
 
+  /* ── Detail footer (For Whom / Level / Curriculum / You'll Get) ── */
+  .level-details, .track-details {
+    margin-top: 22px;
+    padding-top: 22px;
+    border-top: 0.5px solid var(--apple-gray-line);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 22px 36px;
+  }
+
+  .detail-block { min-width: 0; }
+
+  .detail-label {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.09em;
+    color: var(--apple-gray-text-light);
+    margin-bottom: 8px;
+  }
+
+  .detail-content {
+    font-size: 13px;
+    color: var(--apple-gray-text);
+    line-height: 1.55;
+    letter-spacing: -0.003em;
+  }
+
+  .detail-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    font-size: 13px;
+    color: var(--apple-gray-text);
+    line-height: 1.6;
+    letter-spacing: -0.003em;
+  }
+
+  .detail-list li {
+    position: relative;
+    padding-left: 16px;
+    margin-bottom: 3px;
+  }
+
+  .detail-list li::before {
+    content: "·";
+    position: absolute;
+    left: 6px;
+    color: var(--apple-gray-text-light);
+    font-weight: 700;
+  }
+
+  .detail-list.numbered { counter-reset: step; }
+  .detail-list.numbered li {
+    padding-left: 22px;
+  }
+  .detail-list.numbered li::before {
+    content: counter(step) ".";
+    counter-increment: step;
+    font-size: 11px;
+    font-feature-settings: "tnum";
+    left: 0;
+    font-weight: 600;
+    color: var(--apple-gray-text-light);
+  }
+
+  .level-dots {
+    display: inline-flex;
+    gap: 3px;
+    vertical-align: middle;
+    margin-right: 8px;
+  }
+
+  .level-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: rgba(0,0,0,0.15);
+  }
+
+  .level-dot.on { background: var(--apple-black); }
+
+  .level-tag {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--apple-black);
+    letter-spacing: -0.005em;
+    vertical-align: middle;
+  }
+
   @media (max-width: 734px) {
     .level-card {
       grid-template-columns: 1fr;
@@ -2005,6 +2095,10 @@
     .level-num {
       font-size: 40px;
       margin-bottom: 8px;
+    }
+    .level-details, .track-details {
+      grid-template-columns: 1fr;
+      gap: 18px;
     }
   }
 
@@ -2864,6 +2958,36 @@
                 </div>
                 <a href="mailto:lulu066666@gmail.com?subject=%5BNotify%20Me%5D%20First%20AI%20Service%20in%2030%20min&body=%EC%95%88%EB%85%95%ED%95%98%EC%84%B8%EC%9A%94%2C%0A%0A'First%20AI%20Service%20in%2030%20min'%20%EC%BD%94%EC%8A%A4%20%EC%B6%9C%EC%8B%9C%20%EC%95%8C%EB%A6%BC%EC%9D%84%20%EC%8B%A0%EC%B2%AD%ED%95%A9%EB%8B%88%EB%8B%A4.%0A%0A%5B%EC%9D%B4%EB%A6%84%5D%3A%0A%5B%EC%97%B0%EB%9D%BD%EC%B2%98%5D%3A" class="level-link">Notify me</a>
               </div>
+              <div class="level-details">
+                <div class="detail-block">
+                  <div class="detail-label">For Whom</div>
+                  <div class="detail-content">코딩 한 번도 안 해본 직장인·창업가·기획자. 본인 아이디어를 웹사이트로 띄우고 싶은 사람.</div>
+                </div>
+                <div class="detail-block">
+                  <div class="detail-label">Level</div>
+                  <div class="detail-content">
+                    <span class="level-dots"><span class="level-dot on"></span><span class="level-dot"></span><span class="level-dot"></span><span class="level-dot"></span><span class="level-dot"></span></span>
+                    <span class="level-tag">Beginner</span>
+                  </div>
+                </div>
+                <div class="detail-block">
+                  <div class="detail-label">Curriculum</div>
+                  <ol class="detail-list numbered">
+                    <li>Claude Code 셋업과 첫 명령</li>
+                    <li>HTML·CSS 기초 with AI</li>
+                    <li>본인 사이트 디자인·구현</li>
+                    <li>Vercel 배포 + 도메인 연결</li>
+                  </ol>
+                </div>
+                <div class="detail-block">
+                  <div class="detail-label">You'll Get</div>
+                  <ul class="detail-list">
+                    <li>본인 도메인의 작동하는 웹사이트</li>
+                    <li>verbiolabs.com 따라 만든 정적 사이트</li>
+                    <li>기본 SEO·OG 이미지 셋업</li>
+                  </ul>
+                </div>
+              </div>
             </div>
           </li>
 
@@ -2879,6 +3003,37 @@
                   <span class="level-price">₩199,000</span>
                 </div>
                 <a href="mailto:lulu066666@gmail.com?subject=%5BNotify%20Me%5D%20Korean%20SaaS%2C%20Launch%20in%20a%20Week&body=%EC%95%88%EB%85%95%ED%95%98%EC%84%B8%EC%9A%94%2C%0A%0A'Korean%20SaaS%2C%20Launch%20in%20a%20Week'%20%EC%BD%94%EC%8A%A4%20%EC%B6%9C%EC%8B%9C%20%EC%95%8C%EB%A6%BC%EC%9D%84%20%EC%8B%A0%EC%B2%AD%ED%95%A9%EB%8B%88%EB%8B%A4.%0A%0A%5B%EC%9D%B4%EB%A6%84%5D%3A%0A%5B%EC%97%B0%EB%9D%BD%EC%B2%98%5D%3A" class="level-link">Notify me</a>
+              </div>
+              <div class="level-details">
+                <div class="detail-block">
+                  <div class="detail-label">For Whom</div>
+                  <div class="detail-content">본인 SaaS·서비스 출시하려는 1인 메이커. 한국 시장에서 결제 받아야 하는 인디 개발자.</div>
+                </div>
+                <div class="detail-block">
+                  <div class="detail-label">Level</div>
+                  <div class="detail-content">
+                    <span class="level-dots"><span class="level-dot on"></span><span class="level-dot on"></span><span class="level-dot"></span><span class="level-dot"></span><span class="level-dot"></span></span>
+                    <span class="level-tag">Beginner+</span>
+                  </div>
+                </div>
+                <div class="detail-block">
+                  <div class="detail-label">Curriculum</div>
+                  <ol class="detail-list numbered">
+                    <li>launch-kit 셋업과 변수 치환</li>
+                    <li>PIPA·전자상거래법 약관 3종</li>
+                    <li>토스/포트원 PG 가맹점 신청</li>
+                    <li>SEO + Microsoft Clarity Analytics</li>
+                    <li>베타 테스트 → 정식 출시</li>
+                  </ol>
+                </div>
+                <div class="detail-block">
+                  <div class="detail-label">You'll Get</div>
+                  <ul class="detail-list">
+                    <li>한국 시장 합법 출시 가능한 SaaS</li>
+                    <li>결제 받을 수 있는 PG 가맹점</li>
+                    <li>첫 사용자 받을 준비 완료 상태</li>
+                  </ul>
+                </div>
               </div>
             </div>
           </li>
@@ -2896,6 +3051,37 @@
                 </div>
                 <a href="mailto:lulu066666@gmail.com?subject=%5BNotify%20Me%5D%20LLM%20for%20Professionals&body=%EC%95%88%EB%85%95%ED%95%98%EC%84%B8%EC%9A%94%2C%0A%0A'LLM%20for%20Professionals'%20%EC%BD%94%EC%8A%A4%20%EC%B6%9C%EC%8B%9C%20%EC%95%8C%EB%A6%BC%EC%9D%84%20%EC%8B%A0%EC%B2%AD%ED%95%A9%EB%8B%88%EB%8B%A4.%0A%0A%5B%EC%9D%B4%EB%A6%84%5D%3A%0A%5B%EC%97%B0%EB%9D%BD%EC%B2%98%5D%3A" class="level-link">Notify me</a>
               </div>
+              <div class="level-details">
+                <div class="detail-block">
+                  <div class="detail-label">For Whom</div>
+                  <div class="detail-content">본인 업무에 AI 통합하려는 실무자·PM·마케터·기획자. API로 자동화 워크플로우 만들고 싶은 분.</div>
+                </div>
+                <div class="detail-block">
+                  <div class="detail-label">Level</div>
+                  <div class="detail-content">
+                    <span class="level-dots"><span class="level-dot on"></span><span class="level-dot on"></span><span class="level-dot on"></span><span class="level-dot"></span><span class="level-dot"></span></span>
+                    <span class="level-tag">Intermediate</span>
+                  </div>
+                </div>
+                <div class="detail-block">
+                  <div class="detail-label">Curriculum</div>
+                  <ol class="detail-list numbered">
+                    <li>프롬프트 엔지니어링 패턴 10개</li>
+                    <li>ChatGPT·Claude·Gemini API 비교</li>
+                    <li>본인 워크플로우에 API 통합</li>
+                    <li>RAG · function calling · 평가</li>
+                    <li>비용 최적화 + production 운영</li>
+                  </ol>
+                </div>
+                <div class="detail-block">
+                  <div class="detail-label">You'll Get</div>
+                  <ul class="detail-list">
+                    <li>AI 통합 업무 자동화 스크립트</li>
+                    <li>API 비용 70% 절감 패턴</li>
+                    <li>평가·모니터링 dashboard</li>
+                  </ul>
+                </div>
+              </div>
             </div>
           </li>
 
@@ -2911,6 +3097,39 @@
                   <span class="level-price">₩299,000</span>
                 </div>
                 <a href="mailto:lulu066666@gmail.com?subject=%5BNotify%20Me%5D%20Indie%20App%2C%20A%20to%20Z&body=%EC%95%88%EB%85%95%ED%95%98%EC%84%B8%EC%9A%94%2C%0A%0A'Indie%20App%2C%20A%20to%20Z'%20%EC%BD%94%EC%8A%A4%20%EC%B6%9C%EC%8B%9C%20%EC%95%8C%EB%A6%BC%EC%9D%84%20%EC%8B%A0%EC%B2%AD%ED%95%A9%EB%8B%88%EB%8B%A4.%0A%0A%5B%EC%9D%B4%EB%A6%84%5D%3A%0A%5B%EC%97%B0%EB%9D%BD%EC%B2%98%5D%3A" class="level-link">Notify me</a>
+              </div>
+              <div class="level-details">
+                <div class="detail-block">
+                  <div class="detail-label">For Whom</div>
+                  <div class="detail-content">앱 출시·수익화 노리는 인디 메이커. 이미 웹 서비스 운영해본 분이 모바일로 확장하려는 케이스.</div>
+                </div>
+                <div class="detail-block">
+                  <div class="detail-label">Level</div>
+                  <div class="detail-content">
+                    <span class="level-dots"><span class="level-dot on"></span><span class="level-dot on"></span><span class="level-dot on"></span><span class="level-dot on"></span><span class="level-dot"></span></span>
+                    <span class="level-tag">Intermediate+</span>
+                  </div>
+                </div>
+                <div class="detail-block">
+                  <div class="detail-label">Curriculum</div>
+                  <ol class="detail-list numbered">
+                    <li>아이디어 검증 (실패 케이스 3개)</li>
+                    <li>Tech stack 결정 (RN · Flutter · Native)</li>
+                    <li>MVP 4주 빌드 — Claude Code 워크플로우</li>
+                    <li>App Store 심사 통과 베스트 7</li>
+                    <li>ASO + 한국 시장 최적화</li>
+                    <li>인앱결제 (IAP · 구독 · 토스)</li>
+                    <li>운영·CS·업데이트 풀세트</li>
+                  </ol>
+                </div>
+                <div class="detail-block">
+                  <div class="detail-label">You'll Get</div>
+                  <ul class="detail-list">
+                    <li>앱스토어 + 구글 플레이 출시 앱</li>
+                    <li>첫 매출 가능한 수익 구조</li>
+                    <li>TopikIQ 운영 데이터 case study</li>
+                  </ul>
+                </div>
               </div>
             </div>
           </li>
@@ -2928,6 +3147,37 @@
                 </div>
                 <a href="mailto:lulu066666@gmail.com?subject=%5BNotify%20Me%5D%20English%20Learning%2C%20AI%20Era&body=%EC%95%88%EB%85%95%ED%95%98%EC%84%B8%EC%9A%94%2C%0A%0A'English%20Learning%2C%20AI%20Era'%20%EC%BD%94%EC%8A%A4%20%EC%B6%9C%EC%8B%9C%20%EC%95%8C%EB%A6%BC%EC%9D%84%20%EC%8B%A0%EC%B2%AD%ED%95%A9%EB%8B%88%EB%8B%A4.%0A%0A%5B%EC%9D%B4%EB%A6%84%5D%3A%0A%5B%EC%97%B0%EB%9D%BD%EC%B2%98%5D%3A" class="level-link">Notify me</a>
               </div>
+              <div class="level-details">
+                <div class="detail-block">
+                  <div class="detail-label">For Whom</div>
+                  <div class="detail-content">영어 교육·콘텐츠 종사자, 본인 도메인에 AI 응용한 product 만들고 싶은 분야 전문가.</div>
+                </div>
+                <div class="detail-block">
+                  <div class="detail-label">Level</div>
+                  <div class="detail-content">
+                    <span class="level-dots"><span class="level-dot on"></span><span class="level-dot on"></span><span class="level-dot on"></span><span class="level-dot"></span><span class="level-dot"></span></span>
+                    <span class="level-tag">Intermediate</span>
+                  </div>
+                </div>
+                <div class="detail-block">
+                  <div class="detail-label">Curriculum</div>
+                  <ol class="detail-list numbered">
+                    <li>식빵영어 5년 운영 노하우</li>
+                    <li>AI 시대 학습 이론·교수법</li>
+                    <li>콘텐츠 자동 생성 시스템</li>
+                    <li>학습자 진도 진단 AI</li>
+                    <li>SaaS 모델 빌드 + 운영</li>
+                  </ol>
+                </div>
+                <div class="detail-block">
+                  <div class="detail-label">You'll Get</div>
+                  <ul class="detail-list">
+                    <li>AI 기반 영어 학습 product 프로토타입</li>
+                    <li>콘텐츠 자동 생성 파이프라인</li>
+                    <li>도메인 → product 변환 framework</li>
+                  </ul>
+                </div>
+              </div>
             </div>
           </li>
 
@@ -2943,6 +3193,38 @@
                   <span class="level-price">₩399,000</span>
                 </div>
                 <a href="mailto:lulu066666@gmail.com?subject=%5BNotify%20Me%5D%20Deep%20Learning%2C%20From%20Scratch&body=%EC%95%88%EB%85%95%ED%95%98%EC%84%B8%EC%9A%94%2C%0A%0A'Deep%20Learning%2C%20From%20Scratch'%20%EC%BD%94%EC%8A%A4%20%EC%B6%9C%EC%8B%9C%20%EC%95%8C%EB%A6%BC%EC%9D%84%20%EC%8B%A0%EC%B2%AD%ED%95%A9%EB%8B%88%EB%8B%A4.%0A%0A%5B%EC%9D%B4%EB%A6%84%5D%3A%0A%5B%EC%97%B0%EB%9D%BD%EC%B2%98%5D%3A" class="level-link">Notify me</a>
+              </div>
+              <div class="level-details">
+                <div class="detail-block">
+                  <div class="detail-label">For Whom</div>
+                  <div class="detail-content">AI 기초부터 제대로 이해하고 싶은 개발자·대학원생·연구자. 논문 읽고 구현하는 baseline 만들고 싶은 분.</div>
+                </div>
+                <div class="detail-block">
+                  <div class="detail-label">Level</div>
+                  <div class="detail-content">
+                    <span class="level-dots"><span class="level-dot on"></span><span class="level-dot on"></span><span class="level-dot on"></span><span class="level-dot on"></span><span class="level-dot on"></span></span>
+                    <span class="level-tag">Advanced</span>
+                  </div>
+                </div>
+                <div class="detail-block">
+                  <div class="detail-label">Curriculum</div>
+                  <ol class="detail-list numbered">
+                    <li>선형대수·미적분 직관</li>
+                    <li>backpropagation 직접 구현</li>
+                    <li>CNN — 이미지 인식</li>
+                    <li>RNN · Transformer 구조 이해</li>
+                    <li>본인 데이터로 모델 학습</li>
+                    <li>모델 평가·배포 · MLOps 기초</li>
+                  </ol>
+                </div>
+                <div class="detail-block">
+                  <div class="detail-label">You'll Get</div>
+                  <ul class="detail-list">
+                    <li>본인 모델 학습·배포 능력</li>
+                    <li>논문 읽고 구현하는 baseline</li>
+                    <li>PyTorch 풀스택 실력</li>
+                  </ul>
+                </div>
               </div>
             </div>
           </li>
@@ -2978,6 +3260,33 @@
               <span class="track-price">from ₩3,000,000</span>
               <a href="mailto:lulu066666@gmail.com?subject=%5BB2B%5D%20Corporate%20Workshop%20Inquiry&body=%EC%95%88%EB%85%95%ED%95%98%EC%84%B8%EC%9A%94%2C%0A%0AVerbio%20Labs%20Corporate%20Workshop%20%EB%AC%B8%EC%9D%98%EB%93%9C%EB%A6%BD%EB%8B%88%EB%8B%A4.%0A%0A%5B%ED%9A%8C%EC%82%AC%EB%AA%85%5D%3A%0A%5B%EC%9D%B8%EC%9B%90%5D%3A%0A%5B%ED%9D%AC%EB%A7%9D%20%EC%9D%BC%EC%A0%95%5D%3A%0A%5B%EC%97%B0%EB%9D%BD%EC%B2%98%5D%3A" class="track-link">Inquire</a>
             </div>
+            <div class="track-details">
+              <div class="detail-block">
+                <div class="detail-label">For Whom</div>
+                <div class="detail-content">AI 도입 검토 중인 기업 · 임직원 교육 필요한 인사·교육 담당자.</div>
+              </div>
+              <div class="detail-block">
+                <div class="detail-label">Format</div>
+                <div class="detail-content">온/오프라인 · 1-4일 또는 4주 프로그램</div>
+              </div>
+              <div class="detail-block">
+                <div class="detail-label">Includes</div>
+                <ul class="detail-list">
+                  <li>AI Onboarding for Teams (1day)</li>
+                  <li>Department workflows (마케팅·HR·CS)</li>
+                  <li>AI Governance & Compliance</li>
+                  <li>Custom Integration (4w 옵션)</li>
+                </ul>
+              </div>
+              <div class="detail-block">
+                <div class="detail-label">Deliverables</div>
+                <ul class="detail-list">
+                  <li>임직원용 AI 활용 매뉴얼</li>
+                  <li>부서별 prompt 라이브러리</li>
+                  <li>거버넌스 정책 가이드</li>
+                </ul>
+              </div>
+            </div>
           </div>
 
           <div class="track-card reveal">
@@ -2988,6 +3297,33 @@
               <span class="track-price">협의</span>
               <a href="mailto:lulu066666@gmail.com?subject=%5BB2B%5D%20University%20Lecture%20Inquiry&body=%EC%95%88%EB%85%95%ED%95%98%EC%84%B8%EC%9A%94%2C%0A%0AVerbio%20Labs%20University%20Lecture%20%EB%AC%B8%EC%9D%98%EB%93%9C%EB%A6%BD%EB%8B%88%EB%8B%A4.%0A%0A%5B%EA%B8%B0%EA%B4%80%EB%AA%85%5D%3A%0A%5B%EA%B3%BC%EC%A0%95%2F%EA%B3%BC%EB%AA%A9%5D%3A%0A%5B%ED%9D%AC%EB%A7%9D%20%EC%9D%BC%EC%A0%95%5D%3A%0A%5B%EC%97%B0%EB%9D%BD%EC%B2%98%5D%3A" class="track-link">Inquire</a>
             </div>
+            <div class="track-details">
+              <div class="detail-block">
+                <div class="detail-label">For Whom</div>
+                <div class="detail-content">대학 · 연구실 · 교육기관. 학부생·대학원생·교수진 대상 AI 교육.</div>
+              </div>
+              <div class="detail-block">
+                <div class="detail-label">Format</div>
+                <div class="detail-content">한 학기 정규 · 단기 워크숍 · 협의 가능</div>
+              </div>
+              <div class="detail-block">
+                <div class="detail-label">Includes</div>
+                <ul class="detail-list">
+                  <li>DL 정규 강좌 (한 학기 · 16주)</li>
+                  <li>AI 시대 교수법 워크숍 (2일)</li>
+                  <li>연구실 LLM 워크숍 (4시간)</li>
+                  <li>학부생 vibe coding bootcamp (1주)</li>
+                </ul>
+              </div>
+              <div class="detail-block">
+                <div class="detail-label">Deliverables</div>
+                <ul class="detail-list">
+                  <li>강의안 · 슬라이드 · 실습 코드</li>
+                  <li>학생 평가 framework</li>
+                  <li>교수진용 AI 활용 가이드</li>
+                </ul>
+              </div>
+            </div>
           </div>
 
           <div class="track-card reveal">
@@ -2997,6 +3333,33 @@
             <div class="track-meta">
               <span class="track-price">from ₩300,000/hr</span>
               <a href="mailto:lulu066666@gmail.com?subject=%5BB2B%5D%20Strategy%20Consulting%20Inquiry&body=%EC%95%88%EB%85%95%ED%95%98%EC%84%B8%EC%9A%94%2C%0A%0AVerbio%20Labs%20Strategy%20Consulting%20%EB%AC%B8%EC%9D%98%EB%93%9C%EB%A6%BD%EB%8B%88%EB%8B%A4.%0A%0A%5B%ED%9A%8C%EC%82%AC%EB%AA%85%5D%3A%0A%5B%EB%8B%A8%EA%B3%84%5D%3A%0A%5B%ED%9A%8C%EC%9D%98%20%EC%A3%BC%EC%A0%9C%5D%3A%0A%5B%EC%97%B0%EB%9D%BD%EC%B2%98%5D%3A" class="track-link">Inquire</a>
+            </div>
+            <div class="track-details">
+              <div class="detail-block">
+                <div class="detail-label">For Whom</div>
+                <div class="detail-content">시드~시리즈A 스타트업 CEO·CTO. AI product 전략 검토·MVP 빌딩 필요한 팀.</div>
+              </div>
+              <div class="detail-block">
+                <div class="detail-label">Format</div>
+                <div class="detail-content">hourly · 프로젝트 단위 · 8주 협력</div>
+              </div>
+              <div class="detail-block">
+                <div class="detail-label">Includes</div>
+                <ul class="detail-list">
+                  <li>AI Strategy Audit (2일 + 보고서)</li>
+                  <li>MVP 빌딩 협력 (8주, 주 1회 미팅)</li>
+                  <li>1:1 Mentoring (시간당)</li>
+                  <li>Tech stack 자문</li>
+                </ul>
+              </div>
+              <div class="detail-block">
+                <div class="detail-label">Deliverables</div>
+                <ul class="detail-list">
+                  <li>AI 전략 보고서 + 액션플랜</li>
+                  <li>MVP 코드 + 배포</li>
+                  <li>본인 팀이 이어갈 수 있는 가이드</li>
+                </ul>
+              </div>
             </div>
           </div>
 
