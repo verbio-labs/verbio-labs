@@ -1996,14 +1996,93 @@
 
   .level-link::after { content: " ›"; }
 
+  /* ── Recommended pills (Start Here / Bestseller) ── */
+  .level-pill {
+    display: inline-block;
+    margin-left: 6px;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 6px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    vertical-align: middle;
+  }
+
+  .level-pill.pill-start {
+    background: var(--apple-blue);
+    color: var(--apple-white);
+  }
+
+  .level-pill.pill-bestseller {
+    background: linear-gradient(135deg, #ff8c42, #ff6b35);
+    color: var(--apple-white);
+  }
+
+  /* ── Card toggle (expand details) ── */
+  .card-toggle {
+    appearance: none;
+    background: transparent;
+    border: none;
+    color: var(--apple-gray-text-light);
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    font-family: inherit;
+    padding: 8px 0 0;
+    margin-top: 14px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    letter-spacing: -0.005em;
+    transition: color 0.2s var(--ease-out-quart);
+  }
+
+  .card-toggle:hover { color: var(--apple-blue); }
+
+  .toggle-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 14px;
+    height: 14px;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1;
+    transition: transform 0.3s var(--ease-out-quart);
+  }
+
+  .card-toggle[aria-expanded="true"] .toggle-icon {
+    transform: rotate(45deg);
+  }
+
+  .card-toggle[aria-expanded="true"] .toggle-label::before { content: "Hide details"; }
+  .card-toggle[aria-expanded="false"] .toggle-label::before { content: "Show details"; }
+
   /* ── Detail footer (For Whom / Level / Curriculum / You'll Get) ── */
   .level-details, .track-details {
-    margin-top: 22px;
-    padding-top: 22px;
-    border-top: 0.5px solid var(--apple-gray-line);
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    margin-top: 0;
+    padding-top: 0;
+    border-top: 0 solid var(--apple-gray-line);
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 22px 36px;
+    transition: max-height 0.45s var(--ease-out-quart),
+                opacity 0.3s var(--ease-out-quart),
+                margin-top 0.3s var(--ease-out-quart),
+                padding-top 0.3s var(--ease-out-quart);
+  }
+
+  .level-card.is-expanded .level-details,
+  .track-card.is-expanded .track-details {
+    max-height: 1400px;
+    opacity: 1;
+    margin-top: 22px;
+    padding-top: 22px;
+    border-top-width: 0.5px;
   }
 
   .detail-block { min-width: 0; }
@@ -2510,6 +2589,7 @@
         <li><a href="#topikiq">TopikIQ</a></li>
         <li><a href="#why">Why Verbio</a></li>
         <li><a href="#education">Education</a></li>
+        <li><a href="#courses">Courses</a></li>
         <li><a href="#community">Community</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
@@ -2526,6 +2606,7 @@
       <li><a href="#topikiq">TopikIQ</a></li>
       <li><a href="#why">Why Verbio</a></li>
       <li><a href="#education">Education</a></li>
+      <li><a href="#courses">Courses</a></li>
       <li><a href="#community">Community</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
@@ -2568,6 +2649,7 @@
             <path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </a>
+        <a href="#courses" class="btn btn-secondary">Browse Courses</a>
         <a href="#why" class="btn btn-secondary">Why Verbio</a>
       </div>
     </div>
@@ -2958,6 +3040,7 @@
                 </div>
                 <a href="mailto:lulu066666@gmail.com?subject=%5BNotify%20Me%5D%20First%20AI%20Service%20in%2030%20min&body=%EC%95%88%EB%85%95%ED%95%98%EC%84%B8%EC%9A%94%2C%0A%0A'First%20AI%20Service%20in%2030%20min'%20%EC%BD%94%EC%8A%A4%20%EC%B6%9C%EC%8B%9C%20%EC%95%8C%EB%A6%BC%EC%9D%84%20%EC%8B%A0%EC%B2%AD%ED%95%A9%EB%8B%88%EB%8B%A4.%0A%0A%5B%EC%9D%B4%EB%A6%84%5D%3A%0A%5B%EC%97%B0%EB%9D%BD%EC%B2%98%5D%3A" class="level-link">Notify me</a>
               </div>
+              <button class="card-toggle" type="button" aria-expanded="false"><span class="toggle-label"></span><span class="toggle-icon">+</span></button>
               <div class="level-details">
                 <div class="detail-block">
                   <div class="detail-label">For Whom</div>
@@ -2994,7 +3077,7 @@
           <li class="level-card reveal">
             <div class="level-num">01</div>
             <div class="level-body">
-              <span class="level-status">Coming Q3 2026</span>
+              <span class="level-status">Coming Q3 2026</span><span class="level-pill pill-start">⭐ Start Here</span>
               <h3 class="level-title">Korean SaaS, Launch in a Week</h3>
               <p class="level-desc">PIPA·전자상거래법 호환 SaaS를 1주 안에 출시. launch-kit 기반 약관·SEO·PG 연동·Analytics 풀세트.</p>
               <div class="level-meta">
@@ -3004,6 +3087,7 @@
                 </div>
                 <a href="mailto:lulu066666@gmail.com?subject=%5BNotify%20Me%5D%20Korean%20SaaS%2C%20Launch%20in%20a%20Week&body=%EC%95%88%EB%85%95%ED%95%98%EC%84%B8%EC%9A%94%2C%0A%0A'Korean%20SaaS%2C%20Launch%20in%20a%20Week'%20%EC%BD%94%EC%8A%A4%20%EC%B6%9C%EC%8B%9C%20%EC%95%8C%EB%A6%BC%EC%9D%84%20%EC%8B%A0%EC%B2%AD%ED%95%A9%EB%8B%88%EB%8B%A4.%0A%0A%5B%EC%9D%B4%EB%A6%84%5D%3A%0A%5B%EC%97%B0%EB%9D%BD%EC%B2%98%5D%3A" class="level-link">Notify me</a>
               </div>
+              <button class="card-toggle" type="button" aria-expanded="false"><span class="toggle-label"></span><span class="toggle-icon">+</span></button>
               <div class="level-details">
                 <div class="detail-block">
                   <div class="detail-label">For Whom</div>
@@ -3051,6 +3135,7 @@
                 </div>
                 <a href="mailto:lulu066666@gmail.com?subject=%5BNotify%20Me%5D%20LLM%20for%20Professionals&body=%EC%95%88%EB%85%95%ED%95%98%EC%84%B8%EC%9A%94%2C%0A%0A'LLM%20for%20Professionals'%20%EC%BD%94%EC%8A%A4%20%EC%B6%9C%EC%8B%9C%20%EC%95%8C%EB%A6%BC%EC%9D%84%20%EC%8B%A0%EC%B2%AD%ED%95%A9%EB%8B%88%EB%8B%A4.%0A%0A%5B%EC%9D%B4%EB%A6%84%5D%3A%0A%5B%EC%97%B0%EB%9D%BD%EC%B2%98%5D%3A" class="level-link">Notify me</a>
               </div>
+              <button class="card-toggle" type="button" aria-expanded="false"><span class="toggle-label"></span><span class="toggle-icon">+</span></button>
               <div class="level-details">
                 <div class="detail-block">
                   <div class="detail-label">For Whom</div>
@@ -3088,7 +3173,7 @@
           <li class="level-card reveal">
             <div class="level-num">03</div>
             <div class="level-body">
-              <span class="level-status production">In Production</span>
+              <span class="level-status production">In Production</span><span class="level-pill pill-bestseller">🔥 Bestseller</span>
               <h3 class="level-title">Indie App, A to Z</h3>
               <p class="level-desc">아이디어 검증부터 출시·ASO·수익화까지. TopikIQ 출시·운영 실전 경험 기반 1인 앱 메이커 풀과정.</p>
               <div class="level-meta">
@@ -3098,6 +3183,7 @@
                 </div>
                 <a href="mailto:lulu066666@gmail.com?subject=%5BNotify%20Me%5D%20Indie%20App%2C%20A%20to%20Z&body=%EC%95%88%EB%85%95%ED%95%98%EC%84%B8%EC%9A%94%2C%0A%0A'Indie%20App%2C%20A%20to%20Z'%20%EC%BD%94%EC%8A%A4%20%EC%B6%9C%EC%8B%9C%20%EC%95%8C%EB%A6%BC%EC%9D%84%20%EC%8B%A0%EC%B2%AD%ED%95%A9%EB%8B%88%EB%8B%A4.%0A%0A%5B%EC%9D%B4%EB%A6%84%5D%3A%0A%5B%EC%97%B0%EB%9D%BD%EC%B2%98%5D%3A" class="level-link">Notify me</a>
               </div>
+              <button class="card-toggle" type="button" aria-expanded="false"><span class="toggle-label"></span><span class="toggle-icon">+</span></button>
               <div class="level-details">
                 <div class="detail-block">
                   <div class="detail-label">For Whom</div>
@@ -3147,6 +3233,7 @@
                 </div>
                 <a href="mailto:lulu066666@gmail.com?subject=%5BNotify%20Me%5D%20English%20Learning%2C%20AI%20Era&body=%EC%95%88%EB%85%95%ED%95%98%EC%84%B8%EC%9A%94%2C%0A%0A'English%20Learning%2C%20AI%20Era'%20%EC%BD%94%EC%8A%A4%20%EC%B6%9C%EC%8B%9C%20%EC%95%8C%EB%A6%BC%EC%9D%84%20%EC%8B%A0%EC%B2%AD%ED%95%A9%EB%8B%88%EB%8B%A4.%0A%0A%5B%EC%9D%B4%EB%A6%84%5D%3A%0A%5B%EC%97%B0%EB%9D%BD%EC%B2%98%5D%3A" class="level-link">Notify me</a>
               </div>
+              <button class="card-toggle" type="button" aria-expanded="false"><span class="toggle-label"></span><span class="toggle-icon">+</span></button>
               <div class="level-details">
                 <div class="detail-block">
                   <div class="detail-label">For Whom</div>
@@ -3194,6 +3281,7 @@
                 </div>
                 <a href="mailto:lulu066666@gmail.com?subject=%5BNotify%20Me%5D%20Deep%20Learning%2C%20From%20Scratch&body=%EC%95%88%EB%85%95%ED%95%98%EC%84%B8%EC%9A%94%2C%0A%0A'Deep%20Learning%2C%20From%20Scratch'%20%EC%BD%94%EC%8A%A4%20%EC%B6%9C%EC%8B%9C%20%EC%95%8C%EB%A6%BC%EC%9D%84%20%EC%8B%A0%EC%B2%AD%ED%95%A9%EB%8B%88%EB%8B%A4.%0A%0A%5B%EC%9D%B4%EB%A6%84%5D%3A%0A%5B%EC%97%B0%EB%9D%BD%EC%B2%98%5D%3A" class="level-link">Notify me</a>
               </div>
+              <button class="card-toggle" type="button" aria-expanded="false"><span class="toggle-label"></span><span class="toggle-icon">+</span></button>
               <div class="level-details">
                 <div class="detail-block">
                   <div class="detail-label">For Whom</div>
@@ -3260,6 +3348,7 @@
               <span class="track-price">from ₩3,000,000</span>
               <a href="mailto:lulu066666@gmail.com?subject=%5BB2B%5D%20Corporate%20Workshop%20Inquiry&body=%EC%95%88%EB%85%95%ED%95%98%EC%84%B8%EC%9A%94%2C%0A%0AVerbio%20Labs%20Corporate%20Workshop%20%EB%AC%B8%EC%9D%98%EB%93%9C%EB%A6%BD%EB%8B%88%EB%8B%A4.%0A%0A%5B%ED%9A%8C%EC%82%AC%EB%AA%85%5D%3A%0A%5B%EC%9D%B8%EC%9B%90%5D%3A%0A%5B%ED%9D%AC%EB%A7%9D%20%EC%9D%BC%EC%A0%95%5D%3A%0A%5B%EC%97%B0%EB%9D%BD%EC%B2%98%5D%3A" class="track-link">Inquire</a>
             </div>
+            <button class="card-toggle" type="button" aria-expanded="false"><span class="toggle-label"></span><span class="toggle-icon">+</span></button>
             <div class="track-details">
               <div class="detail-block">
                 <div class="detail-label">For Whom</div>
@@ -3297,6 +3386,7 @@
               <span class="track-price">협의</span>
               <a href="mailto:lulu066666@gmail.com?subject=%5BB2B%5D%20University%20Lecture%20Inquiry&body=%EC%95%88%EB%85%95%ED%95%98%EC%84%B8%EC%9A%94%2C%0A%0AVerbio%20Labs%20University%20Lecture%20%EB%AC%B8%EC%9D%98%EB%93%9C%EB%A6%BD%EB%8B%88%EB%8B%A4.%0A%0A%5B%EA%B8%B0%EA%B4%80%EB%AA%85%5D%3A%0A%5B%EA%B3%BC%EC%A0%95%2F%EA%B3%BC%EB%AA%A9%5D%3A%0A%5B%ED%9D%AC%EB%A7%9D%20%EC%9D%BC%EC%A0%95%5D%3A%0A%5B%EC%97%B0%EB%9D%BD%EC%B2%98%5D%3A" class="track-link">Inquire</a>
             </div>
+            <button class="card-toggle" type="button" aria-expanded="false"><span class="toggle-label"></span><span class="toggle-icon">+</span></button>
             <div class="track-details">
               <div class="detail-block">
                 <div class="detail-label">For Whom</div>
@@ -3334,6 +3424,7 @@
               <span class="track-price">from ₩300,000/hr</span>
               <a href="mailto:lulu066666@gmail.com?subject=%5BB2B%5D%20Strategy%20Consulting%20Inquiry&body=%EC%95%88%EB%85%95%ED%95%98%EC%84%B8%EC%9A%94%2C%0A%0AVerbio%20Labs%20Strategy%20Consulting%20%EB%AC%B8%EC%9D%98%EB%93%9C%EB%A6%BD%EB%8B%88%EB%8B%A4.%0A%0A%5B%ED%9A%8C%EC%82%AC%EB%AA%85%5D%3A%0A%5B%EB%8B%A8%EA%B3%84%5D%3A%0A%5B%ED%9A%8C%EC%9D%98%20%EC%A3%BC%EC%A0%9C%5D%3A%0A%5B%EC%97%B0%EB%9D%BD%EC%B2%98%5D%3A" class="track-link">Inquire</a>
             </div>
+            <button class="card-toggle" type="button" aria-expanded="false"><span class="toggle-label"></span><span class="toggle-icon">+</span></button>
             <div class="track-details">
               <div class="detail-block">
                 <div class="detail-label">For Whom</div>
@@ -3515,6 +3606,16 @@
           }
           target.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
+      });
+    });
+
+    // Course card — expandable details toggle
+    document.querySelectorAll('.card-toggle').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const card = btn.closest('.level-card, .track-card');
+        if (!card) return;
+        const expanded = card.classList.toggle('is-expanded');
+        btn.setAttribute('aria-expanded', expanded ? 'true' : 'false');
       });
     });
 
