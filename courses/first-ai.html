@@ -1,0 +1,1712 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>First AI Service in 30 min — Verbio Labs</title>
+<meta name="description" content="코드는 AI가 짭니다. 당신은 디자인만 하면 됩니다. 코딩 한 번 안 해본 사람도 4주 안에 본인 도메인의 사이트를 띄웁니다.">
+<link rel="canonical" href="https://verbiolabs.com/courses/first-ai.html">
+<meta name="robots" content="index, follow">
+<meta name="author" content="Verbio Labs (Sikbang English)">
+
+<!-- Favicons -->
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
+<link rel="shortcut icon" href="/favicon.ico">
+<link rel="apple-touch-icon" sizes="180x180" href="/favicon-180.png">
+<meta name="theme-color" content="#1d1d1f">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Verbio Labs">
+<meta property="og:url" content="https://verbiolabs.com/courses/first-ai.html">
+<meta property="og:title" content="First AI Service in 30 min — Verbio Labs">
+<meta property="og:description" content="코드는 AI가 짭니다. 당신은 디자인만 하면 됩니다. 4주 안에 본인 도메인의 사이트를 띄웁니다.">
+<meta property="og:image" content="https://verbiolabs.com/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="ko_KR">
+
+<!-- Structured data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Course",
+  "name": "First AI Service in 30 min",
+  "description": "코드는 AI가 짭니다. 당신은 디자인만 하면 됩니다. 코딩 한 번 안 해본 사람도 4주 안에 본인 도메인의 사이트를 띄웁니다.",
+  "provider": {
+    "@type": "Organization",
+    "name": "Verbio Labs",
+    "url": "https://verbiolabs.com/"
+  },
+  "offers": {
+    "@type": "Offer",
+    "price": "99000",
+    "priceCurrency": "KRW",
+    "availability": "https://schema.org/PreOrder"
+  },
+  "timeRequired": "PT4W",
+  "numberOfLessons": 12
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Instrument+Serif:ital@0;1&family=Pretendard:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+
+  :root {
+    --apple-black: #1d1d1f;
+    --apple-white: #ffffff;
+    --apple-gray-bg: #f5f5f7;
+    --apple-gray-text: #6e6e73;
+    --apple-gray-text-light: #86868b;
+    --apple-gray-line: #d2d2d7;
+    --apple-blue: #0066cc;
+    --apple-blue-bright: #2997ff;
+    --apple-red: #ff453a;
+    --apple-green: #30d158;
+
+    --font-sans: 'Inter', 'Pretendard', -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;
+    --font-kr: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-serif: 'Instrument Serif', 'Times New Roman', Georgia, serif;
+
+    --ease-out-quart: cubic-bezier(0.165, 0.84, 0.44, 1);
+    --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
+    --ease-default: cubic-bezier(0.4, 0, 0.6, 1);
+  }
+
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--apple-white);
+    color: var(--apple-black);
+    font-family: var(--font-sans);
+    font-size: 17px;
+    line-height: 1.47059;
+    letter-spacing: -0.022em;
+    overflow-x: hidden;
+  }
+  :lang(ko), .course-summary, .lesson-title, .detail-content, .bundle-desc,
+  .course-lead, .week-summary, .footer-disclaimer, .faq-q, .faq-a,
+  .problem-text, .dream-text, .stack-name, .stack-desc, .guarantee-text,
+  .why-item-text, .pricing-desc, .section-lead, .scarcity-text {
+    font-family: var(--font-kr);
+    word-break: keep-all;
+    overflow-wrap: break-word;
+  }
+  ::selection { background: var(--apple-blue); color: white; }
+  @media (max-width: 600px) { .br-md-hide { display: none; } }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.001ms !important;
+      transition-duration: 0.001ms !important;
+      scroll-behavior: auto !important;
+    }
+    .reveal { opacity: 1 !important; transform: none !important; }
+  }
+  :focus-visible { outline: 2px solid var(--apple-blue); outline-offset: 3px; border-radius: 4px; }
+
+  /* ════════ NAV (동일) ════════ */
+  .global-nav {
+    position: sticky; top: 0; height: 48px;
+    background: rgba(0, 0, 0, 0.72);
+    backdrop-filter: saturate(180%) blur(20px);
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
+    z-index: 9999;
+    display: flex; justify-content: center; align-items: center;
+    border-bottom: 0.5px solid rgba(255,255,255,0.08);
+  }
+  .global-nav-inner {
+    width: 100%; max-width: 1024px; padding: 0 22px;
+    display: flex; align-items: center; justify-content: space-between; height: 100%;
+  }
+  .global-nav-brand {
+    color: rgba(255, 255, 255, 0.95);
+    font-size: 17px; font-weight: 600; letter-spacing: -0.026em;
+    text-decoration: none;
+    display: flex; align-items: center; gap: 1px;
+    transition: opacity 0.32s var(--ease-default);
+  }
+  .global-nav-brand:hover { opacity: 0.85; }
+  .global-nav-brand-mark { display: inline-flex; align-items: center; margin-right: 7px; }
+  .global-nav-brand-mark svg { width: 22px; height: 22px; display: block; }
+  .global-nav-brand-name { font-weight: 600; letter-spacing: -0.026em; }
+  .global-nav-brand-name em {
+    font-family: var(--font-serif); font-style: italic; font-weight: 400;
+    color: rgba(255,255,255,0.55); margin-left: 5px;
+    letter-spacing: -0.01em; font-size: 0.92em;
+  }
+  .global-nav-links { display: flex; list-style: none; height: 100%; }
+  .global-nav-links li { display: flex; align-items: center; }
+  .global-nav-links a {
+    color: rgba(255, 255, 255, 0.85); text-decoration: none;
+    font-size: 12px; font-weight: 500; letter-spacing: -0.01em;
+    padding: 0 12px; transition: color 0.32s var(--ease-default);
+  }
+  .global-nav-links a:hover { color: rgba(255, 255, 255, 1); }
+  @media (max-width: 833px) { .global-nav-links { display: none; } }
+
+  .nav-burger {
+    display: none; width: 36px; height: 36px;
+    background: transparent; border: 0; cursor: pointer; padding: 0;
+    position: relative; z-index: 10000;
+  }
+  .nav-burger span {
+    display: block; position: absolute; left: 8px;
+    width: 20px; height: 1.5px;
+    background: rgba(255,255,255,0.95); border-radius: 2px;
+    transition: all 0.3s var(--ease-out-quart);
+  }
+  .nav-burger span:nth-child(1) { top: 13px; }
+  .nav-burger span:nth-child(2) { top: 18px; }
+  .nav-burger span:nth-child(3) { top: 23px; }
+  .nav-burger.is-open span:nth-child(1) { top: 18px; transform: rotate(45deg); }
+  .nav-burger.is-open span:nth-child(2) { opacity: 0; }
+  .nav-burger.is-open span:nth-child(3) { top: 18px; transform: rotate(-45deg); }
+
+  .mobile-drawer {
+    position: fixed; top: 48px; left: 0; right: 0;
+    height: calc(100vh - 48px);
+    background: rgba(0,0,0,0.96);
+    backdrop-filter: saturate(180%) blur(20px);
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
+    z-index: 9998; padding: 24px 22px 40px;
+    opacity: 0; pointer-events: none;
+    transition: opacity 0.4s var(--ease-out-quart);
+    overflow-y: auto; display: flex; flex-direction: column;
+  }
+  .mobile-drawer.is-open { opacity: 1; pointer-events: auto; }
+  .mobile-drawer ul { list-style: none; padding: 0; margin: 0; }
+  .mobile-drawer li { border-bottom: 0.5px solid rgba(255,255,255,0.08); }
+  .mobile-drawer a {
+    display: block; padding: 22px 4px;
+    color: rgba(255,255,255,0.92); text-decoration: none;
+    font-size: 22px; font-weight: 500; letter-spacing: -0.012em;
+    transition: opacity 0.2s, padding-left 0.3s var(--ease-out-quart);
+  }
+  .mobile-drawer a:hover { opacity: 0.65; padding-left: 8px; }
+  .mobile-drawer-cta {
+    margin-top: auto; margin-bottom: 8px;
+    display: flex !important; align-items: center; justify-content: center;
+    gap: 8px; padding: 16px 20px !important;
+    background: var(--apple-blue); border-radius: 999px;
+    font-size: 15px !important; font-weight: 600 !important;
+    border-bottom: none !important;
+  }
+  @media (max-width: 833px) { .nav-burger { display: block; } }
+  @media (min-width: 834px) { .mobile-drawer { display: none !important; } }
+  body.no-scroll { overflow: hidden; }
+
+  /* ════════ COURSE PAGE LAYOUT ════════ */
+  .page-inner {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 0 22px;
+  }
+  .page-inner-wide {
+    max-width: 1024px;
+    margin: 0 auto;
+    padding: 0 22px;
+  }
+
+  /* Back link */
+  .back-row { padding: 36px 0 8px; }
+  .back-link {
+    display: inline-flex; align-items: center; gap: 4px;
+    color: var(--apple-gray-text);
+    text-decoration: none;
+    font-size: 13px; font-weight: 500;
+    transition: color 0.2s var(--ease-default);
+  }
+  .back-link:hover { color: var(--apple-blue); }
+  .back-link::before { content: "‹"; font-size: 18px; line-height: 1; margin-right: 2px; }
+
+  /* ════════ COURSE HEADER ════════ */
+  .course-header { padding: 48px 0 72px; }
+  .course-header-pills {
+    display: flex; gap: 8px; flex-wrap: wrap;
+    margin-bottom: 28px;
+  }
+  .course-num-pill,
+  .course-status-pill {
+    display: inline-flex; align-items: center;
+    font-size: 11px; font-weight: 700;
+    color: var(--apple-gray-text);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: 5px 11px;
+    background: rgba(0,0,0,0.05);
+    border-radius: 6px;
+    font-feature-settings: "tnum";
+  }
+  .course-status-pill.production { background: var(--apple-black); color: white; }
+  .course-pill-recommend {
+    display: inline-flex; align-items: center;
+    font-size: 11px; font-weight: 700;
+    padding: 5px 11px;
+    border-radius: 6px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    background: var(--apple-blue);
+    color: white;
+  }
+  .course-pill-limited {
+    display: inline-flex; align-items: center;
+    font-size: 11px; font-weight: 700;
+    padding: 5px 11px;
+    border-radius: 6px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    background: linear-gradient(135deg, #ff8c42, #ff6b35);
+    color: white;
+  }
+  .course-title {
+    font-size: clamp(40px, 6.5vw, 72px);
+    font-weight: 600;
+    line-height: 1.02;
+    letter-spacing: -0.026em;
+    margin-bottom: 26px;
+    color: var(--apple-black);
+  }
+  .course-title em {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-weight: 400;
+    color: var(--apple-gray-text-light);
+    padding: 0 0.04em;
+  }
+  .course-lead {
+    font-size: clamp(18px, 1.9vw, 22px);
+    font-weight: 400;
+    line-height: 1.5;
+    letter-spacing: -0.012em;
+    color: var(--apple-gray-text);
+    max-width: 720px;
+    margin-bottom: 40px;
+  }
+  .course-lead strong { color: var(--apple-black); font-weight: 600; }
+
+  .course-meta-row {
+    display: flex; flex-wrap: wrap;
+    gap: 28px 40px;
+    padding: 24px 0;
+    border-top: 0.5px solid var(--apple-gray-line);
+    border-bottom: 0.5px solid var(--apple-gray-line);
+    margin-bottom: 28px;
+  }
+  .course-meta-cell {
+    display: flex; flex-direction: column; gap: 4px;
+    min-width: 0;
+  }
+  .course-meta-label {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--apple-gray-text-light);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  .course-meta-value {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--apple-black);
+    letter-spacing: -0.012em;
+    font-feature-settings: "tnum";
+  }
+  .course-meta-value-price {
+    font-size: 22px;
+    letter-spacing: -0.018em;
+  }
+
+  .course-cta-row {
+    display: flex; gap: 12px; flex-wrap: wrap;
+  }
+  .btn-primary-cta {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 14px 32px;
+    background: var(--apple-black);
+    color: white;
+    text-decoration: none;
+    border-radius: 980px;
+    font-size: 15px; font-weight: 500;
+    letter-spacing: -0.01em;
+    transition: transform 0.25s var(--ease-out-quart), background 0.25s;
+    border: none; cursor: pointer;
+    font-family: inherit;
+  }
+  .btn-primary-cta:hover { transform: translateY(-1px); background: #2d2d30; }
+  .btn-ghost-cta {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 14px 28px;
+    background: transparent;
+    color: var(--apple-black);
+    border: 0.5px solid var(--apple-gray-line);
+    border-radius: 980px;
+    font-size: 15px; font-weight: 500;
+    letter-spacing: -0.01em;
+    text-decoration: none;
+    transition: all 0.25s var(--ease-out-quart);
+  }
+  .btn-ghost-cta:hover { background: var(--apple-gray-bg); }
+  .btn-arrow-svg {
+    width: 14px; height: 14px;
+    transition: transform 0.25s var(--ease-out-quart);
+  }
+  .btn-primary-cta:hover .btn-arrow-svg { transform: translateX(3px); }
+
+  /* ════════ SECTIONS ════════ */
+  .section {
+    padding: 88px 0;
+    border-top: 0.5px solid var(--apple-gray-line);
+  }
+  .section-dark {
+    background: var(--apple-black);
+    color: white;
+    border-top: 0;
+  }
+  .section-gray {
+    background: var(--apple-gray-bg);
+    border-top: 0;
+  }
+  .section-eyebrow {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--apple-gray-text);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+  .section-dark .section-eyebrow { color: rgba(255,255,255,0.5); }
+  .section-title {
+    font-size: clamp(30px, 4vw, 44px);
+    font-weight: 600;
+    color: var(--apple-black);
+    line-height: 1.08;
+    letter-spacing: -0.022em;
+    margin-bottom: 24px;
+  }
+  .section-dark .section-title { color: white; }
+  .section-title em,
+  .section-title .title-soft {
+    color: var(--apple-gray-text-light);
+    font-weight: 600;
+    font-style: normal;
+    font-family: var(--font-sans);
+    letter-spacing: -0.022em;
+  }
+  .section-dark .section-title em,
+  .section-dark .section-title .title-soft {
+    color: rgba(255,255,255,0.45);
+  }
+  .section-lead {
+    font-size: clamp(17px, 1.6vw, 19px);
+    line-height: 1.55;
+    color: var(--apple-gray-text);
+    max-width: 720px;
+    margin-bottom: 48px;
+    letter-spacing: -0.005em;
+  }
+  .section-dark .section-lead { color: rgba(255,255,255,0.65); }
+
+  /* ════════ PROBLEM / DREAM LISTS (minimal) ════════ */
+  .pd-list {
+    list-style: none;
+    margin: 0; padding: 0;
+  }
+  .pd-row {
+    display: grid;
+    grid-template-columns: 20px 1fr;
+    gap: 16px;
+    padding: 22px 0;
+    border-bottom: 0.5px solid var(--apple-gray-line);
+    align-items: baseline;
+  }
+  .pd-row:last-child { border-bottom: 0; }
+  .pd-row:first-child { padding-top: 8px; }
+  .pd-marker {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--apple-gray-text-light);
+    letter-spacing: -0.005em;
+    line-height: 1;
+    font-feature-settings: "tnum";
+  }
+  .pd-row.is-problem .pd-marker { color: var(--apple-gray-text-light); }
+  .pd-row.is-dream .pd-marker { color: var(--apple-black); }
+  .pd-text {
+    font-size: 17px;
+    line-height: 1.5;
+    color: var(--apple-black);
+    letter-spacing: -0.005em;
+  }
+  .pd-text strong { font-weight: 600; }
+
+  /* ════════ WHY THIS WORKS ════════ */
+  .why-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+  }
+  @media (max-width: 700px) {
+    .why-grid { grid-template-columns: 1fr; }
+  }
+  .why-item {
+    background: var(--apple-gray-bg);
+    border-radius: 22px;
+    padding: 28px 30px;
+  }
+  .why-item-label {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--apple-gray-text-light);
+    text-transform: uppercase;
+    letter-spacing: 0.09em;
+    margin-bottom: 12px;
+  }
+  .why-item-text {
+    font-size: 15px;
+    color: var(--apple-gray-text);
+    line-height: 1.55;
+    letter-spacing: -0.003em;
+  }
+  .why-item-text strong {
+    color: var(--apple-black);
+    font-weight: 600;
+  }
+
+  /* ════════ TRACK RECORD (instructor credentials) ════════ */
+  .track-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 36px 28px;
+    padding: 8px 0 16px;
+  }
+  @media (max-width: 700px) {
+    .track-stats { grid-template-columns: 1fr 1fr; gap: 32px 20px; }
+  }
+  .track-stat { text-align: left; min-width: 0; }
+  .track-stat-num {
+    font-size: clamp(30px, 4vw, 44px);
+    font-weight: 600;
+    letter-spacing: -0.024em;
+    font-feature-settings: "tnum";
+    margin-bottom: 8px;
+    line-height: 1;
+    color: var(--apple-black);
+  }
+  .track-stat-label {
+    font-size: 13px;
+    color: var(--apple-gray-text);
+    line-height: 1.45;
+    letter-spacing: -0.005em;
+    font-family: var(--font-kr);
+  }
+  .track-bio {
+    margin-top: 36px;
+    padding-top: 32px;
+    border-top: 0.5px solid var(--apple-gray-line);
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--apple-gray-text);
+    letter-spacing: -0.005em;
+    font-family: var(--font-kr);
+    max-width: 720px;
+  }
+  .track-bio strong { color: var(--apple-black); font-weight: 600; }
+
+  /* ════════ MID-PAGE CTA (reuses .path-cta style from main site) ════════ */
+  .path-cta {
+    margin-top: 56px;
+    text-align: center;
+    padding: 44px 24px;
+    background: var(--apple-gray-bg);
+    border-radius: 22px;
+  }
+  .path-cta-eyebrow {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--apple-gray-text-light);
+    letter-spacing: 0.04em;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+  }
+  .path-cta-text {
+    font-size: 18px;
+    color: var(--apple-black);
+    margin: 0 0 20px;
+    letter-spacing: -0.012em;
+    font-weight: 500;
+    font-family: var(--font-kr);
+  }
+  .path-cta-btn {
+    display: inline-block;
+    background: var(--apple-black);
+    color: var(--apple-white);
+    text-decoration: none;
+    padding: 12px 28px;
+    border-radius: 980px;
+    font-size: 14px;
+    font-weight: 500;
+    transition: transform 0.25s var(--ease-out-quart);
+  }
+  .path-cta-btn:hover { transform: scale(1.04); }
+
+  /* ════════ CURRICULUM ════════ */
+  .curriculum {
+    list-style: none;
+    padding: 0; margin: 0;
+    display: grid;
+    gap: 12px;
+  }
+  .week-card {
+    background: var(--apple-gray-bg);
+    border-radius: 22px;
+    padding: 28px 32px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s var(--ease-out-quart);
+  }
+  .week-card::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0;
+    width: 4px; height: 100%;
+    background: linear-gradient(180deg, #2997ff, #5e9eff);
+    opacity: 0;
+    transition: opacity 0.3s var(--ease-out-quart);
+  }
+  .week-card:hover {
+    background: white;
+    box-shadow: 0 12px 32px rgba(0,0,0,0.06), 0 0 0 0.5px var(--apple-gray-line);
+  }
+  .week-card:hover::before { opacity: 1; }
+  .week-header {
+    display: grid;
+    grid-template-columns: 84px 1fr;
+    gap: 24px;
+    align-items: baseline;
+    margin-bottom: 14px;
+  }
+  @media (max-width: 600px) {
+    .week-card { padding: 24px 22px; }
+    .week-header { grid-template-columns: 1fr; gap: 6px; }
+  }
+  .week-num {
+    font-size: 14px; font-weight: 700;
+    color: var(--apple-gray-text-light);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-feature-settings: "tnum";
+  }
+  .week-title {
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 1.25;
+    letter-spacing: -0.012em;
+    color: var(--apple-black);
+    margin-bottom: 4px;
+  }
+  .week-summary {
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--apple-gray-text);
+    letter-spacing: -0.005em;
+  }
+  .lesson-list {
+    list-style: none;
+    padding: 0;
+    margin: 16px 0 0;
+    border-top: 0.5px solid var(--apple-gray-line);
+  }
+  .lesson-row {
+    display: grid;
+    grid-template-columns: 56px 1fr;
+    gap: 16px;
+    padding: 14px 0;
+    border-bottom: 0.5px solid rgba(0,0,0,0.04);
+    align-items: baseline;
+  }
+  .lesson-row:last-child { border-bottom: 0; }
+  .lesson-num {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--apple-gray-text-light);
+    font-feature-settings: "tnum";
+  }
+  .lesson-title {
+    font-size: 14px;
+    line-height: 1.45;
+    color: var(--apple-black);
+    letter-spacing: -0.005em;
+  }
+
+  /* ════════ VALUE STACK ════════ */
+  .stack-section {
+    background: var(--apple-gray-bg);
+  }
+  .stack-list {
+    background: white;
+    border-radius: 22px;
+    padding: 8px 8px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.04);
+    border: 0.5px solid var(--apple-gray-line);
+  }
+  .stack-row {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 24px;
+    padding: 24px 28px;
+    border-bottom: 0.5px solid var(--apple-gray-line);
+    align-items: start;
+  }
+  .stack-row:last-child { border-bottom: 0; }
+  .stack-content {
+    min-width: 0;
+  }
+  .stack-name {
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--apple-black);
+    letter-spacing: -0.005em;
+    margin-bottom: 6px;
+    line-height: 1.35;
+  }
+  .stack-name-tag {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--apple-gray-text-light);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    margin-left: 8px;
+    vertical-align: middle;
+  }
+  .stack-desc {
+    font-size: 14px;
+    color: var(--apple-gray-text);
+    line-height: 1.5;
+    letter-spacing: -0.003em;
+  }
+  .stack-price {
+    font-size: 15px;
+    color: var(--apple-gray-text-light);
+    font-weight: 500;
+    font-feature-settings: "tnum";
+    white-space: nowrap;
+    text-align: right;
+  }
+  .stack-price strong {
+    color: var(--apple-black);
+    font-weight: 600;
+  }
+  @media (max-width: 600px) {
+    .stack-row { grid-template-columns: 1fr; gap: 8px; padding: 20px 22px; }
+    .stack-price { text-align: left; }
+  }
+  .stack-total {
+    margin-top: 24px;
+    padding: 28px;
+    background: var(--apple-black);
+    color: white;
+    border-radius: 22px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .stack-total-label {
+    font-size: 14px;
+    font-weight: 600;
+    color: rgba(255,255,255,0.7);
+    letter-spacing: -0.005em;
+    text-transform: uppercase;
+  }
+  .stack-total-value {
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: -0.022em;
+    font-feature-settings: "tnum";
+  }
+
+  /* ════════ PRICING / RESERVE (uses existing .path-bundle style) ════════ */
+  .pricing-card {
+    background: var(--apple-black);
+    color: var(--apple-white);
+    border-radius: 22px;
+    padding: 44px 44px;
+    margin-top: 28px;
+  }
+  @media (max-width: 600px) {
+    .pricing-card { padding: 32px 26px; }
+  }
+  .pricing-eyebrow {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--apple-gray-text-light);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 12px;
+  }
+  .pricing-title {
+    font-size: clamp(22px, 2.6vw, 28px);
+    font-weight: 600;
+    letter-spacing: -0.018em;
+    margin-bottom: 28px;
+    color: white;
+    line-height: 1.2;
+  }
+  .pricing-price-row {
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-bottom: 12px;
+  }
+  .pricing-price-strike {
+    font-size: 16px;
+    color: rgba(255,255,255,0.4);
+    text-decoration: line-through;
+    font-feature-settings: "tnum";
+    font-weight: 500;
+  }
+  .pricing-price-new {
+    font-size: clamp(36px, 4.5vw, 44px);
+    font-weight: 600;
+    color: white;
+    letter-spacing: -0.022em;
+    font-feature-settings: "tnum";
+    line-height: 1;
+  }
+  .pricing-save {
+    font-size: 12px;
+    color: rgba(255,255,255,0.55);
+    letter-spacing: -0.005em;
+    font-feature-settings: "tnum";
+  }
+  .pricing-desc {
+    font-size: 14px;
+    color: rgba(255,255,255,0.65);
+    letter-spacing: -0.005em;
+    line-height: 1.55;
+    margin-bottom: 28px;
+    max-width: 520px;
+  }
+  .pricing-btn {
+    background: var(--apple-blue);
+    color: white;
+    text-decoration: none;
+    padding: 12px 26px;
+    border-radius: 980px;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: -0.005em;
+    transition: transform 0.25s var(--ease-out-quart);
+    display: inline-flex; align-items: center; gap: 6px;
+    border: none; cursor: pointer; font-family: inherit;
+  }
+  .pricing-btn:hover { transform: scale(1.04); }
+  .pricing-note {
+    font-size: 12px;
+    color: rgba(255,255,255,0.4);
+    margin-top: 16px;
+    letter-spacing: -0.005em;
+    font-family: var(--font-kr);
+  }
+
+  /* ════════ SCARCITY (subtle text, no animations) ════════ */
+  .scarcity-note {
+    margin-top: 18px;
+    font-size: 13px;
+    color: var(--apple-gray-text);
+    letter-spacing: -0.005em;
+    font-family: var(--font-kr);
+  }
+  .scarcity-note strong {
+    color: var(--apple-black);
+    font-weight: 600;
+  }
+
+  /* ════════ GUARANTEE (no big seal — clean card) ════════ */
+  .guarantee-card {
+    background: var(--apple-gray-bg);
+    border-radius: 22px;
+    padding: 36px 40px;
+  }
+  @media (max-width: 600px) {
+    .guarantee-card { padding: 28px 24px; }
+  }
+  .guarantee-eyebrow {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--apple-gray-text-light);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 12px;
+  }
+  .guarantee-title {
+    font-size: clamp(22px, 2.4vw, 28px);
+    font-weight: 600;
+    letter-spacing: -0.018em;
+    color: var(--apple-black);
+    line-height: 1.25;
+    margin-bottom: 14px;
+  }
+  .guarantee-text {
+    font-size: 15px;
+    color: var(--apple-gray-text);
+    line-height: 1.55;
+    letter-spacing: -0.005em;
+    max-width: 720px;
+    margin-bottom: 24px;
+  }
+  .guarantee-text strong { color: var(--apple-black); font-weight: 600; }
+  .guarantee-conditions {
+    list-style: none;
+    margin: 0 0 20px;
+    padding: 0;
+    display: grid;
+    gap: 10px;
+    border-top: 0.5px solid var(--apple-gray-line);
+    padding-top: 22px;
+  }
+  .guarantee-conditions li {
+    display: grid;
+    grid-template-columns: 28px 1fr;
+    gap: 14px;
+    font-size: 14px;
+    color: var(--apple-black);
+    line-height: 1.5;
+    letter-spacing: -0.005em;
+    font-family: var(--font-kr);
+  }
+  .guarantee-num {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--apple-gray-text-light);
+    font-feature-settings: "tnum";
+    line-height: 1.5;
+  }
+  .guarantee-footer {
+    font-size: 13px;
+    color: var(--apple-gray-text-light);
+    letter-spacing: -0.005em;
+    font-family: var(--font-kr);
+    line-height: 1.5;
+    padding-top: 18px;
+    border-top: 0.5px solid var(--apple-gray-line);
+  }
+
+  /* ════════ FAQ ════════ */
+  .faq-list { border-top: 0.5px solid var(--apple-gray-line); }
+  .faq-item { border-bottom: 0.5px solid var(--apple-gray-line); }
+  .faq-q-btn {
+    width: 100%;
+    background: transparent;
+    border: none;
+    padding: 22px 0;
+    font-family: inherit;
+    text-align: left;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+  }
+  .faq-q {
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--apple-black);
+    line-height: 1.45;
+    letter-spacing: -0.005em;
+  }
+  .faq-icon {
+    width: 20px; height: 20px;
+    color: var(--apple-gray-text-light);
+    font-size: 18px;
+    line-height: 1;
+    flex-shrink: 0;
+    transition: transform 0.3s var(--ease-out-quart), color 0.2s;
+    display: inline-flex; align-items: center; justify-content: center;
+    font-weight: 400;
+  }
+  .faq-item.is-open .faq-icon {
+    transform: rotate(45deg);
+    color: var(--apple-blue);
+  }
+  .faq-a-wrap {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s var(--ease-out-quart);
+  }
+  .faq-item.is-open .faq-a-wrap { max-height: 600px; }
+  .faq-a {
+    padding: 0 0 22px;
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--apple-gray-text);
+    letter-spacing: -0.005em;
+    max-width: 720px;
+  }
+
+
+  /* ════════ FOOTER ════════ */
+  .footer {
+    background: var(--apple-gray-bg);
+    color: var(--apple-gray-text);
+    padding: 0 22px;
+    font-size: 12px;
+    line-height: 1.33;
+    border-top: 0.5px solid var(--apple-gray-line);
+  }
+  .footer-inner { max-width: 1024px; margin: 0 auto; }
+  .footer-disclaimer {
+    padding: 20px 0;
+    border-bottom: 0.5px solid var(--apple-gray-line);
+    display: flex; flex-direction: column; gap: 4px;
+  }
+  .footer-disclaimer-en { font-family: var(--font-sans); color: var(--apple-gray-text); }
+  .footer-disclaimer-kr {
+    font-family: var(--font-kr);
+    color: var(--apple-gray-text-light);
+    font-size: 11px;
+  }
+  .footer-cols {
+    padding: 32px 0;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 40px;
+    border-bottom: 0.5px solid var(--apple-gray-line);
+  }
+  @media (max-width: 734px) {
+    .footer-cols { grid-template-columns: 1fr 1fr; gap: 32px; }
+  }
+  .footer-col h4 { font-size: 12px; font-weight: 700; color: var(--apple-black); margin-bottom: 12px; }
+  .footer-col ul { list-style: none; }
+  .footer-col li { margin-bottom: 7px; }
+  .footer-col a, .footer-col span {
+    color: var(--apple-gray-text); text-decoration: none;
+    font-size: 12px; transition: color 0.32s var(--ease-default);
+  }
+  .footer-col a:hover { color: var(--apple-black); text-decoration: underline; }
+  .footer-col a.is-soon {
+    color: var(--apple-gray-text-light);
+    pointer-events: none; cursor: default;
+  }
+  .footer-col a.is-soon::after { content: " · Coming soon"; font-size: 0.85em; opacity: 0.7; }
+  .footer-col a.is-soon { display: inline-flex; align-items: baseline; gap: 0; }
+  .footer-legal {
+    padding: 24px 0 20px;
+    border-bottom: 0.5px solid var(--apple-gray-line);
+    display: flex; flex-wrap: wrap; gap: 24px;
+    font-family: var(--font-kr);
+  }
+  .footer-legal-row {
+    display: flex; align-items: center; gap: 8px;
+    font-size: 11px; flex-wrap: wrap; min-width: 0;
+  }
+  .footer-legal-label { color: var(--apple-gray-text-light); font-weight: 500; }
+  .footer-legal-value { color: var(--apple-gray-text); font-weight: 500; letter-spacing: -0.005em; }
+  @media (max-width: 734px) { .footer-legal { gap: 12px 24px; } }
+  @media (max-width: 480px) {
+    .footer-legal { flex-direction: column; gap: 10px; }
+    .footer-legal-row { width: 100%; }
+  }
+  .footer-bottom {
+    padding: 17px 0;
+    display: flex; justify-content: space-between;
+    flex-wrap: wrap; gap: 12px;
+  }
+  .footer-bottom a {
+    color: var(--apple-gray-text-light);
+    text-decoration: none; transition: color 0.2s;
+  }
+  .footer-bottom a:hover { color: var(--apple-black); text-decoration: underline; }
+  @media (max-width: 600px) {
+    .footer-bottom { flex-direction: column; align-items: flex-start; gap: 8px; }
+  }
+
+  /* Reveal */
+  .reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 1.2s var(--ease-out-quart), transform 1.2s var(--ease-out-quart);
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+</style>
+
+<!-- Microsoft Clarity -->
+<script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "rrkucjqacb");
+</script>
+</head>
+<body>
+
+  <!-- GLOBAL NAV -->
+  <nav class="global-nav">
+    <div class="global-nav-inner">
+      <a href="/" class="global-nav-brand">
+        <span class="global-nav-brand-mark">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Verbio Labs">
+            <g transform="translate(3.994 20.103) scale(0.02367 -0.02367)" fill="currentColor">
+              <path d="M168 -10Q164 -10 160.0 -7.0Q156 -4 156 6L145 640Q144 668 138.0 679.0Q132 690 113 694L100 697Q88 700 88 709Q88 720 105 720H270Q283 720 283 710Q283 699 263 697L243 695Q226 694 219.5 684.5Q213 675 213 653L218 180Q218 170 224.0 169.0Q230 168 234 176L453 632Q481 689 435 695L421 697Q406 700 406 709Q406 720 423 720H568Q580 720 580 710Q580 701 564 697L548 694Q528 690 514.0 674.5Q500 659 486 631L187 6Q183 -4 177.5 -7.0Q172 -10 168 -10Z"/>
+            </g>
+          </svg>
+        </span>
+        <span class="global-nav-brand-name">Verbio<em>Labs</em></span>
+      </a>
+      <ul class="global-nav-links">
+        <li><a href="/#speakcoach">SpeakCoach</a></li>
+        <li><a href="/#topikiq">TopikIQ</a></li>
+        <li><a href="/#why">Why Verbio</a></li>
+        <li><a href="/#education">Education</a></li>
+        <li><a href="/courses.html">Courses</a></li>
+        <li><a href="/#community">Community</a></li>
+        <li><a href="/#contact">Contact</a></li>
+      </ul>
+      <button class="nav-burger" aria-label="메뉴 열기" aria-expanded="false" id="navBurger">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- MOBILE DRAWER -->
+  <div class="mobile-drawer" id="mobileDrawer" aria-hidden="true">
+    <ul>
+      <li><a href="/#speakcoach">SpeakCoach</a></li>
+      <li><a href="/#topikiq">TopikIQ</a></li>
+      <li><a href="/#why">Why Verbio</a></li>
+      <li><a href="/#education">Education</a></li>
+      <li><a href="/courses.html">Courses</a></li>
+      <li><a href="/#community">Community</a></li>
+      <li><a href="/#contact">Contact</a></li>
+    </ul>
+    <a href="#reserve" class="mobile-drawer-cta">
+      1기 자리 확보하기
+      <span aria-hidden="true">›</span>
+    </a>
+  </div>
+
+  <!-- BACK LINK -->
+  <div class="page-inner">
+    <div class="back-row">
+      <a href="/courses.html" class="back-link">All Courses</a>
+    </div>
+  </div>
+
+  <!-- COURSE HEADER -->
+  <header class="course-header">
+    <div class="page-inner">
+      <div class="course-header-pills">
+        <span class="course-num-pill">Course 00</span>
+        <span class="course-status-pill">Coming Q3 2026</span>
+        <span class="course-pill-limited">1기 50명 한정</span>
+      </div>
+
+      <h1 class="course-title">코드는 AI가 짭니다.<br class="br-md-hide"> <em>당신은 디자인만 하세요.</em></h1>
+
+      <p class="course-lead">
+        아이디어는 있는데 사이트는 못 만들었다면, 더 이상 코딩이 막아서는 게 아닙니다. <strong>Claude Code가 모든 코드를 짭니다.</strong> 당신은 무엇을 만들고 싶은지만 결정하세요. 코딩 한 번 안 해본 사람도 4주 안에 본인 도메인의 사이트를 띄웁니다.
+      </p>
+
+      <div class="course-meta-row">
+        <div class="course-meta-cell">
+          <span class="course-meta-label">Duration</span>
+          <span class="course-meta-value">4 weeks</span>
+        </div>
+        <div class="course-meta-cell">
+          <span class="course-meta-label">Lessons</span>
+          <span class="course-meta-value">12 lessons</span>
+        </div>
+        <div class="course-meta-cell">
+          <span class="course-meta-label">Level</span>
+          <span class="course-meta-value">Beginner</span>
+        </div>
+        <div class="course-meta-cell">
+          <span class="course-meta-label">1기 자리</span>
+          <span class="course-meta-value">26 / 50 남음</span>
+        </div>
+      </div>
+
+      <div class="course-cta-row">
+        <a href="#reserve" class="btn-primary-cta">
+          1기 자리 확보하기
+          <svg class="btn-arrow-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+        <a href="#curriculum" class="btn-ghost-cta">커리큘럼 먼저 보기</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- PROBLEM SECTION -->
+  <section class="section">
+    <div class="page-inner">
+      <div class="section-eyebrow">The Problem</div>
+      <h2 class="section-title">아이디어는 있는데, 사이트가 없습니다.</h2>
+      <p class="section-lead">
+        만들 줄 몰라서 안 만든 게 아닙니다. 어디서부터 시작해야 할지 몰라서 멈춰있는 겁니다. 익숙한 풍경 아닌가요?
+      </p>
+
+      <ul class="pd-list">
+        <li class="pd-row is-problem">
+          <span class="pd-marker" aria-hidden="true">01</span>
+          <span class="pd-text">머릿속에는 사이트 디자인이 있는데, <strong>어떻게 시작해야 할지 모른다.</strong></span>
+        </li>
+        <li class="pd-row is-problem">
+          <span class="pd-marker" aria-hidden="true">02</span>
+          <span class="pd-text">Wix · Cargo · 노션 페이지 다 써봤지만, <strong>본인 도메인의 진짜 사이트는 못 만들었다.</strong></span>
+        </li>
+        <li class="pd-row is-problem">
+          <span class="pd-marker" aria-hidden="true">03</span>
+          <span class="pd-text">YouTube 튜토리얼 보다가, <strong>모르는 용어가 쏟아져서</strong> 30분 만에 포기했다.</span>
+        </li>
+        <li class="pd-row is-problem">
+          <span class="pd-marker" aria-hidden="true">04</span>
+          <span class="pd-text">코딩 부트캠프? <strong>3개월 시간과 수백만원이 부담스럽다.</strong> 그렇게까지는 안 가도 되는데.</span>
+        </li>
+        <li class="pd-row is-problem">
+          <span class="pd-marker" aria-hidden="true">05</span>
+          <span class="pd-text">친구한테 부탁할 수도 없다. <strong>내 아이디어인데 매번 부탁해야 하는 게 답답하다.</strong></span>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- DREAM OUTCOME -->
+  <section class="section section-gray">
+    <div class="page-inner">
+      <div class="section-eyebrow">The Outcome</div>
+      <h2 class="section-title">4주 후, <span class="title-soft">당신은.</span></h2>
+      <p class="section-lead">
+        지금 자리에서 4주 더 망설이는 길과, 본인 도메인에 사이트가 떠 있는 길. 4주 뒤를 미리 살아보면 결정이 쉽습니다.
+      </p>
+
+      <ul class="pd-list">
+        <li class="pd-row is-dream">
+          <span class="pd-marker" aria-hidden="true">01</span>
+          <span class="pd-text">본인 도메인에 떠 있는 <strong>진짜 사이트</strong>를 본인 손으로 만들었다.</span>
+        </li>
+        <li class="pd-row is-dream">
+          <span class="pd-marker" aria-hidden="true">02</span>
+          <span class="pd-text">코드는 한 줄도 직접 안 짰지만, <strong>사이트의 모든 줄은 본인 의도대로</strong> 만들어졌다.</span>
+        </li>
+        <li class="pd-row is-dream">
+          <span class="pd-marker" aria-hidden="true">03</span>
+          <span class="pd-text">다음 아이디어가 떠오르면 <strong>또 띄울 수 있다.</strong> 한 번 거쳐본 길이라 두렵지 않다.</span>
+        </li>
+        <li class="pd-row is-dream">
+          <span class="pd-marker" aria-hidden="true">04</span>
+          <span class="pd-text">친구·동료에게 "<strong>이거 내가 만든 거야</strong>"라고 말할 수 있다.</span>
+        </li>
+        <li class="pd-row is-dream">
+          <span class="pd-marker" aria-hidden="true">05</span>
+          <span class="pd-text">Claude Code가 친구가 됐다. <strong>다음에도 같이 만들 동료</strong>가 생긴 셈이다.</span>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- WHY THIS WORKS -->
+  <section class="section">
+    <div class="page-inner">
+      <div class="section-eyebrow">Why This Course Works</div>
+      <h2 class="section-title">코딩이 아니라, <em>AI에게 시키는 법을 배웁니다.</em></h2>
+      <p class="section-lead">
+        프로그래밍 언어를 외우는 게 아닙니다. 본인이 만들고 싶은 것을 명확히 표현하는 법을 배우는 강의예요.
+      </p>
+
+      <div class="why-grid">
+        <div class="why-item">
+          <div class="why-item-label">검증된 launch-kit</div>
+          <p class="why-item-text">현재 보고 계신 <strong>verbiolabs.com과 동일한 정적 사이트 템플릿</strong>. 변수만 본인 정보로 채우면 같은 모양의 사이트가 본인 도메인에 떠 있습니다. 종신 액세스 제공.</p>
+        </div>
+        <div class="why-item">
+          <div class="why-item-label">Claude Code 마스터</div>
+          <p class="why-item-text">인디 메이커들이 실제로 쓰는 <strong>표준 도구 Claude Code</strong>. 설치부터 첫 명령, 자연어로 정확히 부탁하는 법까지. 강의 끝나면 다른 프로젝트도 혼자 할 수 있습니다.</p>
+        </div>
+        <div class="why-item">
+          <div class="why-item-label">진짜 배포까지</div>
+          <p class="why-item-text">로컬에서 만들고 끝나는 게 아닙니다. <strong>Vercel 무료 배포 + 본인 도메인 연결</strong>까지. 4주차 끝날 때 친구한테 URL을 보내면 진짜 사이트가 뜹니다.</p>
+        </div>
+        <div class="why-item">
+          <div class="why-item-label">입문자 검증된 가르침</div>
+          <p class="why-item-text">식빵영어 5년 운영 · 누적 <strong>4,000명의 입문자를 가르쳐온 식빵영어의 교습법</strong>이 그대로 들어갑니다. 입문자가 어디서 막히는지 가장 잘 압니다.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRACK RECORD -->
+  <section class="section section-gray">
+    <div class="page-inner">
+      <div class="section-eyebrow">Track Record</div>
+      <h2 class="section-title">책으로 배운 게 아닙니다.<br class="br-md-hide"> <em>가르쳤고, 출시했고, 운영했습니다.</em></h2>
+      <p class="section-lead">
+        이 강의의 노하우는 대학·기업 강의 현장과 직접 출시·운영 중인 4개 제품에서 그대로 나옵니다.
+      </p>
+
+      <div class="track-stats">
+        <div class="track-stat">
+          <div class="track-stat-num">3년</div>
+          <div class="track-stat-label">대학교 딥러닝 전공 강의</div>
+        </div>
+        <div class="track-stat">
+          <div class="track-stat-num">200명</div>
+          <div class="track-stat-label">삼성전자 임직원 AI 딥러닝 초청 세미나</div>
+        </div>
+        <div class="track-stat">
+          <div class="track-stat-num">4,000+</div>
+          <div class="track-stat-label">식빵영어 2년 누적 수강생</div>
+        </div>
+        <div class="track-stat">
+          <div class="track-stat-num">₩20M+</div>
+          <div class="track-stat-label">SpeakCoach 꾸준한 월 매출</div>
+        </div>
+        <div class="track-stat">
+          <div class="track-stat-num">1,000명</div>
+          <div class="track-stat-label">SpeakCoach 첫 달 사용자</div>
+        </div>
+        <div class="track-stat">
+          <div class="track-stat-num">2 stores</div>
+          <div class="track-stat-label">TopikIQ — App Store · Google Play 배포 완료</div>
+        </div>
+      </div>
+
+      <p class="track-bio">
+        <strong>안준영 (Jacob) · Verbio Labs 대표.</strong> 대학교에서 딥러닝 전공을 3년간 강의했고, 삼성전자 임직원 200명을 대상으로 AI 딥러닝 세미나를 초청 진행. 중·고등학교 특강 다수. 식빵영어 정식 서비스 2년간 누적 4,000명 이상 수강. SpeakCoach AI 운영 (첫 달 1,000명, 월 매출 2천만원 이상 꾸준), TopikIQ iOS·Android 배포 완료.
+      </p>
+    </div>
+  </section>
+
+  <!-- CURRICULUM -->
+  <section class="section" id="curriculum">
+    <div class="page-inner-wide">
+      <div class="section-eyebrow">Curriculum</div>
+      <h2 class="section-title">막막한 4주를, <em>명확한 4주로.</em></h2>
+      <p class="section-lead">
+        한 주에 3강씩 진행됩니다. 매주 끝에 <strong>작동하는 결과물</strong>이 하나씩 손에 잡힙니다.
+      </p>
+
+      <ol class="curriculum">
+
+        <li class="week-card">
+          <div class="week-header">
+            <span class="week-num">Week 1</span>
+            <div>
+              <h3 class="week-title">Claude Code와 친해지기</h3>
+              <p class="week-summary">코딩을 배우는 게 아닙니다. AI에게 정확히 부탁하는 법을 배웁니다. 첫 주 끝에 'Hello World' 페이지가 본인 컴퓨터에서 작동합니다.</p>
+            </div>
+          </div>
+          <ol class="lesson-list">
+            <li class="lesson-row"><span class="lesson-num">1.1</span><span class="lesson-title">Claude Code 설치와 첫 명령 — 30분이면 끝</span></li>
+            <li class="lesson-row"><span class="lesson-num">1.2</span><span class="lesson-title">자연어로 코딩하기 — 정확하게 부탁하는 6가지 패턴</span></li>
+            <li class="lesson-row"><span class="lesson-num">1.3</span><span class="lesson-title">첫 페이지 만들어보기 — Hello World가 떠 있다</span></li>
+          </ol>
+        </li>
+
+        <li class="week-card">
+          <div class="week-header">
+            <span class="week-num">Week 2</span>
+            <div>
+              <h3 class="week-title">사이트의 뼈대 만들기 (AI와 함께)</h3>
+              <p class="week-summary">HTML·CSS를 외우지 않습니다. AI가 만든 코드를 읽고, 본인 의도대로 바꾸는 법을 배웁니다.</p>
+            </div>
+          </div>
+          <ol class="lesson-list">
+            <li class="lesson-row"><span class="lesson-num">2.1</span><span class="lesson-title">HTML 구조 이해하기 — AI가 만든 코드 읽는 법</span></li>
+            <li class="lesson-row"><span class="lesson-num">2.2</span><span class="lesson-title">CSS 스타일링 — 본인 색상·폰트·여백으로 바꾸기</span></li>
+            <li class="lesson-row"><span class="lesson-num">2.3</span><span class="lesson-title">모바일에서도 잘 보이게 — 반응형의 기초</span></li>
+          </ol>
+        </li>
+
+        <li class="week-card">
+          <div class="week-header">
+            <span class="week-num">Week 3</span>
+            <div>
+              <h3 class="week-title">본인 사이트 디자인하고 구현하기</h3>
+              <p class="week-summary">verbiolabs.com을 그대로 따라 만들어봅니다. 그 다음 본인 정체성을 입혀 본인만의 사이트로 완성합니다.</p>
+            </div>
+          </div>
+          <ol class="lesson-list">
+            <li class="lesson-row"><span class="lesson-num">3.1</span><span class="lesson-title">Hero · About · CTA — 사이트의 3대 섹션 설계</span></li>
+            <li class="lesson-row"><span class="lesson-num">3.2</span><span class="lesson-title">verbiolabs.com 따라 만들기 — 실전 한 시간</span></li>
+            <li class="lesson-row"><span class="lesson-num">3.3</span><span class="lesson-title">본인만의 정체성 입히기 — 색상·폰트·이미지</span></li>
+          </ol>
+        </li>
+
+        <li class="week-card">
+          <div class="week-header">
+            <span class="week-num">Week 4</span>
+            <div>
+              <h3 class="week-title">출시 — 본인 도메인에 사이트 띄우기</h3>
+              <p class="week-summary">로컬이 아니라 진짜 인터넷에. 4주차 마지막 강의 끝나는 순간, 친구한테 URL을 보낼 수 있는 상태가 됩니다.</p>
+            </div>
+          </div>
+          <ol class="lesson-list">
+            <li class="lesson-row"><span class="lesson-num">4.1</span><span class="lesson-title">도메인 구입하기 — 가비아 · 후이즈 · 카페24 비교</span></li>
+            <li class="lesson-row"><span class="lesson-num">4.2</span><span class="lesson-title">Vercel 무료 배포 + 본인 도메인 연결</span></li>
+            <li class="lesson-row"><span class="lesson-num">4.3</span><span class="lesson-title">기본 SEO · Open Graph · 파비콘 — 출시 마무리</span></li>
+          </ol>
+        </li>
+
+      </ol>
+
+      <div class="path-cta">
+        <div class="path-cta-eyebrow">Ready to build?</div>
+        <p class="path-cta-text">여기까지 읽었다면, 1기 자리부터 확보하세요.</p>
+        <a href="#reserve" class="path-cta-btn">사전 등록하기 ›</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- VALUE STACK -->
+  <section class="section stack-section">
+    <div class="page-inner">
+      <div class="section-eyebrow">What You Get</div>
+      <h2 class="section-title">한 번 결제로, <em>받게 되는 모든 것.</em></h2>
+      <p class="section-lead">
+        강의는 시작에 불과합니다. 1기 한정 보너스 자산들 — launch-kit 종신 액세스, Claude Code 마스터 가이드, 1:1 사이트 리뷰까지 모두 포함.
+      </p>
+
+      <div class="stack-list">
+
+        <div class="stack-row">
+          <div class="stack-content">
+            <div class="stack-name">강의 본체 <span class="stack-name-tag">Core</span></div>
+            <p class="stack-desc">4주 12강 비디오 강의 · 평생 무제한 재시청 · 모든 자료 다운로드 가능</p>
+          </div>
+          <div class="stack-price"><strong>₩200,000</strong> 상당</div>
+        </div>
+
+        <div class="stack-row">
+          <div class="stack-content">
+            <div class="stack-name">launch-kit Lite <span class="stack-name-tag">Bonus 1</span></div>
+            <p class="stack-desc">현재 보고 계신 verbiolabs.com 기반 정적 사이트 템플릿. 본인 정보로 변수만 채우면 같은 모양으로 즉시 작동. <strong>종신 액세스</strong> + 평생 업데이트 무료.</p>
+          </div>
+          <div class="stack-price"><strong>₩800,000</strong> 상당</div>
+        </div>
+
+        <div class="stack-row">
+          <div class="stack-content">
+            <div class="stack-name">Claude Code 마스터 가이드 <span class="stack-name-tag">Bonus 2</span></div>
+            <p class="stack-desc">사이트 제작에 자주 쓰는 프롬프트 50개 · 자주 만나는 에러와 대처법 · 입문자가 실수하는 12가지. 강의 끝나도 옆에 두고 쓰는 레퍼런스.</p>
+          </div>
+          <div class="stack-price"><strong>₩300,000</strong> 상당</div>
+        </div>
+
+        <div class="stack-row">
+          <div class="stack-content">
+            <div class="stack-name">Vercel · 도메인 셋업 가이드 <span class="stack-name-tag">Bonus 3</span></div>
+            <p class="stack-desc">한국 도메인 등록사 비교 (가비아·후이즈·카페24) · Vercel 무료 플랜 최대 활용법 · 도메인 연결 시 자주 막히는 5가지. 스크린샷 단계별 가이드.</p>
+          </div>
+          <div class="stack-price"><strong>₩100,000</strong> 상당</div>
+        </div>
+
+        <div class="stack-row">
+          <div class="stack-content">
+            <div class="stack-name">AI Cartel Busan 커뮤니티 6개월 <span class="stack-name-tag">Bonus 4</span></div>
+            <p class="stack-desc">부산 AI 메이커 커뮤니티 6개월 멤버십. 오프라인 모임 · 슬랙 채널 · 입문자 환영하는 분위기. <strong>1기 수강생은 입금 즉시 입장</strong>.</p>
+          </div>
+          <div class="stack-price"><strong>₩150,000</strong> 상당</div>
+        </div>
+
+        <div class="stack-row">
+          <div class="stack-content">
+            <div class="stack-name">1:1 사이트 리뷰 30분 <span class="stack-name-tag">Bonus 5</span></div>
+            <p class="stack-desc">안준영 (Verbio Labs 대표)이 본인이 만든 사이트를 30분 동안 직접 피드백. <strong>1기 50명에게만 제공</strong>되는 한정 보너스입니다.</p>
+          </div>
+          <div class="stack-price"><strong>₩300,000</strong> 상당</div>
+        </div>
+
+      </div>
+
+      <div class="stack-total">
+        <span class="stack-total-label">Total Value</span>
+        <span class="stack-total-value">₩1,850,000</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING / RESERVE -->
+  <section class="section" id="reserve">
+    <div class="page-inner">
+      <div class="section-eyebrow">Reserve Your Spot</div>
+      <h2 class="section-title">총 가치 ₩1,850,000.<br class="br-md-hide"> 1기 사전 등록 특가, <em>₩99,000.</em></h2>
+      <p class="section-lead">
+        2기는 Q1 2027 출시 예정이며 정가는 ₩149,000. <strong>매 기수 가격이 인상됩니다.</strong> 1기 50석은 이 가격으로 만나는 마지막 기회입니다.
+      </p>
+
+      <div class="pricing-card">
+        <div class="pricing-eyebrow">1기 사전 등록 특가 · 50명 한정</div>
+        <h3 class="pricing-title">First AI Service in 30 min · 1기 (Q3 2026 시작)</h3>
+
+        <div class="pricing-price-row">
+          <span class="pricing-price-strike">₩1,850,000</span>
+          <span class="pricing-price-new">₩99,000</span>
+        </div>
+        <p class="pricing-save">정상가 대비 ₩1,751,000 절약 · 강의 본체 + 5개 보너스 모두 포함</p>
+
+        <p class="pricing-desc" style="margin-top: 24px;">
+          사전 등록 시 결제는 발생하지 않습니다. 정식 출시 24시간 전 안내드리며, 그때 카드·계좌이체·네이버페이·카카오페이로 결제 가능합니다.
+        </p>
+
+        <a href="mailto:lulu066666@gmail.com?subject=%5B1%EA%B8%B0%20%EC%82%AC%EC%A0%84%20%EB%93%B1%EB%A1%9D%5D%20First%20AI%20Service%20in%2030%20min&body=%EC%95%88%EB%85%95%ED%95%98%EC%84%B8%EC%9A%94%2C%0A%0A'First%20AI%20Service%20in%2030%20min'%201%EA%B8%B0%20%EC%82%AC%EC%A0%84%20%EB%93%B1%EB%A1%9D%EC%9D%84%20%EC%8B%A0%EC%B2%AD%ED%95%A9%EB%8B%88%EB%8B%A4.%0A%0A%5B%EC%9D%B4%EB%A6%84%5D%3A%0A%5B%EC%97%B0%EB%9D%BD%EC%B2%98%5D%3A%0A%5B%EB%A7%8C%EB%93%A4%EA%B3%A0%20%EC%8B%B6%EC%9D%80%20%EC%82%AC%EC%9D%B4%ED%8A%B8%20%EC%95%84%EC%9D%B4%EB%94%94%EC%96%B4%20(%EC%84%A0%ED%83%9D)%5D%3A%0A%5B%EC%BD%94%EB%94%A9%20%EA%B2%BD%ED%97%98%20(%EC%84%A0%ED%83%9D)%5D%3A" class="pricing-btn">
+          1기 자리 확보하기
+          <span aria-hidden="true">›</span>
+        </a>
+
+        <p class="pricing-note">
+          사전 등록은 자리 확보만 의미합니다. 결제는 정식 출시 후 진행되며, 그때까지 어떤 비용도 발생하지 않습니다.
+        </p>
+      </div>
+
+      <p class="scarcity-note">
+        <strong>1기 50명 중 24명이 사전 등록을 마쳤습니다.</strong> 남은 자리 26개.
+      </p>
+    </div>
+  </section>
+
+  <!-- GUARANTEE -->
+  <section class="section">
+    <div class="page-inner">
+      <div class="section-eyebrow">Results Guarantee</div>
+      <h2 class="section-title">결과가 안 나오면, <em>결과가 나올 때까지.</em></h2>
+      <p class="section-lead">
+        강의가 끝났는데 사이트가 안 떴다면 — 거기서 끝이 아닙니다. <strong>다음 기수 무료 재수강 + 1:1 사이트 리뷰 60분</strong>까지, 본인 도메인에 사이트가 떠 있을 때까지 함께 갑니다.
+      </p>
+
+      <div class="guarantee-card">
+        <div class="guarantee-eyebrow">Results-Based Guarantee</div>
+        <h3 class="guarantee-title">환불이 아닙니다. 결과까지 책임집니다.</h3>
+        <p class="guarantee-text">
+          아래 3가지를 4주 안에 모두 완료했는데도 <strong>본인 도메인에 사이트가 떠 있지 않다면</strong>, 다음 기수 무료 재수강과 1:1 사이트 리뷰 60분을 추가로 드립니다. 본인 도메인에 사이트가 떠 있을 때까지 함께 합니다.
+        </p>
+        <ul class="guarantee-conditions">
+          <li><span class="guarantee-num">01</span><span>12강 시청 완료 + 주차별 과제 전부 제출 (주 1과제 × 4주)</span></li>
+          <li><span class="guarantee-num">02</span><span>4주차에 본인 도메인 URL 제출 (라이브 사이트로 확인 가능)</span></li>
+          <li><span class="guarantee-num">03</span><span>도메인 구입 영수증 + Vercel 배포 시도 증빙 (성공 여부 무관)</span></li>
+        </ul>
+        <p class="guarantee-footer">
+          위 조건을 충족하지 않으면 결과 보장 대상에서 제외됩니다. 일반 환불은 전자상거래법(결제 후 7일·진도율 10% 미만)에 따라 별도로 적용됩니다. <a href="/refund.html" style="color: var(--apple-blue); text-decoration: none;">환불 정책</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section">
+    <div class="page-inner">
+      <div class="section-eyebrow">FAQ</div>
+      <h2 class="section-title">결정하기 전, 마지막 질문들.</h2>
+      <div class="faq-list">
+        <div class="faq-item">
+          <button class="faq-q-btn" type="button" aria-expanded="false">
+            <span class="faq-q">정말 코딩 한 번도 안 해봤는데 따라갈 수 있나요?</span>
+            <span class="faq-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="faq-a-wrap">
+            <p class="faq-a">네. 식빵영어가 5년간 4,000명 이상의 입문자를 가르치면서 정리한 '입문자가 어디서 막히는지'를 그대로 반영한 강의입니다. 1강은 Claude Code 설치부터 시작합니다. 사전 지식은 필요 없고, 컴퓨터를 켜고 끄는 정도만 할 줄 알면 됩니다.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q-btn" type="button" aria-expanded="false">
+            <span class="faq-q">어떤 컴퓨터에서 가능한가요?</span>
+            <span class="faq-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="faq-a-wrap">
+            <p class="faq-a">Mac 또는 Windows. 둘 다 강의에서 다룹니다. 별다른 사양 요구는 없으며, 인터넷 연결만 되면 5년 된 노트북에서도 충분합니다. iPad·태블릿만 있는 분은 어렵습니다.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q-btn" type="button" aria-expanded="false">
+            <span class="faq-q">Claude Code 사용에 별도 비용이 드나요?</span>
+            <span class="faq-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="faq-a-wrap">
+            <p class="faq-a">Claude Code는 Anthropic의 유료 구독(Claude Pro · 월 $20 또는 API 사용량 기반)이 필요합니다. 강의 안에서 가장 저렴하게 시작하는 법, 무료 크레딧 활용 팁까지 다룹니다. 실제 4주 동안 본인이 부담할 비용은 약 $20~30 수준입니다.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q-btn" type="button" aria-expanded="false">
+            <span class="faq-q">도메인은 얼마예요? 따로 사야 하나요?</span>
+            <span class="faq-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="faq-a-wrap">
+            <p class="faq-a">.com 도메인 기준 연 15,000~20,000원선입니다 (가비아·후이즈·카페24 기준). 강의 안에서 가장 저렴한 등록사 비교부터 무료 도메인 활용법까지 다룹니다. Vercel 배포 자체는 평생 무료입니다.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q-btn" type="button" aria-expanded="false">
+            <span class="faq-q">Course 01 (Korean SaaS)와 차이가 뭔가요?</span>
+            <span class="faq-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="faq-a-wrap">
+            <p class="faq-a">이 강의(Course 00)는 <strong>사이트를 띄우는 단계</strong>입니다. 코딩 입문자가 본인 도메인의 사이트를 가지는 게 목표예요. <a href="/courses/korean-saas.html" style="color: var(--apple-blue); text-decoration: none;">Course 01 — Korean SaaS</a>는 그 다음 단계로, <strong>결제 받는 SaaS</strong>를 띄웁니다. 약관·PG·통신판매업 신고까지. 둘 다 들으시려면 Founders Bundle로 가시면 추가 할인이 있습니다.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q-btn" type="button" aria-expanded="false">
+            <span class="faq-q">1기 놓치면 2기는 언제인가요? 가격이 같은가요?</span>
+            <span class="faq-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="faq-a-wrap">
+            <p class="faq-a">2기는 Q1 2027 출시 예정이며 정가 ₩149,000으로 인상됩니다 (1기 대비 50% ↑). 1기에만 포함되는 1:1 사이트 리뷰와 AI Cartel Busan 즉시 입장 보너스는 2기에는 제공되지 않습니다. 1기가 이 가격으로 만나는 마지막 기회입니다.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q-btn" type="button" aria-expanded="false">
+            <span class="faq-q">사전 등록하면 지금 결제해야 하나요?</span>
+            <span class="faq-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="faq-a-wrap">
+            <p class="faq-a">아니요. 사전 등록은 1기 50명 자리를 확보하는 단계입니다. 결제는 정식 출시 시점(Q3 2026)에 진행되며, 그때까지 어떤 비용도 발생하지 않습니다. 정식 출시 24시간 전에 안내 메일과 결제 링크를 보내드립니다.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q-btn" type="button" aria-expanded="false">
+            <span class="faq-q">결과가 안 나오면 어떻게 되나요?</span>
+            <span class="faq-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="faq-a-wrap">
+            <p class="faq-a">현금 환불 대신 결과까지 책임지는 구조입니다. 조건 3가지(12강 수강 + 4주차 과제 제출, 4주차 본인 도메인 URL 제출, 도메인 구입 + Vercel 배포 시도)를 4주 안에 모두 완료했는데도 본인 도메인에 사이트가 떠 있지 않다면 — <strong>다음 기수 무료 재수강 + 1:1 사이트 리뷰 60분</strong>을 추가로 드립니다. 본인 도메인에 사이트가 떠 있을 때까지 함께 갑니다. 전자상거래법에 따른 일반 환불(결제 후 7일·진도율 10% 미만)은 별도로 적용됩니다. 자세한 내용은 <a href="/refund.html" style="color: var(--apple-blue); text-decoration: none;">환불 정책</a>에서.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer" id="contact">
+    <div class="footer-inner">
+      <div class="footer-disclaimer">
+        <span class="footer-disclaimer-en">Verbio Labs is an AI research &amp; education company based in Busan, Korea. All products are designed and built in Korea.</span>
+        <span class="footer-disclaimer-kr">베르비오 랩스는 부산에 위치한 AI 연구·교육 기업입니다. 모든 제품은 한국에서 설계되고 개발됩니다.</span>
+      </div>
+      <div class="footer-cols">
+        <div class="footer-col">
+          <h4>Products</h4>
+          <ul>
+            <li><a href="https://sikbang-eng.replit.app/" target="_blank" rel="noopener">SpeakCoach AI</a></li>
+            <li><a href="https://topikiq.com" target="_blank" rel="noopener">TopikIQ</a></li>
+            <li><a href="https://sikbang.co" target="_blank" rel="noopener">Sikbang English</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Education</h4>
+          <ul>
+            <li><a href="/#education">University Lectures</a></li>
+            <li><a href="/#education">Industry Seminars</a></li>
+            <li><a href="/#education">AI Consulting</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Learn</h4>
+          <ul>
+            <li><a href="/courses.html">Online Courses</a></li>
+            <li><a href="/#community">AI Cartel Busan</a></li>
+            <li><a class="is-soon" aria-disabled="true">Newsletter</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <ul>
+            <li><a href="mailto:lulu066666@gmail.com">lulu066666@gmail.com</a></li>
+            <li><span>Busan, Korea</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-legal">
+        <div class="footer-legal-row">
+          <span class="footer-legal-label">상호</span>
+          <span class="footer-legal-value">식빵영어 (Sikbang English)</span>
+        </div>
+        <div class="footer-legal-row">
+          <span class="footer-legal-label">대표</span>
+          <span class="footer-legal-value">안준영 (Jacob)</span>
+        </div>
+        <div class="footer-legal-row">
+          <span class="footer-legal-label">사업장 주소</span>
+          <span class="footer-legal-value">부산광역시 부산진구 만리산로98</span>
+        </div>
+        <div class="footer-legal-row">
+          <span class="footer-legal-label">사업자등록번호</span>
+          <span class="footer-legal-value">807-29-01639</span>
+        </div>
+        <div class="footer-legal-row">
+          <span class="footer-legal-label">통신판매업 신고번호</span>
+          <span class="footer-legal-value">제 2025-부산진-1374호</span>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>Copyright © 2026 Verbio Labs. All rights reserved.</span>
+        <span>
+          <a href="/privacy.html">개인정보처리방침</a>
+          ·
+          <a href="/terms.html">이용약관</a>
+          ·
+          <a href="/refund.html">환불 정책</a>
+        </span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Reveal on scroll
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -80px 0px' });
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+    // Mobile hamburger
+    const burger = document.getElementById('navBurger');
+    const drawer = document.getElementById('mobileDrawer');
+    if (burger && drawer) {
+      const setMenu = (open) => {
+        burger.classList.toggle('is-open', open);
+        drawer.classList.toggle('is-open', open);
+        burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+        drawer.setAttribute('aria-hidden', open ? 'false' : 'true');
+        burger.setAttribute('aria-label', open ? '메뉴 닫기' : '메뉴 열기');
+        document.body.classList.toggle('no-scroll', open);
+      };
+      burger.addEventListener('click', () => setMenu(!drawer.classList.contains('is-open')));
+      drawer.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setMenu(false)));
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && drawer.classList.contains('is-open')) setMenu(false);
+      });
+    }
+
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        const href = this.getAttribute('href');
+        if (href === '#') return;
+        const target = document.querySelector(href);
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+
+    // FAQ toggle
+    document.querySelectorAll('.faq-q-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item = btn.closest('.faq-item');
+        const open = item.classList.toggle('is-open');
+        btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+    });
+  </script>
+
+</body>
+</html>

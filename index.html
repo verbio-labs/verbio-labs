@@ -1909,6 +1909,7 @@
   }
 
   .level-card:hover::before { opacity: 1; }
+  .level-card[data-href] { cursor: pointer; }
 
   .level-num {
     font-size: 56px;
@@ -1992,9 +1993,11 @@
     text-decoration: none;
     font-size: 13px;
     font-weight: 500;
+    position: relative; z-index: 2;
   }
 
   .level-link::after { content: " ›"; }
+  .level-link:hover { text-decoration: underline; }
 
   /* ── Recommended pills (Start Here / Bestseller) ── */
   .level-pill {
@@ -2039,6 +2042,7 @@
   }
 
   .card-toggle:hover { color: var(--apple-blue); }
+  .card-toggle { position: relative; z-index: 2; }
 
   .toggle-icon {
     display: inline-flex;
@@ -2313,6 +2317,7 @@
   }
 
   .track-card:hover::before { opacity: 1; }
+  .track-card[data-href] { cursor: pointer; }
 
   .track-num {
     display: inline-block;
@@ -2368,9 +2373,11 @@
     text-decoration: none;
     font-size: 13px;
     font-weight: 500;
+    position: relative; z-index: 2;
   }
 
   .track-link::after { content: " ›"; }
+  .track-link:hover { text-decoration: underline; }
 
   /* ── Proposal CTA ── */
   .path-cta {
@@ -3027,7 +3034,7 @@
       <div class="path-panel" id="path-individual" role="tabpanel">
         <ol class="level-list">
 
-          <li class="level-card reveal">
+          <li class="level-card reveal" data-href="/courses/first-ai.html">
             <div class="level-num">00</div>
             <div class="level-body">
               <span class="level-status">Coming Q3 2026</span>
@@ -3074,7 +3081,7 @@
             </div>
           </li>
 
-          <li class="level-card reveal">
+          <li class="level-card reveal" data-href="/courses/korean-saas.html">
             <div class="level-num">01</div>
             <div class="level-body">
               <span class="level-status">Coming Q3 2026</span><span class="level-pill pill-start">⭐ Start Here</span>
@@ -3122,7 +3129,7 @@
             </div>
           </li>
 
-          <li class="level-card reveal">
+          <li class="level-card reveal" data-href="/courses.html#course-llm-pro">
             <div class="level-num">02</div>
             <div class="level-body">
               <span class="level-status">Coming Q4 2026</span>
@@ -3170,7 +3177,7 @@
             </div>
           </li>
 
-          <li class="level-card reveal">
+          <li class="level-card reveal" data-href="/courses.html#course-indie-app">
             <div class="level-num">03</div>
             <div class="level-body">
               <span class="level-status production">In Production</span><span class="level-pill pill-bestseller">🔥 Bestseller</span>
@@ -3220,7 +3227,7 @@
             </div>
           </li>
 
-          <li class="level-card reveal">
+          <li class="level-card reveal" data-href="/courses.html#course-english-ai">
             <div class="level-num">04</div>
             <div class="level-body">
               <span class="level-status">Coming Q4 2026</span>
@@ -3268,7 +3275,7 @@
             </div>
           </li>
 
-          <li class="level-card reveal">
+          <li class="level-card reveal" data-href="/courses.html#course-deep-learning">
             <div class="level-num">05</div>
             <div class="level-body">
               <span class="level-status production">In Production</span>
@@ -3340,7 +3347,7 @@
       <div class="path-panel is-hidden" id="path-organization" role="tabpanel">
         <div class="track-row">
 
-          <div class="track-card reveal">
+          <div class="track-card reveal" data-href="/courses.html#track-workshop">
             <span class="track-num">Track 01</span>
             <h3 class="track-title">Corporate Workshop</h3>
             <p class="track-desc">1-4일 집중 교육. 임직원 AI 도입 · 부서별 워크플로우 · 거버넌스 · 컴플라이언스 트레이닝.</p>
@@ -3378,7 +3385,7 @@
             </div>
           </div>
 
-          <div class="track-card reveal">
+          <div class="track-card reveal" data-href="/courses.html#track-university">
             <span class="track-num">Track 02</span>
             <h3 class="track-title">University Lecture</h3>
             <p class="track-desc">한 학기 정규 강좌부터 단기 워크숍까지. Deep Learning 정규 과정 · LLM 시대 교수법 · 학부생 vibe coding bootcamp.</p>
@@ -3416,7 +3423,7 @@
             </div>
           </div>
 
-          <div class="track-card reveal">
+          <div class="track-card reveal" data-href="/courses.html#track-consulting">
             <span class="track-num">Track 03</span>
             <h3 class="track-title">Strategy Consulting</h3>
             <p class="track-desc">AI Strategy Audit · MVP 빌딩 협력 (8주) · 1:1 멘토링. 시드~시리즈A 스타트업 CEO·CTO 대상.</p>
@@ -3611,11 +3618,22 @@
 
     // Course card — expandable details toggle
     document.querySelectorAll('.card-toggle').forEach(btn => {
-      btn.addEventListener('click', () => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
         const card = btn.closest('.level-card, .track-card');
         if (!card) return;
         const expanded = card.classList.toggle('is-expanded');
         btn.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+      });
+    });
+
+    // Course card — click anywhere on card opens data-href in new tab
+    // (카드 내부의 링크/버튼/토글은 자체 동작 유지)
+    document.querySelectorAll('.level-card[data-href], .track-card[data-href]').forEach(card => {
+      card.addEventListener('click', (e) => {
+        if (e.target.closest('a, button, input, label, select, textarea')) return;
+        const url = card.dataset.href;
+        if (url) window.open(url, '_blank', 'noopener');
       });
     });
 

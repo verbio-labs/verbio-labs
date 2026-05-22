@@ -1,0 +1,1526 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Courses — Verbio Labs</title>
+<meta name="description" content="Built from 4 shipped products. Built to ship yours. Verbio Labs Learning Path.">
+<link rel="canonical" href="https://verbiolabs.com/courses.html">
+<meta name="robots" content="index, follow">
+<meta name="author" content="Verbio Labs (Sikbang English)">
+
+<!-- Favicons -->
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
+<link rel="shortcut icon" href="/favicon.ico">
+<link rel="apple-touch-icon" sizes="180x180" href="/favicon-180.png">
+<meta name="theme-color" content="#1d1d1f">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Verbio Labs">
+<meta property="og:url" content="https://verbiolabs.com/courses.html">
+<meta property="og:title" content="Courses — Verbio Labs">
+<meta property="og:description" content="Built from 4 shipped products. Built to ship yours.">
+<meta property="og:image" content="https://verbiolabs.com/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="ko_KR">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Courses — Verbio Labs">
+<meta name="twitter:description" content="Built from 4 shipped products. Built to ship yours.">
+<meta name="twitter:image" content="https://verbiolabs.com/og-image.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Instrument+Serif:ital@0;1&family=Pretendard:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+
+  :root {
+    --apple-black: #1d1d1f;
+    --apple-white: #ffffff;
+    --apple-gray-bg: #f5f5f7;
+    --apple-gray-text: #6e6e73;
+    --apple-gray-text-light: #86868b;
+    --apple-gray-line: #d2d2d7;
+    --apple-blue: #0066cc;
+    --apple-blue-bright: #2997ff;
+
+    --font-sans: 'Inter', 'Pretendard', -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;
+    --font-kr: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-serif: 'Instrument Serif', 'Times New Roman', Georgia, serif;
+
+    --ease-out-quart: cubic-bezier(0.165, 0.84, 0.44, 1);
+    --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
+    --ease-default: cubic-bezier(0.4, 0, 0.6, 1);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--apple-white);
+    color: var(--apple-black);
+    font-family: var(--font-sans);
+    font-size: 17px;
+    line-height: 1.47059;
+    letter-spacing: -0.022em;
+    overflow-x: hidden;
+  }
+
+  :lang(ko), .level-desc, .track-desc, .detail-content, .courses-eyebrow,
+  .footer-disclaimer, .page-intro-text, .bundle-desc {
+    font-family: var(--font-kr);
+    word-break: keep-all;
+    overflow-wrap: break-word;
+  }
+
+  ::selection { background: var(--apple-blue); color: white; }
+
+  @media (max-width: 600px) {
+    .br-md-hide { display: none; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+      scroll-behavior: auto !important;
+    }
+    .reveal, .scale-in { opacity: 1 !important; transform: none !important; }
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--apple-blue);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  /* ════════════════════ NAV ════════════════════ */
+  .global-nav {
+    position: sticky; top: 0; height: 48px;
+    background: rgba(0, 0, 0, 0.72);
+    backdrop-filter: saturate(180%) blur(20px);
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
+    z-index: 9999;
+    display: flex; justify-content: center; align-items: center;
+    border-bottom: 0.5px solid rgba(255,255,255,0.08);
+  }
+  .global-nav-inner {
+    width: 100%; max-width: 1024px; padding: 0 22px;
+    display: flex; align-items: center; justify-content: space-between; height: 100%;
+  }
+  .global-nav-brand {
+    color: rgba(255, 255, 255, 0.95);
+    font-size: 17px; font-weight: 600; letter-spacing: -0.026em;
+    text-decoration: none;
+    display: flex; align-items: center; gap: 1px;
+    transition: opacity 0.32s var(--ease-default);
+  }
+  .global-nav-brand:hover { opacity: 0.85; }
+  .global-nav-brand-mark { display: inline-flex; align-items: center; margin-right: 7px; }
+  .global-nav-brand-mark svg { width: 22px; height: 22px; display: block; }
+  .global-nav-brand-name { font-weight: 600; letter-spacing: -0.026em; }
+  .global-nav-brand-name em {
+    font-family: var(--font-serif); font-style: italic; font-weight: 400;
+    color: rgba(255,255,255,0.55); margin-left: 5px;
+    letter-spacing: -0.01em; font-size: 0.92em;
+  }
+  .global-nav-links { display: flex; list-style: none; height: 100%; }
+  .global-nav-links li { display: flex; align-items: center; }
+  .global-nav-links a {
+    color: rgba(255, 255, 255, 0.85); text-decoration: none;
+    font-size: 12px; font-weight: 500; letter-spacing: -0.01em;
+    padding: 0 12px; transition: color 0.32s var(--ease-default);
+  }
+  .global-nav-links a:hover { color: rgba(255, 255, 255, 1); }
+  @media (max-width: 833px) { .global-nav-links { display: none; } }
+
+  .nav-burger {
+    display: none; width: 36px; height: 36px;
+    background: transparent; border: 0; cursor: pointer; padding: 0;
+    position: relative; z-index: 10000;
+  }
+  .nav-burger span {
+    display: block; position: absolute; left: 8px;
+    width: 20px; height: 1.5px;
+    background: rgba(255,255,255,0.95); border-radius: 2px;
+    transition: all 0.3s var(--ease-out-quart);
+  }
+  .nav-burger span:nth-child(1) { top: 13px; }
+  .nav-burger span:nth-child(2) { top: 18px; }
+  .nav-burger span:nth-child(3) { top: 23px; }
+  .nav-burger.is-open span:nth-child(1) { top: 18px; transform: rotate(45deg); }
+  .nav-burger.is-open span:nth-child(2) { opacity: 0; }
+  .nav-burger.is-open span:nth-child(3) { top: 18px; transform: rotate(-45deg); }
+
+  .mobile-drawer {
+    position: fixed; top: 48px; left: 0; right: 0;
+    height: calc(100vh - 48px);
+    background: rgba(0,0,0,0.96);
+    backdrop-filter: saturate(180%) blur(20px);
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
+    z-index: 9998; padding: 24px 22px 40px;
+    opacity: 0; pointer-events: none;
+    transition: opacity 0.4s var(--ease-out-quart);
+    overflow-y: auto; display: flex; flex-direction: column;
+  }
+  .mobile-drawer.is-open { opacity: 1; pointer-events: auto; }
+  .mobile-drawer ul { list-style: none; padding: 0; margin: 0; }
+  .mobile-drawer li { border-bottom: 0.5px solid rgba(255,255,255,0.08); }
+  .mobile-drawer a {
+    display: block; padding: 22px 4px;
+    color: rgba(255,255,255,0.92); text-decoration: none;
+    font-size: 22px; font-weight: 500; letter-spacing: -0.012em;
+    transition: opacity 0.2s, padding-left 0.3s var(--ease-out-quart);
+  }
+  .mobile-drawer a:hover, .mobile-drawer a:active { opacity: 0.65; padding-left: 8px; }
+  .mobile-drawer-cta {
+    margin-top: auto; margin-bottom: 8px;
+    display: flex !important; align-items: center; justify-content: center;
+    gap: 8px; padding: 16px 20px !important;
+    background: rgba(255,255,255,0.08); border-radius: 999px;
+    font-size: 15px !important; font-weight: 500 !important;
+    border-bottom: none !important;
+  }
+  .mobile-drawer-cta:hover { background: rgba(255,255,255,0.14); padding-left: 20px !important; }
+  @media (max-width: 833px) { .nav-burger { display: block; } }
+  @media (min-width: 834px) { .mobile-drawer { display: none !important; } }
+  body.no-scroll { overflow: hidden; }
+
+  /* ════════════════════ COURSES (재사용 — index.html과 동일) ════════════════════ */
+  .courses {
+    background: var(--apple-white);
+    padding: 110px 22px 90px;
+  }
+
+  .courses-inner {
+    max-width: 1024px;
+    margin: 0 auto;
+  }
+
+  .courses-eyebrow {
+    font-size: 21px;
+    font-weight: 600;
+    color: var(--apple-gray-text);
+    margin-bottom: 8px;
+    letter-spacing: 0.011em;
+    text-align: center;
+  }
+
+  .courses-title {
+    font-size: clamp(36px, 5vw, 56px);
+    font-weight: 600;
+    color: var(--apple-black);
+    margin: 0 auto 56px;
+    line-height: 1.07;
+    letter-spacing: -0.022em;
+    max-width: 800px;
+    text-align: center;
+  }
+
+  .courses-title em,
+  .courses-title .title-soft {
+    color: var(--apple-gray-text-light);
+    font-weight: 600;
+    font-style: normal;
+    font-family: var(--font-sans);
+    letter-spacing: -0.022em;
+  }
+
+  /* ── Segmented control ── */
+  .path-segmented {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 48px;
+  }
+  .path-segmented-inner {
+    display: inline-flex;
+    background: rgba(0,0,0,0.05);
+    border-radius: 980px;
+    padding: 4px;
+    gap: 2px;
+  }
+  .path-tab {
+    appearance: none; border: none; background: transparent;
+    font-family: inherit;
+    font-size: 14px; font-weight: 500;
+    color: var(--apple-gray-text);
+    padding: 10px 26px;
+    border-radius: 980px;
+    cursor: pointer;
+    letter-spacing: -0.005em;
+    transition: all 0.3s var(--ease-out-quart);
+    white-space: nowrap;
+  }
+  .path-tab:hover { color: var(--apple-black); }
+  .path-tab.is-active {
+    background: var(--apple-white);
+    color: var(--apple-black);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08), 0 0 0 0.5px rgba(0,0,0,0.04);
+    font-weight: 600;
+  }
+  .path-panel { display: block; }
+  .path-panel.is-hidden { display: none; }
+
+  /* ── Level cards ── */
+  .level-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 12px;
+  }
+  .level-card {
+    background: var(--apple-gray-bg);
+    border-radius: 22px;
+    padding: 28px 32px;
+    display: grid;
+    grid-template-columns: 84px 1fr;
+    gap: 24px;
+    align-items: start;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s var(--ease-out-quart);
+  }
+  .level-card::before {
+    content: "";
+    position: absolute; top: 0; left: 0;
+    width: 4px; height: 100%;
+    background: linear-gradient(180deg, #2997ff, #5e9eff);
+    opacity: 0;
+    transition: opacity 0.3s var(--ease-out-quart);
+  }
+  .level-card:hover {
+    background: white;
+    box-shadow: 0 12px 32px rgba(0,0,0,0.06), 0 0 0 0.5px var(--apple-gray-line);
+    transform: translateX(3px);
+  }
+  .level-card:hover::before { opacity: 1; }
+  .level-card[data-href] { cursor: pointer; }
+
+  .level-num {
+    font-size: 56px;
+    font-weight: 700;
+    color: var(--apple-gray-text-light);
+    letter-spacing: -0.03em;
+    line-height: 0.9;
+    font-feature-settings: "tnum";
+  }
+  .level-body { min-width: 0; }
+
+  .level-status {
+    display: inline-block;
+    font-size: 11px; font-weight: 700;
+    color: var(--apple-gray-text);
+    margin-bottom: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: 4px 10px;
+    background: rgba(0,0,0,0.05);
+    border-radius: 6px;
+  }
+  .level-status.production {
+    background: var(--apple-black);
+    color: var(--apple-white);
+  }
+  .level-title {
+    font-size: 22px;
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: -0.012em;
+    margin: 0 0 8px;
+    color: var(--apple-black);
+  }
+  .level-desc {
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--apple-gray-text);
+    margin: 0 0 20px;
+    letter-spacing: -0.005em;
+  }
+  .level-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 16px;
+    border-top: 0.5px solid var(--apple-gray-line);
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .level-meta-left {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+  .level-duration {
+    font-size: 12px;
+    color: var(--apple-gray-text-light);
+    font-feature-settings: "tnum";
+  }
+  .level-price {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--apple-black);
+    font-feature-settings: "tnum";
+    letter-spacing: -0.01em;
+  }
+  .level-link {
+    color: var(--apple-blue);
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 500;
+    position: relative; z-index: 2;
+  }
+  .level-link::after { content: " ›"; }
+  .level-link:hover { text-decoration: underline; }
+
+  /* ── Pills ── */
+  .level-pill {
+    display: inline-block;
+    margin-left: 6px;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 6px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    vertical-align: middle;
+  }
+  .level-pill.pill-start {
+    background: var(--apple-blue);
+    color: var(--apple-white);
+  }
+  .level-pill.pill-bestseller {
+    background: linear-gradient(135deg, #ff8c42, #ff6b35);
+    color: var(--apple-white);
+  }
+
+  /* ── Card toggle ── */
+  .card-toggle {
+    appearance: none;
+    background: transparent;
+    border: none;
+    color: var(--apple-gray-text-light);
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    font-family: inherit;
+    padding: 8px 0 0;
+    margin-top: 14px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    letter-spacing: -0.005em;
+    transition: color 0.2s var(--ease-out-quart);
+    position: relative; z-index: 2;
+  }
+  .card-toggle:hover { color: var(--apple-blue); }
+  .toggle-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 14px; height: 14px;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1;
+    transition: transform 0.3s var(--ease-out-quart);
+  }
+  .card-toggle[aria-expanded="true"] .toggle-icon { transform: rotate(45deg); }
+  .card-toggle[aria-expanded="true"] .toggle-label::before { content: "Hide details"; }
+  .card-toggle[aria-expanded="false"] .toggle-label::before { content: "Show details"; }
+
+  /* ── Level details (expanded) ── */
+  .level-details, .track-details {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    margin-top: 0;
+    padding-top: 0;
+    border-top: 0 solid var(--apple-gray-line);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 22px 36px;
+    transition: max-height 0.45s var(--ease-out-quart),
+                opacity 0.3s var(--ease-out-quart),
+                margin-top 0.3s var(--ease-out-quart),
+                padding-top 0.3s var(--ease-out-quart);
+  }
+  .level-card.is-expanded .level-details,
+  .track-card.is-expanded .track-details {
+    max-height: 1400px;
+    opacity: 1;
+    margin-top: 22px;
+    padding-top: 22px;
+    border-top-width: 0.5px;
+  }
+  .detail-block { min-width: 0; }
+  .detail-label {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.09em;
+    color: var(--apple-gray-text-light);
+    margin-bottom: 8px;
+  }
+  .detail-content {
+    font-size: 13px;
+    color: var(--apple-gray-text);
+    line-height: 1.55;
+    letter-spacing: -0.003em;
+  }
+  .detail-list {
+    list-style: none;
+    margin: 0; padding: 0;
+    font-size: 13px;
+    color: var(--apple-gray-text);
+    line-height: 1.6;
+    letter-spacing: -0.003em;
+  }
+  .detail-list li {
+    position: relative;
+    padding-left: 16px;
+    margin-bottom: 3px;
+  }
+  .detail-list li::before {
+    content: "·";
+    position: absolute;
+    left: 6px;
+    color: var(--apple-gray-text-light);
+    font-weight: 700;
+  }
+  .detail-list.numbered { counter-reset: step; }
+  .detail-list.numbered li { padding-left: 22px; }
+  .detail-list.numbered li::before {
+    content: counter(step) ".";
+    counter-increment: step;
+    font-size: 11px;
+    font-feature-settings: "tnum";
+    left: 0;
+    font-weight: 600;
+    color: var(--apple-gray-text-light);
+  }
+  .level-dots {
+    display: inline-flex;
+    gap: 3px;
+    vertical-align: middle;
+    margin-right: 8px;
+  }
+  .level-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: rgba(0,0,0,0.15);
+  }
+  .level-dot.on { background: var(--apple-black); }
+  .level-tag {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--apple-black);
+    letter-spacing: -0.005em;
+    vertical-align: middle;
+  }
+
+  @media (max-width: 734px) {
+    .level-card {
+      grid-template-columns: 1fr;
+      padding: 24px 22px;
+      gap: 4px;
+    }
+    .level-num {
+      font-size: 40px;
+      margin-bottom: 8px;
+    }
+    .level-details, .track-details {
+      grid-template-columns: 1fr;
+      gap: 18px;
+    }
+  }
+
+  /* ── Bundle CTA ── */
+  .path-bundle {
+    margin-top: 32px;
+    background: var(--apple-black);
+    color: var(--apple-white);
+    border-radius: 22px;
+    padding: 40px 44px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 32px;
+    flex-wrap: wrap;
+  }
+  .bundle-text { flex: 1; min-width: 240px; }
+  .bundle-eyebrow {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--apple-gray-text-light);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 10px;
+  }
+  .bundle-title {
+    font-size: clamp(24px, 3vw, 30px);
+    font-weight: 600;
+    letter-spacing: -0.018em;
+    margin: 0 0 8px;
+    color: var(--apple-white);
+    line-height: 1.2;
+  }
+  .bundle-desc {
+    font-size: 14px;
+    color: rgba(255,255,255,0.65);
+    margin: 0;
+    letter-spacing: -0.005em;
+  }
+  .bundle-action {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 14px;
+  }
+  .bundle-price {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    font-feature-settings: "tnum";
+  }
+  .bundle-price-strike {
+    font-size: 14px;
+    color: rgba(255,255,255,0.45);
+    text-decoration: line-through;
+  }
+  .bundle-price-new {
+    font-size: 28px;
+    font-weight: 600;
+    color: var(--apple-white);
+    letter-spacing: -0.018em;
+  }
+  .bundle-link {
+    background: var(--apple-blue);
+    color: var(--apple-white);
+    text-decoration: none;
+    padding: 12px 24px;
+    border-radius: 980px;
+    font-size: 14px;
+    font-weight: 500;
+    transition: transform 0.25s var(--ease-out-quart);
+    white-space: nowrap;
+  }
+  .bundle-link:hover { transform: scale(1.04); }
+  @media (max-width: 734px) {
+    .path-bundle {
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 28px 24px;
+    }
+    .bundle-action { align-items: flex-start; width: 100%; }
+  }
+
+  /* ── Track cards (Organizations) ── */
+  .track-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+  @media (max-width: 980px) {
+    .track-row { grid-template-columns: 1fr; }
+  }
+  .track-card {
+    background: var(--apple-gray-bg);
+    border-radius: 22px;
+    padding: 36px 32px 32px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s var(--ease-out-quart);
+    display: flex;
+    flex-direction: column;
+  }
+  .track-card::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #2997ff, #5e9eff);
+    opacity: 0;
+    transition: opacity 0.3s var(--ease-out-quart);
+  }
+  .track-card:hover {
+    background: white;
+    box-shadow: 0 16px 40px rgba(0,0,0,0.06), 0 0 0 0.5px var(--apple-gray-line);
+    transform: translateY(-4px);
+  }
+  .track-card:hover::before { opacity: 1; }
+  .track-card[data-href] { cursor: pointer; }
+  .track-num {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--apple-gray-text);
+    margin-bottom: 16px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: 4px 10px;
+    background: rgba(0,0,0,0.05);
+    border-radius: 6px;
+    align-self: flex-start;
+  }
+  .track-title {
+    font-size: 22px;
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: -0.012em;
+    margin: 0 0 10px;
+    color: var(--apple-black);
+  }
+  .track-desc {
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--apple-gray-text);
+    margin: 0 0 24px;
+    flex: 1;
+    letter-spacing: -0.005em;
+  }
+  .track-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 16px;
+    border-top: 0.5px solid var(--apple-gray-line);
+    gap: 12px;
+  }
+  .track-price {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--apple-black);
+    font-feature-settings: "tnum";
+    letter-spacing: -0.005em;
+  }
+  .track-link {
+    color: var(--apple-blue);
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 500;
+    position: relative; z-index: 2;
+  }
+  .track-link::after { content: " ›"; }
+  .track-link:hover { text-decoration: underline; }
+
+  /* ── Proposal CTA ── */
+  .path-cta {
+    margin-top: 32px;
+    text-align: center;
+    padding: 44px 24px;
+    background: var(--apple-gray-bg);
+    border-radius: 22px;
+  }
+  .path-cta-eyebrow {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--apple-gray-text-light);
+    letter-spacing: 0.04em;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+  }
+  .path-cta-text {
+    font-size: 18px;
+    color: var(--apple-black);
+    margin: 0 0 20px;
+    letter-spacing: -0.012em;
+    font-weight: 500;
+  }
+  .path-cta-btn {
+    display: inline-block;
+    background: var(--apple-black);
+    color: var(--apple-white);
+    text-decoration: none;
+    padding: 12px 28px;
+    border-radius: 980px;
+    font-size: 14px;
+    font-weight: 500;
+    transition: transform 0.25s var(--ease-out-quart);
+  }
+  .path-cta-btn:hover { transform: scale(1.04); }
+
+  /* ════════════════════ FOOTER ════════════════════ */
+  .footer {
+    background: var(--apple-gray-bg);
+    color: var(--apple-gray-text);
+    padding: 0 22px;
+    font-size: 12px;
+    line-height: 1.33;
+  }
+  .footer-inner { max-width: 1024px; margin: 0 auto; }
+  .footer-disclaimer {
+    padding: 20px 0;
+    border-bottom: 0.5px solid var(--apple-gray-line);
+    display: flex; flex-direction: column; gap: 4px;
+  }
+  .footer-disclaimer-en { font-family: var(--font-sans); color: var(--apple-gray-text); }
+  .footer-disclaimer-kr {
+    font-family: var(--font-kr);
+    color: var(--apple-gray-text-light);
+    font-size: 11px;
+  }
+  .footer-cols {
+    padding: 32px 0;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 40px;
+    border-bottom: 0.5px solid var(--apple-gray-line);
+  }
+  @media (max-width: 734px) {
+    .footer-cols { grid-template-columns: 1fr 1fr; gap: 32px; }
+  }
+  .footer-col h4 {
+    font-size: 12px; font-weight: 700;
+    color: var(--apple-black);
+    margin-bottom: 12px;
+  }
+  .footer-col ul { list-style: none; }
+  .footer-col li { margin-bottom: 7px; }
+  .footer-col a, .footer-col span {
+    color: var(--apple-gray-text);
+    text-decoration: none;
+    font-size: 12px;
+    transition: color 0.32s var(--ease-default);
+  }
+  .footer-col a:hover { color: var(--apple-black); text-decoration: underline; }
+  .footer-col a.is-soon {
+    color: var(--apple-gray-text-light);
+    pointer-events: none;
+    cursor: default;
+  }
+  .footer-col a.is-soon::after { content: " · Coming soon"; font-size: 0.85em; opacity: 0.7; }
+  .footer-col a.is-soon { display: inline-flex; align-items: baseline; gap: 0; }
+
+  .footer-legal {
+    padding: 24px 0 20px;
+    border-bottom: 0.5px solid var(--apple-gray-line);
+    display: flex; flex-wrap: wrap; gap: 24px;
+    font-family: var(--font-kr);
+  }
+  .footer-legal-row {
+    display: flex; align-items: center; gap: 8px;
+    font-size: 11px; flex-wrap: wrap; min-width: 0;
+  }
+  .footer-legal-label {
+    color: var(--apple-gray-text-light);
+    font-weight: 500;
+  }
+  .footer-legal-value {
+    color: var(--apple-gray-text);
+    font-weight: 500;
+    letter-spacing: -0.005em;
+  }
+  @media (max-width: 734px) { .footer-legal { gap: 12px 24px; } }
+  @media (max-width: 480px) {
+    .footer-legal { flex-direction: column; gap: 10px; }
+    .footer-legal-row { width: 100%; }
+  }
+
+  .footer-bottom {
+    padding: 17px 0;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .footer-bottom a {
+    color: var(--apple-gray-text-light);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .footer-bottom a:hover { color: var(--apple-black); text-decoration: underline; }
+  @media (max-width: 600px) {
+    .footer-bottom { flex-direction: column; align-items: flex-start; gap: 8px; }
+  }
+
+  /* Reveal */
+  .reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 1.2s var(--ease-out-quart), transform 1.2s var(--ease-out-quart);
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
+
+<!-- Microsoft Clarity -->
+<script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "rrkucjqacb");
+</script>
+</head>
+<body>
+
+  <!-- GLOBAL NAV -->
+  <nav class="global-nav">
+    <div class="global-nav-inner">
+      <a href="/" class="global-nav-brand">
+        <span class="global-nav-brand-mark">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Verbio Labs">
+            <g transform="translate(3.994 20.103) scale(0.02367 -0.02367)" fill="currentColor">
+              <path d="M168 -10Q164 -10 160.0 -7.0Q156 -4 156 6L145 640Q144 668 138.0 679.0Q132 690 113 694L100 697Q88 700 88 709Q88 720 105 720H270Q283 720 283 710Q283 699 263 697L243 695Q226 694 219.5 684.5Q213 675 213 653L218 180Q218 170 224.0 169.0Q230 168 234 176L453 632Q481 689 435 695L421 697Q406 700 406 709Q406 720 423 720H568Q580 720 580 710Q580 701 564 697L548 694Q528 690 514.0 674.5Q500 659 486 631L187 6Q183 -4 177.5 -7.0Q172 -10 168 -10Z"/>
+            </g>
+          </svg>
+        </span>
+        <span class="global-nav-brand-name">Verbio<em>Labs</em></span>
+      </a>
+      <ul class="global-nav-links">
+        <li><a href="/#speakcoach">SpeakCoach</a></li>
+        <li><a href="/#topikiq">TopikIQ</a></li>
+        <li><a href="/#why">Why Verbio</a></li>
+        <li><a href="/#education">Education</a></li>
+        <li><a href="/courses.html">Courses</a></li>
+        <li><a href="/#community">Community</a></li>
+        <li><a href="/#contact">Contact</a></li>
+      </ul>
+      <button class="nav-burger" aria-label="메뉴 열기" aria-expanded="false" id="navBurger">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- MOBILE DRAWER -->
+  <div class="mobile-drawer" id="mobileDrawer" aria-hidden="true">
+    <ul>
+      <li><a href="/#speakcoach">SpeakCoach</a></li>
+      <li><a href="/#topikiq">TopikIQ</a></li>
+      <li><a href="/#why">Why Verbio</a></li>
+      <li><a href="/#education">Education</a></li>
+      <li><a href="/courses.html">Courses</a></li>
+      <li><a href="/#community">Community</a></li>
+      <li><a href="/#contact">Contact</a></li>
+    </ul>
+    <a href="/#contact" class="mobile-drawer-cta">
+      Contact
+      <span aria-hidden="true">›</span>
+    </a>
+  </div>
+
+  <!-- LEARNING PATH -->
+  <section class="courses" id="courses">
+    <div class="courses-inner">
+      <div class="courses-eyebrow reveal">Learning Path</div>
+      <h2 class="courses-title reveal">Built from 4 shipped products. <span class="title-soft">Built to ship yours.</span></h2>
+
+      <!-- Segmented control -->
+      <div class="path-segmented reveal">
+        <div class="path-segmented-inner" role="tablist" aria-label="Audience selector">
+          <button class="path-tab is-active" role="tab" aria-selected="true" aria-controls="path-individual" data-target="path-individual">For Individuals</button>
+          <button class="path-tab" role="tab" aria-selected="false" aria-controls="path-organization" data-target="path-organization">For Organizations</button>
+        </div>
+      </div>
+
+      <!-- INDIVIDUAL TRACK -->
+      <div class="path-panel" id="path-individual" role="tabpanel">
+        <ol class="level-list">
+
+          <li class="level-card reveal" id="course-first-ai" data-href="/courses/first-ai.html">
+            <div class="level-num">00</div>
+            <div class="level-body">
+              <span class="level-status">Coming Q3 2026</span>
+              <h3 class="level-title">First AI Service in 30 min</h3>
+              <p class="level-desc">코딩 한 줄 없이 Claude Code로 첫 웹사이트 출시. 본인 도메인 연결 + Vercel 배포까지 4주 안에.</p>
+              <div class="level-meta">
+                <div class="level-meta-left">
+                  <span class="level-duration">4 weeks · 12 lessons</span>
+                  <span class="level-price">₩99,000</span>
+                </div>
+                <a href="mailto:lulu066666@gmail.com?subject=%5BNotify%20Me%5D%20First%20AI%20Service%20in%2030%20min&body=%EC%95%88%EB%85%95%ED%95%98%EC%84%B8%EC%9A%94%2C%0A%0A'First%20AI%20Service%20in%2030%20min'%20%EC%BD%94%EC%8A%A4%20%EC%B6%9C%EC%8B%9C%20%EC%95%8C%EB%A6%BC%EC%9D%84%20%EC%8B%A0%EC%B2%AD%ED%95%A9%EB%8B%88%EB%8B%A4.%0A%0A%5B%EC%9D%B4%EB%A6%84%5D%3A%0A%5B%EC%97%B0%EB%9D%BD%EC%B2%98%5D%3A" class="level-link">Notify me</a>
+              </div>
+              <button class="card-toggle" type="button" aria-expanded="false"><span class="toggle-label"></span><span class="toggle-icon">+</span></button>
+              <div class="level-details">
+                <div class="detail-block">
+                  <div class="detail-label">For Whom</div>
+                  <div class="detail-content">코딩 한 번도 안 해본 직장인·창업가·기획자. 본인 아이디어를 웹사이트로 띄우고 싶은 사람.</div>
+                </div>
+                <div class="detail-block">
+                  <div class="detail-label">Level</div>
+                  <div class="detail-content">
+                    <span class="level-dots"><span class="level-dot on"></span><span class="level-dot"></span><span class="level-dot"></span><span class="level-dot"></span><span class="level-dot"></span></span>
+                    <span class="level-tag">Beginner</span>
+                  </div>
+                </div>
+                <div class="detail-block">
+                  <div class="detail-label">Curriculum</div>
+                  <ol class="detail-list numbered">
+                    <li>Claude Code 셋업과 첫 명령</li>
+                    <li>HTML·CSS 기초 with AI</li>
+                    <li>본인 사이트 디자인·구현</li>
+                    <li>Vercel 배포 + 도메인 연결</li>
+                  </ol>
+                </div>
+                <div class="detail-block">
+                  <div class="detail-label">You'll Get</div>
+                  <ul class="detail-list">
+                    <li>본인 도메인의 작동하는 웹사이트</li>
+                    <li>verbiolabs.com 따라 만든 정적 사이트</li>
+                    <li>기본 SEO·OG 이미지 셋업</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </li>
+
+          <li class="level-card reveal" id="course-korean-saas" data-href="/courses/korean-saas.html">
+            <div class="level-num">01</div>
+            <div class="level-body">
+              <span class="level-status">Coming Q3 2026</span><span class="level-pill pill-start">⭐ Start Here</span>
+              <h3 class="level-title">Korean SaaS, Launch in a Week</h3>
+              <p class="level-desc">PIPA·전자상거래법 호환 SaaS를 1주 안에 출시. launch-kit 기반 약관·SEO·PG 연동·Analytics 풀세트.</p>
+              <div class="level-meta">
+                <div class="level-meta-left">
+                  <span class="level-duration">6 weeks · 18 lessons</span>
+                  <span class="level-price">₩199,000</span>
+                </div>
+                <a href="mailto:lulu066666@gmail.com?subject=%5BNotify%20Me%5D%20Korean%20SaaS%2C%20Launch%20in%20a%20Week&body=%EC%95%88%EB%85%95%ED%95%98%EC%84%B8%EC%9A%94%2C%0A%0A'Korean%20SaaS%2C%20Launch%20in%20a%20Week'%20%EC%BD%94%EC%8A%A4%20%EC%B6%9C%EC%8B%9C%20%EC%95%8C%EB%A6%BC%EC%9D%84%20%EC%8B%A0%EC%B2%AD%ED%95%A9%EB%8B%88%EB%8B%A4.%0A%0A%5B%EC%9D%B4%EB%A6%84%5D%3A%0A%5B%EC%97%B0%EB%9D%BD%EC%B2%98%5D%3A" class="level-link">Notify me</a>
+              </div>
+              <button class="card-toggle" type="button" aria-expanded="false"><span class="toggle-label"></span><span class="toggle-icon">+</span></button>
+              <div class="level-details">
+                <div class="detail-block">
+                  <div class="detail-label">For Whom</div>
+                  <div class="detail-content">본인 SaaS·서비스 출시하려는 1인 메이커. 한국 시장에서 결제 받아야 하는 인디 개발자.</div>
+                </div>
+                <div class="detail-block">
+                  <div class="detail-label">Level</div>
+                  <div class="detail-content">
+                    <span class="level-dots"><span class="level-dot on"></span><span class="level-dot on"></span><span class="level-dot"></span><span class="level-dot"></span><span class="level-dot"></span></span>
+                    <span class="level-tag">Beginner+</span>
+                  </div>
+                </div>
+                <div class="detail-block">
+                  <div class="detail-label">Curriculum</div>
+                  <ol class="detail-list numbered">
+                    <li>launch-kit 셋업과 변수 치환</li>
+                    <li>PIPA·전자상거래법 약관 3종</li>
+                    <li>토스/포트원 PG 가맹점 신청</li>
+                    <li>SEO + Microsoft Clarity Analytics</li>
+                    <li>베타 테스트 → 정식 출시</li>
+                  </ol>
+                </div>
+                <div class="detail-block">
+                  <div class="detail-label">You'll Get</div>
+                  <ul class="detail-list">
+                    <li>한국 시장 합법 출시 가능한 SaaS</li>
+                    <li>결제 받을 수 있는 PG 가맹점</li>
+                    <li>첫 사용자 받을 준비 완료 상태</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </li>
+
+          <li class="level-card reveal" id="course-llm-pro" data-href="/courses.html#course-llm-pro">
+            <div class="level-num">02</div>
+            <div class="level-body">
+              <span class="level-status">Coming Q4 2026</span>
+              <h3 class="level-title">LLM for Professionals</h3>
+              <p class="level-desc">실무자를 위한 ChatGPT·Claude 활용법. 프롬프트 엔지니어링부터 본인 비즈니스에 API 통합·워크플로우 자동화까지.</p>
+              <div class="level-meta">
+                <div class="level-meta-left">
+                  <span class="level-duration">8 weeks · 24 lessons</span>
+                  <span class="level-price">₩249,000</span>
+                </div>
+                <a href="mailto:lulu066666@gmail.com?subject=%5BNotify%20Me%5D%20LLM%20for%20Professionals&body=%EC%95%88%EB%85%95%ED%95%98%EC%84%B8%EC%9A%94%2C%0A%0A'LLM%20for%20Professionals'%20%EC%BD%94%EC%8A%A4%20%EC%B6%9C%EC%8B%9C%20%EC%95%8C%EB%A6%BC%EC%9D%84%20%EC%8B%A0%EC%B2%AD%ED%95%A9%EB%8B%88%EB%8B%A4.%0A%0A%5B%EC%9D%B4%EB%A6%84%5D%3A%0A%5B%EC%97%B0%EB%9D%BD%EC%B2%98%5D%3A" class="level-link">Notify me</a>
+              </div>
+              <button class="card-toggle" type="button" aria-expanded="false"><span class="toggle-label"></span><span class="toggle-icon">+</span></button>
+              <div class="level-details">
+                <div class="detail-block">
+                  <div class="detail-label">For Whom</div>
+                  <div class="detail-content">팀에서 LLM 도입 추진 중인 PM·기획자·실무자. 본인 업무에 AI 통합하고 싶은 직장인.</div>
+                </div>
+                <div class="detail-block">
+                  <div class="detail-label">Level</div>
+                  <div class="detail-content">
+                    <span class="level-dots"><span class="level-dot on"></span><span class="level-dot on"></span><span class="level-dot on"></span><span class="level-dot"></span><span class="level-dot"></span></span>
+                    <span class="level-tag">Intermediate</span>
+                  </div>
+                </div>
+                <div class="detail-block">
+                  <div class="detail-label">Curriculum</div>
+                  <ol class="detail-list numbered">
+                    <li>프롬프트 엔지니어링 원칙</li>
+                    <li>ChatGPT·Claude 비교 활용</li>
+                    <li>업무 자동화 워크플로우</li>
+                    <li>API 통합 — Python·n8n</li>
+                    <li>본인 부서 AI 도입 계획서</li>
+                  </ol>
+                </div>
+                <div class="detail-block">
+                  <div class="detail-label">You'll Get</div>
+                  <ul class="detail-list">
+                    <li>본인 업무용 prompt 라이브러리</li>
+                    <li>자동화 워크플로우 3개+</li>
+                    <li>팀 AI 도입 제안서 템플릿</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </li>
+
+          <li class="level-card reveal" id="course-indie-app" data-href="/courses.html#course-indie-app">
+            <div class="level-num">03</div>
+            <div class="level-body">
+              <span class="level-status production">In Production</span><span class="level-pill pill-bestseller">🔥 Bestseller</span>
+              <h3 class="level-title">Indie App, A to Z</h3>
+              <p class="level-desc">아이디어 검증부터 출시·ASO·수익화까지. TopikIQ 출시·운영 실전 경험 기반 1인 앱 메이커 풀과정.</p>
+              <div class="level-meta">
+                <div class="level-meta-left">
+                  <span class="level-duration">10 weeks · 30 lessons</span>
+                  <span class="level-price">₩299,000</span>
+                </div>
+                <a href="mailto:lulu066666@gmail.com?subject=%5BNotify%20Me%5D%20Indie%20App%2C%20A%20to%20Z&body=%EC%95%88%EB%85%95%ED%95%98%EC%84%B8%EC%9A%94%2C%0A%0A'Indie%20App%2C%20A%20to%20Z'%20%EC%BD%94%EC%8A%A4%20%EC%B6%9C%EC%8B%9C%20%EC%95%8C%EB%A6%BC%EC%9D%84%20%EC%8B%A0%EC%B2%AD%ED%95%A9%EB%8B%88%EB%8B%A4.%0A%0A%5B%EC%9D%B4%EB%A6%84%5D%3A%0A%5B%EC%97%B0%EB%9D%BD%EC%B2%98%5D%3A" class="level-link">Notify me</a>
+              </div>
+              <button class="card-toggle" type="button" aria-expanded="false"><span class="toggle-label"></span><span class="toggle-icon">+</span></button>
+              <div class="level-details">
+                <div class="detail-block">
+                  <div class="detail-label">For Whom</div>
+                  <div class="detail-content">앱 출시 경험 있는 1인 개발자·메이커. 본인 앱을 수익화·스케일하고 싶은 사람.</div>
+                </div>
+                <div class="detail-block">
+                  <div class="detail-label">Level</div>
+                  <div class="detail-content">
+                    <span class="level-dots"><span class="level-dot on"></span><span class="level-dot on"></span><span class="level-dot on"></span><span class="level-dot on"></span><span class="level-dot"></span></span>
+                    <span class="level-tag">Advanced</span>
+                  </div>
+                </div>
+                <div class="detail-block">
+                  <div class="detail-label">Curriculum</div>
+                  <ol class="detail-list numbered">
+                    <li>아이디어 검증 — 시장 리서치</li>
+                    <li>MVP 빌딩 (React Native·Flutter)</li>
+                    <li>App Store·Play Store 출시</li>
+                    <li>ASO — 검색 최적화</li>
+                    <li>구독·인앱·광고 수익화</li>
+                    <li>스케일 + 운영 자동화</li>
+                  </ol>
+                </div>
+                <div class="detail-block">
+                  <div class="detail-label">You'll Get</div>
+                  <ul class="detail-list">
+                    <li>App Store·Play Store 출시 가능한 앱</li>
+                    <li>본인 앱 ASO + 마케팅 플랜</li>
+                    <li>수익화 모델 검증된 구조</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </li>
+
+          <li class="level-card reveal" id="course-english-ai" data-href="/courses.html#course-english-ai">
+            <div class="level-num">04</div>
+            <div class="level-body">
+              <span class="level-status">Coming Q4 2026</span>
+              <h3 class="level-title">English Learning, AI Era</h3>
+              <p class="level-desc">AI 시대의 영어 학습 프레임워크. 식빵영어 5년 운영 노하우와 AI를 결합한 새로운 방법론.</p>
+              <div class="level-meta">
+                <div class="level-meta-left">
+                  <span class="level-duration">6 weeks · 18 lessons</span>
+                  <span class="level-price">₩199,000</span>
+                </div>
+                <a href="mailto:lulu066666@gmail.com?subject=%5BNotify%20Me%5D%20English%20Learning%2C%20AI%20Era&body=%EC%95%88%EB%85%95%ED%95%98%EC%84%B8%EC%9A%94%2C%0A%0A'English%20Learning%2C%20AI%20Era'%20%EC%BD%94%EC%8A%A4%20%EC%B6%9C%EC%8B%9C%20%EC%95%8C%EB%A6%BC%EC%9D%84%20%EC%8B%A0%EC%B2%AD%ED%95%A9%EB%8B%88%EB%8B%A4.%0A%0A%5B%EC%9D%B4%EB%A6%84%5D%3A%0A%5B%EC%97%B0%EB%9D%BD%EC%B2%98%5D%3A" class="level-link">Notify me</a>
+              </div>
+              <button class="card-toggle" type="button" aria-expanded="false"><span class="toggle-label"></span><span class="toggle-icon">+</span></button>
+              <div class="level-details">
+                <div class="detail-block">
+                  <div class="detail-label">For Whom</div>
+                  <div class="detail-content">AI 시대에 맞는 영어 학습법이 궁금한 학습자. SpeakCoach·식빵영어 방법론을 깊이 배우고 싶은 분.</div>
+                </div>
+                <div class="detail-block">
+                  <div class="detail-label">Level</div>
+                  <div class="detail-content">
+                    <span class="level-dots"><span class="level-dot on"></span><span class="level-dot on"></span><span class="level-dot"></span><span class="level-dot"></span><span class="level-dot"></span></span>
+                    <span class="level-tag">Beginner+</span>
+                  </div>
+                </div>
+                <div class="detail-block">
+                  <div class="detail-label">Curriculum</div>
+                  <ol class="detail-list numbered">
+                    <li>식빵 5년 노하우 — 한국인 약점</li>
+                    <li>AI tutor 활용 프레임워크</li>
+                    <li>스피킹 — 일일 루틴 설계</li>
+                    <li>OPIc·IELTS·TOEIC 통합 전략</li>
+                    <li>본인만의 영어 학습 시스템</li>
+                  </ol>
+                </div>
+                <div class="detail-block">
+                  <div class="detail-label">You'll Get</div>
+                  <ul class="detail-list">
+                    <li>본인 레벨 진단 + 학습 로드맵</li>
+                    <li>AI tutor 활용 일일 루틴</li>
+                    <li>SpeakCoach 6개월 라이센스</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </li>
+
+          <li class="level-card reveal" id="course-deep-learning" data-href="/courses.html#course-deep-learning">
+            <div class="level-num">05</div>
+            <div class="level-body">
+              <span class="level-status production">In Production</span>
+              <h3 class="level-title">Deep Learning, From Scratch</h3>
+              <p class="level-desc">대학 강의를 온라인으로. 수학적 직관과 실전 코드를 균형있게 다루는 입문 과정.</p>
+              <div class="level-meta">
+                <div class="level-meta-left">
+                  <span class="level-duration">12 weeks · 36 lessons</span>
+                  <span class="level-price">₩399,000</span>
+                </div>
+                <a href="mailto:lulu066666@gmail.com?subject=%5BNotify%20Me%5D%20Deep%20Learning%2C%20From%20Scratch&body=%EC%95%88%EB%85%95%ED%95%98%EC%84%B8%EC%9A%94%2C%0A%0A'Deep%20Learning%2C%20From%20Scratch'%20%EC%BD%94%EC%8A%A4%20%EC%B6%9C%EC%8B%9C%20%EC%95%8C%EB%A6%BC%EC%9D%84%20%EC%8B%A0%EC%B2%AD%ED%95%A9%EB%8B%88%EB%8B%A4.%0A%0A%5B%EC%9D%B4%EB%A6%84%5D%3A%0A%5B%EC%97%B0%EB%9D%BD%EC%B2%98%5D%3A" class="level-link">Notify me</a>
+              </div>
+              <button class="card-toggle" type="button" aria-expanded="false"><span class="toggle-label"></span><span class="toggle-icon">+</span></button>
+              <div class="level-details">
+                <div class="detail-block">
+                  <div class="detail-label">For Whom</div>
+                  <div class="detail-content">AI 기초부터 제대로 이해하고 싶은 개발자·대학원생·연구자. 논문 읽고 구현하는 baseline 만들고 싶은 분.</div>
+                </div>
+                <div class="detail-block">
+                  <div class="detail-label">Level</div>
+                  <div class="detail-content">
+                    <span class="level-dots"><span class="level-dot on"></span><span class="level-dot on"></span><span class="level-dot on"></span><span class="level-dot on"></span><span class="level-dot on"></span></span>
+                    <span class="level-tag">Advanced</span>
+                  </div>
+                </div>
+                <div class="detail-block">
+                  <div class="detail-label">Curriculum</div>
+                  <ol class="detail-list numbered">
+                    <li>선형대수·미적분 직관</li>
+                    <li>backpropagation 직접 구현</li>
+                    <li>CNN — 이미지 인식</li>
+                    <li>RNN · Transformer 구조 이해</li>
+                    <li>본인 데이터로 모델 학습</li>
+                    <li>모델 평가·배포 · MLOps 기초</li>
+                  </ol>
+                </div>
+                <div class="detail-block">
+                  <div class="detail-label">You'll Get</div>
+                  <ul class="detail-list">
+                    <li>본인 모델 학습·배포 능력</li>
+                    <li>논문 읽고 구현하는 baseline</li>
+                    <li>PyTorch 풀스택 실력</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </li>
+
+        </ol>
+
+        <!-- Bundle CTA -->
+        <div class="path-bundle reveal">
+          <div class="bundle-text">
+            <div class="bundle-eyebrow">All Access Bundle</div>
+            <h3 class="bundle-title">Get the full path.</h3>
+            <p class="bundle-desc">6 코스 전체 + 라이프타임 액세스 + 미래에 추가되는 강의 무료.</p>
+          </div>
+          <div class="bundle-action">
+            <div class="bundle-price">
+              <span class="bundle-price-strike">₩1,444,000</span>
+              <span class="bundle-price-new">₩999,000</span>
+            </div>
+            <a href="mailto:lulu066666@gmail.com?subject=%5BReserve%5D%20All%20Access%20Bundle&body=%EC%95%88%EB%85%95%ED%95%98%EC%84%B8%EC%9A%94%2C%0A%0AAll%20Access%20Bundle%20%EC%B6%9C%EC%8B%9C%20%EC%95%8C%EB%A6%BC%20%EB%B0%8F%20%EC%82%AC%EC%A0%84%20%EC%98%88%EC%95%BD%EC%9D%84%20%EC%8B%A0%EC%B2%AD%ED%95%A9%EB%8B%88%EB%8B%A4.%0A%0A%5B%EC%9D%B4%EB%A6%84%5D%3A%0A%5B%EC%97%B0%EB%9D%BD%EC%B2%98%5D%3A" class="bundle-link">Reserve Bundle ›</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- ORGANIZATION TRACK -->
+      <div class="path-panel is-hidden" id="path-organization" role="tabpanel">
+        <div class="track-row">
+
+          <div class="track-card reveal" id="track-workshop" data-href="/courses.html#track-workshop">
+            <span class="track-num">Track 01</span>
+            <h3 class="track-title">Corporate Workshop</h3>
+            <p class="track-desc">1-4일 집중 교육. 임직원 AI 도입 · 부서별 워크플로우 · 거버넌스 · 컴플라이언스 트레이닝.</p>
+            <div class="track-meta">
+              <span class="track-price">from ₩3,000,000</span>
+              <a href="mailto:lulu066666@gmail.com?subject=%5BB2B%5D%20Corporate%20Workshop%20Inquiry&body=%EC%95%88%EB%85%95%ED%95%98%EC%84%B8%EC%9A%94%2C%0A%0AVerbio%20Labs%20Corporate%20Workshop%20%EB%AC%B8%EC%9D%98%EB%93%9C%EB%A6%BD%EB%8B%88%EB%8B%A4.%0A%0A%5B%ED%9A%8C%EC%82%AC%EB%AA%85%5D%3A%0A%5B%EC%9D%B8%EC%9B%90%5D%3A%0A%5B%ED%9D%AC%EB%A7%9D%20%EC%9D%BC%EC%A0%95%5D%3A%0A%5B%EC%97%B0%EB%9D%BD%EC%B2%98%5D%3A" class="track-link">Inquire</a>
+            </div>
+            <button class="card-toggle" type="button" aria-expanded="false"><span class="toggle-label"></span><span class="toggle-icon">+</span></button>
+            <div class="track-details">
+              <div class="detail-block">
+                <div class="detail-label">For Whom</div>
+                <div class="detail-content">AI 도입 검토 중인 기업 · 임직원 교육 필요한 인사·교육 담당자.</div>
+              </div>
+              <div class="detail-block">
+                <div class="detail-label">Format</div>
+                <div class="detail-content">온/오프라인 · 1-4일 또는 4주 프로그램</div>
+              </div>
+              <div class="detail-block">
+                <div class="detail-label">Includes</div>
+                <ul class="detail-list">
+                  <li>AI Onboarding for Teams (1day)</li>
+                  <li>Department workflows (마케팅·HR·CS)</li>
+                  <li>AI Governance & Compliance</li>
+                  <li>Custom Integration (4w 옵션)</li>
+                </ul>
+              </div>
+              <div class="detail-block">
+                <div class="detail-label">Deliverables</div>
+                <ul class="detail-list">
+                  <li>임직원용 AI 활용 매뉴얼</li>
+                  <li>부서별 prompt 라이브러리</li>
+                  <li>거버넌스 정책 가이드</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="track-card reveal" id="track-university" data-href="/courses.html#track-university">
+            <span class="track-num">Track 02</span>
+            <h3 class="track-title">University Lecture</h3>
+            <p class="track-desc">한 학기 정규 강좌부터 단기 워크숍까지. Deep Learning 정규 과정 · LLM 시대 교수법 · 학부생 vibe coding bootcamp.</p>
+            <div class="track-meta">
+              <span class="track-price">협의</span>
+              <a href="mailto:lulu066666@gmail.com?subject=%5BB2B%5D%20University%20Lecture%20Inquiry&body=%EC%95%88%EB%85%95%ED%95%98%EC%84%B8%EC%9A%94%2C%0A%0AVerbio%20Labs%20University%20Lecture%20%EB%AC%B8%EC%9D%98%EB%93%9C%EB%A6%BD%EB%8B%88%EB%8B%A4.%0A%0A%5B%EA%B8%B0%EA%B4%80%EB%AA%85%5D%3A%0A%5B%EA%B3%BC%EC%A0%95%2F%EA%B3%BC%EB%AA%A9%5D%3A%0A%5B%ED%9D%AC%EB%A7%9D%20%EC%9D%BC%EC%A0%95%5D%3A%0A%5B%EC%97%B0%EB%9D%BD%EC%B2%98%5D%3A" class="track-link">Inquire</a>
+            </div>
+            <button class="card-toggle" type="button" aria-expanded="false"><span class="toggle-label"></span><span class="toggle-icon">+</span></button>
+            <div class="track-details">
+              <div class="detail-block">
+                <div class="detail-label">For Whom</div>
+                <div class="detail-content">대학 · 연구실 · 교육기관. 학부생·대학원생·교수진 대상 AI 교육.</div>
+              </div>
+              <div class="detail-block">
+                <div class="detail-label">Format</div>
+                <div class="detail-content">한 학기 정규 · 단기 워크숍 · 협의 가능</div>
+              </div>
+              <div class="detail-block">
+                <div class="detail-label">Includes</div>
+                <ul class="detail-list">
+                  <li>DL 정규 강좌 (한 학기 · 16주)</li>
+                  <li>AI 시대 교수법 워크숍 (2일)</li>
+                  <li>연구실 LLM 워크숍 (4시간)</li>
+                  <li>학부생 vibe coding bootcamp (1주)</li>
+                </ul>
+              </div>
+              <div class="detail-block">
+                <div class="detail-label">Deliverables</div>
+                <ul class="detail-list">
+                  <li>강의안 · 슬라이드 · 실습 코드</li>
+                  <li>학생 평가 framework</li>
+                  <li>교수진용 AI 활용 가이드</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="track-card reveal" id="track-consulting" data-href="/courses.html#track-consulting">
+            <span class="track-num">Track 03</span>
+            <h3 class="track-title">Strategy Consulting</h3>
+            <p class="track-desc">AI Strategy Audit · MVP 빌딩 협력 (8주) · 1:1 멘토링. 시드~시리즈A 스타트업 CEO·CTO 대상.</p>
+            <div class="track-meta">
+              <span class="track-price">from ₩300,000/hr</span>
+              <a href="mailto:lulu066666@gmail.com?subject=%5BB2B%5D%20Strategy%20Consulting%20Inquiry&body=%EC%95%88%EB%85%95%ED%95%98%EC%84%B8%EC%9A%94%2C%0A%0AVerbio%20Labs%20Strategy%20Consulting%20%EB%AC%B8%EC%9D%98%EB%93%9C%EB%A6%BD%EB%8B%88%EB%8B%A4.%0A%0A%5B%ED%9A%8C%EC%82%AC%EB%AA%85%5D%3A%0A%5B%EB%8B%A8%EA%B3%84%5D%3A%0A%5B%ED%9A%8C%EC%9D%98%20%EC%A3%BC%EC%A0%9C%5D%3A%0A%5B%EC%97%B0%EB%9D%BD%EC%B2%98%5D%3A" class="track-link">Inquire</a>
+            </div>
+            <button class="card-toggle" type="button" aria-expanded="false"><span class="toggle-label"></span><span class="toggle-icon">+</span></button>
+            <div class="track-details">
+              <div class="detail-block">
+                <div class="detail-label">For Whom</div>
+                <div class="detail-content">시드~시리즈A 스타트업 CEO·CTO. AI product 전략 검토·MVP 빌딩 필요한 팀.</div>
+              </div>
+              <div class="detail-block">
+                <div class="detail-label">Format</div>
+                <div class="detail-content">hourly · 프로젝트 단위 · 8주 협력</div>
+              </div>
+              <div class="detail-block">
+                <div class="detail-label">Includes</div>
+                <ul class="detail-list">
+                  <li>AI Strategy Audit (2일 + 보고서)</li>
+                  <li>MVP 빌딩 협력 (8주, 주 1회 미팅)</li>
+                  <li>1:1 Mentoring (시간당)</li>
+                  <li>Tech stack 자문</li>
+                </ul>
+              </div>
+              <div class="detail-block">
+                <div class="detail-label">Deliverables</div>
+                <ul class="detail-list">
+                  <li>AI 전략 보고서 + 액션플랜</li>
+                  <li>MVP 코드 + 배포</li>
+                  <li>본인 팀이 이어갈 수 있는 가이드</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Proposal CTA -->
+        <div class="path-cta reveal">
+          <div class="path-cta-eyebrow">Custom Engagement</div>
+          <p class="path-cta-text">맞춤형 제안서가 필요하신가요?</p>
+          <a href="mailto:lulu066666@gmail.com?subject=%5BB2B%5D%20Custom%20Proposal%20Request&body=%EC%95%88%EB%85%95%ED%95%98%EC%84%B8%EC%9A%94%2C%0A%0AVerbio%20Labs%20%EB%A7%9E%EC%B6%A4%ED%98%95%20%EC%A0%9C%EC%95%88%EC%9D%84%20%EC%9A%94%EC%B2%AD%EB%93%9C%EB%A6%BD%EB%8B%88%EB%8B%A4.%0A%0A%5B%ED%9A%8C%EC%82%AC%EB%AA%85%5D%3A%0A%5B%EC%9D%B8%EC%9B%90%2F%EA%B7%9C%EB%AA%A8%5D%3A%0A%5B%EC%9B%90%ED%95%98%EB%8A%94%20%EA%B5%90%EC%9C%A1%2F%EC%84%9C%EB%B9%84%EC%8A%A4%5D%3A%0A%5B%EC%97%B0%EB%9D%BD%EC%B2%98%5D%3A" class="path-cta-btn">Request a Proposal ›</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer" id="contact">
+    <div class="footer-inner">
+      <div class="footer-disclaimer">
+        <span class="footer-disclaimer-en">Verbio Labs is an AI research &amp; education company based in Busan, Korea. All products are designed and built in Korea.</span>
+        <span class="footer-disclaimer-kr">베르비오 랩스는 부산에 위치한 AI 연구·교육 기업입니다. 모든 제품은 한국에서 설계되고 개발됩니다.</span>
+      </div>
+      <div class="footer-cols">
+        <div class="footer-col">
+          <h4>Products</h4>
+          <ul>
+            <li><a href="https://sikbang-eng.replit.app/" target="_blank" rel="noopener">SpeakCoach AI</a></li>
+            <li><a href="https://topikiq.com" target="_blank" rel="noopener">TopikIQ</a></li>
+            <li><a href="https://sikbang.co" target="_blank" rel="noopener">Sikbang English</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Education</h4>
+          <ul>
+            <li><a href="/#education">University Lectures</a></li>
+            <li><a href="/#education">Industry Seminars</a></li>
+            <li><a href="/#education">AI Consulting</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Learn</h4>
+          <ul>
+            <li><a href="/courses.html">Online Courses</a></li>
+            <li><a href="/#community">AI Cartel Busan</a></li>
+            <li><a class="is-soon" aria-disabled="true">Newsletter</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <ul>
+            <li><a href="mailto:lulu066666@gmail.com">lulu066666@gmail.com</a></li>
+            <li><span>Busan, Korea</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-legal">
+        <div class="footer-legal-row">
+          <span class="footer-legal-label">상호</span>
+          <span class="footer-legal-value">식빵영어 (Sikbang English)</span>
+        </div>
+        <div class="footer-legal-row">
+          <span class="footer-legal-label">대표</span>
+          <span class="footer-legal-value">안준영 (Jacob)</span>
+        </div>
+        <div class="footer-legal-row">
+          <span class="footer-legal-label">사업장 주소</span>
+          <span class="footer-legal-value">부산광역시 부산진구 만리산로98</span>
+        </div>
+        <div class="footer-legal-row">
+          <span class="footer-legal-label">사업자등록번호</span>
+          <span class="footer-legal-value">807-29-01639</span>
+        </div>
+        <div class="footer-legal-row">
+          <span class="footer-legal-label">통신판매업 신고번호</span>
+          <span class="footer-legal-value">제 2025-부산진-1374호</span>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>Copyright © 2026 Verbio Labs. All rights reserved.</span>
+        <span>
+          <a href="/privacy.html">개인정보처리방침</a>
+          ·
+          <a href="/terms.html">이용약관</a>
+          ·
+          <a href="/refund.html">환불 정책</a>
+        </span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // ── Reveal on scroll ──
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -80px 0px' });
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+    // ── Mobile hamburger ──
+    const burger = document.getElementById('navBurger');
+    const drawer = document.getElementById('mobileDrawer');
+    if (burger && drawer) {
+      const setMenu = (open) => {
+        burger.classList.toggle('is-open', open);
+        drawer.classList.toggle('is-open', open);
+        burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+        drawer.setAttribute('aria-hidden', open ? 'false' : 'true');
+        burger.setAttribute('aria-label', open ? '메뉴 닫기' : '메뉴 열기');
+        document.body.classList.toggle('no-scroll', open);
+      };
+      burger.addEventListener('click', () => setMenu(!drawer.classList.contains('is-open')));
+      drawer.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setMenu(false)));
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && drawer.classList.contains('is-open')) setMenu(false);
+      });
+    }
+
+    // ── Smooth scroll for in-page anchors ──
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        const href = this.getAttribute('href');
+        if (href === '#') return;
+        const target = document.querySelector(href);
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+
+    // ── Card toggle (expand details) ──
+    document.querySelectorAll('.card-toggle').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const card = btn.closest('.level-card, .track-card');
+        if (!card) return;
+        const expanded = card.classList.toggle('is-expanded');
+        btn.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+      });
+    });
+
+    // ── Segmented control (For Individuals / For Organizations) ──
+    document.querySelectorAll('.path-tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        const targetId = tab.dataset.target;
+        document.querySelectorAll('.path-tab').forEach(t => {
+          const active = t === tab;
+          t.classList.toggle('is-active', active);
+          t.setAttribute('aria-selected', active ? 'true' : 'false');
+        });
+        document.querySelectorAll('.path-panel').forEach(panel => {
+          panel.classList.toggle('is-hidden', panel.id !== targetId);
+        });
+        document.querySelectorAll(`#${targetId} .reveal:not(.visible)`).forEach(el => {
+          el.classList.add('visible');
+        });
+      });
+    });
+
+    // ── Card click → open data-href in new tab ──
+    // (카드 내부의 링크/버튼/토글은 자체 동작 유지)
+    document.querySelectorAll('.level-card[data-href], .track-card[data-href]').forEach(card => {
+      card.addEventListener('click', (e) => {
+        if (e.target.closest('a, button, input, label, select, textarea')) return;
+        const url = card.dataset.href;
+        if (url) window.open(url, '_blank', 'noopener');
+      });
+    });
+  </script>
+
+</body>
+</html>
