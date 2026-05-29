@@ -338,6 +338,49 @@
     color: var(--apple-black);
     display: flex; gap: 10px;
   }
+
+  /* ── SCREENSHOT FIGURE ── */
+  .step-figure {
+    margin: 18px 0 0 0;
+  }
+  .step-figure img {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    border: 0.5px solid var(--apple-gray-line);
+    display: block;
+  }
+  .step-figure-placeholder {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    background: var(--apple-gray-bg);
+    border: 1px dashed var(--apple-gray-line);
+    border-radius: 12px;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    gap: 6px;
+  }
+  .step-figure-placeholder-tag {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--apple-blue);
+    letter-spacing: 0.12em;
+  }
+  .step-figure-placeholder-path {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--apple-gray-text-light);
+    letter-spacing: 0.02em;
+  }
+  .step-figcaption {
+    margin-top: 10px;
+    font-family: var(--font-kr);
+    font-size: 13px;
+    color: var(--apple-gray-text);
+    line-height: 1.5;
+    text-align: center;
+  }
   .step-result-label {
     flex-shrink: 0;
     font-size: 10px;
@@ -498,6 +541,13 @@
         <span class="step-result-label">결과 →</span>
         <span><strong>본인 소유의 도메인 1개</strong> (예: <code>jacob-ahn.com</code>). 아직 사이트는 없음, 주소만 있음.</span>
       </div>
+      <figure class="step-figure">
+        <div class="step-figure-placeholder">
+          <span class="step-figure-placeholder-tag">SCREENSHOT</span>
+          <span class="step-figure-placeholder-path">/sample-images/01-gabia-search.png</span>
+        </div>
+        <figcaption class="step-figcaption">가비아 도메인 검색 결과 — 본인 이름.com이 등록 가능한지 확인하는 순간</figcaption>
+      </figure>
     </div>
   </article>
 
@@ -520,6 +570,13 @@
         <span class="step-result-label">결과 →</span>
         <span><strong>Vercel 대시보드 접근</strong>. 사이트를 올릴 빈 책상.</span>
       </div>
+      <figure class="step-figure">
+        <div class="step-figure-placeholder">
+          <span class="step-figure-placeholder-tag">SCREENSHOT</span>
+          <span class="step-figure-placeholder-path">/sample-images/02-vercel-dashboard.png</span>
+        </div>
+        <figcaption class="step-figcaption">Vercel 대시보드 — "Add New Project" 버튼이 보이는 빈 상태</figcaption>
+      </figure>
     </div>
   </article>
 
@@ -557,6 +614,13 @@
         <span class="step-result-label">결과 →</span>
         <span><strong>index.html 파일 1개</strong> (또는 v0 프로젝트 1개). 본인 컴퓨터의 다운로드 폴더에 있음.</span>
       </div>
+      <figure class="step-figure">
+        <div class="step-figure-placeholder">
+          <span class="step-figure-placeholder-tag">SCREENSHOT</span>
+          <span class="step-figure-placeholder-path">/sample-images/03-v0-result.png</span>
+        </div>
+        <figcaption class="step-figcaption">v0.dev에 위 prompt를 넣고 받은 사이트 미리보기 — 왼쪽 prompt, 오른쪽 결과 화면</figcaption>
+      </figure>
     </div>
   </article>
 
@@ -580,6 +644,13 @@
         <span class="step-result-label">결과 →</span>
         <span><strong>github.com/본인계정/사이트이름</strong> 주소에 코드가 올라가 있음. 인터넷에선 아직 안 보임.</span>
       </div>
+      <figure class="step-figure">
+        <div class="step-figure-placeholder">
+          <span class="step-figure-placeholder-tag">SCREENSHOT · OPTIONAL</span>
+          <span class="step-figure-placeholder-path">/sample-images/04-github-desktop.png</span>
+        </div>
+        <figcaption class="step-figcaption">GitHub Desktop "Publish repository" 다이얼로그 — 체크박스 해제된 상태</figcaption>
+      </figure>
     </div>
   </article>
 
@@ -599,11 +670,25 @@
       <span class="step-codebox-label">Vercel이 보여주는 예시</span>
       <div class="step-codebox">A     @            76.76.21.21
 CNAME www          cname.vercel-dns.com</div>
+      <figure class="step-figure">
+        <div class="step-figure-placeholder">
+          <span class="step-figure-placeholder-tag">SCREENSHOT</span>
+          <span class="step-figure-placeholder-path">/sample-images/05-vercel-domains.png</span>
+        </div>
+        <figcaption class="step-figcaption">Vercel Settings → Domains — 본인 도메인 입력 후 DNS 값이 보이는 화면</figcaption>
+      </figure>
       <p>DNS 반영에 5분~30분 정도. 반영되면 <code>https://jacob-ahn.com</code>에 본인 사이트가 보입니다. HTTPS 인증서는 Vercel이 자동으로 무료 발급.</p>
       <div class="step-result">
         <span class="step-result-label">결과 →</span>
         <span><strong>https://본인도메인.com</strong>에서 본인이 만든 사이트가 인터넷에 보임. 30분 끝.</span>
       </div>
+      <figure class="step-figure">
+        <div class="step-figure-placeholder">
+          <span class="step-figure-placeholder-tag">SCREENSHOT</span>
+          <span class="step-figure-placeholder-path">/sample-images/06-final-site.png</span>
+        </div>
+        <figcaption class="step-figcaption">브라우저 주소창에 본인 도메인이 떠 있는 최종 모습 — "이게 진짜 인터넷이다" 순간</figcaption>
+      </figure>
     </div>
   </article>
 
