@@ -1999,6 +1999,35 @@
   .level-link::after { content: " ›"; }
   .level-link:hover { text-decoration: underline; }
 
+  /* ── View Course button (cards with detail page) ── */
+  .btn-view-course {
+    display: inline-block;
+    background: var(--apple-black);
+    color: var(--apple-white);
+    text-decoration: none;
+    padding: 9px 18px;
+    border-radius: 980px;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: -0.005em;
+    position: relative; z-index: 2;
+    transition: transform 0.25s var(--ease-out-quart);
+    white-space: nowrap;
+  }
+  .btn-view-course::after { content: " ›"; }
+  .btn-view-course:hover { transform: scale(1.04); }
+
+  @media (max-width: 734px) {
+    .btn-view-course {
+      display: block;
+      width: 100%;
+      text-align: center;
+      padding: 13px 20px;
+      font-size: 14px;
+      margin-top: 4px;
+    }
+  }
+
   /* ── Recommended pills (Start Here / Bestseller) ── */
   .level-pill {
     display: inline-block;
@@ -2596,7 +2625,7 @@
         <li><a href="#topikiq">TopikIQ</a></li>
         <li><a href="#why">Why Verbio</a></li>
         <li><a href="#education">Education</a></li>
-        <li><a href="/courses.html">Courses</a></li>
+        <li><a href="/courses">Courses</a></li>
         <li><a href="#community">Community</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
@@ -2613,7 +2642,7 @@
       <li><a href="#topikiq">TopikIQ</a></li>
       <li><a href="#why">Why Verbio</a></li>
       <li><a href="#education">Education</a></li>
-      <li><a href="/courses.html">Courses</a></li>
+      <li><a href="/courses">Courses</a></li>
       <li><a href="#community">Community</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
@@ -2650,13 +2679,13 @@
         We build intelligent systems that teach, understand, and amplify the way people learn languages.
       </p>
       <div class="hero-actions">
-        <a href="#speakcoach" class="btn btn-primary">
-          Explore products
+        <a href="/courses" class="btn btn-primary">
+          Browse Courses
           <svg class="btn-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
             <path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </a>
-        <a href="/courses.html" class="btn btn-secondary">Browse Courses</a>
+        <a href="#speakcoach" class="btn btn-secondary">Explore products</a>
         <a href="#why" class="btn btn-secondary">Why Verbio</a>
       </div>
     </div>
@@ -3045,38 +3074,7 @@
                   <span class="level-duration">4 weeks · 12 lessons</span>
                   <span class="level-price">₩99,000</span>
                 </div>
-                <a href="mailto:lulu066666@gmail.com?subject=%5BNotify%20Me%5D%20First%20AI%20Service%20in%2030%20min&body=%EC%95%88%EB%85%95%ED%95%98%EC%84%B8%EC%9A%94%2C%0A%0A'First%20AI%20Service%20in%2030%20min'%20%EC%BD%94%EC%8A%A4%20%EC%B6%9C%EC%8B%9C%20%EC%95%8C%EB%A6%BC%EC%9D%84%20%EC%8B%A0%EC%B2%AD%ED%95%A9%EB%8B%88%EB%8B%A4.%0A%0A%5B%EC%9D%B4%EB%A6%84%5D%3A%0A%5B%EC%97%B0%EB%9D%BD%EC%B2%98%5D%3A" class="level-link">Notify me</a>
-              </div>
-              <button class="card-toggle" type="button" aria-expanded="false"><span class="toggle-label"></span><span class="toggle-icon">+</span></button>
-              <div class="level-details">
-                <div class="detail-block">
-                  <div class="detail-label">For Whom</div>
-                  <div class="detail-content">코딩 한 번도 안 해본 직장인·창업가·기획자. 본인 아이디어를 웹사이트로 띄우고 싶은 사람.</div>
-                </div>
-                <div class="detail-block">
-                  <div class="detail-label">Level</div>
-                  <div class="detail-content">
-                    <span class="level-dots"><span class="level-dot on"></span><span class="level-dot"></span><span class="level-dot"></span><span class="level-dot"></span><span class="level-dot"></span></span>
-                    <span class="level-tag">Beginner</span>
-                  </div>
-                </div>
-                <div class="detail-block">
-                  <div class="detail-label">Curriculum</div>
-                  <ol class="detail-list numbered">
-                    <li>Claude Code 셋업과 첫 명령</li>
-                    <li>HTML·CSS 기초 with AI</li>
-                    <li>본인 사이트 디자인·구현</li>
-                    <li>Vercel 배포 + 도메인 연결</li>
-                  </ol>
-                </div>
-                <div class="detail-block">
-                  <div class="detail-label">You'll Get</div>
-                  <ul class="detail-list">
-                    <li>본인 도메인의 작동하는 웹사이트</li>
-                    <li>verbiolabs.com 따라 만든 정적 사이트</li>
-                    <li>기본 SEO·OG 이미지 셋업</li>
-                  </ul>
-                </div>
+                <a href="/courses/first-ai.html" class="btn-view-course">View course</a>
               </div>
             </div>
           </li>
@@ -3092,44 +3090,12 @@
                   <span class="level-duration">6 weeks · 18 lessons</span>
                   <span class="level-price">₩199,000</span>
                 </div>
-                <a href="mailto:lulu066666@gmail.com?subject=%5BNotify%20Me%5D%20Korean%20SaaS%2C%20Launch%20in%20a%20Week&body=%EC%95%88%EB%85%95%ED%95%98%EC%84%B8%EC%9A%94%2C%0A%0A'Korean%20SaaS%2C%20Launch%20in%20a%20Week'%20%EC%BD%94%EC%8A%A4%20%EC%B6%9C%EC%8B%9C%20%EC%95%8C%EB%A6%BC%EC%9D%84%20%EC%8B%A0%EC%B2%AD%ED%95%A9%EB%8B%88%EB%8B%A4.%0A%0A%5B%EC%9D%B4%EB%A6%84%5D%3A%0A%5B%EC%97%B0%EB%9D%BD%EC%B2%98%5D%3A" class="level-link">Notify me</a>
-              </div>
-              <button class="card-toggle" type="button" aria-expanded="false"><span class="toggle-label"></span><span class="toggle-icon">+</span></button>
-              <div class="level-details">
-                <div class="detail-block">
-                  <div class="detail-label">For Whom</div>
-                  <div class="detail-content">본인 SaaS·서비스 출시하려는 1인 메이커. 한국 시장에서 결제 받아야 하는 인디 개발자.</div>
-                </div>
-                <div class="detail-block">
-                  <div class="detail-label">Level</div>
-                  <div class="detail-content">
-                    <span class="level-dots"><span class="level-dot on"></span><span class="level-dot on"></span><span class="level-dot"></span><span class="level-dot"></span><span class="level-dot"></span></span>
-                    <span class="level-tag">Beginner+</span>
-                  </div>
-                </div>
-                <div class="detail-block">
-                  <div class="detail-label">Curriculum</div>
-                  <ol class="detail-list numbered">
-                    <li>launch-kit 셋업과 변수 치환</li>
-                    <li>PIPA·전자상거래법 약관 3종</li>
-                    <li>토스/포트원 PG 가맹점 신청</li>
-                    <li>SEO + Microsoft Clarity Analytics</li>
-                    <li>베타 테스트 → 정식 출시</li>
-                  </ol>
-                </div>
-                <div class="detail-block">
-                  <div class="detail-label">You'll Get</div>
-                  <ul class="detail-list">
-                    <li>한국 시장 합법 출시 가능한 SaaS</li>
-                    <li>결제 받을 수 있는 PG 가맹점</li>
-                    <li>첫 사용자 받을 준비 완료 상태</li>
-                  </ul>
-                </div>
+                <a href="/courses/korean-saas.html" class="btn-view-course">View course</a>
               </div>
             </div>
           </li>
 
-          <li class="level-card reveal" data-href="/courses.html#course-llm-pro">
+          <li class="level-card reveal">
             <div class="level-num">02</div>
             <div class="level-body">
               <span class="level-status">Coming Q4 2026</span>
@@ -3177,7 +3143,7 @@
             </div>
           </li>
 
-          <li class="level-card reveal" data-href="/courses.html#course-indie-app">
+          <li class="level-card reveal">
             <div class="level-num">03</div>
             <div class="level-body">
               <span class="level-status production">In Production</span><span class="level-pill pill-bestseller">🔥 Bestseller</span>
@@ -3227,7 +3193,7 @@
             </div>
           </li>
 
-          <li class="level-card reveal" data-href="/courses.html#course-english-ai">
+          <li class="level-card reveal">
             <div class="level-num">04</div>
             <div class="level-body">
               <span class="level-status">Coming Q4 2026</span>
@@ -3275,7 +3241,7 @@
             </div>
           </li>
 
-          <li class="level-card reveal" data-href="/courses.html#course-deep-learning">
+          <li class="level-card reveal">
             <div class="level-num">05</div>
             <div class="level-body">
               <span class="level-status production">In Production</span>
@@ -3347,7 +3313,7 @@
       <div class="path-panel is-hidden" id="path-organization" role="tabpanel">
         <div class="track-row">
 
-          <div class="track-card reveal" data-href="/courses.html#track-workshop">
+          <div class="track-card reveal">
             <span class="track-num">Track 01</span>
             <h3 class="track-title">Corporate Workshop</h3>
             <p class="track-desc">1-4일 집중 교육. 임직원 AI 도입 · 부서별 워크플로우 · 거버넌스 · 컴플라이언스 트레이닝.</p>
@@ -3385,7 +3351,7 @@
             </div>
           </div>
 
-          <div class="track-card reveal" data-href="/courses.html#track-university">
+          <div class="track-card reveal">
             <span class="track-num">Track 02</span>
             <h3 class="track-title">University Lecture</h3>
             <p class="track-desc">한 학기 정규 강좌부터 단기 워크숍까지. Deep Learning 정규 과정 · LLM 시대 교수법 · 학부생 vibe coding bootcamp.</p>
@@ -3423,7 +3389,7 @@
             </div>
           </div>
 
-          <div class="track-card reveal" data-href="/courses.html#track-consulting">
+          <div class="track-card reveal">
             <span class="track-num">Track 03</span>
             <h3 class="track-title">Strategy Consulting</h3>
             <p class="track-desc">AI Strategy Audit · MVP 빌딩 협력 (8주) · 1:1 멘토링. 시드~시리즈A 스타트업 CEO·CTO 대상.</p>
@@ -3501,7 +3467,7 @@
         <div class="footer-col">
           <h4>Learn</h4>
           <ul>
-            <li><a href="/courses.html">Online Courses</a></li>
+            <li><a href="/courses">Online Courses</a></li>
             <li><a href="#community">AI Cartel Busan</a></li>
             <li><a class="is-soon" aria-disabled="true">Newsletter</a></li>
           </ul>
@@ -3633,7 +3599,7 @@
       card.addEventListener('click', (e) => {
         if (e.target.closest('a, button, input, label, select, textarea')) return;
         const url = card.dataset.href;
-        if (url) window.open(url, '_blank', 'noopener');
+        if (url) window.location.href = url;
       });
     });
 

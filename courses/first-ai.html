@@ -213,16 +213,33 @@
   }
 
   /* Back link */
-  .back-row { padding: 36px 0 8px; }
+  .back-row { padding: 28px 0 4px; }
   .back-link {
-    display: inline-flex; align-items: center; gap: 4px;
+    display: inline-flex; align-items: center; gap: 8px;
     color: var(--apple-gray-text);
+    background: var(--apple-gray-bg);
+    border: 0.5px solid var(--apple-gray-line);
     text-decoration: none;
+    padding: 8px 16px 8px 14px;
+    border-radius: 999px;
     font-size: 13px; font-weight: 500;
-    transition: color 0.2s var(--ease-default);
+    letter-spacing: -0.005em;
+    transition: all 0.25s var(--ease-out-quart);
   }
-  .back-link:hover { color: var(--apple-blue); }
-  .back-link::before { content: "‹"; font-size: 18px; line-height: 1; margin-right: 2px; }
+  .back-link:hover {
+    color: var(--apple-black);
+    background: white;
+    border-color: var(--apple-gray-text-light);
+    transform: translateX(-2px);
+  }
+  .back-link::before {
+    content: "‹";
+    font-size: 16px;
+    line-height: 1;
+    font-weight: 600;
+    transition: transform 0.25s var(--ease-out-quart);
+  }
+  .back-link:hover::before { transform: translateX(-2px); }
 
   /* ════════ COURSE HEADER ════════ */
   .course-header { padding: 48px 0 72px; }
@@ -1065,7 +1082,7 @@
         <li><a href="/#topikiq">TopikIQ</a></li>
         <li><a href="/#why">Why Verbio</a></li>
         <li><a href="/#education">Education</a></li>
-        <li><a href="/courses.html">Courses</a></li>
+        <li><a href="/courses">Courses</a></li>
         <li><a href="/#community">Community</a></li>
         <li><a href="/#contact">Contact</a></li>
       </ul>
@@ -1082,7 +1099,7 @@
       <li><a href="/#topikiq">TopikIQ</a></li>
       <li><a href="/#why">Why Verbio</a></li>
       <li><a href="/#education">Education</a></li>
-      <li><a href="/courses.html">Courses</a></li>
+      <li><a href="/courses">Courses</a></li>
       <li><a href="/#community">Community</a></li>
       <li><a href="/#contact">Contact</a></li>
     </ul>
@@ -1095,7 +1112,7 @@
   <!-- BACK LINK -->
   <div class="page-inner">
     <div class="back-row">
-      <a href="/courses.html" class="back-link">All Courses</a>
+      <a href="/courses" class="back-link">All Courses</a>
     </div>
   </div>
 
@@ -1609,7 +1626,7 @@
         <div class="footer-col">
           <h4>Learn</h4>
           <ul>
-            <li><a href="/courses.html">Online Courses</a></li>
+            <li><a href="/courses">Online Courses</a></li>
             <li><a href="/#community">AI Cartel Busan</a></li>
             <li><a class="is-soon" aria-disabled="true">Newsletter</a></li>
           </ul>
