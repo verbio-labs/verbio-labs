@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Preview — 30분 안에 첫 사이트 띄우기 · Verbio Labs</title>
+<meta name="description" content="Course 00 첫 레슨을 그대로 공개합니다. 코딩 한 줄 없이, 30분 안에 본인 도메인에 사이트가 인터넷에 보이는 5단계.">
+<link rel="canonical" href="https://verbiolabs.com/sample">
+<meta name="robots" content="index, follow">
+<meta name="author" content="Verbio Labs (Sikbang English)">
+
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
+<link rel="shortcut icon" href="/favicon.ico">
+<link rel="apple-touch-icon" sizes="180x180" href="/favicon-180.png">
+<meta name="theme-color" content="#1d1d1f">
+
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Verbio Labs">
+<meta property="og:url" content="https://verbiolabs.com/sample">
+<meta property="og:title" content="Free Preview — 30분 안에 첫 사이트 띄우기">
+<meta property="og:description" content="Course 00 첫 레슨을 그대로 공개합니다. 코딩 한 줄 없이 30분.">
+<meta property="og:image" content="https://verbiolabs.com/og-courses.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="ko_KR">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Free Preview — 30분 안에 첫 사이트 띄우기">
+<meta name="twitter:description" content="Course 00 첫 레슨을 그대로 공개합니다. 코딩 한 줄 없이 30분.">
+<meta name="twitter:image" content="https://verbiolabs.com/og-courses.png">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "30분 안에 첫 사이트 띄우기 — Course 00 Lesson 0",
+  "author": {
+    "@type": "Person",
+    "name": "Jacob Ahn",
+    "url": "https://verbiolabs.com/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Verbio Labs",
+    "url": "https://verbiolabs.com/"
+  },
+  "datePublished": "2026-05-29",
+  "inLanguage": "ko"
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Instrument+Serif:ital@0;1&family=Pretendard:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+
+  :root {
+    --apple-black: #1d1d1f;
+    --apple-white: #ffffff;
+    --apple-gray-bg: #f5f5f7;
+    --apple-gray-text: #6e6e73;
+    --apple-gray-text-light: #86868b;
+    --apple-gray-line: #d2d2d7;
+    --apple-blue: #0066cc;
+    --apple-blue-bright: #2997ff;
+
+    --font-sans: 'Inter', 'Pretendard', -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;
+    --font-kr: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-serif: 'Instrument Serif', 'Times New Roman', Georgia, serif;
+    --font-mono: 'JetBrains Mono', 'SF Mono', Menlo, Consolas, monospace;
+
+    --ease-out-quart: cubic-bezier(0.165, 0.84, 0.44, 1);
+  }
+
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--apple-white);
+    color: var(--apple-black);
+    font-family: var(--font-sans);
+    font-size: 17px;
+    line-height: 1.5;
+    letter-spacing: -0.022em;
+    overflow-x: hidden;
+  }
+
+  :lang(ko), .step-body, .promise-card-text, .footer-disclaimer-kr {
+    font-family: var(--font-kr);
+    word-break: keep-all;
+    overflow-wrap: break-word;
+  }
+
+  ::selection { background: var(--apple-blue); color: white; }
+
+  :focus-visible {
+    outline: 2px solid var(--apple-blue);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  /* ── NAV ── */
+  .nav {
+    position: sticky; top: 0; z-index: 100;
+    height: 48px;
+    background: rgba(255,255,255,0.72);
+    backdrop-filter: saturate(180%) blur(20px);
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
+    border-bottom: 0.5px solid var(--apple-gray-line);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .nav-inner {
+    max-width: 1024px; width: 100%; padding: 0 22px;
+    display: flex; align-items: center; justify-content: space-between;
+    font-size: 14px;
+  }
+  .nav-back {
+    color: var(--apple-black);
+    text-decoration: none;
+    display: inline-flex; align-items: center; gap: 6px;
+    font-weight: 500;
+    transition: opacity 0.2s;
+  }
+  .nav-back:hover { opacity: 0.6; }
+  .nav-brand {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 18px;
+    color: var(--apple-black);
+    text-decoration: none;
+  }
+  .nav-cta {
+    background: var(--apple-blue);
+    color: white;
+    text-decoration: none;
+    padding: 6px 14px;
+    border-radius: 980px;
+    font-size: 13px;
+    font-weight: 500;
+    transition: opacity 0.2s;
+  }
+  .nav-cta:hover { opacity: 0.86; }
+
+  /* ── HERO ── */
+  .hero {
+    padding: 96px 22px 64px;
+    max-width: 760px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .eyebrow {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--apple-blue);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+  }
+  .eyebrow::before, .eyebrow::after {
+    content: ""; width: 24px; height: 0.5px; background: var(--apple-gray-line);
+  }
+  .hero-title {
+    font-size: clamp(34px, 5.5vw, 56px);
+    font-weight: 600;
+    line-height: 1.05;
+    letter-spacing: -0.025em;
+    margin-bottom: 20px;
+  }
+  .hero-title em {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-weight: 400;
+    color: var(--apple-blue);
+  }
+  .hero-lead {
+    font-family: var(--font-kr);
+    font-size: clamp(16px, 1.8vw, 19px);
+    line-height: 1.6;
+    color: var(--apple-gray-text);
+    max-width: 580px;
+    margin: 0 auto;
+    word-break: keep-all;
+  }
+
+  /* ── PROMISE ── */
+  .promise {
+    padding: 0 22px 64px;
+    max-width: 940px;
+    margin: 0 auto;
+  }
+  .promise-card {
+    background: var(--apple-gray-bg);
+    border-radius: 18px;
+    padding: 36px 28px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+    text-align: center;
+  }
+  @media (max-width: 640px) {
+    .promise-card { grid-template-columns: 1fr; gap: 24px; padding: 28px 20px; }
+  }
+  .promise-stat {
+    font-size: 28px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: var(--apple-black);
+    margin-bottom: 4px;
+  }
+  .promise-stat-label {
+    font-family: var(--font-kr);
+    font-size: 13px;
+    color: var(--apple-gray-text);
+    line-height: 1.5;
+  }
+
+  /* ── INTRO ── */
+  .intro {
+    padding: 40px 22px 48px;
+    max-width: 720px;
+    margin: 0 auto;
+  }
+  .intro p {
+    font-family: var(--font-kr);
+    font-size: 17px;
+    line-height: 1.65;
+    color: var(--apple-black);
+    margin-bottom: 16px;
+    word-break: keep-all;
+  }
+  .intro p:last-child { margin-bottom: 0; color: var(--apple-gray-text); }
+  .intro p strong { font-weight: 600; }
+
+  /* ── STEPS ── */
+  .steps {
+    padding: 24px 22px 96px;
+    max-width: 760px;
+    margin: 0 auto;
+  }
+  .step {
+    position: relative;
+    padding: 32px 0 36px 0;
+    border-top: 0.5px solid var(--apple-gray-line);
+  }
+  .step:first-child { border-top: 0; }
+  .step-header {
+    display: flex; align-items: baseline; gap: 16px;
+    margin-bottom: 20px;
+  }
+  .step-num {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 40px;
+    line-height: 1;
+    color: var(--apple-blue);
+    flex-shrink: 0;
+  }
+  .step-meta {
+    flex: 1; min-width: 0;
+  }
+  .step-time {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--apple-gray-text-light);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .step-title {
+    font-size: clamp(22px, 3vw, 28px);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+  }
+  .step-body {
+    font-size: 16px;
+    line-height: 1.65;
+    color: var(--apple-black);
+  }
+  .step-body p { margin-bottom: 14px; }
+  .step-body p:last-child { margin-bottom: 0; }
+  .step-body strong { font-weight: 600; }
+  .step-body code {
+    font-family: var(--font-mono);
+    background: var(--apple-gray-bg);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 0.9em;
+  }
+
+  .step-callout {
+    margin-top: 18px;
+    padding: 14px 18px;
+    background: var(--apple-gray-bg);
+    border-left: 3px solid var(--apple-blue);
+    border-radius: 0 8px 8px 0;
+    font-family: var(--font-kr);
+    font-size: 14px;
+    line-height: 1.55;
+    color: var(--apple-gray-text);
+  }
+  .step-callout strong { color: var(--apple-black); font-weight: 600; }
+
+  .step-codebox {
+    margin-top: 16px;
+    background: #1d1d1f;
+    color: #f5f5f7;
+    padding: 14px 18px;
+    border-radius: 8px;
+    font-family: var(--font-mono);
+    font-size: 13px;
+    line-height: 1.55;
+    overflow-x: auto;
+    white-space: pre;
+  }
+  .step-codebox-label {
+    display: block;
+    font-size: 10px;
+    color: var(--apple-gray-text-light);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    font-family: var(--font-mono);
+  }
+
+  .step-result {
+    margin-top: 18px;
+    padding: 14px 18px;
+    background: rgba(0,102,204,0.06);
+    border-radius: 8px;
+    font-family: var(--font-kr);
+    font-size: 14px;
+    line-height: 1.55;
+    color: var(--apple-black);
+    display: flex; gap: 10px;
+  }
+  .step-result-label {
+    flex-shrink: 0;
+    font-size: 10px;
+    color: var(--apple-blue);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-family: var(--font-mono);
+    font-weight: 500;
+    align-self: center;
+  }
+
+  /* ── CLOSE / CTA ── */
+  .close-section {
+    background: var(--apple-gray-bg);
+    padding: 80px 22px;
+    text-align: center;
+    border-top: 0.5px solid var(--apple-gray-line);
+  }
+  .close-inner { max-width: 640px; margin: 0 auto; }
+  .close-eyebrow {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--apple-blue);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+  .close-title {
+    font-size: clamp(26px, 4vw, 38px);
+    font-weight: 600;
+    line-height: 1.15;
+    letter-spacing: -0.022em;
+    margin-bottom: 18px;
+  }
+  .close-title em {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-weight: 400;
+    color: var(--apple-blue);
+  }
+  .close-lead {
+    font-family: var(--font-kr);
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--apple-gray-text);
+    margin-bottom: 32px;
+    word-break: keep-all;
+  }
+  .close-actions {
+    display: inline-flex; gap: 10px; flex-wrap: wrap; justify-content: center;
+  }
+  .close-cta {
+    background: var(--apple-black);
+    color: white;
+    text-decoration: none;
+    padding: 14px 28px;
+    border-radius: 980px;
+    font-size: 15px;
+    font-weight: 500;
+    transition: transform 0.25s var(--ease-out-quart);
+  }
+  .close-cta::after { content: " →"; }
+  .close-cta:hover { transform: scale(1.03); }
+  .close-cta-ghost {
+    background: transparent;
+    color: var(--apple-black);
+    border: 0.5px solid var(--apple-gray-line);
+    text-decoration: none;
+    padding: 14px 26px;
+    border-radius: 980px;
+    font-size: 15px;
+    font-weight: 500;
+    transition: background 0.2s;
+  }
+  .close-cta-ghost:hover { background: rgba(0,0,0,0.04); }
+
+  /* ── FOOTER ── */
+  .footer {
+    background: var(--apple-white);
+    padding: 32px 22px;
+    text-align: center;
+    border-top: 0.5px solid var(--apple-gray-line);
+  }
+  .footer-text {
+    font-family: var(--font-kr);
+    font-size: 12px;
+    color: var(--apple-gray-text-light);
+    line-height: 1.55;
+  }
+  .footer-text a { color: var(--apple-gray-text); text-decoration: none; }
+  .footer-text a:hover { color: var(--apple-black); }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="/courses" class="nav-back">← Courses</a>
+    <a href="/" class="nav-brand">Verbio Labs</a>
+    <a href="/courses#featured" class="nav-cta">1기 자리 확보</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="eyebrow">Free Preview · Course 00 · Lesson 0</div>
+  <h1 class="hero-title">30분 안에 첫 사이트가<br><em>인터넷에 보입니다.</em></h1>
+  <p class="hero-lead">
+    Course 00의 첫 레슨을 그대로 공개합니다. 코딩 한 줄 안 짜고, 본인 도메인에 사이트가 작동하는 5단계.
+  </p>
+</section>
+
+<!-- PROMISE -->
+<section class="promise">
+  <div class="promise-card">
+    <div>
+      <div class="promise-stat">30 min</div>
+      <div class="promise-stat-label">처음부터 끝까지 걸리는 시간</div>
+    </div>
+    <div>
+      <div class="promise-stat">0 줄</div>
+      <div class="promise-stat-label">직접 짜야 하는 코드 양</div>
+    </div>
+    <div>
+      <div class="promise-stat">$0</div>
+      <div class="promise-stat-label">도메인값 빼면 추가 비용 없음</div>
+    </div>
+  </div>
+</section>
+
+<!-- INTRO -->
+<section class="intro">
+  <p>이 글을 다 읽고 따라하면, <strong>본인 이름의 도메인 (예: jacob-ahn.com)</strong>에 사이트가 작동합니다. 친구가 그 주소를 검색하면 본인이 만든 페이지가 뜹니다.</p>
+  <p>5년 동안 식빵영어·SpeakCoach·TopikIQ·Verbio Labs를 직접 출시하면서, 사이트 띄우는 일은 점점 더 단순해졌습니다. 지금은 이 5단계가 끝입니다.</p>
+  <p>이게 Course 00의 첫 레슨이고, 1강이 끝나면 12강은 같은 사이트 위에 <strong>실제로 돈 받는 AI 서비스</strong>를 얹는 과정입니다.</p>
+</section>
+
+<!-- STEPS -->
+<section class="steps">
+
+  <!-- Step 1 -->
+  <article class="step">
+    <div class="step-header">
+      <div class="step-num">01</div>
+      <div class="step-meta">
+        <div class="step-time">5 minutes</div>
+        <h2 class="step-title">도메인 사기</h2>
+      </div>
+    </div>
+    <div class="step-body">
+      <p>가비아·후이즈·Namecheap 중 어느 곳도 OK. 한국에서 결제 받을 거면 <strong>가비아 추천</strong>—한국어 지원·카카오페이 결제·세금 영수증이 깔끔합니다.</p>
+      <p>이름은 본인 이름 또는 만들고 싶은 서비스 이름. <code>.com</code>이 정석이고 한국 SaaS면 <code>.co.kr</code>도 무난합니다. 연 ₩15,000~₩30,000.</p>
+      <div class="step-callout">
+        <strong>주의 —</strong> 도메인 살 때 "Whois 비공개" 옵션 켜기. 안 켜면 본인 주소·전화번호가 공개됩니다.
+      </div>
+      <div class="step-result">
+        <span class="step-result-label">결과 →</span>
+        <span><strong>본인 소유의 도메인 1개</strong> (예: <code>jacob-ahn.com</code>). 아직 사이트는 없음, 주소만 있음.</span>
+      </div>
+    </div>
+  </article>
+
+  <!-- Step 2 -->
+  <article class="step">
+    <div class="step-header">
+      <div class="step-num">02</div>
+      <div class="step-meta">
+        <div class="step-time">2 minutes</div>
+        <h2 class="step-title">Vercel 가입</h2>
+      </div>
+    </div>
+    <div class="step-body">
+      <p><a href="https://vercel.com" target="_blank" rel="noopener" style="color: var(--apple-blue); text-decoration: none;">vercel.com</a> 접속 → <strong>Continue with GitHub</strong>. GitHub 계정 없으면 그것도 30초만에 생성.</p>
+      <p>Vercel은 사이트를 인터넷에 올려주는 호스팅 회사입니다. <strong>Hobby 플랜 무료</strong>로 시작. 트래픽 월 100GB까지 무료라 1기 출시 시점까진 돈 안 듭니다.</p>
+      <div class="step-callout">
+        <strong>왜 Vercel?</strong> Netlify·Cloudflare Pages도 좋은 대안. 다만 Vercel이 GitHub와 가장 매끄럽게 연결되고, AI 도구들이 가장 잘 지원합니다.
+      </div>
+      <div class="step-result">
+        <span class="step-result-label">결과 →</span>
+        <span><strong>Vercel 대시보드 접근</strong>. 사이트를 올릴 빈 책상.</span>
+      </div>
+    </div>
+  </article>
+
+  <!-- Step 3 -->
+  <article class="step">
+    <div class="step-header">
+      <div class="step-num">03</div>
+      <div class="step-meta">
+        <div class="step-time">15 minutes</div>
+        <h2 class="step-title">AI에게 사이트 만들어달라 하기</h2>
+      </div>
+    </div>
+    <div class="step-body">
+      <p>이게 핵심입니다. <strong>Claude·v0·Cursor</strong> 셋 중 하나 선택. 처음이면 <a href="https://v0.dev" target="_blank" rel="noopener" style="color: var(--apple-blue); text-decoration: none;">v0.dev</a> 추천 — 결과가 화면에 바로 보입니다.</p>
+      <p>아래는 실제로 제가 사용했던 prompt 예시. 그대로 복사해서 본인 정보로 바꿔 쓰세요.</p>
+      <span class="step-codebox-label">Prompt 예시 (한국어 OK)</span>
+      <div class="step-codebox">간단한 1페이지 포트폴리오 사이트를 만들어줘.
+
+· 이름: 안준영
+· 직업: AI · 언어 교육 메이커, Verbio Labs 운영
+· 색상: 흰 바탕, 검정 본문, 파란 액센트
+· 폰트: Inter + Pretendard
+· 섹션:
+  1. Hero — 이름, 짧은 한 줄 소개
+  2. About — 본인 소개 3-4 문단
+  3. Projects — 3개 카드로 (제목·한 줄 설명·링크)
+  4. Contact — 이메일 하나
+
+모바일 반응형으로. Apple 스타일 미니멀. 단일 HTML 파일로.</div>
+      <p>받은 결과가 마음에 들 때까지 "헤더 색을 더 진하게", "Projects 카드를 가로로 배치" 같은 후속 prompt로 다듬으면 됩니다. 15분 안에 마무리.</p>
+      <div class="step-callout">
+        <strong>막힐 만한 곳 —</strong> AI가 만든 코드가 길어보여서 무섭게 느껴짐. 무시하세요. 안 읽어도 됩니다. <strong>"이대로 다운로드 받을 수 있게 해줘"</strong> 한 마디면 .html 파일이 손에 들어옵니다.
+      </div>
+      <div class="step-result">
+        <span class="step-result-label">결과 →</span>
+        <span><strong>index.html 파일 1개</strong> (또는 v0 프로젝트 1개). 본인 컴퓨터의 다운로드 폴더에 있음.</span>
+      </div>
+    </div>
+  </article>
+
+  <!-- Step 4 -->
+  <article class="step">
+    <div class="step-header">
+      <div class="step-num">04</div>
+      <div class="step-meta">
+        <div class="step-time">3 minutes</div>
+        <h2 class="step-title">GitHub에 올리기</h2>
+      </div>
+    </div>
+    <div class="step-body">
+      <p>GitHub은 코드를 저장하는 클라우드. Vercel이 GitHub에서 코드를 자동으로 가져가 사이트로 배포합니다.</p>
+      <p>GitHub Desktop 앱 (<a href="https://desktop.github.com" target="_blank" rel="noopener" style="color: var(--apple-blue); text-decoration: none;">desktop.github.com</a>) 설치가 명령어보다 편합니다.</p>
+      <p><strong>순서:</strong> File → New repository → 본인 사이트 폴더 선택 → Repository name 입력 → Publish repository. <strong>"Keep this code private" 체크 해제</strong> (Vercel 무료 플랜이 보려면 public 필요).</p>
+      <div class="step-callout">
+        <strong>대안 —</strong> v0를 썼다면 GitHub 단계 생략 가능. v0 → "Deploy" 버튼 → Vercel 바로 연결.
+      </div>
+      <div class="step-result">
+        <span class="step-result-label">결과 →</span>
+        <span><strong>github.com/본인계정/사이트이름</strong> 주소에 코드가 올라가 있음. 인터넷에선 아직 안 보임.</span>
+      </div>
+    </div>
+  </article>
+
+  <!-- Step 5 -->
+  <article class="step">
+    <div class="step-header">
+      <div class="step-num">05</div>
+      <div class="step-meta">
+        <div class="step-time">5 minutes</div>
+        <h2 class="step-title">배포 + 도메인 연결</h2>
+      </div>
+    </div>
+    <div class="step-body">
+      <p>Vercel 대시보드 → <strong>Add New Project</strong> → 방금 만든 GitHub 저장소 선택 → Deploy.</p>
+      <p>90초쯤 기다리면 <code>your-project.vercel.app</code> 주소에서 사이트가 보입니다. 이 순간 이미 사이트는 인터넷에 떠 있는 상태.</p>
+      <p>이제 본인 도메인 연결: 프로젝트 → <strong>Settings → Domains → Add</strong> → 본인 도메인 입력. Vercel이 알려주는 DNS 설정 (A record 또는 CNAME)을 도메인 회사 (가비아·후이즈) 관리 페이지에 복사.</p>
+      <span class="step-codebox-label">Vercel이 보여주는 예시</span>
+      <div class="step-codebox">A     @            76.76.21.21
+CNAME www          cname.vercel-dns.com</div>
+      <p>DNS 반영에 5분~30분 정도. 반영되면 <code>https://jacob-ahn.com</code>에 본인 사이트가 보입니다. HTTPS 인증서는 Vercel이 자동으로 무료 발급.</p>
+      <div class="step-result">
+        <span class="step-result-label">결과 →</span>
+        <span><strong>https://본인도메인.com</strong>에서 본인이 만든 사이트가 인터넷에 보임. 30분 끝.</span>
+      </div>
+    </div>
+  </article>
+
+</section>
+
+<!-- CLOSE / CTA -->
+<section class="close-section">
+  <div class="close-inner">
+    <div class="close-eyebrow">이게 1강입니다</div>
+    <h2 class="close-title">12강 끝나면, 같은 사이트가 <em>돈을 받습니다.</em></h2>
+    <p class="close-lead">
+      Course 00은 여기서 시작해 — Stripe 결제, 사용자 인증, AI 기능 연결, 무료 / 유료 분기, 실패해도 환불 안 들어오는 운영까지. 4주, 12강.
+    </p>
+    <div class="close-actions">
+      <a href="/courses/first-ai" class="close-cta">Course 00 보기</a>
+      <a href="/courses#featured" class="close-cta-ghost">1기 자리 확보</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <p class="footer-text">
+    Verbio Labs · 식빵영어 · <a href="/">verbiolabs.com</a> · 부산, 대한민국
+  </p>
+</footer>
+
+<!-- Vercel Web Analytics -->
+<script defer src="/_vercel/insights/script.js"></script>
+<script defer src="/_vercel/speed-insights/script.js"></script>
+
+</body>
+</html>
