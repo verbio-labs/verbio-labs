@@ -342,12 +342,12 @@
   }
   .btn-primary-cta {
     display: inline-flex; align-items: center; gap: 8px;
-    padding: 14px 32px;
+    padding: 17px 36px;
     background: var(--apple-black);
     color: white;
     text-decoration: none;
     border-radius: 980px;
-    font-size: 15px; font-weight: 500;
+    font-size: 16px; font-weight: 600;
     letter-spacing: -0.01em;
     transition: transform 0.25s var(--ease-out-quart), background 0.25s;
     border: none; cursor: pointer;
@@ -356,12 +356,12 @@
   .btn-primary-cta:hover { transform: translateY(-1px); background: #2d2d30; }
   .btn-ghost-cta {
     display: inline-flex; align-items: center; gap: 8px;
-    padding: 14px 28px;
+    padding: 14px 24px;
     background: transparent;
-    color: var(--apple-black);
-    border: 0.5px solid var(--apple-gray-line);
+    color: var(--apple-gray-text);
+    border: none;
     border-radius: 980px;
-    font-size: 15px; font-weight: 500;
+    font-size: 14px; font-weight: 400;
     letter-spacing: -0.01em;
     text-decoration: none;
     transition: all 0.25s var(--ease-out-quart);
@@ -375,7 +375,7 @@
 
   /* ════════ SECTIONS ════════ */
   .section {
-    padding: 88px 0;
+    padding: 110px 0;
     border-top: 0.5px solid var(--apple-gray-line);
   }
   .section-dark {
@@ -782,25 +782,27 @@
     margin-bottom: 12px;
   }
   .pricing-price-strike {
-    font-size: 16px;
-    color: rgba(255,255,255,0.4);
+    font-size: 18px;
+    color: rgba(255,255,255,0.35);
     text-decoration: line-through;
     font-feature-settings: "tnum";
     font-weight: 500;
   }
   .pricing-price-new {
-    font-size: clamp(36px, 4.5vw, 44px);
-    font-weight: 600;
+    font-size: clamp(54px, 7vw, 76px);
+    font-weight: 700;
     color: white;
-    letter-spacing: -0.022em;
+    letter-spacing: -0.028em;
     font-feature-settings: "tnum";
     line-height: 1;
   }
   .pricing-save {
-    font-size: 12px;
-    color: rgba(255,255,255,0.55);
+    font-size: 13px;
+    color: var(--apple-blue-bright);
     letter-spacing: -0.005em;
     font-feature-settings: "tnum";
+    font-weight: 500;
+    margin-top: 6px;
   }
   .pricing-desc {
     font-size: 14px;
@@ -1129,7 +1131,7 @@
       <h1 class="course-title">결제 받을 수 없는 SaaS는,<br class="br-md-hide"> <em>사이트일 뿐입니다.</em></h1>
 
       <p class="course-lead">
-        Claude로 코드는 짜는데 한국에서 결제는 못 받고 있다면, 혼자만 막혀있는 게 아닙니다. <strong>PIPA·전자상거래법·통신판매업·PG 가맹</strong>까지 — 한국 시장에 SaaS를 띄우는 모든 장벽을 6주 안에 정리합니다.
+        결제 받을 수 없는 SaaS는 사이트일 뿐. <strong>한국에서 결제까지, 6주 안에 정리합니다.</strong>
       </p>
 
       <div class="course-meta-row">
@@ -1243,19 +1245,19 @@
       <div class="why-grid">
         <div class="why-item">
           <div class="why-item-label">증명된 launch-kit</div>
-          <p class="why-item-text"><strong>4개의 출시 제품</strong>에 실제로 쓰인 한국형 SaaS 템플릿. 본인 정보로 변수만 채우면 1주 안에 작동합니다. 수강생은 <strong>평생 다운로드</strong>할 수 있습니다.</p>
+          <p class="why-item-text"><strong>4개 출시 제품에 쓰인 SaaS 템플릿.</strong> 변수만 채우면 1주 안에 작동.</p>
         </div>
         <div class="why-item">
           <div class="why-item-label">변호사 검토 약관</div>
-          <p class="why-item-text">개인정보처리방침·이용약관·환불정책 — <strong>변호사 검토를 거친 3종 템플릿</strong>. 본인 정보로 채우면 바로 쓸 수 있습니다. 변호사 의뢰비 수십만 원을 아낍니다.</p>
+          <p class="why-item-text"><strong>개인정보·이용약관·환불정책 3종.</strong> 변호사 검토 완료. 수십만 원 절약.</p>
         </div>
         <div class="why-item">
           <div class="why-item-label">통과한 PG 가맹 사례</div>
-          <p class="why-item-text">식빵영어가 <strong>토스페이먼츠 가맹 심사를 통과한 실제 서류와 체크리스트</strong>. 거절 사유 분석과 재신청 노하우까지 들어 있습니다. 가맹 신청에서 막힐 일이 없습니다.</p>
+          <p class="why-item-text"><strong>토스페이먼츠 가맹 통과한 실제 서류.</strong> 거절 시 재신청 노하우 포함.</p>
         </div>
         <div class="why-item">
           <div class="why-item-label">5년 운영 노하우</div>
-          <p class="why-item-text">식빵영어 5년 운영, SpeakCoach·TopikIQ 출시·운영 중. <strong>한국 시장의 결제와 운영을 실전으로 다뤄왔습니다.</strong> 강의 자료는 평생 무료로 업데이트됩니다.</p>
+          <p class="why-item-text"><strong>식빵영어·SpeakCoach·TopikIQ 운영 5년.</strong> 강의 자료 평생 업데이트.</p>
         </div>
       </div>
     </div>

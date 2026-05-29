@@ -342,12 +342,12 @@
   }
   .btn-primary-cta {
     display: inline-flex; align-items: center; gap: 8px;
-    padding: 14px 32px;
+    padding: 17px 36px;
     background: var(--apple-black);
     color: white;
     text-decoration: none;
     border-radius: 980px;
-    font-size: 15px; font-weight: 500;
+    font-size: 16px; font-weight: 600;
     letter-spacing: -0.01em;
     transition: transform 0.25s var(--ease-out-quart), background 0.25s;
     border: none; cursor: pointer;
@@ -356,15 +356,15 @@
   .btn-primary-cta:hover { transform: translateY(-1px); background: #2d2d30; }
   .btn-ghost-cta {
     display: inline-flex; align-items: center; gap: 8px;
-    padding: 14px 28px;
+    padding: 14px 24px;
     background: transparent;
-    color: var(--apple-black);
-    border: 0.5px solid var(--apple-gray-line);
+    color: var(--apple-gray-text);
+    border: none;
     border-radius: 980px;
-    font-size: 15px; font-weight: 500;
-    letter-spacing: -0.01em;
+    font-size: 14px; font-weight: 400;
+    letter-spacing: -0.005em;
     text-decoration: none;
-    transition: all 0.25s var(--ease-out-quart);
+    transition: color 0.2s;
   }
   .btn-ghost-cta:hover { background: var(--apple-gray-bg); }
   .btn-arrow-svg {
@@ -375,7 +375,7 @@
 
   /* ════════ SECTIONS ════════ */
   .section {
-    padding: 88px 0;
+    padding: 110px 0;
     border-top: 0.5px solid var(--apple-gray-line);
   }
   .section-dark {
@@ -782,25 +782,27 @@
     margin-bottom: 12px;
   }
   .pricing-price-strike {
-    font-size: 16px;
-    color: rgba(255,255,255,0.4);
+    font-size: 18px;
+    color: rgba(255,255,255,0.35);
     text-decoration: line-through;
     font-feature-settings: "tnum";
     font-weight: 500;
   }
   .pricing-price-new {
-    font-size: clamp(36px, 4.5vw, 44px);
-    font-weight: 600;
+    font-size: clamp(54px, 7vw, 76px);
+    font-weight: 700;
     color: white;
-    letter-spacing: -0.022em;
+    letter-spacing: -0.028em;
     font-feature-settings: "tnum";
     line-height: 1;
   }
   .pricing-save {
-    font-size: 12px;
-    color: rgba(255,255,255,0.55);
+    font-size: 13px;
+    color: var(--apple-blue-bright);
     letter-spacing: -0.005em;
     font-feature-settings: "tnum";
+    font-weight: 500;
+    margin-top: 6px;
   }
   .pricing-desc {
     font-size: 14px;
@@ -1128,7 +1130,7 @@
       <h1 class="course-title">코드는 AI가 짭니다.<br class="br-md-hide"> <em>디자인만 하면 됩니다.</em></h1>
 
       <p class="course-lead">
-        아이디어는 있는데 사이트를 못 만들었다면, 이제 코딩이 발목을 잡지 않습니다. <strong>Claude Code가 모든 코드를 짭니다.</strong> 무엇을 만들고 싶은지만 정하면 됩니다. 코딩 한 번 안 해본 사람도 4주 안에 본인 도메인의 사이트를 띄웁니다.
+        코딩 한 번 안 해본 사람도, <strong>4주 안에 본인 도메인에 사이트를 띄웁니다.</strong>
       </p>
 
       <div class="course-meta-row">
@@ -1242,19 +1244,19 @@
       <div class="why-grid">
         <div class="why-item">
           <div class="why-item-label">검증된 launch-kit</div>
-          <p class="why-item-text">현재 보고 계신 <strong>verbiolabs.com과 동일한 정적 사이트 템플릿</strong>. 변수만 본인 정보로 채우면 같은 모양의 사이트가 본인 도메인에 떠 있습니다. 평생 다운로드 가능.</p>
+          <p class="why-item-text"><strong>verbiolabs.com과 동일한 사이트 템플릿.</strong> 변수만 채우면 본인 도메인에 즉시 작동.</p>
         </div>
         <div class="why-item">
           <div class="why-item-label">Claude Code 마스터</div>
-          <p class="why-item-text">인디 메이커들이 실제로 쓰는 <strong>표준 도구 Claude Code</strong>. 설치부터 첫 명령, 자연어로 정확히 부탁하는 법까지. 강의 끝나면 다른 프로젝트도 혼자 할 수 있습니다.</p>
+          <p class="why-item-text"><strong>인디 메이커 표준 도구.</strong> 설치·첫 명령·자연어로 부탁하는 법까지.</p>
         </div>
         <div class="why-item">
           <div class="why-item-label">진짜 배포까지</div>
-          <p class="why-item-text">로컬에서 만들고 끝나는 게 아닙니다. <strong>Vercel 무료 배포 + 본인 도메인 연결</strong>까지. 4주차 끝날 때 친구한테 URL을 보내면 진짜 사이트가 뜹니다.</p>
+          <p class="why-item-text"><strong>Vercel 무료 배포 + 본인 도메인 연결.</strong> 친구한테 URL 보낼 수 있는 상태로.</p>
         </div>
         <div class="why-item">
           <div class="why-item-label">입문자 검증된 가르침</div>
-          <p class="why-item-text">식빵영어 5년 운영 · 누적 <strong>4,000명의 입문자를 가르치며 쌓은 교습 노하우</strong>가 그대로 녹아 있습니다. 입문자가 어디서 막히는지 가장 잘 압니다.</p>
+          <p class="why-item-text"><strong>식빵영어 5년 · 누적 4,000명 가르친 노하우.</strong> 어디서 막히는지 가장 잘 압니다.</p>
         </div>
       </div>
     </div>
