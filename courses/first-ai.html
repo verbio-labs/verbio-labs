@@ -200,6 +200,47 @@
   @media (min-width: 834px) { .mobile-drawer { display: none !important; } }
   body.no-scroll { overflow: hidden; }
 
+  /* ════════ MOBILE STICKY CTA ════════ */
+  .mobile-sticky-cta {
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    z-index: 90;
+    background: rgba(255,255,255,0.94);
+    backdrop-filter: saturate(180%) blur(20px);
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
+    border-top: 0.5px solid var(--apple-gray-line);
+    padding: 12px 16px;
+    padding-bottom: calc(12px + env(safe-area-inset-bottom, 0px));
+    transform: translateY(110%);
+    transition: transform 0.4s var(--ease-out-quart);
+    pointer-events: none;
+    display: none;
+  }
+  .mobile-sticky-cta.is-visible {
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+  .mobile-sticky-cta-btn {
+    display: flex;
+    align-items: center; justify-content: center;
+    gap: 8px;
+    width: 100%;
+    padding: 16px 24px;
+    background: var(--apple-black);
+    color: white;
+    text-decoration: none;
+    border-radius: 980px;
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    font-family: var(--font-kr);
+    transition: transform 0.2s var(--ease-out-quart);
+  }
+  .mobile-sticky-cta-btn:active { transform: scale(0.98); }
+  @media (max-width: 833px) {
+    .mobile-sticky-cta { display: block; }
+  }
+
   /* ════════ COURSE PAGE LAYOUT ════════ */
   .page-inner {
     max-width: 880px;
@@ -1601,6 +1642,16 @@
     </div>
   </section>
 
+  <!-- MOBILE STICKY CTA -->
+  <div class="mobile-sticky-cta" id="mobileStickyCta" aria-hidden="true">
+    <a href="#reserve" class="mobile-sticky-cta-btn">
+      1기 자리 확보하기
+      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+        <path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </a>
+  </div>
+
   <!-- FOOTER -->
   <footer class="footer" id="contact">
     <div class="footer-inner">
@@ -1725,6 +1776,36 @@
         btn.setAttribute('aria-expanded', open ? 'true' : 'false');
       });
     });
+
+    // Mobile sticky CTA — Hero scroll past → 등장 / Reserve 섹션 도달 → 숨김
+    (function() {
+      const sticky = document.getElementById('mobileStickyCta');
+      if (!sticky) return;
+      const hero = document.querySelector('.course-header');
+      const reserve = document.getElementById('reserve');
+      let heroPassed = false;
+      let reserveVisible = false;
+
+      function update() {
+        const shouldShow = heroPassed && !reserveVisible;
+        sticky.classList.toggle('is-visible', shouldShow);
+        sticky.setAttribute('aria-hidden', shouldShow ? 'false' : 'true');
+      }
+
+      if (hero) {
+        new IntersectionObserver(([entry]) => {
+          heroPassed = !entry.isIntersecting && entry.boundingClientRect.top < 0;
+          update();
+        }, { threshold: 0 }).observe(hero);
+      }
+
+      if (reserve) {
+        new IntersectionObserver(([entry]) => {
+          reserveVisible = entry.isIntersecting;
+          update();
+        }, { threshold: 0.3 }).observe(reserve);
+      }
+    })();
   </script>
 
   <!-- Vercel Web Analytics -->
