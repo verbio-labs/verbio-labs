@@ -4080,6 +4080,19 @@
         }
       });
     }
+
+    // #apply 해시로 직접 진입(verbiolabs.com/join, /apply, /#apply)하면 폼 자동 열기 + 스크롤
+    function openApplyFromHash() {
+      if (location.hash !== '#apply') return;
+      const el = document.getElementById('apply');
+      if (!el) return;
+      el.classList.add('open');
+      requestAnimationFrame(() => {
+        setTimeout(() => el.scrollIntoView({ behavior: 'smooth', block: 'start' }), 220);
+      });
+    }
+    openApplyFromHash();
+    window.addEventListener('hashchange', openApplyFromHash);
   </script>
 
   <!-- Vercel Web Analytics -->
