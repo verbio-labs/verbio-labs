@@ -928,6 +928,71 @@
 
   .stage-dark .pv-meta-label { color: rgba(255,255,255,0.5); }
 
+  /* 직시(Jiksi) 비주얼 · 국회 감시 카드 */
+  .pv-jiksi { max-width: 680px; width: 100%; }
+  .pv-jiksi-card {
+    background: rgba(255,255,255,0.05);
+    border: 0.5px solid rgba(255,255,255,0.14);
+    border-radius: 28px;
+    padding: 48px 40px;
+    text-align: center;
+  }
+  .pv-jiksi-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-kr);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.62);
+    border: 0.5px solid rgba(255,255,255,0.2);
+    border-radius: 999px;
+    padding: 8px 15px;
+    margin-bottom: 30px;
+  }
+  .pv-jiksi-dot {
+    width: 7px; height: 7px; border-radius: 50%;
+    background: var(--apple-blue-bright);
+    animation: jiksiPulse 2s var(--ease-default) infinite;
+  }
+  @keyframes jiksiPulse {
+    0% { box-shadow: 0 0 0 0 rgba(41,151,255,0.55); }
+    70% { box-shadow: 0 0 0 9px rgba(41,151,255,0); }
+    100% { box-shadow: 0 0 0 0 rgba(41,151,255,0); }
+  }
+  .pv-jiksi-headline {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(28px, 4vw, 48px);
+    line-height: 1.14;
+    letter-spacing: -0.02em;
+    color: #fff;
+    margin-bottom: 40px;
+  }
+  .launch-badge {
+    display: inline-block;
+    font-family: var(--font-kr);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: -0.005em;
+    color: var(--apple-blue-bright);
+    background: rgba(41,151,255,0.1);
+    border: 0.5px solid rgba(41,151,255,0.3);
+    border-radius: 999px;
+    padding: 8px 16px;
+    margin-top: 20px;
+  }
+  .stage-note {
+    font-family: var(--font-kr);
+    font-size: 13px;
+    color: rgba(255,255,255,0.4);
+    margin-top: 16px;
+    letter-spacing: -0.005em;
+  }
+
   /* 큰 음성 파형 (제품 섹션용) */
   .pv-waveform {
     display: flex;
@@ -2833,6 +2898,7 @@
         <span class="global-nav-brand-name">Verbio<em>Labs</em></span>
       </a>
       <ul class="global-nav-links">
+        <li><a href="#jiksi">직시</a></li>
         <li><a href="#speakcoach">SpeakCoach</a></li>
         <li><a href="#topikiq">TopikIQ</a></li>
         <li><a href="#why">Why Verbio</a></li>
@@ -2850,6 +2916,7 @@
   <!-- MOBILE DRAWER -->
   <div class="mobile-drawer" id="mobileDrawer" aria-hidden="true">
     <ul>
+      <li><a href="#jiksi">직시</a></li>
       <li><a href="#speakcoach">SpeakCoach</a></li>
       <li><a href="#topikiq">TopikIQ</a></li>
       <li><a href="#why">Why Verbio</a></li>
@@ -2928,6 +2995,48 @@
   <section class="mission" id="mission">
     <div class="mission-text" id="missionText">
       Language is how humans become <em>human</em>. We build AI that <em>honors</em> that.
+    </div>
+  </section>
+
+  <!-- JIKSI (직시) · 국회 감시 -->
+  <section class="stage stage-dark" id="jiksi">
+    <div class="stage-eyebrow reveal">직시 · Jiksi</div>
+    <h2 class="stage-title reveal">Politics, in plain sight.</h2>
+    <p class="stage-subtitle reveal">국회를 감시하는 시민의 눈. <br class="br-md-hide">의원들의 의정활동을 데이터로 투명하게 봅니다.</p>
+    <div class="reveal"><span class="launch-badge">App Store 뉴스 카테고리 무료 앱 10위</span></div>
+    <div class="stage-links reveal">
+      <a href="https://apps.apple.com/kr/app/%EC%A7%81%EC%8B%9C-%EA%B5%AD%ED%9A%8C-%EA%B0%90%EC%8B%9C/id6782101748" target="_blank" rel="noopener" class="app-store-badge" aria-label="Download 직시 on the App Store">
+        <svg viewBox="0 0 384 512" xmlns="http://www.w3.org/2000/svg" fill="currentColor" aria-hidden="true">
+          <path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zM236 105.7c25.4-30.1 23.1-57.5 22.4-67.4-22.5 1.3-48.5 15.3-63.3 32.5-16.3 18.4-25.9 41.2-23.8 64.6 24.3 1.9 46.5-10.6 64.7-29.7z"/>
+        </svg>
+        <span class="app-store-badge-text">
+          <span class="app-store-badge-eyebrow">Download on the</span>
+          <span>App Store</span>
+        </span>
+      </a>
+    </div>
+    <p class="stage-note reveal">Android 버전 곧 출시 예정</p>
+    <div class="product-visual scale-in">
+      <div class="pv-jiksi">
+        <div class="pv-jiksi-card">
+          <div class="pv-jiksi-chip"><span class="pv-jiksi-dot"></span>실시간 국회 감시</div>
+          <h3 class="pv-jiksi-headline">표결도, 발의도, 출석도.<br>전부 기록으로 남습니다.</h3>
+          <div class="pv-meta">
+            <div class="pv-meta-item">
+              <div class="pv-meta-num">300</div>
+              <div class="pv-meta-label">감시 중인 의원</div>
+            </div>
+            <div class="pv-meta-item">
+              <div class="pv-meta-num">매일</div>
+              <div class="pv-meta-label">데이터 갱신</div>
+            </div>
+            <div class="pv-meta-item">
+              <div class="pv-meta-num">실시간</div>
+              <div class="pv-meta-label">본회의 표결</div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
