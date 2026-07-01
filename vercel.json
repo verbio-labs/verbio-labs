@@ -2,7 +2,6 @@
   "cleanUrls": true,
   "trailingSlash": false,
   "redirects": [
-    { "source": "/join", "destination": "/#apply" },
-    { "source": "/apply", "destination": "/#apply" }
+    { "source": "/apply", "destination": "/join" }
   ]
 }

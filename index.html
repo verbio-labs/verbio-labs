@@ -242,6 +242,19 @@
 
   .global-nav-links a:hover { color: rgba(255, 255, 255, 1); }
 
+  /* 상단 바로가기 CTA (직시 다운로드) */
+  .global-nav-links a.nav-cta {
+    color: var(--apple-black);
+    background: #fff;
+    border-radius: 999px;
+    padding: 6px 14px;
+    margin-left: 8px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    transition: transform 0.3s var(--ease-out-quart), opacity 0.3s ease;
+  }
+  .global-nav-links a.nav-cta:hover { color: var(--apple-black); opacity: 0.9; transform: translateY(-1px); }
+
   @media (max-width: 833px) { .global-nav-links { display: none; } }
 
   /* ════════════════════ MOBILE NAV: HAMBURGER + DRAWER ════════════════════ */
@@ -2906,6 +2919,7 @@
         <li><a href="/courses">Courses</a></li>
         <li><a href="#community">Community</a></li>
         <li><a href="#contact">Contact</a></li>
+        <li><a href="https://apps.apple.com/kr/app/%EC%A7%81%EC%8B%9C-%EA%B5%AD%ED%9A%8C-%EA%B0%90%EC%8B%9C/id6782101748" target="_blank" rel="noopener" class="nav-cta">직시 다운로드</a></li>
       </ul>
       <button class="nav-burger" aria-label="메뉴 열기" aria-expanded="false" id="navBurger">
         <span></span><span></span><span></span>
@@ -2925,6 +2939,10 @@
       <li><a href="#community">Community</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
+    <a href="https://apps.apple.com/kr/app/%EC%A7%81%EC%8B%9C-%EA%B5%AD%ED%9A%8C-%EA%B0%90%EC%8B%9C/id6782101748" target="_blank" rel="noopener" class="mobile-drawer-cta">
+      직시 다운로드 · App Store
+      <span aria-hidden="true">›</span>
+    </a>
     <a href="#topikiq" class="mobile-drawer-cta">
       Download TopikIQ · iOS · Android
       <span aria-hidden="true">›</span>
@@ -3323,7 +3341,7 @@
     <h2 class="stage-title reveal">For people who love AI.</h2>
     <p class="stage-subtitle reveal">부산 기반 AI 커뮤니티. <br class="br-md-hide">매주 모이고, 만들고, 나눕니다.</p>
     <div class="stage-links reveal">
-      <a href="#apply" class="stage-link" id="applyToggleTop">Join the Cartel</a>
+      <a href="/join" class="stage-link">Join the Cartel</a>
       <a href="#manifesto" class="stage-link" id="manifestoToggle">What we believe</a>
     </div>
 
@@ -3354,196 +3372,10 @@
           </div>
         </div>
 
-        <a href="#apply" class="manifesto-cta">
+        <a href="/join" class="manifesto-cta">
           Join the Cartel
           <span class="manifesto-cta-arrow">›</span>
         </a>
-      </div>
-    </div>
-
-    <!-- APPLICATION FORM (expandable) -->
-    <div class="apply-wrap" id="apply">
-      <div class="apply-inner">
-        <form id="cartelApplyForm" novalidate>
-          <div class="apply-eyebrow">Application</div>
-          <h3 class="apply-title">Join the Cartel</h3>
-          <p class="apply-lead">우리는 기브앤테이크 커뮤니티입니다. 받기만 하러 오시는 분은 정중히 거절합니다.<br class="br-md-hide">함께 성장하고, 카르텔을 함께 키워갈 분을 찾습니다.</p>
-          <p class="apply-note">모든 지원서는 직접 검토합니다. 특히 아래 <strong style="color:rgba(255,255,255,0.7)">기여 · 포부</strong> 항목을 진심으로 보고 합류 여부를 결정합니다.</p>
-
-          <!-- 1. 기본 정보 -->
-          <div class="apply-section">
-            <div class="apply-section-label">01 — 기본 정보</div>
-            <div class="apply-field">
-              <label class="apply-label" for="f-name">이름<span class="req">*</span></label>
-              <input class="apply-input" type="text" id="f-name" name="name" required autocomplete="name">
-            </div>
-            <div class="apply-field">
-              <label class="apply-label" for="f-email">이메일<span class="req">*</span></label>
-              <p class="apply-help">합류 안내와 검토 결과를 보내드릴 주소입니다.</p>
-              <input class="apply-input" type="email" id="f-email" name="email" required autocomplete="email" placeholder="you@example.com">
-            </div>
-            <div class="apply-field">
-              <label class="apply-label" for="f-contact">연락처 (카카오 ID 또는 휴대폰)</label>
-              <input class="apply-input" type="text" id="f-contact" name="contact" placeholder="선택 사항">
-            </div>
-            <div class="apply-field">
-              <label class="apply-label" for="f-age">연령대<span class="req">*</span></label>
-              <select class="apply-select" id="f-age" name="ageGroup" required>
-                <option value="" disabled selected>선택해주세요</option>
-                <option value="10대">10대</option>
-                <option value="20대">20대</option>
-                <option value="30대">30대</option>
-                <option value="40대">40대</option>
-                <option value="50대 이상">50대 이상</option>
-              </select>
-            </div>
-            <div class="apply-field">
-              <label class="apply-label" for="f-region">거주 지역<span class="req">*</span></label>
-              <p class="apply-help">부산 기반 오프라인 모임을 운영합니다.</p>
-              <input class="apply-input" type="text" id="f-region" name="region" required placeholder="예) 부산 부산진구">
-            </div>
-            <div class="apply-field">
-              <label class="apply-label" for="f-job">직업 · 소속<span class="req">*</span></label>
-              <input class="apply-input" type="text" id="f-job" name="job" required placeholder="예) 직장인 / 대학생 / 1인 메이커">
-            </div>
-          </div>
-
-          <!-- 2. AI 활용 수준 -->
-          <div class="apply-section">
-            <div class="apply-section-label">02 — AI 활용 수준</div>
-            <div class="apply-field">
-              <label class="apply-label">AI 활용도 자가평가<span class="req">*</span></label>
-              <div class="apply-choices">
-                <label class="apply-choice"><input type="radio" name="aiLevel" value="입문" required>입문</label>
-                <label class="apply-choice"><input type="radio" name="aiLevel" value="중급">중급</label>
-                <label class="apply-choice"><input type="radio" name="aiLevel" value="고급">고급</label>
-              </div>
-            </div>
-            <div class="apply-field">
-              <label class="apply-label">주로 쓰는 AI 도구</label>
-              <p class="apply-help">해당하는 것을 모두 선택하세요.</p>
-              <div class="apply-choices">
-                <label class="apply-choice"><input type="checkbox" name="aiTools" value="ChatGPT">ChatGPT</label>
-                <label class="apply-choice"><input type="checkbox" name="aiTools" value="Claude">Claude</label>
-                <label class="apply-choice"><input type="checkbox" name="aiTools" value="Claude Code">Claude Code</label>
-                <label class="apply-choice"><input type="checkbox" name="aiTools" value="Cursor">Cursor</label>
-                <label class="apply-choice"><input type="checkbox" name="aiTools" value="이미지·영상 AI">이미지·영상 AI</label>
-                <label class="apply-choice"><input type="checkbox" name="aiTools" value="기타">기타</label>
-              </div>
-            </div>
-            <div class="apply-field">
-              <label class="apply-label">코딩 가능 여부</label>
-              <div class="apply-choices">
-                <label class="apply-choice"><input type="radio" name="canCode" value="가능">가능</label>
-                <label class="apply-choice"><input type="radio" name="canCode" value="조금">조금</label>
-                <label class="apply-choice"><input type="radio" name="canCode" value="아직 못함">아직 못함</label>
-              </div>
-            </div>
-          </div>
-
-          <!-- 3. 프로젝트 / 결과물 -->
-          <div class="apply-section">
-            <div class="apply-section-label">03 — 프로젝트 · 결과물</div>
-            <div class="apply-field">
-              <label class="apply-label" for="f-project">현재 진행 중인 AI 프로젝트<span class="req">*</span></label>
-              <p class="apply-help">무엇을, 왜, 어디까지 만들었는지 구체적으로 적어주세요. 아이디어 단계여도 좋습니다.</p>
-              <textarea class="apply-textarea" id="f-project" name="project" required placeholder="예) Claude로 OPIc 말하기 코치를 만들고 있고, 현재 베타 50명이 사용 중입니다..."></textarea>
-            </div>
-            <div class="apply-field">
-              <label class="apply-label" for="f-links">결과물 · 포트폴리오 링크</label>
-              <p class="apply-help">GitHub · 배포 사이트 · 앱스토어 · 영상 · SNS 등. 한 줄에 하나씩.</p>
-              <textarea class="apply-textarea" id="f-links" name="links" placeholder="https://github.com/...&#10;https://my-project.com&#10;https://..."></textarea>
-            </div>
-            <div class="apply-field">
-              <label class="apply-label">내가 만든 AI 결과물을 <strong style="color:rgba(255,255,255,0.95)">실제로 돈 내고</strong> 쓴 사람이 있나요?<span class="req">*</span></label>
-              <div class="apply-choices">
-                <label class="apply-choice"><input type="radio" name="traction" value="없다" required>없다</label>
-                <label class="apply-choice"><input type="radio" name="traction" value="베타테스트만 진행">베타테스트만 진행</label>
-                <label class="apply-choice"><input type="radio" name="traction" value="무료 사용자 있음">무료 사용자 있음</label>
-                <label class="apply-choice"><input type="radio" name="traction" value="유료 고객 있음">유료 고객 있음</label>
-                <label class="apply-choice"><input type="radio" name="traction" value="반복 결제 고객 있음">반복 결제 고객 있음</label>
-              </div>
-            </div>
-            <div class="apply-field">
-              <label class="apply-label">AI 활용 · 상용화에서 지금 가장 어려운 부분<span class="req">*</span></label>
-              <div class="apply-choices">
-                <label class="apply-choice"><input type="radio" name="difficulty" value="개발" required>개발</label>
-                <label class="apply-choice"><input type="radio" name="difficulty" value="AI 품질">AI 품질</label>
-                <label class="apply-choice"><input type="radio" name="difficulty" value="디자인">디자인</label>
-                <label class="apply-choice"><input type="radio" name="difficulty" value="마케팅">마케팅</label>
-                <label class="apply-choice"><input type="radio" name="difficulty" value="BM(수익모델)">BM(수익모델)</label>
-                <label class="apply-choice"><input type="radio" name="difficulty" value="세일즈">세일즈</label>
-                <label class="apply-choice"><input type="radio" name="difficulty" value="운영">운영</label>
-                <label class="apply-choice"><input type="radio" name="difficulty" value="자동화">자동화</label>
-                <label class="apply-choice"><input type="radio" name="difficulty" value="팀빌딩">팀빌딩</label>
-              </div>
-            </div>
-          </div>
-
-          <!-- 4. Give & Take (핵심) -->
-          <div class="apply-section">
-            <div class="apply-section-label">04 — 기여 · 포부 (가장 중요)</div>
-            <div class="apply-field">
-              <label class="apply-label" for="f-give">커뮤니티에 기여할 수 있는 것<span class="req">*</span></label>
-              <p class="apply-help">당신의 전문성·경험·리소스 중 다른 멤버에게 줄 수 있는 것은 무엇인가요?</p>
-              <textarea class="apply-textarea" id="f-give" name="give" required placeholder="예) 디자인 피드백, PG·결제 연동 경험, 마케팅, 영상 편집, 함께 만들 손 등"></textarea>
-            </div>
-            <div class="apply-field">
-              <label class="apply-label" for="f-take">커뮤니티에서 얻고 싶은 것<span class="req">*</span></label>
-              <textarea class="apply-textarea" id="f-take" name="take" required></textarea>
-            </div>
-            <div class="apply-field">
-              <label class="apply-label" for="f-goal">합류 후 6개월 목표 · 각오<span class="req">*</span></label>
-              <p class="apply-help">얼마나 진심인지, 무엇을 이루고 싶은지 솔직하게 적어주세요.</p>
-              <textarea class="apply-textarea" id="f-goal" name="goal" required></textarea>
-            </div>
-            <div class="apply-field">
-              <label class="apply-label" for="f-hours">주당 투입 가능 시간<span class="req">*</span></label>
-              <select class="apply-select" id="f-hours" name="weeklyHours" required>
-                <option value="" disabled selected>선택해주세요</option>
-                <option value="1~3시간">주 1~3시간</option>
-                <option value="4~7시간">주 4~7시간</option>
-                <option value="8시간 이상">주 8시간 이상</option>
-              </select>
-            </div>
-            <div class="apply-field">
-              <label class="apply-label">부산 오프라인 모임 참석<span class="req">*</span></label>
-              <div class="apply-choices">
-                <label class="apply-choice"><input type="radio" name="offline" value="매번 가능" required>매번 가능</label>
-                <label class="apply-choice"><input type="radio" name="offline" value="가끔 가능">가끔 가능</label>
-                <label class="apply-choice"><input type="radio" name="offline" value="온라인만">온라인만</label>
-              </div>
-            </div>
-          </div>
-
-          <!-- 5. 기타 -->
-          <div class="apply-section">
-            <div class="apply-section-label">05 — 기타</div>
-            <div class="apply-field">
-              <label class="apply-label" for="f-source">지원 동기 · 유입 경로</label>
-              <p class="apply-help">어디서 우리를 알게 되셨나요? 추천인이 있다면 적어주세요.</p>
-              <input class="apply-input" type="text" id="f-source" name="source" placeholder="예) X(트위터) / 지인 추천 (홍길동) / 검색">
-            </div>
-            <div class="apply-field">
-              <label class="apply-consent">
-                <input type="checkbox" name="consent" value="동의" required>
-                <span>개인정보(이름·연락처 등)를 지원 검토 목적으로 수집·이용하는 데 동의합니다. 검토 후 보관 기간은 최대 1년이며, 요청 시 즉시 파기합니다.<span class="req">*</span></span>
-              </label>
-            </div>
-          </div>
-
-          <button type="submit" class="apply-submit" id="applySubmitBtn">
-            지원서 제출
-            <span class="apply-submit-arrow">›</span>
-          </button>
-          <div class="apply-status" id="applyStatus" role="status" aria-live="polite"></div>
-        </form>
-
-        <!-- success state -->
-        <div class="apply-success" id="applySuccess">
-          <div class="apply-success-title">지원서가 접수되었습니다.</div>
-          <p class="apply-success-text">함께할 분을 신중히 찾고 있습니다. 검토 후 입력해주신 이메일로 결과를 안내드리겠습니다. 카르텔에 관심 가져주셔서 감사합니다.</p>
-        </div>
       </div>
     </div>
 
