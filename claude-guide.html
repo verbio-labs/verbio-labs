@@ -16,6 +16,15 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;1,400&family=Press+Start+2P&display=swap" rel="stylesheet">
 <link href="https://cdn.jsdelivr.net/npm/galmuri@latest/dist/galmuri.css" rel="stylesheet">
+
+<!-- Microsoft Clarity (사이트 본체와 동일 프로젝트) -->
+<script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "rrkucjqacb");
+</script>
 <style>
 /* ============================================================
    VERBIO LABS · CLAUDE GUIDE  v3 — 인터랙티브 전자책
@@ -4160,8 +4169,10 @@ description: 우리 팀 기준 코드리뷰
     <nav>
       <a href="https://verbiolabs.com" target="_blank" rel="noopener">About</a>
       <a href="#questmap" data-anchor="questmap">Guide</a>
-      <a href="#">Courses</a>
-      <a href="#">Contact</a>
+      <a href="/courses">Courses</a>
+      <a href="/bootcamp">Bootcamp</a>
+      <a href="/join">Cartel</a>
+      <a href="mailto:lulu066666@gmail.com">Contact</a>
     </nav>
     <div class="barcode" aria-hidden="true"></div>
     <div>© 2026 VERBIO LABS · Handcrafted with Claude</div>
@@ -4556,23 +4567,41 @@ const PLUGS={
   member2:{ // 멤버 구간 B: 챌린지 유도
     h:'7일 챌린지 — 혼자 말고 같이',
     p:'이 책의 실습을 함께 완주하는 기수제 챌린지가 주기적으로 열립니다. 완주자에게는 라이브 특강 초대가 갑니다. 모집 공지는 채널에서만.',
-    btn:'💬 다음 기수 알림 받기'}
+    btn:'💬 다음 기수 알림 받기'},
+  next:{ // 무료 구간 졸업 지점(lv1-4): 첫 상품 제안
+    h:'무료 구간 클리어 — 다음 단계를 고를 시간',
+    p:'여기까지 온 분은 생각보다 적습니다. 이제 두 갈래 — 체계적으로 가려면 온라인 강의(4주에 본인 도메인 사이트까지), 몸으로 부딪히려면 부산 원데이 인텐시브(하루 만에 첫 출시). 어느 쪽이든 이 책의 다음 챕터들과 병행하기 좋습니다.',
+    btn:'📚 온라인 강의 보기',dark:true,href:'/courses',
+    sub:'하루짜리가 궁금하다면 <a href="/bootcamp">원데이 인텐시브 →</a>'},
+  storyclear:{ // STORY 완주 지점(lv5-4): 완주 보상
+    h:'● STORY 모드 완주 — 보상을 받아가세요',
+    p:'이 화면(CHAPTER CLEAR)을 캡처해서 카카오 채널로 보내주세요. 강의·부트캠프 얼리버드 우선권과 무료 특강 초대로 보답합니다. 완주자는 늘 소수라, 전원 기억하고 챙깁니다.',
+    btn:'💬 완주 인증 보내기'},
+  cartel:{ // LEGEND 완주 지점(lv9-4): 커뮤니티 입구
+    h:'👑 마지막 문 — AI CARTEL IN BUSAN',
+    p:'책의 끝은 커뮤니티의 입구입니다. 배운 것을 실제로 만드는 부산의 AI 메이커 크루 — 받기만 하는 사람을 거르는 기브앤테이크 지원제로 운영합니다. 37챕터를 완주한 당신이라면, 지원서가 두렵지 않을 겁니다.',
+    btn:'🏛 AI Cartel 지원하기',dark:true,href:'/join',
+    sub:'// 부산 · 오프라인 모임 · 지원제'}
 };
 const BOOTCAMP_LVLS=['lv4','lv6','lv7']; // Claude Code·실전 운용 구간 = 부트캠프 타깃
+const PLUG_SPECIAL={'lv1-4':'next','lv5-4':'storyclear','lv9-4':'cartel'}; // 보상 사다리 지점
 function injectPlug(id,art){
   if(art.querySelector('.plug'))return;
   const ch=FLAT.find(c=>c.id===id);
   const free=GATE.freeLevels.includes(ch.lv);
-  const P=free?PLUGS.free:(BOOTCAMP_LVLS.includes(ch.lv)?PLUGS.bootcamp:PLUGS.member2);
+  const P=PLUG_SPECIAL[ch.id]?PLUGS[PLUG_SPECIAL[ch.id]]
+        :free?PLUGS.free
+        :(BOOTCAMP_LVLS.includes(ch.lv)?PLUGS.bootcamp:PLUGS.member2);
   const href=P.href||GATE.kakaoUrl;
   const cls=P.dark?'p-dark':'p-kakao';
   const tgt=P.href?'':' target="_blank" rel="noopener"';
   const div=document.createElement('div');
   div.className='plug';
+  const sub=P.sub||(free?'이미 코드가 있다면 <a href="#" onclick="openGate();return false;">여기서 입력</a>':'// 스팸 없음, 진짜 소식만');
   div.innerHTML=`<h4>${P.h}</h4><p>${P.p}</p>
     <div class="plug-btns">
       <a class="${cls}" href="${href}"${tgt}>${P.btn}</a>
-      <span class="p-sub">${free?'이미 코드가 있다면 <a href="#" onclick="openGate();return false;">여기서 입력</a>':'// 스팸 없음, 진짜 소식만'}</span>
+      <span class="p-sub">${sub}</span>
     </div>`;
   const clear=art.querySelector('.level-clear');
   if(clear) art.insertBefore(div,clear);
@@ -4953,5 +4982,9 @@ bindReveal(document);
 buildDemos();
 route();
 </script>
+
+<!-- Vercel Web Analytics + Speed Insights -->
+<script defer src="/_vercel/insights/script.js"></script>
+<script defer src="/_vercel/speed-insights/script.js"></script>
 </body>
 </html>
