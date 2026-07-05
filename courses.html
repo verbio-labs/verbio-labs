@@ -209,7 +209,13 @@ a{color:var(--clay-deep)}
 .now-card .nc-meta strong{color:var(--clay-deep)}
 .now-card.dark .nc-meta strong{color:var(--gold)}
 .now-card .nc-go{font-family:var(--font-arcade);font-size:10px;color:var(--clay);margin-top:4px}
-.cart-prepbar{background:var(--ink);color:var(--gold);font-family:var(--font-pixel);font-size:10.5px;letter-spacing:.08em;padding:7px 20px}
+.cart-tape{position:absolute;top:40%;left:-5%;width:110%;height:46px;transform:rotate(-7deg);z-index:5;pointer-events:none;
+  background:repeating-linear-gradient(45deg,#E8C547 0 16px,#23211C 16px 32px);
+  display:flex;align-items:center;justify-content:center;
+  border-top:2px solid rgba(0,0,0,.28);border-bottom:2px solid rgba(0,0,0,.28);
+  box-shadow:0 8px 16px rgba(31,30,26,.38),0 2px 0 rgba(0,0,0,.18)}
+.cart-tape span{font-family:var(--font-pixel);font-size:12.5px;letter-spacing:.1em;background:#E8C547;color:#1F1E1A;padding:5px 16px;border:2px solid #1F1E1A;box-shadow:3px 3px 0 rgba(0,0,0,.32);transform:rotate(.6deg);white-space:nowrap}
+@media(max-width:720px){.cart-tape{height:40px}.cart-tape span{font-size:11px}}
 .cart{background:var(--page);border:2px solid var(--ink);box-shadow:7px 7px 0 rgba(31,30,26,.2);position:relative;display:flex;flex-direction:column}
 .cart .cart-top{background:repeating-linear-gradient(90deg,var(--ink) 0 10px,transparent 10px 16px);height:14px;border-bottom:2px solid var(--ink)}
 .cart .cart-head{background:var(--kraft);border-bottom:2px solid var(--ink);padding:12px 20px;display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}
@@ -424,7 +430,7 @@ footer .legal a{color:var(--ink-soft)}
         <div class="cart-head">
           <span class="cart-no">COURSE 00</span><span class="cart-star">⭐ 입문은 여기부터</span>
         </div>
-        <div class="cart-prepbar">⏳ 준비 중 · Q3 오픈 — 지금은 사전 등록만</div>
+        <div class="cart-tape"><span>⚠ 강의 준비중 · Q3 오픈</span></div>
         <div class="cart-body">
           <h3>First AI Service in 30 min</h3>
           <p class="c-desc">코딩 한 번 안 해본 사람도, <strong>4주 안에 본인 도메인에 사이트를 띄웁니다.</strong></p>
@@ -445,7 +451,7 @@ footer .legal a{color:var(--ink-soft)}
           <span class="cart-no">COURSE 01</span>
           <span class="cart-star">MAIN QUEST</span>
         </div>
-        <div class="cart-prepbar">⏳ 준비 중 · Q3 오픈 — 지금은 사전 등록만</div>
+        <div class="cart-tape"><span>⚠ 강의 준비중 · Q3 오픈</span></div>
         <div class="cart-body">
           <h3>Korean SaaS, Launch in a Week</h3>
           <p class="c-desc">결제 받을 수 없는 SaaS는 사이트일 뿐. <strong>한국에서 결제까지, 6주 안에 정리합니다.</strong></p>
