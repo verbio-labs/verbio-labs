@@ -4600,6 +4600,7 @@ function route(){
       const ch=FLAT.find(c=>c.id===h);
       setTermPath('~/claude-guide/'+ch.lv,'cat '+ch.file);
       currentView='chapter';
+      armSideQuestTimer();
     } else if(levelMatch && LEVELS.some(l=>l.id===h)){
       renderLevel(h);
       document.body.dataset.view='level';
@@ -4723,20 +4724,31 @@ function watchClear(id,art){
   },{threshold:.5});
   obs.observe(target);
 }
-/* SIDE QUEST 인카운터 — 4번째 완독에 1회, 무시 시 9번째에 마지막 1회 */
+/* SIDE QUEST 인카운터 — 노출 총 2회 상한 (공용 카운터)
+   트리거 A: 첫 챕터 진입 후 5분 체류 (완독 전 독자용)
+   트리거 B: 4번째 완독 · 트리거 C: 9번째 완독 (마지막) */
+function sqSeen(){try{return +(localStorage.getItem('vl_sq')||0);}catch(e){return 9;}}
+function fireSideQuest(delay){
+  try{localStorage.setItem('vl_sq',String(sqSeen()+1));}catch(e){}
+  setTimeout(function(){
+    if(document.getElementById('gate').classList.contains('on'))return;
+    document.getElementById('sidequest').classList.add('on');
+    SFX.coin();
+  },delay);
+}
 function maybeSideQuest(){
-  try{
-    var n=store.read.length;
-    var seen=+(localStorage.getItem('vl_sq')||0);
-    if((n>=4&&seen<1)||(n>=9&&seen<2)){
-      localStorage.setItem('vl_sq',String(seen+1));
-      setTimeout(function(){
-        if(document.getElementById('gate').classList.contains('on'))return;
-        document.getElementById('sidequest').classList.add('on');
-        SFX.coin();
-      },1600); /* 완독 토스트 먼저, 그 다음 인카운터 */
-    }
-  }catch(e){}
+  var n=store.read.length, seen=sqSeen();
+  if((n>=4&&seen<1)||(n>=9&&seen<2)) fireSideQuest(1600);
+}
+var sqTimerArmed=false;
+function armSideQuestTimer(){
+  if(sqTimerArmed||sqSeen()>=1)return;
+  sqTimerArmed=true;
+  setTimeout(function(){
+    if(sqSeen()>=1)return;               /* 그 사이 완독 트리거가 이미 소진했으면 양보 */
+    if(document.hidden)return;            /* 탭 이탈 상태면 스킵 */
+    fireSideQuest(0);
+  },5*60*1000);
 }
 function closeSideQuest(){document.getElementById('sidequest').classList.remove('on');}
 document.getElementById('sidequest').addEventListener('click',function(e){if(e.target.id==='sidequest')closeSideQuest();});
