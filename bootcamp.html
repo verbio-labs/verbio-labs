@@ -132,6 +132,7 @@ a{color:var(--clay-deep)}
 .seat-grid{display:grid;grid-template-columns:repeat(10,1fr);gap:8px;padding:18px 16px 8px}
 .seat{aspect-ratio:1;border:1.5px solid #57544B;display:flex;align-items:center;justify-content:center;font-family:var(--font-pixel);font-size:10px;color:#78736A;background:#2B2A24}
 .seat.taken{background:var(--clay);border-color:var(--clay);color:var(--page)}
+.seat.hold{background:#4A4438;border-color:var(--gold);color:var(--gold);animation:blink 1.4s steps(1) infinite}
 .seat-cap{font-family:var(--font-mono);font-size:12px;color:#B8B2A0;padding:6px 16px 16px}
 .seat-cap strong{color:var(--page)}
 
@@ -738,41 +739,44 @@ document.addEventListener('click',e=>{
   });
 })();
 
-/* ═══ 좌석 현황 — 실제 신청 수 기준. 신청 접수 시 taken 갱신. 임의 차감 금지 ═══ */
+/* ═══ 좌석 현황 — 실제 접수 기준. 임의 차감·허위 표시 금지 ═══
+   taken   = 입금 확인 완료 (확정)
+   pending = 신청서 접수, 입금 대기 (Slack 알림 오면 +1, 입금 확인되면 pending-1 → taken+1, 미입금 이탈 시 -1) */
 const SEATS={
-  oneday:{cap:20,taken:0,label:'원데이 1회차'},
-  camp:{cap:12,taken:0,label:'부트캠프 1기'}
+  oneday:{cap:20,taken:0,pending:0,label:'원데이 1회차'},
+  camp:{cap:12,taken:0,pending:0,label:'부트캠프 1기'}
 };
 const RECENT=[
   // 실제 신청자만 마스킹해 추가: '김*수님 · 원데이', '박*아님 · 캠프'
 ];
 function renderSeats(){
-  const s=SEATS.oneday, left=Math.max(s.cap-s.taken,0);
+  const s=SEATS.oneday, used=s.taken+s.pending, left=Math.max(s.cap-used,0);
   const grid=document.getElementById('seat-grid');
   if(grid){
     grid.innerHTML='';
     for(let i=0;i<s.cap;i++){
       const d=document.createElement('div');
-      d.className='seat'+(i<s.taken?' taken':'');
-      d.textContent=(i<s.taken)?'■':(i+1);
+      if(i<s.taken){ d.className='seat taken'; d.textContent='■'; }
+      else if(i<used){ d.className='seat hold'; d.textContent='▨'; d.title='입금 대기'; }
+      else { d.className='seat'; d.textContent=i+1; }
       grid.appendChild(d);
     }
   }
   const cap=document.getElementById('seat-cap');
-  if(cap) cap.innerHTML = s.taken===0
+  if(cap) cap.innerHTML = used===0
     ? '아직 아무도 없습니다. <strong>지금 등록하면 1번 자리</strong>입니다.'
-    : '현재 <strong>'+s.taken+'명</strong> 등록 · 잔여 <strong>'+left+'석</strong>'+(RECENT.length?' · 최근: '+RECENT.slice(-2).join(', '):'');
+    : '확정 <strong>'+s.taken+'석</strong>'+(s.pending>0?' · 입금 대기 <strong>'+s.pending+'건</strong>':'')+' · 잔여 <strong>'+left+'석</strong>'+(RECENT.length?' · 최근: '+RECENT.slice(-2).join(', '):'');
   document.querySelectorAll('[data-seats]').forEach(el=>{
     const t=SEATS[el.dataset.seats]; if(!t)return;
-    const l=Math.max(t.cap-t.taken,0);
-    el.textContent = t.taken===0
+    const u=t.taken+t.pending, l=Math.max(t.cap-u,0);
+    el.textContent = u===0
       ? '지금 등록하면 '+t.label+' 첫 번째 자리입니다.'
-      : '현재 '+t.taken+'명 등록 · 잔여 '+l+'석';
+      : '현재 '+u+'명 진행 중 · 잔여 '+l+'석';
   });
   const st=document.getElementById('st-seats');
-  if(st) st.textContent = s.taken>0 ? '(잔여 '+left+'석)' : '(선착순 20석)';
+  if(st) st.textContent = used>0 ? '(잔여 '+left+'석)' : '(선착순 20석)';
   const xs=document.getElementById('x-seats');
-  if(xs) xs.textContent = s.taken>0 ? '현재 잔여 '+left+'석 / 20석' : '아직 20석 전부 비어 있습니다 — 1번 자리의 주인공이 되세요.';
+  if(xs) xs.textContent = used>0 ? '현재 잔여 '+left+'석 / 20석' : '아직 20석 전부 비어 있습니다 — 1번 자리의 주인공이 되세요.';
 }
 renderSeats();
 
