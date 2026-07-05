@@ -540,6 +540,7 @@ body[data-view="chapter"] #chapter-shell{display:block}
 .lore::before{content:"◈ LORE — 깊이 알기";position:absolute;top:-12px;left:16px;font-family:var(--font-pixel);font-size:11px;background:#8A82B8;color:var(--page);padding:2px 10px;letter-spacing:.06em}
 .lore p{font-size:15px;margin-bottom:6px}
 
+.p-push{display:block;margin-top:12px;font-family:var(--font-mono);font-size:12.5px;color:var(--clay-deep);border-top:1px dashed var(--line);padding-top:10px}
 .oq-banner{display:block;background:var(--ink);border:2px solid var(--ink);box-shadow:6px 6px 0 rgba(31,30,26,.25);padding:20px 22px;text-decoration:none;transition:transform .05s,box-shadow .05s}
 .oq-banner:hover{transform:translate(2px,2px);box-shadow:3px 3px 0 rgba(31,30,26,.25)}
 .oq-tag{font-family:var(--font-pixel);font-size:10px;color:var(--gold);letter-spacing:.12em;display:block;margin-bottom:8px}
@@ -4616,6 +4617,18 @@ const PLUGS={
     btn:'🏛 AI Cartel 지원하기',dark:true,href:'/join',
     sub:'// 부산 · 오프라인 모임 · 지원제'}
 };
+/* 마감 주간 한정 무료구간 노출 — 7/25~8/1 자동 ON, 이후 자동 OFF.
+   seatsLeft: 실제 잔여석 알 때만 숫자 기입 (임의 기입 금지), 모르면 null */
+const OFFLINE_PUSH={from:new Date(2026,6,25),until:new Date(2026,7,1,23,59),seatsLeft:null};
+function offlineLine(){
+  var now=new Date();
+  if(now<OFFLINE_PUSH.from||now>OFFLINE_PUSH.until) return '';
+  var today=new Date(now.getFullYear(),now.getMonth(),now.getDate());
+  var d=Math.ceil((new Date(2026,7,1)-today)/864e5);
+  var dd=d>0?'D-'+d:'오늘';
+  var seat=OFFLINE_PUSH.seatsLeft!=null?' · 잔여 '+OFFLINE_PUSH.seatsLeft+'석':'';
+  return '<span class="p-push">⏱ 부산 원데이 인텐시브 8/1 '+dd+seat+' — <a href="/bootcamp">자리 확인 →</a></span>';
+}
 const BOOTCAMP_LVLS=['lv4','lv6','lv7']; // Claude Code·실전 운용 구간 = 부트캠프 타깃
 const PLUG_SPECIAL={'lv1-4':'next','lv5-4':'storyclear','lv9-4':'cartel'}; // 보상 사다리 지점
 function injectPlug(id,art){
@@ -4635,7 +4648,7 @@ function injectPlug(id,art){
     <div class="plug-btns">
       <a class="${cls}" href="${href}"${tgt}>${P.btn}</a>
       <span class="p-sub">${sub}</span>
-    </div>`;
+    </div>${free?offlineLine():''}`;
   const clear=art.querySelector('.level-clear');
   if(clear) art.insertBefore(div,clear);
 }
