@@ -153,6 +153,7 @@ a{color:var(--clay-deep)}
 .seat{aspect-ratio:1;border:1.5px solid #57544B;display:flex;align-items:center;justify-content:center;font-family:var(--font-pixel);font-size:10px;color:#78736A;background:#2B2A24}
 .seat.taken{background:var(--clay);border-color:var(--clay);color:var(--page)}
 .seat.hold{background:#4A4438;border-color:var(--gold);color:var(--gold);animation:blink 1.4s steps(1) infinite}
+.seat.you{border-color:var(--gold);color:var(--gold);animation:blink 1.4s steps(1) infinite;cursor:pointer}
 .seat-cap{font-family:var(--font-mono);font-size:12px;color:#B8B2A0;padding:6px 16px 16px}
 .seat-cap strong{color:var(--page)}
 
@@ -812,13 +813,14 @@ function renderSeats(){
       const d=document.createElement('div');
       if(i<s.taken){ d.className='seat taken'; d.textContent='■'; }
       else if(i<used){ d.className='seat hold'; d.textContent='▨'; d.title='입금 대기'; }
+      else if(i===used){ d.className='seat you'; d.textContent='P'+(i+1)+'?'; d.title='다음 자리 — 당신?'; d.addEventListener('click',()=>{ if(typeof openApply==='function') openApply('oneday'); }); }
       else { d.className='seat'; d.textContent=i+1; }
       grid.appendChild(d);
     }
   }
   const cap=document.getElementById('seat-cap');
   if(cap) cap.innerHTML = used===0
-    ? '아직 아무도 없습니다. <strong>지금 등록하면 1번 자리</strong>입니다.'
+    ? '<strong>접수가 열렸습니다.</strong> 지금 등록하면 P1 — 1기의 첫 번째 이름이 됩니다. 얼리버드 ₩190,000은 이 20석에서 끝납니다.'
     : '확정 <strong>'+s.taken+'석</strong>'+(s.pending>0?' · 입금 대기 <strong>'+s.pending+'건</strong>':'')+' · 잔여 <strong>'+left+'석</strong>'+(RECENT.length?' · 최근: '+RECENT.slice(-2).join(', '):'');
   document.querySelectorAll('[data-seats]').forEach(el=>{
     const t=SEATS[el.dataset.seats]; if(!t)return;
