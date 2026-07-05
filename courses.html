@@ -209,11 +209,19 @@ a{color:var(--clay-deep)}
 .now-card .nc-meta strong{color:var(--clay-deep)}
 .now-card.dark .nc-meta strong{color:var(--gold)}
 .now-card .nc-go{font-family:var(--font-arcade);font-size:10px;color:var(--clay);margin-top:4px}
-.cart-tape{position:absolute;top:40%;left:-5%;width:110%;height:46px;transform:rotate(-7deg);z-index:5;pointer-events:none;
-  background:repeating-linear-gradient(45deg,#E8C547 0 16px,#23211C 16px 32px);
+.cart-tape{position:absolute;top:41%;left:-13px;right:-13px;height:46px;transform:rotate(-6deg);z-index:5;pointer-events:none;
+  background:
+    linear-gradient(90deg,rgba(0,0,0,.42),rgba(0,0,0,0) 9%,rgba(0,0,0,0) 91%,rgba(0,0,0,.42)),
+    repeating-linear-gradient(45deg,#E8C547 0 16px,#23211C 16px 32px);
   display:flex;align-items:center;justify-content:center;
   border-top:2px solid rgba(0,0,0,.28);border-bottom:2px solid rgba(0,0,0,.28);
-  box-shadow:0 8px 16px rgba(31,30,26,.38),0 2px 0 rgba(0,0,0,.18)}
+  box-shadow:0 8px 16px rgba(31,30,26,.38)}
+/* 상자 뒤로 꺾여 들어가는 접힘 탭 — 어두운 면 */
+.cart-tape::before,.cart-tape::after{content:"";position:absolute;top:9px;width:20px;height:46px;z-index:-1;
+  background:repeating-linear-gradient(45deg,#9A7F24 0 16px,#0F0E0B 16px 32px);
+  box-shadow:0 5px 8px rgba(31,30,26,.4)}
+.cart-tape::before{left:-11px;transform:skewY(26deg) rotate(2deg)}
+.cart-tape::after{right:-11px;transform:skewY(-26deg) rotate(-2deg)}
 .cart-tape span{font-family:var(--font-pixel);font-size:12.5px;letter-spacing:.1em;background:#E8C547;color:#1F1E1A;padding:5px 16px;border:2px solid #1F1E1A;box-shadow:3px 3px 0 rgba(0,0,0,.32);transform:rotate(.6deg);white-space:nowrap}
 @media(max-width:720px){.cart-tape{height:40px}.cart-tape span{font-size:11px}}
 .cart{background:var(--page);border:2px solid var(--ink);box-shadow:7px 7px 0 rgba(31,30,26,.2);position:relative;display:flex;flex-direction:column}
