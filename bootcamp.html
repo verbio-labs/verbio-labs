@@ -809,7 +809,7 @@ document.addEventListener('click',e=>{
    taken   = 입금 확인 완료 (확정)
    pending = 신청서 접수, 입금 대기 (Slack 알림 오면 +1, 입금 확인되면 pending-1 → taken+1, 미입금 이탈 시 -1) */
 const SEATS={
-  oneday:{cap:20,taken:0,pending:11,label:'원데이 1회차'}, /* pending 11 = 사전 부탁받은 실제 예약자 (입금 전). 입금 확인 시 taken으로 이동, 이탈 시 감소 */
+  oneday:{cap:20,taken:11,pending:0,label:'원데이 1회차'}, /* taken 11 = 사전 예약자 입금 확인 완료 (2026-07-05 기준). 이후 신청은 Slack 접수 → pending → 입금 확인 시 taken */
   camp:{cap:12,taken:0,pending:0,label:'부트캠프 1기'}
 };
 const RECENT=[
