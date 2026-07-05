@@ -18,7 +18,7 @@
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
 <link rel="shortcut icon" href="/favicon.ico">
 <link rel="apple-touch-icon" sizes="180x180" href="/favicon-180.png">
-<meta name="theme-color" content="#1d1d1f">
+<meta name="theme-color" content="#1F1E1A">
 
 <!-- Open Graph / Facebook / KakaoTalk -->
 <meta property="og:type" content="website">
@@ -80,2604 +80,8 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Instrument+Serif:ital@0;1&family=Pretendard:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-<style>
-  * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
-
-  :root {
-    --apple-black: #1d1d1f;
-    --apple-white: #ffffff;
-    --apple-gray-bg: #f5f5f7;
-    --apple-gray-text: #6e6e73;
-    --apple-gray-text-light: #86868b;
-    --apple-gray-line: #d2d2d7;
-    --apple-blue: #0066cc;
-    --apple-blue-bright: #2997ff;
-
-    /* Typography system */
-    --font-sans: 'Inter', 'Pretendard', -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;
-    --font-kr: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
-    --font-serif: 'Instrument Serif', 'Times New Roman', Georgia, serif;
-
-    --ease-out-quart: cubic-bezier(0.165, 0.84, 0.44, 1);
-    --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
-    --ease-default: cubic-bezier(0.4, 0, 0.6, 1);
-  }
-
-  html { scroll-behavior: smooth; }
-
-  body {
-    background: var(--apple-white);
-    color: var(--apple-black);
-    font-family: var(--font-sans);
-    font-size: 17px;
-    line-height: 1.47059;
-    letter-spacing: -0.022em;
-    overflow-x: hidden;
-  }
-
-  /* 한국어가 포함된 요소는 Pretendard 우선 + 어절 단위 줄바꿈 */
-  :lang(ko), .stage-subtitle, .product-feature-label, .why-item-desc,
-  .tile-subtitle, .course-desc, .footer-disclaimer, .tv-uni-quote,
-  .tv-uni-attr, .stage-eyebrow, .why-eyebrow, .stats-eyebrow,
-  .tile-grid-eyebrow, .courses-eyebrow {
-    font-family: var(--font-kr);
-    word-break: keep-all;
-    overflow-wrap: break-word;
-  }
-
-  ::selection {
-    background: var(--apple-blue);
-    color: white;
-  }
-
-  /* 모바일에서는 의도적인 강제 줄바꿈을 숨겨 자연 줄바꿈으로 전환 */
-  @media (max-width: 600px) {
-    .br-md-hide { display: none; }
-  }
-
-  /* 접근성: 모션 감소 선호 사용자에게는 애니메이션 제거 */
-  @media (prefers-reduced-motion: reduce) {
-    *, *::before, *::after {
-      animation-duration: 0.001ms !important;
-      animation-iteration-count: 1 !important;
-      transition-duration: 0.001ms !important;
-      scroll-behavior: auto !important;
-    }
-    .reveal, .scale-in { opacity: 1 !important; transform: none !important; }
-  }
-
-  /* 키보드 포커스 표시 · 마우스 사용자에겐 안 보이고 키보드 탭 사용자에게만 표시 */
-  :focus-visible {
-    outline: 2px solid var(--apple-blue);
-    outline-offset: 3px;
-    border-radius: 4px;
-  }
-
-  /* ════════════════════ NAV ════════════════════ */
-  .global-nav {
-    position: sticky;
-    top: 0;
-    height: 48px;
-    background: rgba(0, 0, 0, 0.72);
-    backdrop-filter: saturate(180%) blur(20px);
-    -webkit-backdrop-filter: saturate(180%) blur(20px);
-    z-index: 9999;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-bottom: 0.5px solid rgba(255,255,255,0.08);
-  }
-
-  .global-nav-inner {
-    width: 100%;
-    max-width: 1024px;
-    padding: 0 22px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: 100%;
-  }
-
-  .global-nav-brand {
-    color: rgba(255, 255, 255, 0.95);
-    font-size: 17px;
-    font-weight: 600;
-    letter-spacing: -0.026em;
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    gap: 1px;
-    transition: opacity 0.32s var(--ease-default);
-  }
-
-  .global-nav-brand:hover {
-    opacity: 0.85;
-  }
-
-  .global-nav-brand-mark {
-    display: inline-flex;
-    align-items: center;
-    margin-right: 7px;
-  }
-
-  .global-nav-brand-mark svg {
-    width: 22px;
-    height: 22px;
-    display: block;
-  }
-
-  .global-nav-brand-name {
-    font-weight: 600;
-    letter-spacing: -0.026em;
-  }
-
-  .global-nav-brand-name em {
-    font-family: var(--font-serif);
-    font-style: italic;
-    font-weight: 400;
-    color: rgba(255,255,255,0.55);
-    margin-left: 5px;
-    letter-spacing: -0.01em;
-    font-size: 0.92em;
-  }
-
-  .global-nav-links {
-    display: flex;
-    list-style: none;
-    height: 100%;
-  }
-
-  .global-nav-links li { display: flex; align-items: center; }
-
-  .global-nav-links a {
-    color: rgba(255, 255, 255, 0.85);
-    text-decoration: none;
-    font-size: 12px;
-    font-weight: 500;
-    letter-spacing: -0.01em;
-    padding: 0 12px;
-    transition: color 0.32s var(--ease-default);
-  }
-
-  .global-nav-links a:hover { color: rgba(255, 255, 255, 1); }
-
-  /* 상단 바로가기 CTA (직시 다운로드) */
-  .global-nav-links a.nav-cta {
-    color: var(--apple-black);
-    background: #fff;
-    border-radius: 999px;
-    padding: 6px 14px;
-    margin-left: 8px;
-    font-weight: 600;
-    letter-spacing: -0.01em;
-    transition: transform 0.3s var(--ease-out-quart), opacity 0.3s ease;
-  }
-  .global-nav-links a.nav-cta:hover { color: var(--apple-black); opacity: 0.9; transform: translateY(-1px); }
-
-  @media (max-width: 833px) { .global-nav-links { display: none; } }
-
-  /* ════════════════════ MOBILE NAV: HAMBURGER + DRAWER ════════════════════ */
-  .nav-burger {
-    display: none;
-    width: 36px; height: 36px;
-    background: transparent;
-    border: 0;
-    cursor: pointer;
-    padding: 0;
-    position: relative;
-    z-index: 10000;
-  }
-  .nav-burger span {
-    display: block;
-    position: absolute;
-    left: 8px;
-    width: 20px;
-    height: 1.5px;
-    background: rgba(255,255,255,0.95);
-    border-radius: 2px;
-    transition: all 0.3s var(--ease-out-quart);
-  }
-  .nav-burger span:nth-child(1) { top: 13px; }
-  .nav-burger span:nth-child(2) { top: 18px; }
-  .nav-burger span:nth-child(3) { top: 23px; }
-  .nav-burger.is-open span:nth-child(1) { top: 18px; transform: rotate(45deg); }
-  .nav-burger.is-open span:nth-child(2) { opacity: 0; }
-  .nav-burger.is-open span:nth-child(3) { top: 18px; transform: rotate(-45deg); }
-
-  .mobile-drawer {
-    position: fixed;
-    top: 48px; left: 0; right: 0;
-    height: calc(100vh - 48px);
-    background: rgba(0,0,0,0.96);
-    backdrop-filter: saturate(180%) blur(20px);
-    -webkit-backdrop-filter: saturate(180%) blur(20px);
-    z-index: 9998;
-    padding: 24px 22px 40px;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.4s var(--ease-out-quart);
-    overflow-y: auto;
-    display: flex;
-    flex-direction: column;
-  }
-  .mobile-drawer.is-open {
-    opacity: 1;
-    pointer-events: auto;
-  }
-  .mobile-drawer ul {
-    list-style: none;
-    padding: 0; margin: 0;
-  }
-  .mobile-drawer li {
-    border-bottom: 0.5px solid rgba(255,255,255,0.08);
-  }
-  .mobile-drawer a {
-    display: block;
-    padding: 22px 4px;
-    color: rgba(255,255,255,0.92);
-    text-decoration: none;
-    font-size: 22px;
-    font-weight: 500;
-    letter-spacing: -0.012em;
-    transition: opacity 0.2s, padding-left 0.3s var(--ease-out-quart);
-  }
-  .mobile-drawer a:hover, .mobile-drawer a:active {
-    opacity: 0.65;
-    padding-left: 8px;
-  }
-  .mobile-drawer-cta {
-    margin-top: auto;
-    margin-bottom: 8px;
-    display: flex !important;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    padding: 16px 20px !important;
-    background: rgba(255,255,255,0.08);
-    border-radius: 999px;
-    font-size: 15px !important;
-    font-weight: 500 !important;
-    border-bottom: none !important;
-  }
-  .mobile-drawer-cta:hover {
-    background: rgba(255,255,255,0.14);
-    padding-left: 20px !important;
-  }
-
-  @media (max-width: 833px) {
-    .nav-burger { display: block; }
-  }
-  @media (min-width: 834px) {
-    .mobile-drawer { display: none !important; }
-  }
-  body.no-scroll { overflow: hidden; }
-
-  /* ════════════════════ HERO BADGES ROW (App Store CTA) ════════════════════ */
-  .hero-badges-row {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 10px;
-    margin-bottom: 28px;
-  }
-  .hero-badge-link {
-    cursor: pointer;
-    text-decoration: none;
-    transition: background 0.3s, transform 0.3s var(--ease-out-quart);
-  }
-  .hero-badge-link:hover {
-    background: rgba(255,255,255,0.12);
-    transform: translateY(-1px);
-  }
-  .hero-badge-apple {
-    width: 14px; height: 14px;
-    margin-right: 2px;
-  }
-  .hero-badge-arrow {
-    margin-left: 2px;
-    transition: transform 0.3s var(--ease-out-quart);
-    font-size: 16px;
-    line-height: 1;
-  }
-  .hero-badge-link:hover .hero-badge-arrow { transform: translateX(3px); }
-
-  /* ════════════════════ HERO ════════════════════ */
-  .hero {
-    background: #000;
-    color: var(--apple-white);
-    text-align: center;
-    padding: 80px 22px 60px;
-    overflow: hidden;
-    position: relative;
-    min-height: calc(100vh - 48px);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-
-  /* Single focused glow - Apple iPhone Pro signature */
-  .hero::before {
-    content: "";
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 1400px;
-    height: 1000px;
-    transform: translate(-50%, -50%);
-    background: radial-gradient(ellipse at center, rgba(41,151,255,0.12) 0%, rgba(41,151,255,0.04) 40%, transparent 70%);
-    pointer-events: none;
-    animation: glowPulse 10s ease-in-out infinite;
-  }
-
-  @keyframes glowPulse {
-    0%, 100% { opacity: 0.85; }
-    50% { opacity: 1; }
-  }
-
-  .hero-content {
-    position: relative;
-    z-index: 2;
-    max-width: 1200px;
-    width: 100%;
-  }
-
-  .hero-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 6px 14px 6px 12px;
-    background: rgba(255,255,255,0.06);
-    border: 0.5px solid rgba(255,255,255,0.12);
-    border-radius: 999px;
-    font-size: 12px;
-    font-weight: 500;
-    letter-spacing: 0.02em;
-    color: rgba(255,255,255,0.95);
-    margin-bottom: 32px;
-    backdrop-filter: blur(12px);
-    animation: fadeInUp 0.8s var(--ease-out-quart) 0.1s both;
-  }
-
-  .hero-badge em {
-    font-family: var(--font-serif);
-    font-style: italic;
-    font-weight: 400;
-    font-size: 13px;
-    letter-spacing: -0.005em;
-    margin-left: 2px;
-  }
-
-  .hero-badge-dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: rgba(255,255,255,0.95);
-    box-shadow: 0 0 12px rgba(255,255,255,0.6);
-    animation: pulse 2s var(--ease-out-quart) infinite;
-  }
-
-  @keyframes pulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.4; }
-  }
-
-  .hero-title {
-    font-size: clamp(56px, 9vw, 120px);
-    font-weight: 600;
-    line-height: 1;
-    letter-spacing: -0.028em;
-    margin-bottom: 24px;
-    animation: fadeInUp 0.9s var(--ease-out-quart) 0.2s both;
-  }
-
-  .hero-title-italic {
-    font-family: var(--font-serif);
-    font-style: italic;
-    font-weight: 400;
-    font-size: 1.05em;
-    letter-spacing: -0.02em;
-    background: linear-gradient(135deg, #fff 0%, #d8e7ff 50%, #5e9eff 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    padding: 0 0.05em;
-  }
-
-  .hero-title-accent {
-    font-weight: 600;
-  }
-
-  .hero-subtitle {
-    font-size: clamp(20px, 2.4vw, 28px);
-    font-weight: 400;
-    line-height: 1.32;
-    letter-spacing: -0.012em;
-    color: rgba(255,255,255,0.7);
-    margin-bottom: 40px;
-    max-width: 680px;
-    margin-left: auto;
-    margin-right: auto;
-    animation: fadeInUp 0.9s var(--ease-out-quart) 0.35s both;
-  }
-
-  .hero-actions {
-    display: flex;
-    gap: 12px;
-    justify-content: center;
-    flex-wrap: wrap;
-    margin-bottom: 80px;
-    animation: fadeInUp 0.9s var(--ease-out-quart) 0.5s both;
-  }
-
-  .btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 14px 28px;
-    font-size: 15px;
-    font-weight: 500;
-    letter-spacing: -0.01em;
-    border-radius: 999px;
-    text-decoration: none;
-    border: none;
-    cursor: pointer;
-    transition: all 0.3s var(--ease-out-quart);
-  }
-
-  .btn-primary {
-    background: white;
-    color: var(--apple-black);
-    box-shadow: 0 1px 2px rgba(0,0,0,0.1), 0 4px 12px rgba(255,255,255,0.05);
-  }
-
-  .btn-primary:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 1px 2px rgba(0,0,0,0.12), 0 8px 24px rgba(255,255,255,0.15);
-  }
-
-  .btn-secondary {
-    background: rgba(255,255,255,0.08);
-    color: white;
-    border: 0.5px solid rgba(255,255,255,0.18);
-    backdrop-filter: blur(12px);
-  }
-
-  .btn-secondary:hover {
-    background: rgba(255,255,255,0.14);
-    border-color: rgba(255,255,255,0.28);
-    transform: translateY(-1px);
-  }
-
-  .btn-arrow {
-    width: 16px;
-    height: 16px;
-    transition: transform 0.3s var(--ease-out-quart);
-  }
-
-  .btn:hover .btn-arrow { transform: translateX(4px); }
-
-  /* ════════════════════ HERO VISUAL · 거대 음성 파형 ════════════════════ */
-  /* mockup 대신 추상적이고 의미있는 비주얼 */
-  .hero-visual {
-    width: 100%;
-    max-width: 1100px;
-    height: 30vh;
-    min-height: 240px;
-    margin: 0 auto;
-    position: relative;
-    z-index: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    animation: fadeIn 1.2s var(--ease-out-quart) 0.7s both;
-  }
-
-  /* 큰 음성 파형 · Apple Siri / Music 페이지 스타일 */
-  .hero-waveform {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 6px;
-    width: 100%;
-    height: 100%;
-    padding: 0 40px;
-  }
-
-  .hero-wave-bar {
-    flex: 1;
-    max-width: 8px;
-    background: linear-gradient(180deg,
-      rgba(94,158,255,0.3) 0%,
-      #2997ff 30%,
-      #5e9eff 50%,
-      #2997ff 70%,
-      rgba(94,158,255,0.3) 100%);
-    border-radius: 4px;
-    box-shadow: 0 0 20px rgba(41,151,255,0.4);
-    animation: heroWave 3s var(--ease-out-quart) infinite;
-    transform-origin: center;
-    height: 100%;
-  }
-
-  /* 각 막대 base scale을 다르게 · 진짜 음성 파형 */
-  @keyframes heroWave1 { 0%, 100% { transform: scaleY(0.10); } 50% { transform: scaleY(0.18); } }
-  @keyframes heroWave2 { 0%, 100% { transform: scaleY(0.15); } 50% { transform: scaleY(0.32); } }
-  @keyframes heroWave3 { 0%, 100% { transform: scaleY(0.20); } 50% { transform: scaleY(0.45); } }
-  @keyframes heroWave4 { 0%, 100% { transform: scaleY(0.28); } 50% { transform: scaleY(0.62); } }
-  @keyframes heroWave5 { 0%, 100% { transform: scaleY(0.35); } 50% { transform: scaleY(0.78); } }
-  @keyframes heroWave6 { 0%, 100% { transform: scaleY(0.42); } 50% { transform: scaleY(0.92); } }
-  @keyframes heroWave7 { 0%, 100% { transform: scaleY(0.45); } 50% { transform: scaleY(0.98); } }
-  @keyframes heroWave8 { 0%, 100% { transform: scaleY(0.38); } 50% { transform: scaleY(0.85); } }
-  @keyframes heroWave9 { 0%, 100% { transform: scaleY(0.30); } 50% { transform: scaleY(0.72); } }
-  @keyframes heroWave10 { 0%, 100% { transform: scaleY(0.40); } 50% { transform: scaleY(0.88); } }
-  @keyframes heroWave11 { 0%, 100% { transform: scaleY(0.25); } 50% { transform: scaleY(0.58); } }
-  @keyframes heroWave12 { 0%, 100% { transform: scaleY(0.32); } 50% { transform: scaleY(0.75); } }
-  @keyframes heroWave13 { 0%, 100% { transform: scaleY(0.43); } 50% { transform: scaleY(0.95); } }
-  @keyframes heroWave14 { 0%, 100% { transform: scaleY(0.46); } 50% { transform: scaleY(1); } }
-  @keyframes heroWave15 { 0%, 100% { transform: scaleY(0.35); } 50% { transform: scaleY(0.78); } }
-  @keyframes heroWave16 { 0%, 100% { transform: scaleY(0.20); } 50% { transform: scaleY(0.48); } }
-  @keyframes heroWave17 { 0%, 100% { transform: scaleY(0.28); } 50% { transform: scaleY(0.65); } }
-  @keyframes heroWave18 { 0%, 100% { transform: scaleY(0.40); } 50% { transform: scaleY(0.88); } }
-  @keyframes heroWave19 { 0%, 100% { transform: scaleY(0.45); } 50% { transform: scaleY(0.98); } }
-  @keyframes heroWave20 { 0%, 100% { transform: scaleY(0.32); } 50% { transform: scaleY(0.72); } }
-
-  .hero-wave-bar:nth-child(1)  { animation: heroWave1 2.4s var(--ease-out-quart) infinite; animation-delay: 0.00s; }
-  .hero-wave-bar:nth-child(2)  { animation: heroWave2 2.4s var(--ease-out-quart) infinite; animation-delay: 0.04s; }
-  .hero-wave-bar:nth-child(3)  { animation: heroWave3 2.4s var(--ease-out-quart) infinite; animation-delay: 0.08s; }
-  .hero-wave-bar:nth-child(4)  { animation: heroWave4 2.4s var(--ease-out-quart) infinite; animation-delay: 0.12s; }
-  .hero-wave-bar:nth-child(5)  { animation: heroWave5 2.4s var(--ease-out-quart) infinite; animation-delay: 0.16s; }
-  .hero-wave-bar:nth-child(6)  { animation: heroWave6 2.4s var(--ease-out-quart) infinite; animation-delay: 0.20s; }
-  .hero-wave-bar:nth-child(7)  { animation: heroWave7 2.4s var(--ease-out-quart) infinite; animation-delay: 0.24s; }
-  .hero-wave-bar:nth-child(8)  { animation: heroWave8 2.4s var(--ease-out-quart) infinite; animation-delay: 0.28s; }
-  .hero-wave-bar:nth-child(9)  { animation: heroWave9 2.4s var(--ease-out-quart) infinite; animation-delay: 0.32s; }
-  .hero-wave-bar:nth-child(10) { animation: heroWave10 2.4s var(--ease-out-quart) infinite; animation-delay: 0.36s; }
-  .hero-wave-bar:nth-child(11) { animation: heroWave11 2.4s var(--ease-out-quart) infinite; animation-delay: 0.40s; }
-  .hero-wave-bar:nth-child(12) { animation: heroWave12 2.4s var(--ease-out-quart) infinite; animation-delay: 0.44s; }
-  .hero-wave-bar:nth-child(13) { animation: heroWave13 2.4s var(--ease-out-quart) infinite; animation-delay: 0.48s; }
-  .hero-wave-bar:nth-child(14) { animation: heroWave14 2.4s var(--ease-out-quart) infinite; animation-delay: 0.52s; }
-  .hero-wave-bar:nth-child(15) { animation: heroWave15 2.4s var(--ease-out-quart) infinite; animation-delay: 0.56s; }
-  .hero-wave-bar:nth-child(16) { animation: heroWave16 2.4s var(--ease-out-quart) infinite; animation-delay: 0.60s; }
-  .hero-wave-bar:nth-child(17) { animation: heroWave17 2.4s var(--ease-out-quart) infinite; animation-delay: 0.64s; }
-  .hero-wave-bar:nth-child(18) { animation: heroWave18 2.4s var(--ease-out-quart) infinite; animation-delay: 0.68s; }
-  .hero-wave-bar:nth-child(19) { animation: heroWave19 2.4s var(--ease-out-quart) infinite; animation-delay: 0.72s; }
-  .hero-wave-bar:nth-child(20) { animation: heroWave20 2.4s var(--ease-out-quart) infinite; animation-delay: 0.76s; }
-  .hero-wave-bar:nth-child(21) { animation: heroWave1 2.4s var(--ease-out-quart) infinite; animation-delay: 0.80s; }
-  .hero-wave-bar:nth-child(22) { animation: heroWave5 2.4s var(--ease-out-quart) infinite; animation-delay: 0.84s; }
-  .hero-wave-bar:nth-child(23) { animation: heroWave12 2.4s var(--ease-out-quart) infinite; animation-delay: 0.88s; }
-  .hero-wave-bar:nth-child(24) { animation: heroWave18 2.4s var(--ease-out-quart) infinite; animation-delay: 0.92s; }
-  .hero-wave-bar:nth-child(25) { animation: heroWave14 2.4s var(--ease-out-quart) infinite; animation-delay: 0.96s; }
-  .hero-wave-bar:nth-child(26) { animation: heroWave9 2.4s var(--ease-out-quart) infinite; animation-delay: 1.00s; }
-  .hero-wave-bar:nth-child(27) { animation: heroWave3 2.4s var(--ease-out-quart) infinite; animation-delay: 1.04s; }
-  .hero-wave-bar:nth-child(28) { animation: heroWave6 2.4s var(--ease-out-quart) infinite; animation-delay: 1.08s; }
-  .hero-wave-bar:nth-child(29) { animation: heroWave11 2.4s var(--ease-out-quart) infinite; animation-delay: 1.12s; }
-  .hero-wave-bar:nth-child(30) { animation: heroWave17 2.4s var(--ease-out-quart) infinite; animation-delay: 1.16s; }
-  .hero-wave-bar:nth-child(31) { animation: heroWave20 2.4s var(--ease-out-quart) infinite; animation-delay: 1.20s; }
-  .hero-wave-bar:nth-child(32) { animation: heroWave13 2.4s var(--ease-out-quart) infinite; animation-delay: 1.24s; }
-  .hero-wave-bar:nth-child(33) { animation: heroWave7 2.4s var(--ease-out-quart) infinite; animation-delay: 1.28s; }
-  .hero-wave-bar:nth-child(34) { animation: heroWave4 2.4s var(--ease-out-quart) infinite; animation-delay: 1.32s; }
-  .hero-wave-bar:nth-child(35) { animation: heroWave8 2.4s var(--ease-out-quart) infinite; animation-delay: 1.36s; }
-  .hero-wave-bar:nth-child(36) { animation: heroWave15 2.4s var(--ease-out-quart) infinite; animation-delay: 1.40s; }
-  .hero-wave-bar:nth-child(37) { animation: heroWave19 2.4s var(--ease-out-quart) infinite; animation-delay: 1.44s; }
-  .hero-wave-bar:nth-child(38) { animation: heroWave14 2.4s var(--ease-out-quart) infinite; animation-delay: 1.48s; }
-  .hero-wave-bar:nth-child(39) { animation: heroWave10 2.4s var(--ease-out-quart) infinite; animation-delay: 1.52s; }
-  .hero-wave-bar:nth-child(40) { animation: heroWave2 2.4s var(--ease-out-quart) infinite; animation-delay: 1.56s; }
-  .hero-wave-bar:nth-child(41) { animation: heroWave6 2.4s var(--ease-out-quart) infinite; animation-delay: 1.60s; }
-  .hero-wave-bar:nth-child(42) { animation: heroWave11 2.4s var(--ease-out-quart) infinite; animation-delay: 1.64s; }
-  .hero-wave-bar:nth-child(43) { animation: heroWave16 2.4s var(--ease-out-quart) infinite; animation-delay: 1.68s; }
-  .hero-wave-bar:nth-child(44) { animation: heroWave19 2.4s var(--ease-out-quart) infinite; animation-delay: 1.72s; }
-  .hero-wave-bar:nth-child(45) { animation: heroWave12 2.4s var(--ease-out-quart) infinite; animation-delay: 1.76s; }
-  .hero-wave-bar:nth-child(46) { animation: heroWave8 2.4s var(--ease-out-quart) infinite; animation-delay: 1.80s; }
-  .hero-wave-bar:nth-child(47) { animation: heroWave5 2.4s var(--ease-out-quart) infinite; animation-delay: 1.84s; }
-  .hero-wave-bar:nth-child(48) { animation: heroWave10 2.4s var(--ease-out-quart) infinite; animation-delay: 1.88s; }
-  .hero-wave-bar:nth-child(49) { animation: heroWave14 2.4s var(--ease-out-quart) infinite; animation-delay: 1.92s; }
-  .hero-wave-bar:nth-child(50) { animation: heroWave9 2.4s var(--ease-out-quart) infinite; animation-delay: 1.96s; }
-  .hero-wave-bar:nth-child(51) { animation: heroWave6 2.4s var(--ease-out-quart) infinite; animation-delay: 2.00s; }
-  .hero-wave-bar:nth-child(52) { animation: heroWave11 2.4s var(--ease-out-quart) infinite; animation-delay: 2.04s; }
-  .hero-wave-bar:nth-child(53) { animation: heroWave7 2.4s var(--ease-out-quart) infinite; animation-delay: 2.08s; }
-  .hero-wave-bar:nth-child(54) { animation: heroWave4 2.4s var(--ease-out-quart) infinite; animation-delay: 2.12s; }
-  .hero-wave-bar:nth-child(55) { animation: heroWave3 2.4s var(--ease-out-quart) infinite; animation-delay: 2.16s; }
-  .hero-wave-bar:nth-child(56) { animation: heroWave2 2.4s var(--ease-out-quart) infinite; animation-delay: 2.20s; }
-  .hero-wave-bar:nth-child(57) { animation: heroWave1 2.4s var(--ease-out-quart) infinite; animation-delay: 2.24s; }
-  .hero-wave-bar:nth-child(58) { animation: heroWave1 2.4s var(--ease-out-quart) infinite; animation-delay: 2.28s; }
-  .hero-wave-bar:nth-child(59) { animation: heroWave1 2.4s var(--ease-out-quart) infinite; animation-delay: 2.32s; }
-  .hero-wave-bar:nth-child(60) { animation: heroWave1 2.4s var(--ease-out-quart) infinite; animation-delay: 2.36s; }
-
-  @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-  }
-
-  @keyframes fadeInUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  @media (max-width: 734px) {
-    .hero-title { font-size: 48px; }
-    .hero-subtitle { font-size: 18px; }
-    .hero-visual { min-height: 180px; }
-    .hero-wave-bar { gap: 3px; }
-  }
-
-  /* ════════════════════ MISSION (Apple gradient text) ════════════════════ */
-  .mission {
-    background: var(--apple-black);
-    color: var(--apple-white);
-    padding: 140px 22px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 70vh;
-  }
-
-  .mission-text {
-    max-width: 1140px;
-    text-align: center;
-    font-size: clamp(28px, 4.8vw, 68px);
-    font-weight: 500;
-    line-height: 1.16;
-    letter-spacing: -0.026em;
-    background: linear-gradient(
-      to right,
-      rgba(255,255,255,1) 0%,
-      rgba(255,255,255,1) var(--scroll, 0%),
-      rgba(255,255,255,0.16) var(--scroll, 0%),
-      rgba(255,255,255,0.16) 100%
-    );
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    transition: background 0.05s linear;
-  }
-
-  .mission-text em {
-    font-family: var(--font-serif);
-    font-style: italic;
-    font-weight: 400;
-    font-size: 1.08em;
-    letter-spacing: -0.02em;
-    padding: 0 0.06em;
-  }
-
-  /* ════════════════════ STAGE (제품 풀블리드) ════════════════════ */
-  .stage {
-    padding: 110px 22px 0;
-    text-align: center;
-    overflow: hidden;
-    position: relative;
-  }
-
-  .stage-light { background: var(--apple-white); color: var(--apple-black); }
-  .stage-dark {
-    background: linear-gradient(180deg, #1d1d1f 0%, #0a0a0c 100%);
-    color: var(--apple-white);
-  }
-
-  .stage-eyebrow {
-    font-size: 21px;
-    font-weight: 600;
-    line-height: 1.19048;
-    letter-spacing: 0.011em;
-    margin-bottom: 8px;
-  }
-
-  .stage-light .stage-eyebrow { color: var(--apple-gray-text); }
-  .stage-dark .stage-eyebrow { color: rgba(255,255,255,0.5); }
-
-  .stage-title {
-    font-size: clamp(44px, 6vw, 80px);
-    font-weight: 600;
-    line-height: 1.05;
-    letter-spacing: -0.024em;
-    margin-bottom: 6px;
-    max-width: 900px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .stage-title em {
-    font-family: var(--font-serif);
-    font-style: italic;
-    font-weight: 400;
-    letter-spacing: -0.015em;
-    padding: 0 0.04em;
-  }
-
-  .stage-subtitle {
-    font-size: clamp(21px, 2.4vw, 28px);
-    font-weight: 400;
-    line-height: 1.27;
-    letter-spacing: -0.012em;
-    margin: 18px auto 32px;
-    max-width: 700px;
-  }
-
-  .stage-light .stage-subtitle { color: var(--apple-gray-text); }
-  .stage-dark .stage-subtitle { color: rgba(255,255,255,0.72); }
-
-  .stage-links {
-    display: flex;
-    gap: 32px;
-    justify-content: center;
-    flex-wrap: wrap;
-    margin-bottom: 56px;
-  }
-
-  .stage-link {
-    color: var(--apple-blue);
-    text-decoration: none;
-    font-size: 21px;
-    font-weight: 400;
-    line-height: 1.38;
-    letter-spacing: 0.011em;
-    display: inline-flex;
-    align-items: center;
-    gap: 4px;
-  }
-
-  .stage-dark .stage-link { color: var(--apple-blue-bright); }
-  .stage-link:hover { text-decoration: underline; }
-  .stage-link::after {
-    content: "›";
-    font-size: 24px;
-    transition: transform 0.3s var(--ease-out-quart);
-  }
-  .stage-link:hover::after { transform: translateX(3px); }
-
-  /* ════════════════════ PRODUCT VISUAL (mockup 대체) ════════════════════ */
-  .product-visual {
-    height: 70vh;
-    min-height: 540px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    padding: 0 22px;
-  }
-
-  /* SpeakCoach 비주얼 · 큰 따옴표 + 음성 파형 */
-  .pv-speakcoach {
-    max-width: 900px;
-    width: 100%;
-    text-align: center;
-    position: relative;
-  }
-
-  .pv-quote-container {
-    position: relative;
-    padding: 60px 40px;
-  }
-
-  .pv-quote-mark-tl {
-    position: absolute;
-    top: -50px;
-    left: -30px;
-    font-size: clamp(140px, 28vw, 360px);
-    line-height: 0.7;
-    color: rgba(0,0,0,0.05);
-    font-family: var(--font-serif);
-    font-weight: 400;
-    pointer-events: none;
-    user-select: none;
-  }
-
-  .pv-quote-mark-br {
-    position: absolute;
-    bottom: -100px;
-    right: -30px;
-    font-size: clamp(140px, 28vw, 360px);
-    line-height: 0.7;
-    color: rgba(0,0,0,0.05);
-    font-family: var(--font-serif);
-    font-weight: 400;
-    pointer-events: none;
-    user-select: none;
-  }
-
-  .stage-dark .pv-quote-mark-tl,
-  .stage-dark .pv-quote-mark-br {
-    color: rgba(255,255,255,0.06);
-  }
-
-  .pv-quote-text {
-    font-size: clamp(36px, 5vw, 64px);
-    font-weight: 600;
-    line-height: 1.15;
-    letter-spacing: -0.028em;
-    margin-bottom: 24px;
-    position: relative;
-    z-index: 2;
-  }
-
-  .pv-quote-text-accent {
-    font-family: var(--font-serif);
-    font-style: italic;
-    font-weight: 400;
-    letter-spacing: -0.02em;
-    background: linear-gradient(135deg, #0066cc 0%, #2997ff 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    padding: 0 0.04em;
-  }
-
-  .pv-meta {
-    display: flex;
-    gap: 32px;
-    justify-content: center;
-    margin-bottom: 40px;
-    flex-wrap: wrap;
-    position: relative;
-    z-index: 2;
-  }
-
-  .pv-meta-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 4px;
-  }
-
-  .pv-meta-num {
-    font-size: 32px;
-    font-weight: 500;
-    letter-spacing: -0.03em;
-    line-height: 1;
-    color: var(--apple-blue);
-    font-feature-settings: "tnum";
-  }
-
-  .stage-dark .pv-meta-num { color: var(--apple-blue-bright); }
-
-  .pv-meta-label {
-    font-size: 11px;
-    font-weight: 600;
-    color: var(--apple-gray-text);
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-  }
-
-  .stage-dark .pv-meta-label { color: rgba(255,255,255,0.5); }
-
-  /* 직시(Jiksi) 비주얼 · 국회 감시 카드 */
-  .pv-jiksi { max-width: 680px; width: 100%; }
-  .pv-jiksi-card {
-    background: rgba(255,255,255,0.05);
-    border: 0.5px solid rgba(255,255,255,0.14);
-    border-radius: 28px;
-    padding: 48px 40px;
-    text-align: center;
-  }
-  .pv-jiksi-chip {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    font-family: var(--font-kr);
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 0.09em;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.62);
-    border: 0.5px solid rgba(255,255,255,0.2);
-    border-radius: 999px;
-    padding: 8px 15px;
-    margin-bottom: 30px;
-  }
-  .pv-jiksi-dot {
-    width: 7px; height: 7px; border-radius: 50%;
-    background: var(--apple-blue-bright);
-    animation: jiksiPulse 2s var(--ease-default) infinite;
-  }
-  @keyframes jiksiPulse {
-    0% { box-shadow: 0 0 0 0 rgba(41,151,255,0.55); }
-    70% { box-shadow: 0 0 0 9px rgba(41,151,255,0); }
-    100% { box-shadow: 0 0 0 0 rgba(41,151,255,0); }
-  }
-  .pv-jiksi-headline {
-    font-family: var(--font-serif);
-    font-style: italic;
-    font-weight: 400;
-    font-size: clamp(28px, 4vw, 48px);
-    line-height: 1.14;
-    letter-spacing: -0.02em;
-    color: #fff;
-    margin-bottom: 40px;
-  }
-  .launch-badge {
-    display: inline-block;
-    font-family: var(--font-kr);
-    font-size: 13px;
-    font-weight: 600;
-    letter-spacing: -0.005em;
-    color: var(--apple-blue-bright);
-    background: rgba(41,151,255,0.1);
-    border: 0.5px solid rgba(41,151,255,0.3);
-    border-radius: 999px;
-    padding: 8px 16px;
-    margin: 6px 0 26px;
-  }
-  .stage-note {
-    font-family: var(--font-kr);
-    font-size: 13px;
-    color: rgba(255,255,255,0.4);
-    margin-top: 14px;
-    letter-spacing: -0.005em;
-  }
-
-  /* 직시 섹션 여백·정렬 정리 (CTA 묶음 → 카드 간격) */
-  #jiksi .stage-subtitle { margin-bottom: 24px; }
-  #jiksi .stage-links { margin-bottom: 0; }
-  #jiksi .product-visual { height: auto; min-height: 0; padding: 48px 22px 8px; }
-
-  /* 큰 음성 파형 (제품 섹션용) */
-  .pv-waveform {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 5px;
-    height: 120px;
-    padding: 0 20px;
-    margin-top: 32px;
-    position: relative;
-    z-index: 2;
-  }
-
-  .pv-wave-bar {
-    flex: 1;
-    max-width: 6px;
-    background: linear-gradient(180deg,
-      rgba(41,151,255,0.4) 0%,
-      var(--apple-blue) 30%,
-      var(--apple-blue-bright) 50%,
-      var(--apple-blue) 70%,
-      rgba(41,151,255,0.4) 100%);
-    border-radius: 3px;
-    box-shadow: 0 0 12px rgba(41,151,255,0.3);
-    animation: pvWave 2.4s var(--ease-out-quart) infinite;
-    transform-origin: center;
-  }
-
-  @keyframes pvWave {
-    0%, 100% { transform: scaleY(0.15); opacity: 0.5; }
-    50% { transform: scaleY(1); opacity: 1; }
-  }
-
-  /* 40개 막대 */
-  .pv-wave-bar:nth-child(1)  { animation-delay: 0.00s; }
-  .pv-wave-bar:nth-child(2)  { animation-delay: 0.05s; }
-  .pv-wave-bar:nth-child(3)  { animation-delay: 0.10s; }
-  .pv-wave-bar:nth-child(4)  { animation-delay: 0.15s; }
-  .pv-wave-bar:nth-child(5)  { animation-delay: 0.20s; }
-  .pv-wave-bar:nth-child(6)  { animation-delay: 0.25s; }
-  .pv-wave-bar:nth-child(7)  { animation-delay: 0.30s; }
-  .pv-wave-bar:nth-child(8)  { animation-delay: 0.35s; }
-  .pv-wave-bar:nth-child(9)  { animation-delay: 0.40s; }
-  .pv-wave-bar:nth-child(10) { animation-delay: 0.45s; }
-  .pv-wave-bar:nth-child(11) { animation-delay: 0.50s; }
-  .pv-wave-bar:nth-child(12) { animation-delay: 0.55s; }
-  .pv-wave-bar:nth-child(13) { animation-delay: 0.60s; }
-  .pv-wave-bar:nth-child(14) { animation-delay: 0.65s; }
-  .pv-wave-bar:nth-child(15) { animation-delay: 0.70s; }
-  .pv-wave-bar:nth-child(16) { animation-delay: 0.75s; }
-  .pv-wave-bar:nth-child(17) { animation-delay: 0.80s; }
-  .pv-wave-bar:nth-child(18) { animation-delay: 0.85s; }
-  .pv-wave-bar:nth-child(19) { animation-delay: 0.90s; }
-  .pv-wave-bar:nth-child(20) { animation-delay: 0.95s; }
-  .pv-wave-bar:nth-child(21) { animation-delay: 1.00s; }
-  .pv-wave-bar:nth-child(22) { animation-delay: 1.05s; }
-  .pv-wave-bar:nth-child(23) { animation-delay: 1.10s; }
-  .pv-wave-bar:nth-child(24) { animation-delay: 1.15s; }
-  .pv-wave-bar:nth-child(25) { animation-delay: 1.20s; }
-  .pv-wave-bar:nth-child(26) { animation-delay: 1.25s; }
-  .pv-wave-bar:nth-child(27) { animation-delay: 1.30s; }
-  .pv-wave-bar:nth-child(28) { animation-delay: 1.35s; }
-  .pv-wave-bar:nth-child(29) { animation-delay: 1.40s; }
-  .pv-wave-bar:nth-child(30) { animation-delay: 1.45s; }
-  .pv-wave-bar:nth-child(31) { animation-delay: 1.50s; }
-  .pv-wave-bar:nth-child(32) { animation-delay: 1.55s; }
-  .pv-wave-bar:nth-child(33) { animation-delay: 1.60s; }
-  .pv-wave-bar:nth-child(34) { animation-delay: 1.65s; }
-  .pv-wave-bar:nth-child(35) { animation-delay: 1.70s; }
-  .pv-wave-bar:nth-child(36) { animation-delay: 1.75s; }
-  .pv-wave-bar:nth-child(37) { animation-delay: 1.80s; }
-  .pv-wave-bar:nth-child(38) { animation-delay: 1.85s; }
-  .pv-wave-bar:nth-child(39) { animation-delay: 1.90s; }
-  .pv-wave-bar:nth-child(40) { animation-delay: 1.95s; }
-
-  /* TopikIQ 비주얼 · 거대 한국어 + 자모 분해 시각화 */
-  .pv-topikiq {
-    max-width: 1100px;
-    width: 100%;
-    text-align: center;
-    position: relative;
-  }
-
-  .pv-hangul-main {
-    font-family: var(--font-kr);
-    font-size: clamp(84px, 22vw, 320px);
-    font-weight: 700;
-    line-height: 1;
-    letter-spacing: -0.04em;
-    background: linear-gradient(180deg, #ffffff 0%, #5e5e63 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    margin-bottom: 56px;
-  }
-
-  /* 자모 분해 라인 · 한국어의 본질 */
-  .pv-jamo-line {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: clamp(12px, 2vw, 24px);
-    flex-wrap: wrap;
-    color: rgba(255,255,255,0.5);
-    font-size: clamp(14px, 1.2vw, 16px);
-    letter-spacing: -0.005em;
-  }
-
-  .pv-jamo-piece {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-  }
-
-  .pv-jamo-char {
-    font-family: var(--font-kr);
-    font-size: clamp(28px, 3vw, 40px);
-    font-weight: 500;
-    color: rgba(255,255,255,0.95);
-    letter-spacing: 0;
-    line-height: 1;
-  }
-
-  .pv-jamo-char.accent {
-    background: linear-gradient(135deg, #2997ff 0%, #5e9eff 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-
-  .pv-jamo-label {
-    font-size: 11px;
-    color: rgba(255,255,255,0.4);
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-  }
-
-  .pv-jamo-divider {
-    color: rgba(255,255,255,0.2);
-    font-weight: 300;
-  }
-
-  @media (max-width: 734px) {
-    .stage { padding: 70px 22px 0; }
-    .stage-title { font-size: 40px; }
-    .stage-subtitle { font-size: 19px; }
-    .stage-eyebrow, .stage-link { font-size: 17px; }
-    .product-visual { min-height: 420px; }
-    .pv-quote-text { font-size: 32px; }
-  }
-
-  /* ════════════════════ STATS ════════════════════ */
-  .stats-band {
-    background: var(--apple-gray-bg);
-    padding: 110px 22px;
-    border-top: 0.5px solid var(--apple-gray-line);
-    text-align: center;
-  }
-
-  .stats-eyebrow {
-    font-size: 21px;
-    font-weight: 600;
-    color: var(--apple-gray-text);
-    margin-bottom: 8px;
-    letter-spacing: 0.011em;
-  }
-
-  .stats-title {
-    font-size: clamp(32px, 4.5vw, 48px);
-    font-weight: 600;
-    line-height: 1.08;
-    letter-spacing: -0.022em;
-    margin-bottom: 64px;
-    max-width: 800px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .stats-title em {
-    font-family: var(--font-serif);
-    font-style: italic;
-    font-weight: 400;
-    color: var(--apple-gray-text-light);
-    letter-spacing: -0.015em;
-  }
-
-  .stats-grid {
-    max-width: 1100px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 24px;
-  }
-
-  @media (max-width: 734px) {
-    .stats-grid { grid-template-columns: 1fr 1fr; gap: 32px 16px; }
-  }
-
-  .stat {
-    text-align: center;
-    padding: 0 16px;
-    position: relative;
-  }
-
-  .stat:not(:last-child)::after {
-    content: "";
-    position: absolute;
-    right: -12px;
-    top: 25%;
-    bottom: 25%;
-    width: 0.5px;
-    background: var(--apple-gray-line);
-  }
-
-  @media (max-width: 734px) {
-    .stat:nth-child(2)::after { display: none; }
-  }
-
-  .stat-num {
-    font-size: clamp(56px, 6vw, 80px);
-    font-weight: 500;
-    letter-spacing: -0.04em;
-    line-height: 1;
-    margin-bottom: 14px;
-    color: var(--apple-black);
-    font-feature-settings: "tnum";
-  }
-
-  .stat-num em {
-    font-family: var(--font-serif);
-    font-style: italic;
-    font-weight: 400;
-    font-size: 0.55em;
-    color: var(--apple-gray-text);
-    margin-left: 4px;
-  }
-
-  .stat-label {
-    font-size: 15px;
-    font-weight: 600;
-    color: var(--apple-black);
-    margin-bottom: 4px;
-    letter-spacing: -0.01em;
-  }
-
-  .stat-context {
-    font-size: 13px;
-    color: var(--apple-gray-text);
-    line-height: 1.4;
-    letter-spacing: -0.005em;
-  }
-
-  /* ════════════════════ WHY VERBIO ════════════════════ */
-  .why {
-    background: var(--apple-gray-bg);
-    padding: 120px 22px 100px;
-    text-align: center;
-  }
-
-  .why-eyebrow {
-    font-size: 21px;
-    font-weight: 600;
-    color: var(--apple-gray-text);
-    margin-bottom: 8px;
-    letter-spacing: 0.011em;
-  }
-
-  .why-title {
-    font-size: clamp(36px, 5.5vw, 72px);
-    font-weight: 600;
-    line-height: 1.07;
-    letter-spacing: -0.024em;
-    max-width: 900px;
-    margin: 0 auto 72px;
-  }
-
-  .why-title strong { color: var(--apple-black); font-weight: 600; }
-
-  .why-title-soft {
-    color: var(--apple-gray-text-light);
-    font-weight: 600;
-  }
-
-  .why-title em {
-    font-family: var(--font-serif);
-    font-style: italic;
-    font-weight: 400;
-    color: var(--apple-gray-text-light);
-    letter-spacing: -0.015em;
-  }
-
-  .why-grid {
-    max-width: 1024px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 12px;
-  }
-
-  @media (max-width: 734px) {
-    .why-grid { grid-template-columns: 1fr; }
-  }
-
-  .why-item {
-    text-align: left;
-    padding: 36px 32px;
-    background: var(--apple-white);
-    border-radius: 22px;
-    transition: all 0.4s var(--ease-out-quart);
-    position: relative;
-    overflow: hidden;
-    cursor: default;
-  }
-
-  .why-item::before {
-    content: "";
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: radial-gradient(circle at 30% 30%, rgba(41,151,255,0.08), transparent 50%);
-    opacity: 0;
-    transition: opacity 0.4s var(--ease-out-quart);
-  }
-
-  .why-item:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.06);
-  }
-
-  .why-item:hover::before { opacity: 1; }
-
-  .why-item-icon {
-    width: 44px;
-    height: 44px;
-    border-radius: 12px;
-    background: linear-gradient(135deg, #1d1d1f, #2c2c2e);
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 24px;
-    position: relative;
-    z-index: 1;
-  }
-
-  .why-item-icon svg { width: 22px; height: 22px; }
-
-  .why-item-title {
-    font-size: 22px;
-    font-weight: 600;
-    line-height: 1.18;
-    margin-bottom: 10px;
-    letter-spacing: -0.012em;
-    position: relative;
-    z-index: 1;
-  }
-
-  .why-item-desc {
-    font-size: 14px;
-    line-height: 1.5;
-    color: var(--apple-gray-text);
-    letter-spacing: -0.005em;
-    position: relative;
-    z-index: 1;
-  }
-
-  /* ════════════════════ TILE GRID ════════════════════ */
-  .tile-grid-section {
-    background: var(--apple-gray-bg);
-    padding: 12px 0;
-  }
-
-  .tile-grid-header {
-    text-align: center;
-    padding: 100px 22px 16px;
-  }
-
-  .tile-grid-eyebrow {
-    font-size: 21px;
-    font-weight: 600;
-    line-height: 1.19;
-    letter-spacing: 0.011em;
-    margin-bottom: 8px;
-  }
-
-  .tile-grid-title {
-    font-size: clamp(32px, 5vw, 56px);
-    font-weight: 600;
-    line-height: 1.07;
-    letter-spacing: -0.018em;
-    max-width: 900px;
-    margin: 0 auto;
-  }
-
-  .tile-grid-title em,
-  .tile-grid-title .title-soft {
-    color: var(--apple-gray-text-light);
-    font-weight: 600;
-    font-style: normal;
-    font-family: var(--font-sans);
-    letter-spacing: -0.018em;
-  }
-
-  .tile-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
-    max-width: 1440px;
-    margin: 0 auto;
-    padding: 0 12px;
-  }
-
-  @media (max-width: 734px) {
-    .tile-grid { grid-template-columns: 1fr; padding: 0 8px; }
-  }
-
-  .tile {
-    background: var(--apple-white);
-    border-radius: 22px;
-    padding: 56px 40px 44px;
-    text-align: center;
-    overflow: hidden;
-    position: relative;
-    min-height: 580px;
-    display: flex;
-    flex-direction: column;
-    transition: transform 0.5s var(--ease-out-quart);
-    cursor: default;
-  }
-
-  .tile:hover { transform: translateY(-4px); }
-
-  .tile-dark {
-    background: linear-gradient(160deg, #1d1d1f 0%, #2c2c2e 50%, #1a1a1c 100%);
-    color: var(--apple-white);
-  }
-
-  .tile-eyebrow {
-    font-size: 14px;
-    font-weight: 600;
-    margin-bottom: 6px;
-    opacity: 0.7;
-  }
-
-  .tile-title {
-    font-size: clamp(32px, 4vw, 44px);
-    font-weight: 600;
-    line-height: 1.08;
-    letter-spacing: -0.022em;
-    margin-bottom: 6px;
-  }
-
-  .tile-subtitle {
-    font-size: 19px;
-    font-weight: 400;
-    line-height: 1.21;
-    letter-spacing: 0.012em;
-    margin-bottom: 18px;
-    max-width: 480px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .tile-dark .tile-subtitle { color: rgba(255,255,255,0.85); }
-
-  .tile-links {
-    display: flex;
-    gap: 24px;
-    justify-content: center;
-    flex-wrap: wrap;
-  }
-
-  .tile-link {
-    color: var(--apple-blue);
-    text-decoration: none;
-    font-size: 17px;
-  }
-
-  .tile-dark .tile-link { color: var(--apple-blue-bright); }
-  .tile-link:hover { text-decoration: underline; }
-  .tile-link::after { content: " ›"; }
-
-  /* ════════════════════ APP STORE BADGE ════════════════════ */
-  .app-store-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    padding: 12px 22px 12px 18px;
-    background: white;
-    color: var(--apple-black);
-    border-radius: 999px;
-    font-family: var(--font-sans);
-    font-size: 15px;
-    font-weight: 500;
-    letter-spacing: -0.01em;
-    text-decoration: none;
-    transition: transform 0.3s var(--ease-out-quart), background 0.3s ease;
-  }
-  .app-store-badge:hover {
-    transform: translateY(-1px);
-    background: rgba(255,255,255,0.92);
-  }
-  .app-store-badge svg { width: 18px; height: 18px; }
-  .app-store-badge-text { display: flex; flex-direction: column; line-height: 1.05; }
-  .app-store-badge-eyebrow {
-    font-size: 10px;
-    font-weight: 400;
-    letter-spacing: 0.04em;
-    color: var(--apple-gray-text-light);
-    margin-bottom: 1px;
-  }
-
-  .tile-link.is-soon,
-  .footer-col a.is-soon {
-    color: var(--apple-gray-text-light);
-    pointer-events: none;
-    cursor: default;
-  }
-  .tile-link.is-soon::after,
-  .footer-col a.is-soon::after { content: " · Coming soon"; font-size: 0.85em; opacity: 0.7; }
-  .footer-col a.is-soon { display: inline-flex; align-items: baseline; gap: 0; }
-
-  .tile-visual {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 32px;
-    position: relative;
-  }
-
-  .tv-samsung-wrap {
-    text-align: center;
-    position: relative;
-  }
-
-  .tv-samsung-num {
-    font-size: clamp(120px, 18vw, 220px);
-    font-weight: 500;
-    line-height: 1;
-    letter-spacing: -0.05em;
-    background: linear-gradient(180deg, #ffffff 0%, #6e6e73 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    display: inline-flex;
-    align-items: baseline;
-    position: relative;
-    font-feature-settings: "tnum";
-  }
-
-  .tv-samsung-num .plus {
-    font-family: var(--font-serif);
-    font-style: italic;
-    font-weight: 400;
-    font-size: 0.45em;
-    margin-left: 6px;
-    background: linear-gradient(180deg, #2997ff 0%, #0066cc 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-
-  .tv-samsung-label {
-    font-size: 13px;
-    color: rgba(255,255,255,0.5);
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-    margin-top: 8px;
-  }
-
-  .tv-samsung-detail {
-    margin-top: 18px;
-    display: flex;
-    gap: 8px;
-    justify-content: center;
-  }
-
-  .tv-samsung-tag {
-    font-size: 10px;
-    font-weight: 600;
-    padding: 4px 10px;
-    background: rgba(255,255,255,0.06);
-    border: 0.5px solid rgba(255,255,255,0.1);
-    border-radius: 999px;
-    color: rgba(255,255,255,0.7);
-    letter-spacing: 0.02em;
-  }
-
-  .tv-uni {
-    width: 100%;
-    max-width: 320px;
-    padding: 24px;
-    text-align: left;
-    position: relative;
-  }
-
-  .tv-uni-quote {
-    font-size: clamp(20px, 2vw, 24px);
-    font-weight: 600;
-    line-height: 1.35;
-    letter-spacing: -0.018em;
-    color: var(--apple-black);
-    margin-bottom: 16px;
-    position: relative;
-  }
-
-  .tv-uni-quote::before {
-    content: "\201C";
-    position: absolute;
-    left: -8px;
-    top: -12px;
-    font-size: 80px;
-    line-height: 1;
-    color: rgba(0,0,0,0.12);
-    font-family: var(--font-serif);
-    font-weight: 400;
-  }
-
-  .tv-uni-attr {
-    font-size: 12px;
-    color: var(--apple-gray-text);
-    letter-spacing: -0.005em;
-    font-weight: 500;
-  }
-
-  .tv-skills {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 8px;
-    width: 220px;
-  }
-
-  .tv-skill {
-    aspect-ratio: 1;
-    background: rgba(0,0,0,0.04);
-    border: 0.5px solid rgba(0,0,0,0.06);
-    border-radius: 14px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 13px;
-    font-weight: 700;
-    color: var(--apple-gray-text);
-    letter-spacing: -0.01em;
-    transition: all 0.4s var(--ease-out-quart);
-  }
-
-  .tv-skill.active {
-    background: linear-gradient(135deg, #1d1d1f, #2c2c2e);
-    color: var(--apple-white);
-    border-color: var(--apple-black);
-    transform: scale(1.05);
-    box-shadow: 0 6px 16px rgba(0,0,0,0.2);
-  }
-
-  .tile:hover .tv-skill.active { transform: scale(1.08); }
-
-  .tv-network {
-    width: 220px;
-    height: 220px;
-    border-radius: 32px;
-    background: linear-gradient(135deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
-    border: 0.5px solid rgba(255,255,255,0.08);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .tv-network::before {
-    content: "";
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: radial-gradient(circle, rgba(41,151,255,0.1), transparent 50%);
-    animation: rotateBg 20s linear infinite;
-  }
-
-  @keyframes rotateBg {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
-  }
-
-  .tv-network svg {
-    width: 140px;
-    height: 140px;
-    position: relative;
-    z-index: 1;
-  }
-
-  /* ════════════════════ COMMUNITY ════════════════════ */
-  .community-visual {
-    height: 60vh;
-    min-height: 380px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-  }
-
-  /* ════════════════════ CARTEL MANIFESTO (expandable) ════════════════════ */
-  .manifesto-wrap {
-    max-width: 720px;
-    margin: 0 auto;
-    padding: 0 22px;
-    max-height: 0;
-    opacity: 0;
-    overflow: hidden;
-    transition: max-height 1s var(--ease-out-quart),
-                opacity 0.7s ease,
-                margin-top 0.7s ease;
-  }
-
-  .manifesto-wrap.open {
-    max-height: 2400px;
-    opacity: 1;
-    margin-top: 24px;
-  }
-
-  .manifesto-inner {
-    border-top: 1px solid rgba(255,255,255,0.1);
-    padding: 80px 0 24px;
-    text-align: left;
-  }
-
-  .manifesto-eyebrow {
-    font-family: var(--font-sans);
-    font-size: 12px;
-    font-weight: 500;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.42);
-    margin-bottom: 18px;
-  }
-
-  .manifesto-title {
-    font-family: var(--font-serif);
-    font-style: italic;
-    font-size: clamp(40px, 5.4vw, 60px);
-    font-weight: 400;
-    letter-spacing: -0.02em;
-    color: white;
-    margin-bottom: 12px;
-    line-height: 1.05;
-  }
-
-  .manifesto-lead {
-    font-family: var(--font-kr);
-    font-size: 19px;
-    color: rgba(255,255,255,0.7);
-    margin-bottom: 56px;
-    font-weight: 500;
-    letter-spacing: -0.008em;
-    line-height: 1.5;
-  }
-
-  .manifesto-intro {
-    font-family: var(--font-kr);
-    font-size: 17px;
-    line-height: 1.78;
-    color: rgba(255,255,255,0.82);
-    margin-bottom: 64px;
-    letter-spacing: -0.005em;
-  }
-
-  .manifesto-pillars {
-    display: grid;
-    gap: 56px;
-    margin-bottom: 64px;
-  }
-
-  .pillar-label {
-    font-family: var(--font-kr);
-    font-size: 13px;
-    font-weight: 600;
-    letter-spacing: 0.06em;
-    color: rgba(255,255,255,0.48);
-    margin-bottom: 14px;
-    text-transform: none;
-  }
-
-  .pillar-text {
-    font-family: var(--font-kr);
-    font-size: 17px;
-    line-height: 1.78;
-    color: white;
-    letter-spacing: -0.005em;
-  }
-
-  .pillar-text em {
-    font-family: var(--font-serif);
-    font-style: italic;
-    font-weight: 400;
-    color: white;
-    background: linear-gradient(135deg, #fff 0%, #d8e7ff 50%, #5e9eff 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    padding: 0 0.04em;
-  }
-
-  .manifesto-cta {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 14px 28px;
-    background: white;
-    color: var(--apple-black);
-    border-radius: 999px;
-    font-family: var(--font-sans);
-    font-size: 15px;
-    font-weight: 500;
-    text-decoration: none;
-    letter-spacing: -0.01em;
-    transition: transform 0.3s var(--ease-out-quart), background 0.3s ease;
-  }
-
-  .manifesto-cta:hover {
-    transform: translateY(-1px);
-    background: rgba(255,255,255,0.92);
-  }
-
-  .manifesto-cta-arrow {
-    font-size: 18px;
-    line-height: 1;
-    transition: transform 0.3s var(--ease-out-quart);
-  }
-
-  .manifesto-cta:hover .manifesto-cta-arrow { transform: translateX(3px); }
-
-  @media (max-width: 600px) {
-    .manifesto-inner { padding: 56px 0 16px; }
-    .manifesto-lead { font-size: 17px; margin-bottom: 40px; }
-    .manifesto-intro { font-size: 16px; margin-bottom: 48px; }
-    .manifesto-pillars { gap: 40px; margin-bottom: 48px; }
-    .pillar-text { font-size: 16px; }
-  }
-
-  .community-bigtype {
-    font-size: clamp(120px, 22vw, 320px);
-    font-weight: 400;
-    font-family: var(--font-serif);
-    font-style: italic;
-    letter-spacing: -0.04em;
-    line-height: 0.9;
-    background: linear-gradient(180deg, #ffffff 0%, #6e6e73 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-
-  /* ════════════════════ COURSES ════════════════════ */
-  .courses {
-    background: var(--apple-white);
-    padding: 110px 22px 90px;
-  }
-
-  .courses-inner {
-    max-width: 1024px;
-    margin: 0 auto;
-  }
-
-  .courses-eyebrow {
-    font-size: 21px;
-    font-weight: 600;
-    color: var(--apple-gray-text);
-    margin-bottom: 8px;
-    letter-spacing: 0.011em;
-    text-align: center;
-  }
-
-  .courses-title {
-    font-size: clamp(36px, 5vw, 56px);
-    font-weight: 600;
-    color: var(--apple-black);
-    margin: 0 auto 56px;
-    line-height: 1.07;
-    letter-spacing: -0.022em;
-    max-width: 800px;
-    text-align: center;
-  }
-
-  .courses-title em,
-  .courses-title .title-soft {
-    color: var(--apple-gray-text-light);
-    font-weight: 600;
-    font-style: normal;
-    font-family: var(--font-sans);
-    letter-spacing: -0.022em;
-  }
-
-  /* ── Segmented control (Apple-style toggle) ── */
-  .path-segmented {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 48px;
-  }
-
-  .path-segmented-inner {
-    display: inline-flex;
-    background: rgba(0,0,0,0.05);
-    border-radius: 980px;
-    padding: 4px;
-    gap: 2px;
-  }
-
-  .path-tab {
-    appearance: none;
-    border: none;
-    background: transparent;
-    font-family: inherit;
-    font-size: 14px;
-    font-weight: 500;
-    color: var(--apple-gray-text);
-    padding: 10px 26px;
-    border-radius: 980px;
-    cursor: pointer;
-    letter-spacing: -0.005em;
-    transition: all 0.3s var(--ease-out-quart);
-    white-space: nowrap;
-  }
-
-  .path-tab:hover { color: var(--apple-black); }
-
-  .path-tab.is-active {
-    background: var(--apple-white);
-    color: var(--apple-black);
-    box-shadow: 0 1px 3px rgba(0,0,0,0.08), 0 0 0 0.5px rgba(0,0,0,0.04);
-    font-weight: 600;
-  }
-
-  .path-panel { display: block; }
-  .path-panel.is-hidden { display: none; }
-
-  /* ── Level cards (Individuals) ── */
-  .level-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: grid;
-    gap: 12px;
-  }
-
-  .level-card {
-    background: var(--apple-gray-bg);
-    border-radius: 22px;
-    padding: 28px 32px;
-    display: grid;
-    grid-template-columns: 84px 1fr;
-    gap: 24px;
-    align-items: start;
-    position: relative;
-    overflow: hidden;
-    transition: all 0.3s var(--ease-out-quart);
-  }
-
-  .level-card::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 4px;
-    height: 100%;
-    background: linear-gradient(180deg, #2997ff, #5e9eff);
-    opacity: 0;
-    transition: opacity 0.3s var(--ease-out-quart);
-  }
-
-  .level-card:hover {
-    background: white;
-    box-shadow: 0 12px 32px rgba(0,0,0,0.06), 0 0 0 0.5px var(--apple-gray-line);
-    transform: translateX(3px);
-  }
-
-  .level-card:hover::before { opacity: 1; }
-  .level-card[data-href] { cursor: pointer; }
-
-  .level-num {
-    font-size: 56px;
-    font-weight: 700;
-    color: var(--apple-gray-text-light);
-    letter-spacing: -0.03em;
-    line-height: 0.9;
-    font-feature-settings: "tnum";
-  }
-
-  .level-body { min-width: 0; }
-
-  .level-status {
-    display: inline-block;
-    font-size: 11px;
-    font-weight: 700;
-    color: var(--apple-gray-text);
-    margin-bottom: 12px;
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    padding: 4px 10px;
-    background: rgba(0,0,0,0.05);
-    border-radius: 6px;
-  }
-
-  .level-status.production {
-    background: var(--apple-black);
-    color: var(--apple-white);
-  }
-
-  .level-title {
-    font-size: 22px;
-    font-weight: 600;
-    line-height: 1.2;
-    letter-spacing: -0.012em;
-    margin: 0 0 8px;
-    color: var(--apple-black);
-  }
-
-  .level-desc {
-    font-size: 14px;
-    line-height: 1.5;
-    color: var(--apple-gray-text);
-    margin: 0 0 20px;
-    letter-spacing: -0.005em;
-  }
-
-  .level-meta {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-top: 16px;
-    border-top: 0.5px solid var(--apple-gray-line);
-    gap: 16px;
-    flex-wrap: wrap;
-  }
-
-  .level-meta-left {
-    display: flex;
-    align-items: baseline;
-    gap: 14px;
-    flex-wrap: wrap;
-  }
-
-  .level-duration {
-    font-size: 12px;
-    color: var(--apple-gray-text-light);
-    font-feature-settings: "tnum";
-  }
-
-  .level-price {
-    font-size: 15px;
-    font-weight: 600;
-    color: var(--apple-black);
-    font-feature-settings: "tnum";
-    letter-spacing: -0.01em;
-  }
-
-  .level-link {
-    color: var(--apple-blue);
-    text-decoration: none;
-    font-size: 13px;
-    font-weight: 500;
-    position: relative; z-index: 2;
-  }
-
-  .level-link::after { content: " ›"; }
-  .level-link:hover { text-decoration: underline; }
-
-  /* ── View Course button (cards with detail page) ── */
-  .btn-view-course {
-    display: inline-block;
-    background: var(--apple-black);
-    color: var(--apple-white);
-    text-decoration: none;
-    padding: 9px 18px;
-    border-radius: 980px;
-    font-size: 13px;
-    font-weight: 500;
-    letter-spacing: -0.005em;
-    position: relative; z-index: 2;
-    transition: transform 0.25s var(--ease-out-quart);
-    white-space: nowrap;
-  }
-  .btn-view-course::after { content: " ›"; }
-  .btn-view-course:hover { transform: scale(1.04); }
-
-  @media (max-width: 734px) {
-    .btn-view-course {
-      display: block;
-      width: 100%;
-      text-align: center;
-      padding: 13px 20px;
-      font-size: 14px;
-      margin-top: 4px;
-    }
-  }
-
-  /* ── Recommended pills (Start Here / Bestseller) ── */
-  .level-pill {
-    display: inline-block;
-    margin-left: 6px;
-    font-size: 11px;
-    font-weight: 700;
-    padding: 4px 10px;
-    border-radius: 6px;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    vertical-align: middle;
-  }
-
-  .level-pill.pill-start {
-    background: var(--apple-blue);
-    color: var(--apple-white);
-  }
-
-  .level-pill.pill-bestseller {
-    background: linear-gradient(135deg, #ff8c42, #ff6b35);
-    color: var(--apple-white);
-  }
-
-  /* ── Card toggle (expand details) ── */
-  .card-toggle {
-    appearance: none;
-    background: transparent;
-    border: none;
-    color: var(--apple-gray-text-light);
-    font-size: 12px;
-    font-weight: 500;
-    cursor: pointer;
-    font-family: inherit;
-    padding: 8px 0 0;
-    margin-top: 14px;
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    letter-spacing: -0.005em;
-    transition: color 0.2s var(--ease-out-quart);
-  }
-
-  .card-toggle:hover { color: var(--apple-blue); }
-  .card-toggle { position: relative; z-index: 2; }
-
-  .toggle-icon {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 14px;
-    height: 14px;
-    font-size: 14px;
-    font-weight: 600;
-    line-height: 1;
-    transition: transform 0.3s var(--ease-out-quart);
-  }
-
-  .card-toggle[aria-expanded="true"] .toggle-icon {
-    transform: rotate(45deg);
-  }
-
-  .card-toggle[aria-expanded="true"] .toggle-label::before { content: "Hide details"; }
-  .card-toggle[aria-expanded="false"] .toggle-label::before { content: "Show details"; }
-
-  /* ── Detail footer (For Whom / Level / Curriculum / You'll Get) ── */
-  .level-details, .track-details {
-    max-height: 0;
-    overflow: hidden;
-    opacity: 0;
-    margin-top: 0;
-    padding-top: 0;
-    border-top: 0 solid var(--apple-gray-line);
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 22px 36px;
-    transition: max-height 0.45s var(--ease-out-quart),
-                opacity 0.3s var(--ease-out-quart),
-                margin-top 0.3s var(--ease-out-quart),
-                padding-top 0.3s var(--ease-out-quart);
-  }
-
-  .level-card.is-expanded .level-details,
-  .track-card.is-expanded .track-details {
-    max-height: 1400px;
-    opacity: 1;
-    margin-top: 22px;
-    padding-top: 22px;
-    border-top-width: 0.5px;
-  }
-
-  .detail-block { min-width: 0; }
-
-  .detail-label {
-    font-size: 10px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.09em;
-    color: var(--apple-gray-text-light);
-    margin-bottom: 8px;
-  }
-
-  .detail-content {
-    font-size: 13px;
-    color: var(--apple-gray-text);
-    line-height: 1.55;
-    letter-spacing: -0.003em;
-  }
-
-  .detail-list {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    font-size: 13px;
-    color: var(--apple-gray-text);
-    line-height: 1.6;
-    letter-spacing: -0.003em;
-  }
-
-  .detail-list li {
-    position: relative;
-    padding-left: 16px;
-    margin-bottom: 3px;
-  }
-
-  .detail-list li::before {
-    content: "·";
-    position: absolute;
-    left: 6px;
-    color: var(--apple-gray-text-light);
-    font-weight: 700;
-  }
-
-  .detail-list.numbered { counter-reset: step; }
-  .detail-list.numbered li {
-    padding-left: 22px;
-  }
-  .detail-list.numbered li::before {
-    content: counter(step) ".";
-    counter-increment: step;
-    font-size: 11px;
-    font-feature-settings: "tnum";
-    left: 0;
-    font-weight: 600;
-    color: var(--apple-gray-text-light);
-  }
-
-  .level-dots {
-    display: inline-flex;
-    gap: 3px;
-    vertical-align: middle;
-    margin-right: 8px;
-  }
-
-  .level-dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: rgba(0,0,0,0.15);
-  }
-
-  .level-dot.on { background: var(--apple-black); }
-
-  .level-tag {
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--apple-black);
-    letter-spacing: -0.005em;
-    vertical-align: middle;
-  }
-
-  @media (max-width: 734px) {
-    .level-card {
-      grid-template-columns: 1fr;
-      padding: 24px 22px;
-      gap: 4px;
-    }
-    .level-num {
-      font-size: 40px;
-      margin-bottom: 8px;
-    }
-    .level-details, .track-details {
-      grid-template-columns: 1fr;
-      gap: 18px;
-    }
-  }
-
-  /* ── Bundle CTA (dark hero card) ── */
-  .path-bundle {
-    margin-top: 32px;
-    background: var(--apple-black);
-    color: var(--apple-white);
-    border-radius: 22px;
-    padding: 40px 44px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 32px;
-    flex-wrap: wrap;
-  }
-
-  .bundle-text { flex: 1; min-width: 240px; }
-
-  .bundle-eyebrow {
-    font-size: 11px;
-    font-weight: 700;
-    color: var(--apple-gray-text-light);
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    margin-bottom: 10px;
-  }
-
-  .bundle-title {
-    font-size: clamp(24px, 3vw, 30px);
-    font-weight: 600;
-    letter-spacing: -0.018em;
-    margin: 0 0 8px;
-    color: var(--apple-white);
-    line-height: 1.2;
-  }
-
-  .bundle-desc {
-    font-size: 14px;
-    color: rgba(255,255,255,0.65);
-    margin: 0;
-    letter-spacing: -0.005em;
-  }
-
-  .bundle-action {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    gap: 14px;
-  }
-
-  .bundle-price {
-    display: flex;
-    align-items: baseline;
-    gap: 10px;
-    font-feature-settings: "tnum";
-  }
-
-  .bundle-price-strike {
-    font-size: 14px;
-    color: rgba(255,255,255,0.45);
-    text-decoration: line-through;
-  }
-
-  .bundle-price-new {
-    font-size: 28px;
-    font-weight: 600;
-    color: var(--apple-white);
-    letter-spacing: -0.018em;
-  }
-
-  .bundle-link {
-    background: var(--apple-blue);
-    color: var(--apple-white);
-    text-decoration: none;
-    padding: 12px 24px;
-    border-radius: 980px;
-    font-size: 14px;
-    font-weight: 500;
-    transition: transform 0.25s var(--ease-out-quart);
-    white-space: nowrap;
-  }
-
-  .bundle-link:hover { transform: scale(1.04); }
-
-  @media (max-width: 734px) {
-    .path-bundle {
-      flex-direction: column;
-      align-items: flex-start;
-      padding: 28px 24px;
-    }
-    .bundle-action { align-items: flex-start; width: 100%; }
-  }
-
-  /* ── Track cards (Organizations) ── */
-  .track-row {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 16px;
-  }
-
-  @media (max-width: 980px) {
-    .track-row { grid-template-columns: 1fr; }
-  }
-
-  .track-card {
-    background: var(--apple-gray-bg);
-    border-radius: 22px;
-    padding: 36px 32px 32px;
-    position: relative;
-    overflow: hidden;
-    transition: all 0.3s var(--ease-out-quart);
-    display: flex;
-    flex-direction: column;
-  }
-
-  .track-card::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 4px;
-    background: linear-gradient(90deg, #2997ff, #5e9eff);
-    opacity: 0;
-    transition: opacity 0.3s var(--ease-out-quart);
-  }
-
-  .track-card:hover {
-    background: white;
-    box-shadow: 0 16px 40px rgba(0,0,0,0.06), 0 0 0 0.5px var(--apple-gray-line);
-    transform: translateY(-4px);
-  }
-
-  .track-card:hover::before { opacity: 1; }
-  .track-card[data-href] { cursor: pointer; }
-
-  .track-num {
-    display: inline-block;
-    font-size: 11px;
-    font-weight: 700;
-    color: var(--apple-gray-text);
-    margin-bottom: 16px;
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    padding: 4px 10px;
-    background: rgba(0,0,0,0.05);
-    border-radius: 6px;
-    align-self: flex-start;
-  }
-
-  .track-title {
-    font-size: 22px;
-    font-weight: 600;
-    line-height: 1.2;
-    letter-spacing: -0.012em;
-    margin: 0 0 10px;
-    color: var(--apple-black);
-  }
-
-  .track-desc {
-    font-size: 14px;
-    line-height: 1.5;
-    color: var(--apple-gray-text);
-    margin: 0 0 24px;
-    flex: 1;
-    letter-spacing: -0.005em;
-  }
-
-  .track-meta {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-top: 16px;
-    border-top: 0.5px solid var(--apple-gray-line);
-    gap: 12px;
-  }
-
-  .track-price {
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--apple-black);
-    font-feature-settings: "tnum";
-    letter-spacing: -0.005em;
-  }
-
-  .track-link {
-    color: var(--apple-blue);
-    text-decoration: none;
-    font-size: 13px;
-    font-weight: 500;
-    position: relative; z-index: 2;
-  }
-
-  .track-link::after { content: " ›"; }
-  .track-link:hover { text-decoration: underline; }
-
-  /* ── Proposal CTA ── */
-  .path-cta {
-    margin-top: 32px;
-    text-align: center;
-    padding: 44px 24px;
-    background: var(--apple-gray-bg);
-    border-radius: 22px;
-  }
-
-  .path-cta-eyebrow {
-    font-size: 12px;
-    font-weight: 600;
-    color: var(--apple-gray-text-light);
-    letter-spacing: 0.04em;
-    margin-bottom: 8px;
-    text-transform: uppercase;
-  }
-
-  .path-cta-text {
-    font-size: 18px;
-    color: var(--apple-black);
-    margin: 0 0 20px;
-    letter-spacing: -0.012em;
-    font-weight: 500;
-  }
-
-  .path-cta-btn {
-    display: inline-block;
-    background: var(--apple-black);
-    color: var(--apple-white);
-    text-decoration: none;
-    padding: 12px 28px;
-    border-radius: 980px;
-    font-size: 14px;
-    font-weight: 500;
-    transition: transform 0.25s var(--ease-out-quart);
-  }
-
-  .path-cta-btn:hover { transform: scale(1.04); }
-
-  /* ════════════════════ FOOTER ════════════════════ */
-  .footer {
-    background: var(--apple-gray-bg);
-    color: var(--apple-gray-text);
-    padding: 0 22px;
-    font-size: 12px;
-    line-height: 1.33;
-  }
-
-  .footer-inner { max-width: 1024px; margin: 0 auto; }
-
-  .footer-disclaimer {
-    padding: 20px 0;
-    border-bottom: 0.5px solid var(--apple-gray-line);
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-  }
-
-  .footer-disclaimer-en {
-    font-family: var(--font-sans);
-    color: var(--apple-gray-text);
-  }
-
-  .footer-disclaimer-kr {
-    font-family: var(--font-kr);
-    color: var(--apple-gray-text-light);
-    font-size: 11px;
-  }
-
-  .footer-cols {
-    padding: 32px 0;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 40px;
-    border-bottom: 0.5px solid var(--apple-gray-line);
-  }
-
-  @media (max-width: 734px) {
-    .footer-cols { grid-template-columns: 1fr 1fr; gap: 32px; }
-  }
-
-  .footer-col h4 {
-    font-size: 12px;
-    font-weight: 700;
-    color: var(--apple-black);
-    margin-bottom: 12px;
-  }
-
-  .footer-col ul { list-style: none; }
-  .footer-col li { margin-bottom: 7px; }
-  .footer-col a, .footer-col span {
-    color: var(--apple-gray-text);
-    text-decoration: none;
-    font-size: 12px;
-    transition: color 0.32s var(--ease-default);
-  }
-  .footer-col a:hover {
-    color: var(--apple-black);
-    text-decoration: underline;
-  }
-
-  .footer-legal {
-    padding: 24px 0 20px;
-    border-bottom: 0.5px solid var(--apple-gray-line);
-    display: flex;
-    flex-wrap: wrap;
-    gap: 24px;
-    font-family: var(--font-kr);
-  }
-
-  .footer-legal-row {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 11px;
-    flex-wrap: wrap;
-    min-width: 0;
-  }
-
-  .footer-legal-label {
-    color: var(--apple-gray-text-light);
-    font-weight: 500;
-    letter-spacing: 0;
-  }
-
-  .footer-legal-value {
-    color: var(--apple-gray-text);
-    font-weight: 500;
-    letter-spacing: -0.005em;
-  }
-
-  @media (max-width: 734px) {
-    .footer-legal { gap: 12px 24px; }
-  }
-
-  @media (max-width: 480px) {
-    .footer-legal { flex-direction: column; gap: 10px; }
-    .footer-legal-row { width: 100%; }
-  }
-
-  .footer-bottom {
-    padding: 17px 0;
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 12px;
-  }
-
-  .footer-bottom a {
-    color: var(--apple-gray-text-light);
-    text-decoration: none;
-    transition: color 0.2s;
-  }
-
-  .footer-bottom a:hover {
-    color: var(--apple-black);
-    text-decoration: underline;
-  }
-
-  @media (max-width: 600px) {
-    .footer-bottom { flex-direction: column; align-items: flex-start; gap: 8px; }
-  }
-
-  /* Reveal */
-  .reveal {
-    opacity: 0;
-    transform: translateY(40px);
-    transition: opacity 1.2s var(--ease-out-quart), transform 1.2s var(--ease-out-quart);
-  }
-
-  .reveal.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  .scale-in {
-    opacity: 0;
-    transform: scale(0.96);
-    transition: opacity 1.4s var(--ease-out-quart), transform 1.4s var(--ease-out-quart);
-  }
-
-  .scale-in.visible {
-    opacity: 1;
-    transform: scale(1);
-  }
-</style>
+<link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;1,400&family=Press+Start+2P&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/galmuri@latest/dist/galmuri.css" rel="stylesheet">
 
 <!-- Microsoft Clarity (heatmaps + session recordings) -->
 <script type="text/javascript">
@@ -2685,692 +89,641 @@
         c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
         t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
         y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-    })(window, document, "clarity", "script", "wo8os9ye8m");
+    })(window, document, "clarity", "script", "rrkucjqacb");
 </script>
+
+<style>
+:root{
+  --paper:#F0EEE6; --page:#FAF9F5; --ink:#1F1E1A; --ink-soft:#5C5749;
+  --clay:#D97757; --clay-deep:#B85C3E; --moss:#5E8D7A; --gold:#B99A45;
+  --kraft:#E7DFCE; --line:#CFC7B4;
+  --font-body:'Gowun Batang',serif;
+  --font-mono:'IBM Plex Mono',monospace;
+  --font-pixel:'Galmuri11','IBM Plex Mono',monospace;
+  --font-arcade:'Press Start 2P',monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:var(--paper);color:var(--ink);
+  font-family:var(--font-body);line-height:1.85;font-size:17px;
+  word-break:keep-all;overflow-wrap:break-word;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.035 0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+::selection{background:var(--clay);color:var(--page)}
+.wrap{max-width:920px;margin:0 auto;padding:0 24px}
+a{color:var(--clay-deep)}
+:focus-visible{outline:2px solid var(--clay);outline-offset:3px}
+
+/* ── 리빌 모션 ── */
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .6s cubic-bezier(.2,.7,.3,1)}
+.reveal.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
+
+/* ── 터미널 바 ── */
+.termbar{
+  background:var(--ink);color:#D8D3C4;font-family:var(--font-mono);
+  font-size:12.5px;padding:9px 0;border-bottom:3px solid var(--clay);
+  position:sticky;top:0;z-index:50;
+}
+.termbar .wrap{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.termbar .prompt{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.termbar .prompt .dollar{color:var(--clay)}
+.termbar .prompt .path{color:#8FB5A8}
+.termbar nav{display:flex;gap:16px;flex-shrink:0;align-items:center;flex-wrap:wrap}
+.termbar nav a{color:#D8D3C4;text-decoration:none;border-bottom:1px dotted transparent}
+.termbar nav a:hover{color:var(--clay);border-bottom-color:var(--clay)}
+.cursor{display:inline-block;width:8px;height:15px;background:var(--clay);vertical-align:-2px;animation:blink 1.05s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+.sfx-btn{font-family:var(--font-pixel);font-size:11px;background:transparent;color:#D8D3C4;border:1px solid #57544B;padding:3px 9px;cursor:pointer;letter-spacing:.05em}
+.sfx-btn:hover{border-color:var(--clay);color:var(--clay)}
+.sfx-btn.off{color:#78736A;text-decoration:line-through}
+@media(max-width:834px){
+  .termbar .prompt{display:none}
+  .termbar .wrap{justify-content:center}
+  .termbar nav{flex-shrink:1;gap:12px;justify-content:center;row-gap:4px}
+}
+@media(max-width:640px){
+  .termbar nav{gap:10px;font-size:12px}
+}
+
+/* ── 히어로 ── */
+.hero{padding:74px 0 50px;text-align:center;position:relative;overflow:hidden}
+.hero .float-px{position:absolute;font-family:var(--font-pixel);color:var(--clay);opacity:.35;user-select:none;pointer-events:none;animation:floaty 7s ease-in-out infinite}
+.hero .float-px:nth-child(2){animation-delay:-2s;color:var(--moss)}
+.hero .float-px:nth-child(3){animation-delay:-4s;color:var(--gold)}
+.hero .float-px:nth-child(4){animation-delay:-5.5s}
+@keyframes floaty{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-16px) rotate(6deg)}}
+.stamp{position:absolute;top:40px;right:4%;transform:rotate(8deg);border:2px dashed var(--clay);color:var(--clay);font-family:var(--font-pixel);font-size:11px;line-height:1.5;padding:10px 12px;text-align:center;opacity:.85;pointer-events:none}
+@media(max-width:760px){.stamp{display:none}}
+.hero .ascii{font-family:var(--font-mono);font-size:clamp(6px,1.4vw,10.5px);line-height:1.25;color:var(--clay);white-space:pre;margin-bottom:26px;user-select:none;text-shadow:3px 3px 0 rgba(217,119,87,.15)}
+.hero .edition{font-family:var(--font-mono);font-size:12px;letter-spacing:.35em;color:var(--ink-soft);text-transform:uppercase;margin-bottom:14px}
+.hero h1{font-size:clamp(32px,5.4vw,52px);font-weight:700;letter-spacing:-.01em;margin-bottom:16px;line-height:1.35}
+.hero h1 .stroke{color:var(--clay);text-decoration:underline;text-decoration-style:wavy;text-decoration-thickness:2px;text-underline-offset:8px;text-decoration-color:var(--gold)}
+.hero .sub{max-width:560px;margin:0 auto 26px;color:var(--ink-soft);font-size:16.5px}
+.hero .typeline{font-family:var(--font-mono);font-size:14px;color:var(--ink);background:var(--page);border:1.5px solid var(--ink);display:inline-block;padding:10px 18px;box-shadow:4px 4px 0 var(--ink);margin-bottom:30px}
+.hero .typeline .dollar{color:var(--clay)}
+.rank-badge{
+  display:inline-block;font-family:var(--font-pixel);font-size:12px;
+  border:1.5px dashed var(--gold);color:var(--ink-soft);background:var(--page);
+  padding:6px 14px;margin-bottom:26px;letter-spacing:.05em;text-decoration:none;
+}
+.rank-badge b{color:var(--clay-deep)}
+a.rank-badge:hover{border-color:var(--clay);color:var(--ink)}
+.press-start{
+  display:inline-block;font-family:var(--font-arcade);font-size:11px;
+  background:var(--clay);color:var(--page);padding:16px 26px;border:2px solid var(--ink);
+  box-shadow:5px 5px 0 var(--ink);text-decoration:none;cursor:pointer;
+  transition:transform .05s,box-shadow .05s;animation:pulse 2.4s ease-in-out infinite;
+}
+.press-start:hover{transform:translate(2px,2px);box-shadow:3px 3px 0 var(--ink)}
+.press-start:active{transform:translate(5px,5px);box-shadow:0 0 0 var(--ink)}
+@keyframes pulse{0%,100%{filter:brightness(1)}50%{filter:brightness(1.12)}}
+.btn-ghost{
+  display:inline-block;font-family:var(--font-mono);font-size:13px;font-weight:600;
+  color:var(--ink);background:var(--page);border:1.5px solid var(--ink);
+  padding:13px 20px;box-shadow:4px 4px 0 rgba(31,30,26,.25);text-decoration:none;margin-left:10px;
+}
+.btn-ghost:hover{transform:translate(1px,1px);box-shadow:3px 3px 0 rgba(31,30,26,.25)}
+@media(max-width:640px){
+  .btn-ghost{margin-left:0;margin-top:12px}
+}
+.hero .coin{font-family:var(--font-pixel);font-size:13px;color:var(--ink-soft);margin-top:18px;letter-spacing:.1em}
+
+/* ── 스테이터스 윈도우 (By the numbers) ── */
+.status-window{margin:52px auto 0;background:var(--page);border:2px solid var(--ink);box-shadow:6px 6px 0 rgba(31,30,26,.18);display:grid;grid-template-columns:repeat(4,1fr)}
+.status-window .cell{padding:18px 12px;text-align:center;border-right:1.5px dashed var(--line)}
+.status-window .cell:last-child{border-right:none}
+.status-window .num{font-family:var(--font-pixel);font-size:22px;color:var(--clay);display:block}
+.status-window .lbl{font-family:var(--font-mono);font-size:11px;color:var(--ink-soft);letter-spacing:.06em}
+@media(max-width:640px){
+  .status-window{grid-template-columns:repeat(2,1fr)}
+  .status-window .cell:nth-child(2){border-right:none}
+  .status-window .cell:nth-child(-n+2){border-bottom:1.5px dashed var(--line)}
+}
+
+/* ── 티커 ── */
+.ticker{border-top:1.5px solid var(--ink);border-bottom:1.5px solid var(--ink);background:var(--kraft);overflow:hidden;white-space:nowrap;padding:8px 0;font-family:var(--font-pixel);font-size:12.5px;color:var(--ink-soft);letter-spacing:.08em;user-select:none}
+.ticker .track{display:inline-block;animation:ticker 30s linear infinite}
+.ticker .hl{color:var(--clay)}
+@keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ── 섹션 공통 ── */
+section.block{padding:74px 0 10px}
+.sec-head{display:flex;align-items:center;gap:14px;margin:0 0 8px}
+.sec-head .tag{font-family:var(--font-pixel);font-size:12px;background:var(--ink);color:var(--page);padding:4px 10px;letter-spacing:.08em;flex-shrink:0}
+.sec-head h2{font-size:24px;font-weight:700}
+.sec-head .rule{flex:1;border-top:2px dotted var(--line)}
+.sec-sub{color:var(--ink-soft);font-size:15px;margin-bottom:30px}
+
+/* ── 미션 ── */
+.mission{margin:70px 0 0;background:var(--ink);color:#E8E3D4;border-top:3px solid var(--clay);border-bottom:3px solid var(--clay);padding:64px 0;text-align:center;position:relative;overflow:hidden}
+.mission::before{content:"";position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(0deg,transparent 0 3px,rgba(255,255,255,.025) 3px 4px)}
+.mission .m-tag{font-family:var(--font-pixel);font-size:12px;color:var(--gold);letter-spacing:.2em;margin-bottom:18px}
+.mission p{font-size:clamp(20px,3.2vw,30px);font-weight:700;max-width:760px;margin:0 auto;line-height:1.7}
+.mission em{font-style:normal;color:var(--clay)}
+
+/* ── 제품 카세트 카드 ── */
+.cartridge{
+  background:var(--page);border:2px solid var(--ink);
+  box-shadow:7px 7px 0 rgba(31,30,26,.16);margin-bottom:34px;position:relative;
+}
+.cart-head{
+  background:var(--ink);color:var(--page);padding:9px 18px;
+  font-family:var(--font-pixel);font-size:12px;letter-spacing:.08em;
+  display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;
+}
+.cart-head .no{color:var(--gold)}
+.cart-body{padding:26px 28px 24px}
+@media(max-width:600px){.cart-body{padding:22px 18px}}
+.cart-body h3{font-size:24px;font-weight:700;margin-bottom:4px}
+.cart-body h3 .en{font-family:var(--font-mono);font-size:13px;font-weight:400;color:var(--ink-soft);display:block;letter-spacing:.04em}
+.cart-body .desc{font-size:15.5px;color:var(--ink-soft);margin:10px 0 16px}
+.pxtags{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:18px}
+.pxtags span{font-family:var(--font-mono);font-size:11px;border:1px solid var(--line);background:var(--kraft);padding:2.5px 9px;color:var(--ink-soft)}
+.pxtags .hot{border-color:var(--clay);color:var(--clay-deep);background:#F7EBE4}
+.cart-sum{display:flex;border:1.5px solid var(--ink);margin:4px 0 18px;text-align:center;background:var(--page)}
+.cart-sum .cell{flex:1;padding:13px 8px;border-right:1.5px dashed var(--line)}
+.cart-sum .cell:last-child{border-right:none}
+.cart-sum .big{font-family:var(--font-pixel);font-size:19px;color:var(--clay);display:block}
+.cart-sum .sm{font-family:var(--font-mono);font-size:11px;color:var(--ink-soft)}
+.cart-links{display:flex;gap:10px;flex-wrap:wrap}
+.cart-links a{
+  font-family:var(--font-mono);font-size:12.5px;font-weight:600;text-decoration:none;
+  color:var(--ink);border:1.5px solid var(--ink);background:var(--page);
+  padding:9px 15px;box-shadow:3px 3px 0 var(--ink);
+}
+.cart-links a:hover{transform:translate(1px,1px);box-shadow:2px 2px 0 var(--ink)}
+.cart-links a.primary{background:var(--clay);color:var(--page)}
+.cart-note{font-family:var(--font-mono);font-size:11.5px;color:var(--ink-soft);margin-top:12px}
+/* SpeakCoach 인용부 */
+.sc-quote{
+  border:1.5px dashed var(--line);background:var(--kraft);padding:20px 22px;
+  margin:4px 0 18px;font-family:var(--font-body);
+}
+.sc-quote .q{font-size:19px;font-weight:700;margin-bottom:4px}
+.sc-quote .q em{font-style:normal;background:linear-gradient(transparent 62%,#F3D9A6 62%);padding:0 2px;color:var(--clay-deep)}
+.sc-quote .mic{font-family:var(--font-pixel);font-size:11px;color:var(--ink-soft);letter-spacing:.1em}
+.xpbar{margin-top:10px;display:flex;align-items:center;gap:10px}
+.xpbar .lbl{font-family:var(--font-mono);font-size:11px;color:var(--ink-soft);min-width:110px}
+.xpbar .track{flex:1;height:12px;border:1.5px solid var(--ink);background:var(--page);padding:2px}
+.xpbar .fill{height:100%;background:repeating-linear-gradient(90deg,var(--gold) 0 6px,#D9BE6B 6px 12px)}
+.xpbar .pct{font-family:var(--font-pixel);font-size:11px;color:var(--ink-soft);min-width:46px;text-align:right}
+@media(max-width:640px){.xpbar .lbl{min-width:90px;font-size:10px}}
+/* TopikIQ 한글 분해 */
+.jamo{
+  border:1.5px dashed var(--line);background:var(--kraft);padding:18px 22px;margin:4px 0 18px;
+  font-family:var(--font-pixel);font-size:15px;color:var(--ink-soft);text-align:center;letter-spacing:.06em;
+}
+.jamo .big{font-size:34px;color:var(--ink);display:block;margin-bottom:6px;font-family:var(--font-pixel)}
+.jamo b{color:var(--clay-deep)}
+
+/* ── WHY 3계명 ── */
+.laws{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:34px}
+@media(max-width:700px){.laws{grid-template-columns:1fr}}
+.law{
+  background:var(--page);border:1.5px solid var(--ink);
+  box-shadow:4px 4px 0 rgba(31,30,26,.13);
+  padding:22px 20px 16px;position:relative;
+  transition:transform .1s,box-shadow .1s;
+}
+.law:hover{transform:translate(-2px,-2px);box-shadow:7px 7px 0 rgba(31,30,26,.15)}
+.law .ln{
+  font-family:var(--font-arcade);font-size:13px;color:var(--clay);
+  position:absolute;top:-12px;left:14px;background:var(--paper);padding:0 8px;
+}
+.law h4{font-size:16.5px;font-weight:700;margin:4px 0 6px;line-height:1.5}
+.law p{font-size:13.5px;color:var(--ink-soft);line-height:1.75}
+
+/* ── EDUCATION 디렉토리 리스팅 ── */
+.ls-head{font-family:var(--font-mono);font-size:13px;color:var(--ink-soft);margin-bottom:14px}
+.ls-head .dollar{color:var(--clay)}
+.toc{background:var(--page);border:2px solid var(--ink);box-shadow:6px 6px 0 rgba(31,30,26,.15)}
+.toc-item{display:flex;align-items:center;gap:16px;padding:18px 22px;color:var(--ink);border-bottom:1.5px dashed var(--line)}
+.toc-item:last-child{border-bottom:none}
+.toc-item:hover{background:var(--kraft)}
+.toc-idx{font-family:var(--font-pixel);font-size:13px;color:var(--clay);width:38px;flex-shrink:0}
+.toc-body{flex:1;min-width:0}
+.toc-file{font-family:var(--font-mono);font-size:11.5px;color:var(--ink-soft);display:block;margin-bottom:2px}
+.toc-title{font-size:17px;font-weight:700;line-height:1.5}
+.toc-desc{font-size:13.5px;color:var(--ink-soft)}
+.toc-desc a{font-family:var(--font-mono);font-size:12px}
+.toc-meta{font-family:var(--font-mono);font-size:11px;color:var(--ink-soft);flex-shrink:0;text-align:right;line-height:1.9}
+.toc-meta .ok{color:var(--moss)}
+@media(max-width:600px){.toc-meta{display:none}}
+
+/* ── 연구노트 (교육 철학 인용) ── */
+.fieldnote{margin:44px 0 0;background:var(--kraft);border:1.5px solid var(--ink);border-left:8px solid var(--clay);padding:24px 28px;box-shadow:5px 5px 0 rgba(31,30,26,.12);position:relative}
+.fieldnote::before{content:"NOTE";position:absolute;top:-11px;left:18px;font-family:var(--font-pixel);font-size:11px;background:var(--clay);color:var(--page);padding:2px 10px}
+.fieldnote p{font-size:15.5px}
+.fieldnote .sign{display:block;text-align:right;margin-top:10px;font-family:var(--font-mono);font-size:12.5px;color:var(--ink-soft)}
+
+/* ── 커뮤니티 (GUILD) ── */
+.guild{
+  background:var(--ink);color:#E8E3D4;border:2px solid var(--ink);
+  box-shadow:7px 7px 0 rgba(31,30,26,.2);padding:44px 40px;text-align:center;
+  position:relative;overflow:hidden;margin-top:34px;
+}
+.guild::before{content:"";position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(0deg,transparent 0 3px,rgba(255,255,255,.022) 3px 4px)}
+@media(max-width:600px){.guild{padding:34px 22px}}
+.guild .g-eyebrow{font-family:var(--font-pixel);font-size:12px;color:var(--gold);letter-spacing:.2em;margin-bottom:14px}
+.guild .pix-title{font-family:var(--font-pixel);font-size:20px;margin-bottom:12px;color:var(--page)}
+.guild .pix-title .hl{color:var(--clay)}
+.guild p{font-size:14.5px;color:#B8B2A0;max-width:520px;margin:0 auto 14px}
+.guild .pillars{display:grid;grid-template-columns:1fr 1fr;gap:14px;max-width:640px;margin:24px auto 28px;text-align:left}
+@media(max-width:640px){.guild .pillars{grid-template-columns:1fr}}
+.guild .pillar{border:1.5px dashed #57544B;padding:16px 18px}
+.guild .pillar .pl{font-family:var(--font-pixel);font-size:11px;color:var(--gold);letter-spacing:.1em;margin-bottom:8px}
+.guild .pillar p{font-size:13.5px;margin:0;color:#D8D3C4}
+.guild .pillar em{font-style:normal;color:var(--clay)}
+.guild .join{
+  display:inline-block;font-family:var(--font-arcade);font-size:11px;
+  background:var(--clay);color:var(--page);border:2px solid var(--page);
+  padding:14px 22px;text-decoration:none;letter-spacing:.06em;
+}
+.guild .join:hover{filter:brightness(1.12)}
+.guild .busan{font-family:var(--font-arcade);font-size:clamp(20px,5vw,38px);color:rgba(255,255,255,.1);margin-top:30px;letter-spacing:.04em;user-select:none}
+
+/* ── 푸터 (절취선) ── */
+footer{border-top:2px dashed var(--ink);margin-top:84px;padding:34px 0 46px;font-family:var(--font-mono);font-size:12.5px;color:var(--ink-soft);position:relative}
+footer::before{content:"✂";position:absolute;top:-13px;left:38px;color:var(--ink-soft);background:var(--paper);padding:0 6px;font-size:14px}
+footer .cols{display:grid;grid-template-columns:repeat(4,1fr);gap:26px;margin-bottom:26px}
+@media(max-width:700px){footer .cols{grid-template-columns:1fr 1fr}}
+footer h4{font-family:var(--font-pixel);font-size:12px;color:var(--ink);margin-bottom:10px;letter-spacing:.08em}
+footer ul{list-style:none}
+footer li{margin-bottom:5px}
+footer a{color:var(--ink-soft);text-decoration:none}
+footer a:hover{color:var(--clay)}
+.legal{border-top:1.5px dashed var(--line);border-bottom:1.5px dashed var(--line);padding:14px 0;margin-bottom:20px;font-size:11.5px;line-height:2}
+.legal b{color:var(--ink);font-weight:600}
+footer .bottom{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:center}
+footer .logo{font-family:var(--font-pixel);font-size:14px;color:var(--ink)}
+footer .logo .dot{color:var(--clay)}
+footer .barcode{width:110px;height:30px;background:repeating-linear-gradient(90deg,var(--ink) 0 2px,transparent 2px 4px,var(--ink) 4px 5px,transparent 5px 9px,var(--ink) 9px 12px,transparent 12px 14px);position:relative}
+footer .barcode::after{content:"NO.20260705";position:absolute;bottom:-16px;left:0;font-size:9px;letter-spacing:.2em}
+@media(prefers-reduced-motion:reduce){
+  .hero .float-px,.press-start,.ticker .track,.cursor{animation:none!important}
+}
+</style>
 </head>
 <body>
 
-  <!-- GLOBAL NAV -->
-  <nav class="global-nav">
-    <div class="global-nav-inner">
-      <a href="/" class="global-nav-brand">
-        <span class="global-nav-brand-mark">
-          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Verbio Labs">
-            <g transform="translate(3.994 20.103) scale(0.02367 -0.02367)" fill="currentColor">
-              <path d="M168 -10Q164 -10 160.0 -7.0Q156 -4 156 6L145 640Q144 668 138.0 679.0Q132 690 113 694L100 697Q88 700 88 709Q88 720 105 720H270Q283 720 283 710Q283 699 263 697L243 695Q226 694 219.5 684.5Q213 675 213 653L218 180Q218 170 224.0 169.0Q230 168 234 176L453 632Q481 689 435 695L421 697Q406 700 406 709Q406 720 423 720H568Q580 720 580 710Q580 701 564 697L548 694Q528 690 514.0 674.5Q500 659 486 631L187 6Q183 -4 177.5 -7.0Q172 -10 168 -10Z"/>
-            </g>
-          </svg>
-        </span>
-        <span class="global-nav-brand-name">Verbio<em>Labs</em></span>
-      </a>
-      <ul class="global-nav-links">
-        <li><a href="#jiksi">직시</a></li>
-        <li><a href="#speakcoach">SpeakCoach</a></li>
-        <li><a href="#topikiq">TopikIQ</a></li>
-        <li><a href="#why">Why Verbio</a></li>
-        <li><a href="#education">Education</a></li>
-        <li><a href="/courses">Courses</a></li>
-        <li><a href="/claude-guide">무료 전자책</a></li>
-        <li><a href="/bootcamp">Bootcamp</a></li>
-        <li><a href="#community">Community</a></li>
-        <li><a href="#contact">Contact</a></li>
-        <li><a href="https://apps.apple.com/kr/app/%EC%A7%81%EC%8B%9C-%EA%B5%AD%ED%9A%8C-%EA%B0%90%EC%8B%9C/id6782101748" target="_blank" rel="noopener" class="nav-cta">직시 다운로드</a></li>
-      </ul>
-      <button class="nav-burger" aria-label="메뉴 열기" aria-expanded="false" id="navBurger">
-        <span></span><span></span><span></span>
-      </button>
-    </div>
-  </nav>
-
-  <!-- MOBILE DRAWER -->
-  <div class="mobile-drawer" id="mobileDrawer" aria-hidden="true">
-    <ul>
-      <li><a href="#jiksi">직시</a></li>
-      <li><a href="#speakcoach">SpeakCoach</a></li>
-      <li><a href="#topikiq">TopikIQ</a></li>
-      <li><a href="#why">Why Verbio</a></li>
-      <li><a href="#education">Education</a></li>
-      <li><a href="/courses">Courses</a></li>
-      <li><a href="/claude-guide">무료 전자책</a></li>
-      <li><a href="/bootcamp">Bootcamp</a></li>
-      <li><a href="#community">Community</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-    <a href="https://apps.apple.com/kr/app/%EC%A7%81%EC%8B%9C-%EA%B5%AD%ED%9A%8C-%EA%B0%90%EC%8B%9C/id6782101748" target="_blank" rel="noopener" class="mobile-drawer-cta">
-      직시 다운로드 · App Store
-      <span aria-hidden="true">›</span>
-    </a>
-    <a href="#topikiq" class="mobile-drawer-cta">
-      Download TopikIQ · iOS · Android
-      <span aria-hidden="true">›</span>
-    </a>
+<!-- ═══ 터미널 바 ═══ -->
+<header class="termbar">
+  <div class="wrap">
+    <div class="prompt"><span class="dollar">verbio@labs</span>:<span class="path">~</span>$ ./verbio.sh --ship<span class="cursor"></span></div>
+    <nav>
+      <a href="#products">PRODUCTS</a>
+      <a href="/courses">COURSES</a>
+      <a href="/bootcamp">BOOTCAMP</a>
+      <a href="/claude-guide">전자책</a>
+      <a href="/join">CARTEL</a>
+      <a href="mailto:lulu066666@gmail.com">CONTACT</a>
+      <button id="sfx-toggle" class="sfx-btn" aria-label="효과음 켜기/끄기">♪ ON</button>
+    </nav>
   </div>
+</header>
 
-  <!-- HERO -->
-  <section class="hero">
-    <div class="hero-content">
-      <div class="hero-badges-row">
-        <div class="hero-badge">
-          <span class="hero-badge-dot"></span>
-          <span>Now in Beta · <em>Built in Busan, Korea</em></span>
+<!-- ═══ 히어로 ═══ -->
+<section class="hero">
+  <span class="float-px" style="top:18%;left:8%">✦</span>
+  <span class="float-px" style="top:60%;left:5%">▲</span>
+  <span class="float-px" style="top:24%;right:12%">◆</span>
+  <span class="float-px" style="top:70%;right:7%">✦</span>
+  <div class="stamp">NOW IN BETA<br>———<br>BUILT IN<br>BUSAN, KOREA</div>
+  <div class="wrap">
+    <div class="ascii" aria-hidden="true"> ██╗   ██╗███████╗██████╗ ██████╗ ██╗ ██████╗
+ ██║   ██║██╔════╝██╔══██╗██╔══██╗██║██╔═══██╗
+ ██║   ██║█████╗  ██████╔╝██████╔╝██║██║   ██║
+ ╚██╗ ██╔╝██╔══╝  ██╔══██╗██╔══██╗██║██║   ██║
+  ╚████╔╝ ███████╗██║  ██║██████╔╝██║╚██████╔╝
+   ╚═══╝  ╚══════╝╚═╝  ╚═╝╚═════╝ ╚═╝ ╚═════╝  LABS</div>
+    <p class="edition">VERBIO LABS · BUSAN, KOREA</p>
+    <h1>AI for <span class="stroke">human language.</span></h1>
+    <p class="sub">We teach what we ship.<br>AI products built in Korea, taught from Busan.</p>
+    <div class="typeline"><span class="dollar">$</span> ship products &amp;&amp; teach humans --from=busan</div>
+    <br>
+    <a class="rank-badge" href="#jiksi">🏆 직시 · <b>App Store 뉴스 카테고리 무료 앱 10위</b></a>
+    <br>
+    <a class="press-start" href="#products">▶ EXPLORE PRODUCTS</a><a class="btn-ghost" href="/courses">Browse Courses ▸</a>
+    <p class="coin">INSERT COIN 필요 없음 · 부산에서 제작 · SINCE SIKBANG ENGLISH</p>
+
+    <!-- By the numbers → 스테이터스 윈도우 -->
+    <div class="status-window reveal" role="list">
+      <div class="cell" role="listitem"><span class="num">3</span><span class="lbl">AI PRODUCTS</span></div>
+      <div class="cell" role="listitem"><span class="num">200+</span><span class="lbl">ENGINEERS @ SAMSUNG</span></div>
+      <div class="cell" role="listitem"><span class="num">4,600</span><span class="lbl">SUBSCRIBERS (5+ YRS)</span></div>
+      <div class="cell" role="listitem"><span class="num">5yr</span><span class="lbl">AI &amp; DL TEACHING</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 티커 ═══ -->
+<div class="ticker" aria-hidden="true">
+  <span class="track">
+    &nbsp;직시 <span class="hl">✦</span> SPEAKCOACH AI <span class="hl">✦</span> TOPIKIQ <span class="hl">✦</span> APP STORE NEWS TOP 10 <span class="hl">✦</span> AI CARTEL BUSAN <span class="hl">✦</span> SAMSUNG SEMINAR <span class="hl">✦</span> UNIVERSITY LECTURES <span class="hl">✦</span> WE TEACH WHAT WE SHIP <span class="hl">✦</span>
+    &nbsp;직시 <span class="hl">✦</span> SPEAKCOACH AI <span class="hl">✦</span> TOPIKIQ <span class="hl">✦</span> APP STORE NEWS TOP 10 <span class="hl">✦</span> AI CARTEL BUSAN <span class="hl">✦</span> SAMSUNG SEMINAR <span class="hl">✦</span> UNIVERSITY LECTURES <span class="hl">✦</span> WE TEACH WHAT WE SHIP <span class="hl">✦</span>
+  </span>
+</div>
+
+<!-- ═══ 미션 ═══ -->
+<section class="mission">
+  <div class="wrap">
+    <div class="m-tag">— MISSION LOG —</div>
+    <p>Language is how humans become <em>human</em>.<br>We build AI that <em>honors</em> that.</p>
+  </div>
+</section>
+
+<!-- ═══ 제품 (카트리지 셸프) ═══ -->
+<section class="block" id="products">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="tag">STAGE 01</span>
+      <h2>PRODUCT SHELF — 카트리지를 꽂아 보세요</h2>
+      <span class="rule"></span>
+    </div>
+    <p class="sec-sub reveal">직접 만들고, 직접 운영하는 세 개의 AI 제품.</p>
+
+    <!-- 직시 -->
+    <div class="cartridge reveal" id="jiksi">
+      <div class="cart-head"><span><span class="no">CART-01</span> · 직시 · JIKSI</span><span>● LIVE ON APP STORE</span></div>
+      <div class="cart-body">
+        <h3>Politics, in plain sight. <span class="en">직시 · 국회 감시</span></h3>
+        <p class="desc">국회를 감시하는 시민의 눈. 의원들의 의정활동을 데이터로 투명하게 봅니다. 표결도, 발의도, 출석도. 전부 기록으로 남습니다.</p>
+        <div class="pxtags"><span class="hot">APP STORE 뉴스 카테고리 무료 앱 10위</span><span>iOS</span><span>Android 곧 출시 예정</span></div>
+        <div class="cart-sum">
+          <div class="cell"><span class="big">300</span><span class="sm">감시 중인 의원</span></div>
+          <div class="cell"><span class="big">매일</span><span class="sm">데이터 갱신</span></div>
+          <div class="cell"><span class="big">실시간</span><span class="sm">본회의 표결</span></div>
         </div>
-        <a href="#jiksi" class="hero-badge hero-badge-link" aria-label="직시 · App Store 뉴스 카테고리 10위">
-          <svg viewBox="0 0 384 512" fill="currentColor" aria-hidden="true" class="hero-badge-apple">
-            <path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zM236 105.7c25.4-30.1 23.1-57.5 22.4-67.4-22.5 1.3-48.5 15.3-63.3 32.5-16.3 18.4-25.9 41.2-23.8 64.6 24.3 1.9 46.5-10.6 64.7-29.7z"/>
-          </svg>
-          <svg viewBox="0 0 512 512" fill="currentColor" aria-hidden="true" class="hero-badge-apple">
-            <path d="M325.3 234.3L104.6 13l280.8 161.2-60.1 60.1zM47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0zm425.2 225.6l-58.9-34.1-65.7 64.5 65.7 64.5 60.1-34.1c18-14.3 18-46.5-1.2-60.8zM104.6 499l280.8-161.2-60.1-60.1L104.6 499z"/>
-          </svg>
-          <span>직시 · App Store 뉴스 10위</span>
-          <span class="hero-badge-arrow" aria-hidden="true">›</span>
-        </a>
-      </div>
-      <h1 class="hero-title">
-        AI for<br>
-        <span class="hero-title-italic">human</span> <span class="hero-title-accent">language.</span>
-      </h1>
-      <p class="hero-subtitle">
-        We teach what we ship. AI products built in Korea, taught from Busan.
-      </p>
-      <div class="hero-actions">
-        <a href="/courses" class="btn btn-primary">
-          Browse Courses
-          <svg class="btn-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-            <path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </a>
-        <a href="#speakcoach" class="btn btn-secondary">Explore products</a>
-        <a href="#why" class="btn btn-secondary">Why Verbio</a>
+        <div class="cart-links">
+          <a class="primary" href="https://apps.apple.com/kr/app/%EC%A7%81%EC%8B%9C-%EA%B5%AD%ED%9A%8C-%EA%B0%90%EC%8B%9C/id6782101748" target="_blank" rel="noopener">▶ App Store 다운로드</a>
+        </div>
+        <p class="cart-note">Android 버전 곧 출시 예정</p>
       </div>
     </div>
 
-    <!-- mockup 대신: 거대한 음성 파형 (60개 막대) -->
-    <div class="hero-visual">
-      <div class="hero-waveform">
-        <div class="hero-wave-bar"></div><div class="hero-wave-bar"></div><div class="hero-wave-bar"></div><div class="hero-wave-bar"></div>
-        <div class="hero-wave-bar"></div><div class="hero-wave-bar"></div><div class="hero-wave-bar"></div><div class="hero-wave-bar"></div>
-        <div class="hero-wave-bar"></div><div class="hero-wave-bar"></div><div class="hero-wave-bar"></div><div class="hero-wave-bar"></div>
-        <div class="hero-wave-bar"></div><div class="hero-wave-bar"></div><div class="hero-wave-bar"></div><div class="hero-wave-bar"></div>
-        <div class="hero-wave-bar"></div><div class="hero-wave-bar"></div><div class="hero-wave-bar"></div><div class="hero-wave-bar"></div>
-        <div class="hero-wave-bar"></div><div class="hero-wave-bar"></div><div class="hero-wave-bar"></div><div class="hero-wave-bar"></div>
-        <div class="hero-wave-bar"></div><div class="hero-wave-bar"></div><div class="hero-wave-bar"></div><div class="hero-wave-bar"></div>
-        <div class="hero-wave-bar"></div><div class="hero-wave-bar"></div><div class="hero-wave-bar"></div><div class="hero-wave-bar"></div>
-        <div class="hero-wave-bar"></div><div class="hero-wave-bar"></div><div class="hero-wave-bar"></div><div class="hero-wave-bar"></div>
-        <div class="hero-wave-bar"></div><div class="hero-wave-bar"></div><div class="hero-wave-bar"></div><div class="hero-wave-bar"></div>
-        <div class="hero-wave-bar"></div><div class="hero-wave-bar"></div><div class="hero-wave-bar"></div><div class="hero-wave-bar"></div>
-        <div class="hero-wave-bar"></div><div class="hero-wave-bar"></div><div class="hero-wave-bar"></div><div class="hero-wave-bar"></div>
-        <div class="hero-wave-bar"></div><div class="hero-wave-bar"></div><div class="hero-wave-bar"></div><div class="hero-wave-bar"></div>
-        <div class="hero-wave-bar"></div><div class="hero-wave-bar"></div><div class="hero-wave-bar"></div><div class="hero-wave-bar"></div>
-        <div class="hero-wave-bar"></div><div class="hero-wave-bar"></div><div class="hero-wave-bar"></div><div class="hero-wave-bar"></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- MISSION -->
-  <section class="mission" id="mission">
-    <div class="mission-text" id="missionText">
-      Language is how humans become <em>human</em>. We build AI that <em>honors</em> that.
-    </div>
-  </section>
-
-  <!-- JIKSI (직시) · 국회 감시 -->
-  <section class="stage stage-dark" id="jiksi">
-    <div class="stage-eyebrow reveal">직시 · Jiksi</div>
-    <h2 class="stage-title reveal">Politics, in plain sight.</h2>
-    <p class="stage-subtitle reveal">국회를 감시하는 시민의 눈. <br class="br-md-hide">의원들의 의정활동을 데이터로 투명하게 봅니다.</p>
-    <div class="reveal"><span class="launch-badge">App Store 뉴스 카테고리 무료 앱 10위</span></div>
-    <div class="stage-links reveal">
-      <a href="https://apps.apple.com/kr/app/%EC%A7%81%EC%8B%9C-%EA%B5%AD%ED%9A%8C-%EA%B0%90%EC%8B%9C/id6782101748" target="_blank" rel="noopener" class="app-store-badge" aria-label="Download 직시 on the App Store">
-        <svg viewBox="0 0 384 512" xmlns="http://www.w3.org/2000/svg" fill="currentColor" aria-hidden="true">
-          <path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zM236 105.7c25.4-30.1 23.1-57.5 22.4-67.4-22.5 1.3-48.5 15.3-63.3 32.5-16.3 18.4-25.9 41.2-23.8 64.6 24.3 1.9 46.5-10.6 64.7-29.7z"/>
-        </svg>
-        <span class="app-store-badge-text">
-          <span class="app-store-badge-eyebrow">Download on the</span>
-          <span>App Store</span>
-        </span>
-      </a>
-    </div>
-    <p class="stage-note reveal">Android 버전 곧 출시 예정</p>
-    <div class="product-visual scale-in">
-      <div class="pv-jiksi">
-        <div class="pv-jiksi-card">
-          <div class="pv-jiksi-chip"><span class="pv-jiksi-dot"></span>실시간 국회 감시</div>
-          <h3 class="pv-jiksi-headline">표결도, 발의도, 출석도.<br>전부 기록으로 남습니다.</h3>
-          <div class="pv-meta">
-            <div class="pv-meta-item">
-              <div class="pv-meta-num">300</div>
-              <div class="pv-meta-label">감시 중인 의원</div>
-            </div>
-            <div class="pv-meta-item">
-              <div class="pv-meta-num">매일</div>
-              <div class="pv-meta-label">데이터 갱신</div>
-            </div>
-            <div class="pv-meta-item">
-              <div class="pv-meta-num">실시간</div>
-              <div class="pv-meta-label">본회의 표결</div>
-            </div>
-          </div>
+    <!-- SpeakCoach -->
+    <div class="cartridge reveal" id="speakcoach">
+      <div class="cart-head"><span><span class="no">CART-02</span> · SPEAKCOACH AI</span><span>● IN SERVICE</span></div>
+      <div class="cart-body">
+        <h3>English, spoken better. <span class="en">SpeakCoach AI · OPIc 코치</span></h3>
+        <p class="desc">한국 OPIc 수험생을 위한 AI 회화 코치. 실시간 피드백으로 진짜 영어 실력을 키웁니다.</p>
+        <div class="sc-quote">
+          <p class="q">“I usually take the <em>subway</em> to work.”</p>
+          <span class="mic">● REC — 발화 분석 중…</span>
+          <div class="xpbar"><span class="lbl">PRONUNCIATION</span><div class="track"><div class="fill" style="width:92%"></div></div><span class="pct">92</span></div>
+          <div class="xpbar"><span class="lbl">FLUENCY</span><div class="track"><div class="fill" style="width:88%"></div></div><span class="pct">88</span></div>
+          <div class="xpbar"><span class="lbl">VS. LAST WEEK</span><div class="track"><div class="fill" style="width:12%"></div></div><span class="pct">+12</span></div>
+        </div>
+        <div class="cart-links">
+          <a class="primary" href="https://sikbang-eng.replit.app/" target="_blank" rel="noopener">▶ Try SpeakCoach</a>
+          <a href="https://sikbang.co" target="_blank" rel="noopener">Learn more ▸</a>
         </div>
       </div>
     </div>
-  </section>
 
-  <!-- SPEAKCOACH AI: 거대 quote + waveform -->
-  <section class="stage stage-light" id="speakcoach">
-    <div class="stage-eyebrow reveal">SpeakCoach AI</div>
-    <h2 class="stage-title reveal">English, spoken better.</h2>
-    <p class="stage-subtitle reveal">한국 OPIc 수험생을 위한 AI 회화 코치. <br class="br-md-hide">실시간 피드백으로 진짜 영어 실력을 키웁니다.</p>
-    <div class="stage-links reveal">
-      <a href="https://sikbang-eng.replit.app/" target="_blank" rel="noopener" class="stage-link">Try SpeakCoach</a>
-      <a href="https://sikbang.co" target="_blank" rel="noopener" class="stage-link">Learn more</a>
-    </div>
-    <div class="product-visual scale-in">
-      <div class="pv-speakcoach">
-        <div class="pv-quote-container">
-          <span class="pv-quote-mark-tl">&ldquo;</span>
-          <h3 class="pv-quote-text">
-            I usually take<br>the <span class="pv-quote-text-accent">subway</span> to work.
-          </h3>
-          <div class="pv-meta">
-            <div class="pv-meta-item">
-              <div class="pv-meta-num">92</div>
-              <div class="pv-meta-label">Pronunciation</div>
-            </div>
-            <div class="pv-meta-item">
-              <div class="pv-meta-num">88</div>
-              <div class="pv-meta-label">Fluency</div>
-            </div>
-            <div class="pv-meta-item">
-              <div class="pv-meta-num">+12</div>
-              <div class="pv-meta-label">vs. last week</div>
-            </div>
-          </div>
-          <div class="pv-waveform">
-            <div class="pv-wave-bar"></div><div class="pv-wave-bar"></div><div class="pv-wave-bar"></div><div class="pv-wave-bar"></div>
-            <div class="pv-wave-bar"></div><div class="pv-wave-bar"></div><div class="pv-wave-bar"></div><div class="pv-wave-bar"></div>
-            <div class="pv-wave-bar"></div><div class="pv-wave-bar"></div><div class="pv-wave-bar"></div><div class="pv-wave-bar"></div>
-            <div class="pv-wave-bar"></div><div class="pv-wave-bar"></div><div class="pv-wave-bar"></div><div class="pv-wave-bar"></div>
-            <div class="pv-wave-bar"></div><div class="pv-wave-bar"></div><div class="pv-wave-bar"></div><div class="pv-wave-bar"></div>
-            <div class="pv-wave-bar"></div><div class="pv-wave-bar"></div><div class="pv-wave-bar"></div><div class="pv-wave-bar"></div>
-            <div class="pv-wave-bar"></div><div class="pv-wave-bar"></div><div class="pv-wave-bar"></div><div class="pv-wave-bar"></div>
-            <div class="pv-wave-bar"></div><div class="pv-wave-bar"></div><div class="pv-wave-bar"></div><div class="pv-wave-bar"></div>
-            <div class="pv-wave-bar"></div><div class="pv-wave-bar"></div><div class="pv-wave-bar"></div><div class="pv-wave-bar"></div>
-            <div class="pv-wave-bar"></div><div class="pv-wave-bar"></div><div class="pv-wave-bar"></div><div class="pv-wave-bar"></div>
-          </div>
-          <span class="pv-quote-mark-br">&rdquo;</span>
+    <!-- TopikIQ -->
+    <div class="cartridge reveal" id="topikiq">
+      <div class="cart-head"><span><span class="no">CART-03</span> · TOPIKIQ</span><span>● iOS + ANDROID</span></div>
+      <div class="cart-body">
+        <h3>Korean, learned smarter. <span class="en">TopikIQ · 한국어 학습</span></h3>
+        <p class="desc">전 세계 한국어 학습자를 위한 AI 학습 앱. iOS · Android 모두 출시.</p>
+        <div class="jamo">
+          <span class="big">한 국 어</span>
+          한 → <b>ㅎ</b> + <b>ㅏ</b> + <b>ㄴ</b> · DECODE COMPLETE
+        </div>
+        <div class="cart-links">
+          <a class="primary" href="https://apps.apple.com/kr/app/topikiq/id6761719529" target="_blank" rel="noopener">▶ App Store</a>
+          <a href="https://play.google.com/store/apps/details?id=com.topikiq.app&amp;hl=ko" target="_blank" rel="noopener">▶ Google Play</a>
+          <a href="https://topikiq.com" target="_blank" rel="noopener">topikiq.com ▸</a>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- TOPIKIQ: 거대 한글 + grid -->
-  <section class="stage stage-dark" id="topikiq">
-    <div class="stage-eyebrow reveal">TopikIQ</div>
-    <h2 class="stage-title reveal">Korean, learned smarter.</h2>
-    <p class="stage-subtitle reveal">전 세계 한국어 학습자를 위한 AI 학습 앱. <br class="br-md-hide">iOS · Android 모두 출시.</p>
-    <div class="stage-links reveal">
-      <a href="https://apps.apple.com/kr/app/topikiq/id6761719529" target="_blank" rel="noopener" class="app-store-badge" aria-label="Download TopikIQ on the App Store">
-        <svg viewBox="0 0 384 512" xmlns="http://www.w3.org/2000/svg" fill="currentColor" aria-hidden="true">
-          <path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zM236 105.7c25.4-30.1 23.1-57.5 22.4-67.4-22.5 1.3-48.5 15.3-63.3 32.5-16.3 18.4-25.9 41.2-23.8 64.6 24.3 1.9 46.5-10.6 64.7-29.7z"/>
-        </svg>
-        <span class="app-store-badge-text">
-          <span class="app-store-badge-eyebrow">Download on the</span>
-          <span>App Store</span>
-        </span>
-      </a>
-      <a href="https://play.google.com/store/apps/details?id=com.topikiq.app&hl=ko" target="_blank" rel="noopener" class="app-store-badge" aria-label="Get TopikIQ on Google Play">
-        <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" fill="currentColor" aria-hidden="true">
-          <path d="M325.3 234.3L104.6 13l280.8 161.2-60.1 60.1zM47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0zm425.2 225.6l-58.9-34.1-65.7 64.5 65.7 64.5 60.1-34.1c18-14.3 18-46.5-1.2-60.8zM104.6 499l280.8-161.2-60.1-60.1L104.6 499z"/>
-        </svg>
-        <span class="app-store-badge-text">
-          <span class="app-store-badge-eyebrow">GET IT ON</span>
-          <span>Google Play</span>
-        </span>
-      </a>
-      <a href="https://topikiq.com" target="_blank" rel="noopener" class="stage-link">Visit topikiq.com</a>
+<!-- ═══ WHY VERBIO ═══ -->
+<section class="block" id="why">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="tag">STAGE 02</span>
+      <h2>WHY VERBIO — 파티 특성 3종</h2>
+      <span class="rule"></span>
     </div>
-    <div class="product-visual scale-in">
-      <div class="pv-topikiq">
-        <div class="pv-hangul-main">한국어</div>
-        <div class="pv-jamo-line">
-          <div class="pv-jamo-piece">
-            <span class="pv-jamo-char">한</span>
-            <span class="pv-jamo-label">han</span>
-          </div>
-          <span class="pv-jamo-divider">→</span>
-          <div class="pv-jamo-piece">
-            <span class="pv-jamo-char accent">ㅎ</span>
-            <span class="pv-jamo-label">ieung</span>
-          </div>
-          <span class="pv-jamo-divider">+</span>
-          <div class="pv-jamo-piece">
-            <span class="pv-jamo-char accent">ㅏ</span>
-            <span class="pv-jamo-label">a</span>
-          </div>
-          <span class="pv-jamo-divider">+</span>
-          <div class="pv-jamo-piece">
-            <span class="pv-jamo-char accent">ㄴ</span>
-            <span class="pv-jamo-label">nieun</span>
-          </div>
-        </div>
+    <p class="sec-sub reveal">Built by people who teach AI. Used by people who learn languages.</p>
+    <div class="laws reveal">
+      <div class="law">
+        <span class="ln">01</span>
+        <h4>Research-grounded</h4>
+        <p>5년간 대학과 글로벌 기업에서 AI를 가르쳐왔습니다. 만들기 전에 이해합니다.</p>
+      </div>
+      <div class="law">
+        <span class="ln">02</span>
+        <h4>Built for learners</h4>
+        <p>실제 학습자와 매일 소통하며 만든 제품입니다. 마케팅용이 아닌, 진짜 효과 있는 AI 학습 도구.</p>
+      </div>
+      <div class="law">
+        <span class="ln">03</span>
+        <h4>From Busan to the world</h4>
+        <p>한국어와 영어, 두 언어의 특성을 깊이 이해한 한국 기반 팀이 만드는 글로벌 AI.</p>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- STATS -->
-  <section class="stats-band">
-    <div class="stats-eyebrow">By the numbers</div>
-    <h2 class="stats-title">Real work. <em>Real results.</em></h2>
-    <div class="stats-grid">
-      <div class="stat">
-        <div class="stat-num">3</div>
-        <div class="stat-label">AI Products</div>
-        <div class="stat-context">Active &amp; in development</div>
-      </div>
-      <div class="stat">
-        <div class="stat-num">200<em>+</em></div>
-        <div class="stat-label">Engineers</div>
-        <div class="stat-context">Trained at Samsung</div>
-      </div>
-      <div class="stat">
-        <div class="stat-num">4,600</div>
-        <div class="stat-label">Subscribers</div>
-        <div class="stat-context">Sikbang English community (5+ yrs)</div>
-      </div>
-      <div class="stat">
-        <div class="stat-num">5<em>yr</em></div>
-        <div class="stat-label">Teaching</div>
-        <div class="stat-context">AI &amp; Deep Learning</div>
-      </div>
+<!-- ═══ EDUCATION ═══ -->
+<section class="block" id="education">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="tag">STAGE 03</span>
+      <h2>AI EDUCATION — 디렉토리 열람</h2>
+      <span class="rule"></span>
     </div>
-  </section>
-
-  <!-- WHY VERBIO -->
-  <section class="why" id="why">
-    <div class="why-eyebrow">Why Verbio</div>
-    <h2 class="why-title">
-      <strong>Built by people who teach AI.</strong>
-      <br><span class="why-title-soft">Used by people who learn languages.</span>
-    </h2>
-    <div class="why-grid">
-      <div class="why-item reveal">
-        <div class="why-item-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M12 2L2 7l10 5 10-5-10-5z" stroke-linejoin="round"/>
-            <path d="M2 17l10 5 10-5M2 12l10 5 10-5" stroke-linejoin="round"/>
-          </svg>
+    <p class="sec-sub reveal">Teaching what comes next. From classrooms to corporations.</p>
+    <p class="ls-head reveal"><span class="dollar">$</span> ls -la ~/education/</p>
+    <div class="toc reveal">
+      <div class="toc-item">
+        <span class="toc-idx">S-01</span>
+        <div class="toc-body">
+          <span class="toc-file">featured_2025/samsung.log</span>
+          <span class="toc-title">Samsung Electronics</span>
+          <span class="toc-desc">200+ engineers. One deep learning seminar. — Deep Learning · LLM</span>
         </div>
-        <div class="why-item-title">Research-grounded</div>
-        <div class="why-item-desc">5년간 대학과 글로벌 기업에서 AI를 가르쳐왔습니다. 만들기 전에 이해합니다.</div>
+        <div class="toc-meta"><span class="ok">✔ DONE</span><br>200+ TRAINED</div>
       </div>
-      <div class="why-item reveal">
-        <div class="why-item-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" stroke-linecap="round" stroke-linejoin="round"/>
-            <circle cx="9" cy="7" r="4" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
+      <div class="toc-item">
+        <span class="toc-idx">S-02</span>
+        <div class="toc-body">
+          <span class="toc-file">university/ai_deep_learning.sem</span>
+          <span class="toc-title">AI &amp; Deep Learning · University</span>
+          <span class="toc-desc">정규 학기 강의로 차세대 AI 엔지니어를 양성합니다. <a href="mailto:lulu066666@gmail.com?subject=University%20Lecture%20Inquiry">Inquire ▸</a></span>
         </div>
-        <div class="why-item-title">Built for learners</div>
-        <div class="why-item-desc">실제 학습자와 매일 소통하며 만든 제품입니다. 마케팅용이 아닌, 진짜 효과 있는 AI 학습 도구.</div>
+        <div class="toc-meta"><span class="ok">✔ 3YR</span><br>REGULAR</div>
       </div>
-      <div class="why-item reveal">
-        <div class="why-item-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <circle cx="12" cy="12" r="10" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
+      <div class="toc-item">
+        <span class="toc-idx">S-03</span>
+        <div class="toc-body">
+          <span class="toc-file">industry/seminar_request.form</span>
+          <span class="toc-title">Industry Seminar · For your team.</span>
+          <span class="toc-desc">기업 임직원 대상 맞춤형 AI 교육 프로그램입니다. — AI · ML · LLM · CV · NLP · RAG <a href="mailto:lulu066666@gmail.com?subject=Industry%20Seminar%20Request">Request a seminar ▸</a></span>
         </div>
-        <div class="why-item-title">From Busan to the world</div>
-        <div class="why-item-desc">한국어와 영어, 두 언어의 특성을 깊이 이해한 한국 기반 팀이 만드는 글로벌 AI.</div>
+        <div class="toc-meta">OPEN<br>ON REQUEST</div>
       </div>
-    </div>
-  </section>
-
-  <!-- EDUCATION TILE GRID -->
-  <section class="tile-grid-section" id="education">
-    <div class="tile-grid-header">
-      <div class="tile-grid-eyebrow">AI Education</div>
-      <h2 class="tile-grid-title">Teaching what comes next. <span class="title-soft">From classrooms to corporations.</span></h2>
-    </div>
-    <div class="tile-grid">
-      <div class="tile tile-dark">
-        <div>
-          <div class="tile-eyebrow">Featured · 2025</div>
-          <h3 class="tile-title">Samsung Electronics</h3>
-          <p class="tile-subtitle">200+ engineers. One deep learning seminar.</p>
-          <div class="tile-links">
-            <a class="tile-link is-soon" aria-disabled="true">Read about it</a>
-          </div>
+      <div class="toc-item">
+        <span class="toc-idx">S-04</span>
+        <div class="toc-body">
+          <span class="toc-file">consulting/strategy.pkg</span>
+          <span class="toc-title">AI Consulting · Strategy, not slides.</span>
+          <span class="toc-desc">기업의 AI 전략 수립과 실행을 함께합니다. <a href="mailto:lulu066666@gmail.com?subject=AI%20Consulting%20Inquiry">Inquire ▸</a></span>
         </div>
-        <div class="tile-visual">
-          <div class="tv-samsung-wrap">
-            <div class="tv-samsung-num">200<span class="plus">+</span></div>
-            <div class="tv-samsung-label">Engineers Trained</div>
-            <div class="tv-samsung-detail">
-              <span class="tv-samsung-tag">Deep Learning</span>
-              <span class="tv-samsung-tag">LLM</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="tile">
-        <div>
-          <div class="tile-eyebrow">University</div>
-          <h3 class="tile-title">AI &amp; Deep Learning</h3>
-          <p class="tile-subtitle">정규 학기 강의로 차세대 AI 엔지니어를 양성합니다.</p>
-          <div class="tile-links">
-            <a class="tile-link is-soon" aria-disabled="true">Course outline</a>
-            <a href="mailto:lulu066666@gmail.com?subject=University%20Lecture%20Inquiry" class="tile-link">Inquire</a>
-          </div>
-        </div>
-        <div class="tile-visual">
-          <div class="tv-uni">
-            <div class="tv-uni-quote">AI를 가르치는 가장 좋은 방법은, 만들 줄 아는 사람이 가르치는 겁니다.</div>
-            <div class="tv-uni-attr">Jacob Ahn · Founder</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="tile">
-        <div>
-          <div class="tile-eyebrow">Industry Seminar</div>
-          <h3 class="tile-title">For your team.</h3>
-          <p class="tile-subtitle">기업 임직원 대상 맞춤형 AI 교육 프로그램입니다.</p>
-          <div class="tile-links">
-            <a href="mailto:lulu066666@gmail.com?subject=Industry%20Seminar%20Request" class="tile-link">Request a seminar</a>
-          </div>
-        </div>
-        <div class="tile-visual">
-          <div class="tv-skills">
-            <div class="tv-skill active">AI</div>
-            <div class="tv-skill">ML</div>
-            <div class="tv-skill">LLM</div>
-            <div class="tv-skill">DL</div>
-            <div class="tv-skill active">CV</div>
-            <div class="tv-skill">NLP</div>
-            <div class="tv-skill">RL</div>
-            <div class="tv-skill">GAN</div>
-            <div class="tv-skill active">RAG</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="tile tile-dark">
-        <div>
-          <div class="tile-eyebrow">AI Consulting</div>
-          <h3 class="tile-title">Strategy, not slides.</h3>
-          <p class="tile-subtitle">기업의 AI 전략 수립과 실행을 함께합니다.</p>
-          <div class="tile-links">
-            <a href="mailto:lulu066666@gmail.com?subject=AI%20Consulting%20Inquiry%20-%20Verbio%20Labs&body=%EC%95%88%EB%85%95%ED%95%98%EC%84%B8%EC%9A%94%2C%20Verbio%20Labs%EC%9D%98%20AI%20%EC%BB%A8%EC%84%A4%ED%8C%85%EC%97%90%20%EA%B4%80%EC%8B%AC%EC%9D%B4%20%EC%9E%88%EC%96%B4%20%EB%AC%B8%EC%9D%98%EB%93%9C%EB%A6%BD%EB%8B%88%EB%8B%A4.%0A%0A%5B%ED%9A%8C%EC%82%AC%2F%EB%8B%B4%EB%8B%B9%EC%9E%90%5D%3A%0A%5B%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8%20%EB%82%B4%EC%9A%A9%5D%3A%0A%5B%EB%AC%B8%EC%9D%98%EC%82%AC%ED%95%AD%5D%3A" class="tile-link">Get in touch</a>
-          </div>
-        </div>
-        <div class="tile-visual">
-          <div class="tv-network">
-            <svg viewBox="0 0 140 140" fill="none">
-              <defs>
-                <linearGradient id="netGrad" x1="0" y1="0" x2="1" y2="1">
-                  <stop offset="0%" stop-color="#ffffff" stop-opacity="1"/>
-                  <stop offset="100%" stop-color="#5e9eff" stop-opacity="0.6"/>
-                </linearGradient>
-              </defs>
-              <line x1="40" y1="40" x2="100" y2="40" stroke="rgba(255,255,255,0.4)" stroke-width="1.5"/>
-              <line x1="40" y1="40" x2="70" y2="80" stroke="rgba(255,255,255,0.4)" stroke-width="1.5"/>
-              <line x1="100" y1="40" x2="70" y2="80" stroke="rgba(255,255,255,0.4)" stroke-width="1.5"/>
-              <line x1="70" y1="80" x2="30" y2="110" stroke="rgba(255,255,255,0.4)" stroke-width="1.5"/>
-              <line x1="70" y1="80" x2="110" y2="110" stroke="rgba(255,255,255,0.4)" stroke-width="1.5"/>
-              <circle cx="40" cy="40" r="7" fill="url(#netGrad)"/>
-              <circle cx="100" cy="40" r="7" fill="url(#netGrad)"/>
-              <circle cx="70" cy="80" r="9" fill="white"/>
-              <circle cx="30" cy="110" r="6" fill="url(#netGrad)"/>
-              <circle cx="110" cy="110" r="6" fill="url(#netGrad)"/>
-            </svg>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- COMMUNITY -->
-  <section class="stage stage-dark" id="community">
-    <div class="stage-eyebrow reveal">AI Cartel · Busan</div>
-    <h2 class="stage-title reveal">For people who love AI.</h2>
-    <p class="stage-subtitle reveal">부산 기반 AI 커뮤니티. <br class="br-md-hide">매주 모이고, 만들고, 나눕니다.</p>
-    <div class="stage-links reveal">
-      <a href="/join" class="stage-link">Join the Cartel</a>
-      <a href="#manifesto" class="stage-link" id="manifestoToggle">What we believe</a>
-    </div>
-
-    <!-- MANIFESTO (expandable) -->
-    <div class="manifesto-wrap" id="manifesto">
-      <div class="manifesto-inner">
-        <div class="manifesto-eyebrow">Manifesto</div>
-        <h3 class="manifesto-title">부산 AI Cartel</h3>
-        <p class="manifesto-lead">부산 최대 AI 커뮤니티가 될, 첫 번째 결속입니다.</p>
-
-        <p class="manifesto-intro">
-          우리는 무엇인가를 가르치는 강의도, 단순한 친목 모임도 아닙니다. AI 시대를 같은 속도로 헤쳐 나가려는 사람들이, 서로의 시점에서 인사이트를 나누고 함께 깊이를 쌓는 모임입니다.
-        </p>
-
-        <div class="manifesto-pillars">
-          <div class="manifesto-pillar">
-            <div class="pillar-label">우리가 믿는 것</div>
-            <p class="pillar-text">
-              혼자서는 닿을 수 없는 곳에, 함께라면 닿을 수 있다고 믿습니다. 한 사람이 일주일 동안 발견한 인사이트가 여섯 명에게 6배로 돌아오는 <em>복리의 힘</em>. 한 사람에게 들어온 기회가 모두에게 열리는 <em>네트워크의 힘</em>.
-            </p>
-          </div>
-
-          <div class="manifesto-pillar">
-            <div class="pillar-label">우리가 만드는 것</div>
-            <p class="pillar-text">
-              인사이트를 나누고, 성장을 가속하고, 기회를 연결합니다. 우리의 작은 모임이 <em>부산 AI 씬의 시작</em>이 됩니다.
-            </p>
-          </div>
-        </div>
-
-        <a href="/join" class="manifesto-cta">
-          Join the Cartel
-          <span class="manifesto-cta-arrow">›</span>
-        </a>
+        <div class="toc-meta">OPEN<br>ON REQUEST</div>
       </div>
     </div>
 
-    <div class="community-visual scale-in">
-      <div class="community-bigtype">Busan.</div>
+    <div class="fieldnote reveal">
+      <p>“AI를 가르치는 가장 좋은 방법은, 만들 줄 아는 사람이 가르치는 겁니다.”</p>
+      <span class="sign">— Jacob Ahn · Founder</span>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- FOOTER -->
-  <footer class="footer" id="contact">
-    <div class="footer-inner">
-      <div class="footer-disclaimer">
-        <span class="footer-disclaimer-en">Verbio Labs is an AI research &amp; education company based in Busan, Korea. All products are designed and built in Korea.</span>
-        <span class="footer-disclaimer-kr">베르비오 랩스는 부산에 위치한 AI 연구·교육 기업입니다. 모든 제품은 한국에서 설계되고 개발됩니다.</span>
-      </div>
-      <div class="footer-cols">
-        <div class="footer-col">
-          <h4>Products</h4>
-          <ul>
-            <li><a href="https://sikbang-eng.replit.app/" target="_blank" rel="noopener">SpeakCoach AI</a></li>
-            <li><a href="https://topikiq.com" target="_blank" rel="noopener">TopikIQ</a></li>
-            <li><a href="https://sikbang.co" target="_blank" rel="noopener">Sikbang English</a></li>
-          </ul>
+<!-- ═══ COMMUNITY ═══ -->
+<section class="block" id="community">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="tag">GUILD</span>
+      <h2>AI CARTEL · BUSAN — 길드 모집 중</h2>
+      <span class="rule"></span>
+    </div>
+    <p class="sec-sub reveal">For people who love AI. 부산 기반 AI 커뮤니티. 매주 모이고, 만들고, 나눕니다.</p>
+
+    <div class="guild reveal">
+      <div class="g-eyebrow">— MANIFESTO —</div>
+      <p class="pix-title">부산 <span class="hl">AI Cartel</span></p>
+      <p>부산 최대 AI 커뮤니티가 될, 첫 번째 결속입니다.</p>
+      <p>우리는 무엇인가를 가르치는 강의도, 단순한 친목 모임도 아닙니다. AI 시대를 같은 속도로 헤쳐 나가려는 사람들이, 서로의 시점에서 인사이트를 나누고 함께 깊이를 쌓는 모임입니다.</p>
+      <div class="pillars">
+        <div class="pillar">
+          <div class="pl">◆ 우리가 믿는 것</div>
+          <p>혼자서는 닿을 수 없는 곳에, 함께라면 닿을 수 있다고 믿습니다. 한 사람이 일주일 동안 발견한 인사이트가 여섯 명에게 6배로 돌아오는 <em>복리의 힘</em>. 한 사람에게 들어온 기회가 모두에게 열리는 <em>네트워크의 힘</em>.</p>
         </div>
-        <div class="footer-col">
-          <h4>Education</h4>
-          <ul>
-            <li><a href="#education">University Lectures</a></li>
-            <li><a href="#education">Industry Seminars</a></li>
-            <li><a href="#education">AI Consulting</a></li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h4>Learn</h4>
-          <ul>
-            <li><a href="/claude-guide">무료 전자책 · 클로드 완전정복</a></li>
-            <li><a href="/courses">Online Courses</a></li>
-            <li><a href="/bootcamp">Offline Bootcamp · Busan</a></li>
-            <li><a href="#community">AI Cartel Busan</a></li>
-            <li><a class="is-soon" aria-disabled="true">Newsletter</a></li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h4>Contact</h4>
-          <ul>
-            <li><a href="mailto:lulu066666@gmail.com">lulu066666@gmail.com</a></li>
-            <li><span>Busan, Korea</span></li>
-          </ul>
+        <div class="pillar">
+          <div class="pl">◆ 우리가 만드는 것</div>
+          <p>인사이트를 나누고, 성장을 가속하고, 기회를 연결합니다. 우리의 작은 모임이 <em>부산 AI 씬의 시작</em>이 됩니다.</p>
         </div>
       </div>
-      <div class="footer-legal">
-        <div class="footer-legal-row">
-          <span class="footer-legal-label">상호</span>
-          <span class="footer-legal-value">식빵영어 (Sikbang English)</span>
-        </div>
-        <div class="footer-legal-row">
-          <span class="footer-legal-label">대표</span>
-          <span class="footer-legal-value">안준영 (Jacob)</span>
-        </div>
-        <div class="footer-legal-row">
-          <span class="footer-legal-label">사업장 주소</span>
-          <span class="footer-legal-value">부산광역시 부산진구 만리산로98</span>
-        </div>
-        <div class="footer-legal-row">
-          <span class="footer-legal-label">사업자등록번호</span>
-          <span class="footer-legal-value">807-29-01639</span>
-        </div>
-        <div class="footer-legal-row">
-          <span class="footer-legal-label">통신판매업 신고번호</span>
-          <span class="footer-legal-value">제 2025-부산진-1374호</span>
-        </div>
+      <a class="join" href="/join">▶ JOIN THE CARTEL</a>
+      <div class="busan">BUSAN.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 푸터 (절취선 + 바코드) ═══ -->
+<footer id="contact">
+  <div class="wrap">
+    <div class="cols">
+      <div>
+        <h4>PRODUCTS</h4>
+        <ul>
+          <li><a href="https://apps.apple.com/kr/app/%EC%A7%81%EC%8B%9C-%EA%B5%AD%ED%9A%8C-%EA%B0%90%EC%8B%9C/id6782101748" target="_blank" rel="noopener">직시 · 국회 감시</a></li>
+          <li><a href="https://sikbang-eng.replit.app/" target="_blank" rel="noopener">SpeakCoach AI</a></li>
+          <li><a href="https://topikiq.com" target="_blank" rel="noopener">TopikIQ</a></li>
+          <li><a href="https://sikbang.co" target="_blank" rel="noopener">Sikbang English</a></li>
+        </ul>
       </div>
-      <div class="footer-bottom">
-        <span>Copyright © 2026 Verbio Labs. All rights reserved.</span>
-        <span>
-          <a href="/privacy.html">개인정보처리방침</a>
-          ·
-          <a href="/terms.html">이용약관</a>
-          ·
-          <a href="/refund.html">환불 정책</a>
-        </span>
+      <div>
+        <h4>EDUCATION</h4>
+        <ul>
+          <li><a href="#education">University Lectures</a></li>
+          <li><a href="#education">Industry Seminars</a></li>
+          <li><a href="#education">AI Consulting</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>LEARN</h4>
+        <ul>
+          <li><a href="/claude-guide">무료 전자책 · 클로드 완전정복</a></li>
+          <li><a href="/sample">무료 맛보기 레슨</a></li>
+          <li><a href="/courses">Online Courses</a></li>
+          <li><a href="/bootcamp">Offline Bootcamp · Busan</a></li>
+          <li><a href="#community">AI Cartel Busan</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>CONTACT</h4>
+        <ul>
+          <li><a href="mailto:lulu066666@gmail.com">lulu066666@gmail.com</a></li>
+          <li>Busan, Korea</li>
+        </ul>
       </div>
     </div>
-  </footer>
+    <div class="legal">
+      <b>상호</b> 식빵영어 (Sikbang English) · <b>대표</b> 안준영 (Jacob) · <b>사업장 주소</b> 부산광역시 부산진구 만리산로98<br>
+      <b>사업자등록번호</b> 807-29-01639 · <b>통신판매업 신고번호</b> 제 2025-부산진-1374호
+    </div>
+    <div class="bottom">
+      <span class="logo">VERBIO<span class="dot">·</span>LABS</span>
+      <span>© 2026 Verbio Labs. All rights reserved. · <a href="/privacy.html">개인정보처리방침</a> · <a href="/terms.html">이용약관</a> · <a href="/refund.html">환불 정책</a></span>
+      <div class="barcode" aria-hidden="true"></div>
+    </div>
+  </div>
+</footer>
 
-  <script>
-    const missionText = document.getElementById('missionText');
-    const missionSection = document.getElementById('mission');
+<script>
+/* ═══ SFX — Hermes tick (전자책·부트캠프와 동일 엔진) ═══ */
+const SFX=(()=>{
+  let ctx=null, enabled=true;
+  function ac(){
+    if(!ctx) ctx=new (window.AudioContext||window.webkitAudioContext)();
+    if(ctx.state==='suspended') ctx.resume();
+    return ctx;
+  }
+  function tick(o){
+    o=o||{};
+    const f=o.f||4000,q=o.q||8,vol=(o.vol!=null?o.vol:.5),delay=o.delay||0,len=o.len||.004,decay=o.decay||25;
+    const c=ac(),t0=c.currentTime+delay;
+    const N=Math.max(8,Math.floor(len*c.sampleRate));
+    const buf=c.createBuffer(1,N,c.sampleRate);
+    const d=buf.getChannelData(0);
+    for(let i=0;i<N;i++) d[i]=(2*Math.random()-1)*Math.exp(-i/decay);
+    const n=c.createBufferSource();n.buffer=buf;
+    const bp=c.createBiquadFilter();bp.type='bandpass';bp.frequency.value=f;bp.Q.value=q;
+    const g=c.createGain();g.gain.value=vol;
+    n.connect(bp);bp.connect(g);g.connect(c.destination);
+    n.start(t0);
+  }
+  return {
+    setEnabled(x){enabled=x;}, get enabled(){return enabled;},
+    click(){ if(enabled) tick({f:2000+2000*Math.random()}); },
+    confirm(){ if(!enabled)return; tick({f:2600}); tick({f:4200,vol:.4,delay:.06}); },
+    deny(){ if(!enabled)return; tick({f:900,q:6,vol:.45}); tick({f:800,q:6,vol:.4,delay:.09}); },
+    coin(){ if(!enabled)return; tick({f:2200}); tick({f:3100,delay:.08}); tick({f:4400,delay:.16}); }
+  };
+})();
+document.addEventListener('click',e=>{
+  const el=e.target.closest('a,button');
+  if(!el||el.id==='sfx-toggle') return;
+  if(el.classList.contains('press-start')||el.classList.contains('join')) SFX.confirm();
+  else SFX.click();
+},true);
+(function(){
+  const btn=document.getElementById('sfx-toggle');
+  btn.addEventListener('click',()=>{
+    SFX.setEnabled(!SFX.enabled);
+    btn.textContent=SFX.enabled?'♪ ON':'♪ OFF';
+    btn.classList.toggle('off',!SFX.enabled);
+    if(SFX.enabled) SFX.coin();
+  });
+})();
 
-    function updateMissionGradient() {
-      if (!missionText || !missionSection) return;
-      const rect = missionSection.getBoundingClientRect();
-      const windowHeight = window.innerHeight;
-      const start = windowHeight * 0.85;
-      const end = -rect.height * 0.5;
-      const progress = Math.max(0, Math.min(100, ((start - rect.top) / (start - end)) * 100));
-      missionText.style.setProperty('--scroll', `${progress}%`);
-    }
+/* ═══ 리빌 (reveal-on-scroll · prefers-reduced-motion은 CSS에서 존중) ═══ */
+const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.15});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
 
-    window.addEventListener('scroll', updateMissionGradient, { passive: true });
-    window.addEventListener('resize', updateMissionGradient);
-    updateMissionGradient();
-
-    const revealObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) entry.target.classList.add('visible');
-      });
-    }, { threshold: 0.15, rootMargin: '0px 0px -80px 0px' });
-
-    document.querySelectorAll('.reveal, .scale-in').forEach(el => revealObserver.observe(el));
-
-    // Mobile hamburger menu
-    const burger = document.getElementById('navBurger');
-    const drawer = document.getElementById('mobileDrawer');
-    if (burger && drawer) {
-      const setMenu = (open) => {
-        burger.classList.toggle('is-open', open);
-        drawer.classList.toggle('is-open', open);
-        burger.setAttribute('aria-expanded', open ? 'true' : 'false');
-        drawer.setAttribute('aria-hidden', open ? 'false' : 'true');
-        burger.setAttribute('aria-label', open ? '메뉴 닫기' : '메뉴 열기');
-        document.body.classList.toggle('no-scroll', open);
-      };
-      burger.addEventListener('click', () => setMenu(!drawer.classList.contains('is-open')));
-      drawer.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setMenu(false)));
-      // Close on Escape
-      document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && drawer.classList.contains('is-open')) setMenu(false);
-      });
-    }
-
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function(e) {
-        const href = this.getAttribute('href');
-        if (href === '#') return;
-        const target = document.querySelector(href);
-        if (target) {
-          e.preventDefault();
-          // Special-case: manifesto / apply links expand the section before scrolling
-          if (href === '#manifesto' || href === '#apply') {
-            target.classList.add('open');
-            // Wait one frame so layout settles, then scroll
-            requestAnimationFrame(() => {
-              setTimeout(() => target.scrollIntoView({ behavior: 'smooth', block: 'start' }), 80);
-            });
-            return;
-          }
-          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-      });
-    });
-
-    // Course card · expandable details toggle
-    document.querySelectorAll('.card-toggle').forEach(btn => {
-      btn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        const card = btn.closest('.level-card, .track-card');
-        if (!card) return;
-        const expanded = card.classList.toggle('is-expanded');
-        btn.setAttribute('aria-expanded', expanded ? 'true' : 'false');
-      });
-    });
-
-    // Course card · click anywhere on card opens data-href in new tab
-    // (카드 내부의 링크/버튼/토글은 자체 동작 유지)
-    document.querySelectorAll('.level-card[data-href], .track-card[data-href]').forEach(card => {
-      card.addEventListener('click', (e) => {
-        if (e.target.closest('a, button, input, label, select, textarea')) return;
-        const url = card.dataset.href;
-        if (url) window.location.href = url;
-      });
-    });
-
-    // Learning Path · segmented control (For Individuals / For Organizations)
-    document.querySelectorAll('.path-tab').forEach(tab => {
-      tab.addEventListener('click', () => {
-        const targetId = tab.dataset.target;
-        document.querySelectorAll('.path-tab').forEach(t => {
-          const active = t === tab;
-          t.classList.toggle('is-active', active);
-          t.setAttribute('aria-selected', active ? 'true' : 'false');
-        });
-        document.querySelectorAll('.path-panel').forEach(panel => {
-          panel.classList.toggle('is-hidden', panel.id !== targetId);
-        });
-        // Reveal any cards in the newly-shown panel that haven't been revealed yet
-        document.querySelectorAll(`#${targetId} .reveal:not(.visible)`).forEach(el => {
-          el.classList.add('visible');
-        });
-      });
-    });
-
-  </script>
-
-  <!-- Vercel Web Analytics -->
-  <script defer src="/_vercel/insights/script.js"></script>
-  <!-- Vercel Speed Insights -->
-  <script defer src="/_vercel/speed-insights/script.js"></script>
-
+<!-- Vercel Web Analytics + Speed Insights -->
+<script defer src="/_vercel/insights/script.js"></script>
+<script defer src="/_vercel/speed-insights/script.js"></script>
 </body>
 </html>
