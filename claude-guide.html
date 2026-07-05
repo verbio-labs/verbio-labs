@@ -652,7 +652,7 @@ footer .barcode::after{content:"NO.20260704";position:absolute;bottom:-16px;left
   <div class="gate-box">
     <button class="gate-close" onclick="closeGate()" aria-label="닫기">✕</button>
     <p class="g-title">🔒 MEMBERS ONLY</p>
-    <p><strong>LV.2부터는 채널 멤버 전용 스테이지입니다.</strong><br>
+    <p><strong>이 책은 채널 멤버 전용입니다 — 멤버십도 무료입니다.</strong><br>
     추가는 3초, 콘텐츠는 계속 전부 무료예요.</p>
     <div class="gate-steps">
       <b>①</b> 아래 버튼으로 카카오 채널 추가<br>
@@ -706,7 +706,7 @@ footer .barcode::after{content:"NO.20260704";position:absolute;bottom:-16px;left
       <div class="typeline"><span class="dollar">$</span> sudo learn claude --from=zero --to=hero</div>
       <br>
       <a class="press-start" href="#questmap" data-anchor="questmap">▶ SELECT MODE</a>
-      <p class="coin">INSERT COIN 필요 없음 · 진행도 자동 저장 · STORY 모드 무료 시작</p>
+      <p class="coin">INSERT COIN 필요 없음 · 전 챕터 무료 · 입장 코드는 채널 추가 시 즉시 발급</p>
 
       <div class="status-window reveal" role="list">
         <div class="cell" role="listitem"><span class="num" data-count="3">0</span><span class="lbl">MODES</span></div>
@@ -890,9 +890,9 @@ footer .barcode::after{content:"NO.20260704";position:absolute;bottom:-16px;left
   <section class="funnel">
     <div class="wrap">
       <div class="funnel-box reveal">
-        <div class="pix-title">다음 스테이지는 <span class="hl">멤버 전용</span></div>
-        <p>LV.0~1의 8개 챕터는 지금 바로, 전부 무료입니다. LV.2부터는 카카오 채널 멤버에게 열려요 —
-        추가하면 환영 메시지로 입장 코드가 도착하고, 새 챕터와 클래스(원데이·부트캠프) 오픈 소식도 가장 먼저 받습니다.</p>
+        <div class="pix-title">전 챕터 무료 — <span class="hl">입장 코드만 받으세요</span></div>
+        <p>37챕터 전부 무료입니다. 딱 하나 — 카카오 채널 추가만 하면 돼요.
+        추가하는 순간 환영 메시지로 입장 코드가 도착하고 (3초), 코드 입력 시 전 챕터가 영구 잠금해제됩니다. 새 챕터와 클래스(원데이·부트캠프) 소식도 가장 먼저 받아요.</p>
         <a class="gate-kakao" style="max-width:340px;margin:0 auto 14px" href="#" target="_blank" rel="noopener">💬 카카오 채널 추가하고 코드 받기</a>
         <p class="fine">이미 코드가 있다면 <a href="#" onclick="openGate();return false;" style="color:var(--clay)">여기서 입력</a> // 스팸 없음, 광고 없음</p>
       </div>
@@ -4281,7 +4281,7 @@ const SFX=(()=>{
 const GATE={
   kakaoUrl:'https://pf.kakao.com/_xebtPX',
   code:'PLAYER1UP',
-  freeLevels:['lv0','lv1'],
+  freeLevels:[], /* 전 챕터 채널 멤버 전용 (2026-07-06 전환) — 코드는 채널 추가 시 무료 발급 */
   get unlocked(){return localStorage.getItem('vl_member')==='1'},
   unlock(){localStorage.setItem('vl_member','1')},
   isLocked(lv){return !this.freeLevels.includes(lv)&&!this.unlocked}
@@ -4437,7 +4437,7 @@ LEVELS.push(
 /* ═══════ 트랙(난이도) 메타 ═══════ */
 const TRACKS={
   story:{icon:'●',name:'STORY MODE',ko:'기본기 캠페인',
-    blurb:'<b>입문 → 중수.</b> AI가 처음이어도 순서대로 따라오면 되는 메인 캠페인. LV.0~1은 완전 무료.<br>클리어 시: 어떤 작업이든 첫 시도에 쓸 만한 결과를 뽑고, 에이전트에게 일을 위임할 수 있게 됩니다.'},
+    blurb:'<b>입문 → 중수.</b> AI가 처음이어도 순서대로 따라오면 되는 메인 캠페인. 37챕터 전부 무료 (채널 추가로 입장 코드 발급).<br>클리어 시: 어떤 작업이든 첫 시도에 쓸 만한 결과를 뽑고, 에이전트에게 일을 위임할 수 있게 됩니다.'},
   expert:{icon:'◆',name:'EXPERT MODE',ko:'실전 운용',
     blurb:'<b>매일 쓰는 사람 → 시스템으로 일하는 사람.</b> 프롬프트를 자산으로, 에이전트를 팀으로 운용하는 실무 기술. 멤버 전용.<br>클리어 시: 주 10시간 이상을 시스템이 대신하고, 그 절감을 숫자(ROI)로 증명하게 됩니다.'},
   legend:{icon:'★',name:'LEGEND MODE',ko:'설계자의 전당',
@@ -4501,7 +4501,7 @@ function renderHub(){
         <p>${L.desc}</p>
         <div class="topics">${L.topics.map(t=>`<span>${t}</span>`).join('')}</div>
         <div class="xpbar"><div class="track"><div class="fill" data-xp="${pct}"></div></div><span class="pct">${pct===100?'CLEAR':pct+'%'}</span></div>
-        <a class="enter" href="#${L.id}">${locked?'목차 미리보기 (멤버 전용)':'목차 열기 ('+L.chapters.length+'챕터 무료)'}</a>
+        <a class="enter" href="#${L.id}">${locked?'목차 열기 (입장 코드 필요 · 무료 발급)':'목차 열기 ('+L.chapters.length+'챕터)'}</a>
       </div>
     </div>`;
   }).join('');
@@ -4687,7 +4687,7 @@ function injectPlug(id,art){
     <div class="plug-btns">
       <a class="${cls}" href="${href}"${tgt}>${P.btn}</a>
       <span class="p-sub">${sub}</span>
-    </div>${free?offlineLine():''}`;
+    </div>${offlineLine()}`;
   const clear=art.querySelector('.level-clear');
   if(clear) art.insertBefore(div,clear);
 }
