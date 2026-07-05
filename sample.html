@@ -181,9 +181,8 @@ a{color:var(--clay-deep)}
 .copy-btn.ok{border-color:var(--moss);color:#8FB5A8}
 
 /* 스크린샷 placeholder — 레트로 재해석 */
-.shot{margin:18px 0 6px;border:2px dashed var(--ink);background:var(--kraft);aspect-ratio:16/10;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;position:relative}
-.shot::before{content:"▚▞";position:absolute;top:8px;left:12px;font-family:var(--font-mono);font-size:11px;color:var(--line)}
-.shot::after{content:"▞▚";position:absolute;bottom:8px;right:12px;font-family:var(--font-mono);font-size:11px;color:var(--line)}
+.shot{margin:18px 0 6px;border:2px solid var(--ink);background:var(--page);aspect-ratio:16/10;position:relative;box-shadow:4px 4px 0 var(--ink);overflow:hidden}
+.shot svg{display:block;width:100%;height:100%}
 .shot .shot-tag{font-family:var(--font-pixel);font-size:10px;color:var(--page);background:var(--clay);padding:2px 10px;letter-spacing:.12em}
 .shot .shot-path{font-family:var(--font-mono);font-size:12px;color:var(--ink-soft);letter-spacing:.02em;padding:0 12px;text-align:center}
 .shot-cap{font-size:13px;color:var(--ink-soft);text-align:center;margin:8px 0 0;line-height:1.7}
@@ -320,8 +319,24 @@ footer .legal a{color:var(--ink-soft)}
       <div class="loot"><span class="loot-tag">RESULT ▸</span><span><strong>본인 소유의 도메인 1개</strong> (예: <code>jacob-ahn.com</code>). 아직 사이트는 없음, 주소만 있음.</span></div>
       <figure style="margin:0">
         <div class="shot">
-          <span class="shot-tag">SCREENSHOT</span>
-          <span class="shot-path">/sample-images/01-gabia-search.png</span>
+          <svg viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg" role="img">
+<rect width="800" height="500" fill="#FAF9F5"/>
+<rect width="800" height="44" fill="#1F1E1A"/>
+<circle cx="22" cy="22" r="6" fill="#D97757"/><circle cx="42" cy="22" r="6" fill="#B99A45"/><circle cx="62" cy="22" r="6" fill="#5E8D7A"/>
+<rect x="84" y="10" width="632" height="24" rx="12" fill="#3A3833"/>
+<text x="100" y="27" font-family='IBM Plex Mono,monospace' font-size="13" fill="#D8D3C4">🔒 domain.gabia.com</text>
+<text x="60" y="100" font-family='IBM Plex Mono,monospace' font-size="22" fill="#1F1E1A" font-weight="bold">도메인 검색</text>
+<rect x="60" y="120" width="500" height="44" fill="#FFFFFF" stroke="#1F1E1A" stroke-width="2"/>
+<text x="76" y="148" font-family='IBM Plex Mono,monospace' font-size="16" fill="#1F1E1A">장사장.com</text>
+<rect x="572" y="120" width="110" height="44" fill="#D97757"/><text x="600" y="148" font-family='IBM Plex Mono,monospace' font-size="15" fill="#FAF9F5">검색</text>
+<rect x="60" y="196" width="622" height="56" fill="#EDF3EF" stroke="#5E8D7A" stroke-width="2"/>
+<text x="76" y="230" font-family='IBM Plex Mono,monospace' font-size="16" fill="#1F1E1A">장사장.com</text>
+<text x="420" y="230" font-family='IBM Plex Mono,monospace' font-size="14" fill="#5E8D7A">✓ 등록 가능 · 13,500원/년</text>
+<rect x="60" y="262" width="622" height="48" fill="#F0EEE6"/>
+<text x="76" y="292" font-family='IBM Plex Mono,monospace' font-size="14" fill="#8B857A">장사장.co.kr</text><text x="420" y="292" font-family='IBM Plex Mono,monospace' font-size="13" fill="#B0AB9F">이미 등록됨</text>
+<rect x="60" y="320" width="622" height="48" fill="#F0EEE6"/>
+<text x="76" y="350" font-family='IBM Plex Mono,monospace' font-size="14" fill="#8B857A">장사장.net</text><text x="420" y="350" font-family='IBM Plex Mono,monospace' font-size="13" fill="#B0AB9F">이미 등록됨</text>
+<text x="60" y="420" font-family='IBM Plex Mono,monospace' font-size="13" fill="#5C5749">→ .com이 살아 있으면 그게 정답입니다</text></svg>
         </div>
         <figcaption class="shot-cap">가비아 도메인 검색 결과 · 본인 이름.com이 등록 가능한지 확인하는 순간</figcaption>
       </figure>
@@ -340,8 +355,19 @@ footer .legal a{color:var(--ink-soft)}
       <div class="loot"><span class="loot-tag">RESULT ▸</span><span><strong>Vercel 대시보드 접근</strong>. 사이트를 올릴 빈 책상.</span></div>
       <figure style="margin:0">
         <div class="shot">
-          <span class="shot-tag">SCREENSHOT</span>
-          <span class="shot-path">/sample-images/02-vercel-dashboard.png</span>
+          <svg viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg" role="img">
+<rect width="800" height="500" fill="#FAF9F5"/>
+<rect width="800" height="44" fill="#1F1E1A"/>
+<circle cx="22" cy="22" r="6" fill="#D97757"/><circle cx="42" cy="22" r="6" fill="#B99A45"/><circle cx="62" cy="22" r="6" fill="#5E8D7A"/>
+<rect x="84" y="10" width="632" height="24" rx="12" fill="#3A3833"/>
+<text x="100" y="27" font-family='IBM Plex Mono,monospace' font-size="13" fill="#D8D3C4">🔒 vercel.com/dashboard</text>
+<text x="60" y="104" font-family="Inter,sans-serif" font-size="24" fill="#1F1E1A" font-weight="bold">Overview</text>
+<rect x="560" y="80" width="180" height="40" fill="#1F1E1A"/><text x="580" y="106" font-family='IBM Plex Mono,monospace' font-size="14" fill="#FFFFFF">Add New… ▾</text>
+<rect x="60" y="150" width="680" height="1" fill="#CFC7B4"/>
+<rect x="60" y="190" width="330" height="150" fill="#FFFFFF" stroke="#CFC7B4" stroke-dasharray="6 5" stroke-width="2"/>
+<text x="150" y="260" font-family='IBM Plex Mono,monospace' font-size="14" fill="#8B857A">No projects, yet.</text>
+<text x="120" y="290" font-family='IBM Plex Mono,monospace' font-size="12" fill="#B0AB9F">첫 프로젝트가 들어올 자리</text>
+<rect x="410" y="190" width="330" height="150" fill="#F7F6F1" stroke="#E5E1D3" stroke-width="2"/></svg>
         </div>
         <figcaption class="shot-cap">Vercel 대시보드 · "Add New Project" 버튼이 보이는 빈 상태</figcaption>
       </figure>
@@ -381,8 +407,25 @@ footer .legal a{color:var(--ink-soft)}
       <div class="loot"><span class="loot-tag">RESULT ▸</span><span><strong>index.html 파일 1개</strong> (또는 v0 프로젝트 1개). 본인 컴퓨터의 다운로드 폴더에 있음.</span></div>
       <figure style="margin:0">
         <div class="shot">
-          <span class="shot-tag">SCREENSHOT</span>
-          <span class="shot-path">/sample-images/03-v0-result.png</span>
+          <svg viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg" role="img">
+<rect width="800" height="500" fill="#FAF9F5"/>
+<rect width="800" height="44" fill="#1F1E1A"/>
+<circle cx="22" cy="22" r="6" fill="#D97757"/><circle cx="42" cy="22" r="6" fill="#B99A45"/><circle cx="62" cy="22" r="6" fill="#5E8D7A"/>
+<rect x="84" y="10" width="632" height="24" rx="12" fill="#3A3833"/>
+<text x="100" y="27" font-family='IBM Plex Mono,monospace' font-size="13" fill="#D8D3C4">🔒 v0.dev</text>
+<rect x="0" y="44" width="330" height="456" fill="#1F1E1A"/>
+<text x="24" y="86" font-family='IBM Plex Mono,monospace' font-size="12" fill="#B99A45">PROMPT</text>
+<rect x="24" y="100" width="270" height="10" fill="#57544B"/><rect x="24" y="122" width="240" height="10" fill="#57544B"/>
+<rect x="24" y="144" width="256" height="10" fill="#57544B"/><rect x="24" y="166" width="180" height="10" fill="#57544B"/>
+<text x="24" y="220" font-family='IBM Plex Mono,monospace' font-size="12" fill="#8FB5A8">"3D프린팅 외주 소개 사이트,</text>
+<text x="24" y="240" font-family='IBM Plex Mono,monospace' font-size="12" fill="#8FB5A8"> 미니멀, 문의 버튼 하나"</text>
+<rect x="24" y="440" width="120" height="32" fill="#D97757"/><text x="46" y="461" font-family='IBM Plex Mono,monospace' font-size="12" fill="#FFF">Generate</text>
+<rect x="360" y="80" width="410" height="390" fill="#FFFFFF" stroke="#CFC7B4" stroke-width="2"/>
+<rect x="360" y="80" width="410" height="34" fill="#F0EEE6"/>
+<text x="420" y="190" font-family="Inter,sans-serif" font-size="24" fill="#1F1E1A" font-weight="bold">장사장 3D LAB</text>
+<text x="420" y="220" font-family="Inter,sans-serif" font-size="13" fill="#5C5749">아이디어를 24시간 안에 실물로.</text>
+<rect x="420" y="250" width="130" height="38" fill="#1F1E1A"/><text x="446" y="274" font-family='IBM Plex Mono,monospace' font-size="13" fill="#FFF">문의하기</text>
+<rect x="420" y="320" width="290" height="8" fill="#E7DFCE"/><rect x="420" y="340" width="250" height="8" fill="#E7DFCE"/></svg>
         </div>
         <figcaption class="shot-cap">v0.dev에 위 prompt를 넣고 받은 사이트 미리보기 · 왼쪽 prompt, 오른쪽 결과 화면</figcaption>
       </figure>
@@ -402,8 +445,22 @@ footer .legal a{color:var(--ink-soft)}
       <div class="loot"><span class="loot-tag">RESULT ▸</span><span><strong>github.com/본인계정/사이트이름</strong> 주소에 코드가 올라가 있음. 인터넷에선 아직 안 보임.</span></div>
       <figure style="margin:0">
         <div class="shot">
-          <span class="shot-tag">SCREENSHOT · OPTIONAL</span>
-          <span class="shot-path">/sample-images/04-github-desktop.png</span>
+          <svg viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg" role="img">
+<rect width="800" height="500" fill="#FAF9F5"/>
+<rect width="800" height="44" fill="#1F1E1A"/>
+<circle cx="22" cy="22" r="6" fill="#D97757"/><circle cx="42" cy="22" r="6" fill="#B99A45"/><circle cx="62" cy="22" r="6" fill="#5E8D7A"/>
+<rect x="84" y="10" width="632" height="24" rx="12" fill="#3A3833"/>
+<text x="100" y="27" font-family='IBM Plex Mono,monospace' font-size="13" fill="#D8D3C4">🔒 GitHub Desktop</text>
+<rect x="150" y="90" width="500" height="330" fill="#FFFFFF" stroke="#1F1E1A" stroke-width="2"/>
+<rect x="150" y="90" width="500" height="42" fill="#F0EEE6"/>
+<text x="170" y="117" font-family="Inter,sans-serif" font-size="15" fill="#1F1E1A" font-weight="bold">Publish repository</text>
+<text x="170" y="170" font-family='IBM Plex Mono,monospace' font-size="12" fill="#5C5749">Name</text>
+<rect x="170" y="180" width="460" height="34" fill="#FAF9F5" stroke="#CFC7B4"/><text x="182" y="202" font-family='IBM Plex Mono,monospace' font-size="13" fill="#1F1E1A">my-first-site</text>
+<text x="170" y="248" font-family='IBM Plex Mono,monospace' font-size="12" fill="#5C5749">Description</text>
+<rect x="170" y="258" width="460" height="34" fill="#FAF9F5" stroke="#CFC7B4"/>
+<rect x="170" y="316" width="16" height="16" fill="#FFFFFF" stroke="#1F1E1A" stroke-width="2"/>
+<text x="196" y="330" font-family='IBM Plex Mono,monospace' font-size="13" fill="#1F1E1A">Keep this code private</text>
+<rect x="500" y="360" width="130" height="38" fill="#5E8D7A"/><text x="518" y="384" font-family='IBM Plex Mono,monospace' font-size="13" fill="#FFF">Publish repo</text></svg>
         </div>
         <figcaption class="shot-cap">GitHub Desktop "Publish repository" 다이얼로그 · 체크박스 해제된 상태</figcaption>
       </figure>
@@ -430,8 +487,21 @@ CNAME www          cname.vercel-dns.com</pre>
       </div>
       <figure style="margin:0">
         <div class="shot">
-          <span class="shot-tag">SCREENSHOT</span>
-          <span class="shot-path">/sample-images/05-vercel-domains.png</span>
+          <svg viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg" role="img">
+<rect width="800" height="500" fill="#FAF9F5"/>
+<rect width="800" height="44" fill="#1F1E1A"/>
+<circle cx="22" cy="22" r="6" fill="#D97757"/><circle cx="42" cy="22" r="6" fill="#B99A45"/><circle cx="62" cy="22" r="6" fill="#5E8D7A"/>
+<rect x="84" y="10" width="632" height="24" rx="12" fill="#3A3833"/>
+<text x="100" y="27" font-family='IBM Plex Mono,monospace' font-size="13" fill="#D8D3C4">🔒 vercel.com · Domains</text>
+<text x="60" y="100" font-family="Inter,sans-serif" font-size="20" fill="#1F1E1A" font-weight="bold">Settings → Domains</text>
+<rect x="60" y="124" width="440" height="42" fill="#FFFFFF" stroke="#1F1E1A" stroke-width="2"/>
+<text x="76" y="151" font-family='IBM Plex Mono,monospace' font-size="15" fill="#1F1E1A">장사장.com</text>
+<rect x="516" y="124" width="90" height="42" fill="#1F1E1A"/><text x="540" y="151" font-family='IBM Plex Mono,monospace' font-size="14" fill="#FFF">Add</text>
+<rect x="60" y="200" width="680" height="120" fill="#FDF6EC" stroke="#B99A45" stroke-width="2"/>
+<text x="80" y="232" font-family='IBM Plex Mono,monospace' font-size="13" fill="#8A6D1F">⚠ 아래 DNS 레코드를 가비아에 등록하세요</text>
+<text x="80" y="266" font-family='IBM Plex Mono,monospace' font-size="13" fill="#1F1E1A">A      @    76.76.21.21</text>
+<text x="80" y="294" font-family='IBM Plex Mono,monospace' font-size="13" fill="#1F1E1A">CNAME  www  cname.vercel-dns.com</text>
+<text x="60" y="380" font-family='IBM Plex Mono,monospace' font-size="13" fill="#5C5749">등록 후 10분~1시간이면 연결됩니다</text></svg>
         </div>
         <figcaption class="shot-cap">Vercel Settings → Domains · 본인 도메인 입력 후 DNS 값이 보이는 화면</figcaption>
       </figure>
@@ -439,8 +509,17 @@ CNAME www          cname.vercel-dns.com</pre>
       <div class="loot"><span class="loot-tag">RESULT ▸</span><span><strong>https://본인도메인.com</strong>에서 본인이 만든 사이트가 인터넷에 보임. 30분 끝.</span></div>
       <figure style="margin:0">
         <div class="shot">
-          <span class="shot-tag">SCREENSHOT</span>
-          <span class="shot-path">/sample-images/06-final-site.png</span>
+          <svg viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg" role="img">
+<rect width="800" height="500" fill="#FAF9F5"/>
+<rect width="800" height="44" fill="#1F1E1A"/>
+<circle cx="22" cy="22" r="6" fill="#D97757"/><circle cx="42" cy="22" r="6" fill="#B99A45"/><circle cx="62" cy="22" r="6" fill="#5E8D7A"/>
+<rect x="84" y="10" width="632" height="24" rx="12" fill="#3A3833"/>
+<text x="100" y="27" font-family='IBM Plex Mono,monospace' font-size="13" fill="#D8D3C4">🔒 장사장.com</text>
+<rect x="0" y="44" width="800" height="456" fill="#FAF9F5"/>
+<text x="250" y="220" font-family="Gowun Batang,serif" font-size="40" fill="#1F1E1A" font-weight="bold">장사장 3D LAB</text>
+<text x="268" y="260" font-family="Inter,sans-serif" font-size="15" fill="#5C5749">아이디어를 24시간 안에 실물로.</text>
+<rect x="330" y="296" width="140" height="44" fill="#D97757"/><text x="362" y="324" font-family='IBM Plex Mono,monospace' font-size="14" fill="#FFF">문의하기</text>
+<text x="282" y="420" font-family='IBM Plex Mono,monospace' font-size="14" fill="#5E8D7A">✓ 이게 진짜 인터넷입니다</text></svg>
         </div>
         <figcaption class="shot-cap">브라우저 주소창에 본인 도메인이 떠 있는 최종 모습 · "이게 진짜 인터넷이다" 순간</figcaption>
       </figure>
