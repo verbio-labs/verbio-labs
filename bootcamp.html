@@ -110,6 +110,7 @@ a{color:var(--clay-deep)}
 .hero .sub{max-width:620px;color:var(--ink-soft);font-size:16.5px;margin-bottom:28px}
 .typeline{font-family:var(--font-mono);font-size:14px;color:var(--ink);background:var(--page);border:1.5px solid var(--ink);display:inline-block;padding:10px 18px;box-shadow:4px 4px 0 var(--ink);margin-bottom:30px}
 .typeline .dollar{color:var(--clay)}
+.dday{font-family:var(--font-arcade);font-size:10px;color:var(--clay);margin:16px 0 14px;letter-spacing:1px}
 .press-start{display:inline-flex;align-items:center;gap:10px;font-family:var(--font-arcade);font-size:11px;background:var(--clay);color:var(--page);padding:16px 26px;border:2px solid var(--ink);box-shadow:5px 5px 0 var(--ink);text-decoration:none;cursor:pointer;transition:transform .05s,box-shadow .05s;animation:pulse 2.4s ease-in-out infinite}
 .press-start:hover{transform:translate(2px,2px);box-shadow:3px 3px 0 var(--ink)}
 .press-start:active{transform:translate(5px,5px);box-shadow:0 0 0 var(--ink)}
@@ -336,7 +337,7 @@ footer .legal a{color:var(--ink-soft)}
       그리고 손에 남는 결과물. 하루짜리 입문(원데이)부터 주말 출시(빌드 캠프)까지.
     </p>
     <div class="typeline"><span class="dollar">$</span> ./launch --where=busan --when=weekend</div>
-    <br>
+    <div class="dday" id="dday" aria-live="polite"></div>
     <a class="press-start" href="#reserve">▶ 자리 확보하기</a>
     <div class="ghost-row">
       <a href="/claude-guide">무료 전자책으로 시작하기 →</a>
@@ -774,6 +775,19 @@ function renderSeats(){
   if(xs) xs.textContent = s.taken>0 ? '현재 잔여 '+left+'석 / 20석' : '아직 20석 전부 비어 있습니다 — 1번 자리의 주인공이 되세요.';
 }
 renderSeats();
+
+/* ── D-DAY (실제 일정 기준: 원데이 8/1, 부트캠프 8/8) ── */
+(function(){
+  var el=document.getElementById('dday'); if(!el) return;
+  var now=new Date(); now.setHours(0,0,0,0);
+  var dd=function(y,m,d){ return Math.ceil((new Date(y,m,d)-now)/86400000); };
+  var a=dd(2026,7,1), b=dd(2026,7,8);
+  if(a>0)        el.textContent='⏱ 원데이(8/1) D-'+a+' · 부트캠프(8/8) D-'+b;
+  else if(a===0) el.textContent='⏱ 원데이 오늘 진행! · 부트캠프(8/8) D-'+b;
+  else if(b>0)   el.textContent='⏱ 부트캠프(8/8) D-'+b;
+  else if(b===0) el.textContent='⏱ 부트캠프 오늘 시작!';
+  else el.remove();
+})();
 
 /* ═══ FAQ ═══ */
 document.querySelectorAll('.faq-q').forEach(b=>b.addEventListener('click',()=>{
