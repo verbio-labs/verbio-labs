@@ -485,6 +485,24 @@ body[data-view="chapter"] #chapter-shell{display:block}
 .demo-bar i{display:block;height:100%;width:0;background:var(--clay);transition:width .3s}
 
 /* ---------- 게이트 (멤버 전용 잠금) ---------- */
+#sidequest{position:fixed;inset:0;z-index:520;display:none;align-items:center;justify-content:center;background:rgba(31,30,26,.78);padding:20px}
+#sidequest.on{display:flex}
+.sq-box{background:var(--page);border:2px solid var(--ink);box-shadow:8px 8px 0 var(--ink);max-width:480px;width:100%;padding:34px 30px 28px;position:relative;animation:sqpop .28s cubic-bezier(.2,1.4,.4,1)}
+@keyframes sqpop{0%{transform:scale(.86);opacity:0}100%{transform:none;opacity:1}}
+.sq-close{position:absolute;top:6px;right:6px;background:none;border:none;font-size:16px;color:var(--ink-soft);cursor:pointer;padding:12px}
+.sq-alert{font-family:var(--font-arcade);font-size:10px;color:var(--gold);letter-spacing:.14em;margin:0 0 10px;animation:blink 1.2s steps(1) infinite}
+.sq-title{font-family:var(--font-pixel);font-size:18px;color:var(--ink);margin:0 0 4px}
+.sq-name{font-family:var(--font-mono);font-size:13.5px;color:var(--clay-deep);margin:0 0 16px}
+.sq-stats{border:1.5px dashed var(--line);padding:12px 14px;margin-bottom:14px}
+.sq-stats div{display:flex;gap:12px;font-size:13.5px;line-height:1.9}
+.sq-stats .k{font-family:var(--font-pixel);font-size:10px;color:var(--ink-soft);width:44px;flex-shrink:0;padding-top:4px}
+.sq-stats .v{color:var(--ink)}
+.sq-line{font-size:14px;color:var(--ink-soft);margin:0 0 18px}
+.sq-btns{display:flex;flex-direction:column;gap:10px}
+.sq-go{font-family:var(--font-arcade);font-size:10px;background:var(--clay);color:var(--page);border:2px solid var(--ink);box-shadow:4px 4px 0 var(--ink);padding:14px;text-align:center;text-decoration:none}
+.sq-go:active{transform:translate(3px,3px);box-shadow:0 0 0 var(--ink)}
+.sq-skip{background:none;border:none;font-family:var(--font-mono);font-size:12.5px;color:var(--ink-soft);cursor:pointer;text-decoration:underline;padding:6px}
+@media(prefers-reduced-motion:reduce){.sq-box{animation:none}.sq-alert{animation:none}}
 #gate{position:fixed;inset:0;z-index:500;display:none;align-items:center;justify-content:center;background:rgba(31,30,26,.72);padding:20px}
 #gate.on{display:flex}
 .gate-box{background:var(--page);border:2px solid var(--ink);box-shadow:8px 8px 0 var(--ink);max-width:440px;width:100%;padding:36px 30px 30px;position:relative;text-align:center}
@@ -607,6 +625,27 @@ footer .barcode::after{content:"NO.20260704";position:absolute;bottom:-16px;left
 <button id="float-cta" onclick="openGate()"><span class="fc-dot">●</span> 전 챕터 잠금해제</button>
 <div id="wipe"></div>
 <div id="toast"><span class="t-gold">★ ACHIEVEMENT</span> — <span id="toast-msg">챕터 완독!</span></div>
+
+<!-- ═══════════ SIDE QUEST — 원데이 인카운터 ═══════════ -->
+<div id="sidequest" role="dialog" aria-modal="true" aria-label="사이드 퀘스트 발견">
+  <div class="sq-box">
+    <button class="sq-close" onclick="closeSideQuest()" aria-label="닫기">✕</button>
+    <p class="sq-alert">⚠ RANDOM ENCOUNTER</p>
+    <p class="sq-title">숨겨진 사이드 퀘스트 발견!</p>
+    <p class="sq-name">「오프라인 퀘스트 — 부산 원데이 인텐시브」</p>
+    <div class="sq-stats">
+      <div><span class="k">TYPE</span><span class="v">오프라인 · 하루 6시간 (8/1 토)</span></div>
+      <div><span class="k">REQ</span><span class="v">없음 — 지금 이 책을 읽는 수준이면 충분</span></div>
+      <div><span class="k">LOOT</span><span class="v">업무 템플릿 3종 + 배포된 도구 1개 + 캠프 크레딧 ₩190,000</span></div>
+      <div><span class="k">PARTY</span><span class="v">선착순 20인 한정</span></div>
+    </div>
+    <p class="sq-line">지금 챕터로 배우는 걸, 멘토 옆에서 하루 만에 끝내는 루트입니다.</p>
+    <div class="sq-btns">
+      <a class="sq-go" href="/bootcamp">▶ 퀘스트 상세 보기</a>
+      <button type="button" class="sq-skip" onclick="closeSideQuest()">나중에 (계속 읽기)</button>
+    </div>
+  </div>
+</div>
 
 <!-- ═══════════ 멤버 게이트 ═══════════ -->
 <div id="gate" role="dialog" aria-modal="true" aria-label="멤버 전용 잠금 해제">
@@ -4677,12 +4716,31 @@ function watchClear(id,art){
         store.markRead(id);
         const ch=FLAT.find(c=>c.id===id);
         showToast(`${ch.title.split(' — ')[0]} 완독! +${ch.xp} XP`);
+        maybeSideQuest();
         obs.disconnect();
       }
     });
   },{threshold:.5});
   obs.observe(target);
 }
+/* SIDE QUEST 인카운터 — 4번째 완독에 1회, 무시 시 9번째에 마지막 1회 */
+function maybeSideQuest(){
+  try{
+    var n=store.read.length;
+    var seen=+(localStorage.getItem('vl_sq')||0);
+    if((n>=4&&seen<1)||(n>=9&&seen<2)){
+      localStorage.setItem('vl_sq',String(seen+1));
+      setTimeout(function(){
+        if(document.getElementById('gate').classList.contains('on'))return;
+        document.getElementById('sidequest').classList.add('on');
+        SFX.coin();
+      },1600); /* 완독 토스트 먼저, 그 다음 인카운터 */
+    }
+  }catch(e){}
+}
+function closeSideQuest(){document.getElementById('sidequest').classList.remove('on');}
+document.getElementById('sidequest').addEventListener('click',function(e){if(e.target.id==='sidequest')closeSideQuest();});
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeSideQuest();});
 function showToast(msg){
   const t=document.getElementById('toast');
   document.getElementById('toast-msg').textContent=msg;
