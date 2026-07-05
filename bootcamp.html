@@ -111,6 +111,17 @@ a{color:var(--clay-deep)}
 .typeline{font-family:var(--font-mono);font-size:14px;color:var(--ink);background:var(--page);border:1.5px solid var(--ink);display:inline-block;padding:10px 18px;box-shadow:4px 4px 0 var(--ink);margin-bottom:30px}
 .typeline .dollar{color:var(--clay)}
 .dday{font-family:var(--font-arcade);font-size:10px;color:var(--clay);margin:16px 0 14px;letter-spacing:1px}
+.live-proof{margin-top:26px}
+.lp-lead{font-size:15px;color:var(--ink-soft);margin:0 0 14px}
+.lp-lead strong{color:var(--ink)}
+.lp-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.lp-card{display:flex;flex-direction:column;gap:6px;border:2px solid var(--ink);background:var(--page);padding:16px 16px 14px;box-shadow:4px 4px 0 var(--ink);text-decoration:none;transition:transform .05s,box-shadow .05s}
+.lp-card:hover{transform:translate(2px,2px);box-shadow:2px 2px 0 var(--ink)}
+.lp-name{font-family:var(--font-arcade);font-size:11px;color:var(--ink)}
+.lp-desc{font-size:13px;color:var(--ink-soft);line-height:1.5}
+.lp-go{font-family:var(--font-pixel);font-size:10px;color:var(--moss);margin-top:auto}
+.lp-note{font-family:var(--font-mono);font-size:12.5px;color:var(--ink-soft);margin:14px 0 0;border-left:3px solid var(--gold);padding-left:10px}
+@media(max-width:860px){.lp-grid{grid-template-columns:1fr 1fr}}
 .vs-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:28px}
 .vs-col{border:2px solid var(--ink);background:var(--page);padding:20px 22px;box-shadow:5px 5px 0 var(--ink)}
 .vs-col h4{font-family:var(--font-arcade);font-size:11px;margin:0 0 14px}
@@ -481,6 +492,17 @@ footer .legal a{color:var(--ink-soft)}
     <div class="fieldnote reveal">
       <p><strong>안준영 (Jacob) · Verbio Labs 대표 · 메인 진행.</strong> 대학교에서 딥러닝 전공을 3년간 강의했고, 삼성전자 임직원 200명 대상 AI 세미나를 초청 진행. 식빵영어를 5년간 운영하며 부트캠프 형태의 교육을 직접 설계·운영해 왔습니다. SpeakCoach AI, TopikIQ 등 실제 서비스를 출시·운영 중입니다. 주말 부트캠프에는 멘토 2명이 합류해 SEO·마케팅, Claude 기초 특화 지원을 맡습니다.</p>
     </div>
+
+    <div class="live-proof reveal">
+      <p class="lp-lead">캠프에서 가르치는 방법 그대로 만든 서비스들입니다. <strong>지금 눌러보세요 — 전부 실제로 작동합니다.</strong></p>
+      <div class="lp-grid">
+        <a class="lp-card" href="https://apps.apple.com/kr/app/%EC%A7%81%EC%8B%9C-%EA%B5%AD%ED%9A%8C-%EA%B0%90%EC%8B%9C/id6782101748" target="_blank" rel="noopener"><span class="lp-name">직시</span><span class="lp-desc">App Store 뉴스 카테고리 무료 앱 10위</span><span class="lp-go">LIVE ↗</span></a>
+        <a class="lp-card" href="https://sikbang-eng.replit.app/" target="_blank" rel="noopener"><span class="lp-name">SpeakCoach AI</span><span class="lp-desc">첫 달 사용자 1,000명 · 운영 중</span><span class="lp-go">LIVE ↗</span></a>
+        <a class="lp-card" href="https://topikiq.com" target="_blank" rel="noopener"><span class="lp-name">TopikIQ</span><span class="lp-desc">iOS·AOS 양대 스토어 배포</span><span class="lp-go">LIVE ↗</span></a>
+        <a class="lp-card" href="https://sikbang.co" target="_blank" rel="noopener"><span class="lp-name">식빵영어</span><span class="lp-desc">5년 운영 · 누적 수강생 4,000+</span><span class="lp-go">LIVE ↗</span></a>
+      </div>
+      <p class="lp-note">1기 데모데이가 끝나면, 이 자리는 참가자들의 라이브 서비스 갤러리가 됩니다.</p>
+    </div>
   </div>
 </section>
 
@@ -630,6 +652,8 @@ footer .legal a{color:var(--ink-soft)}
         <div class="faq-a"><p>온라인 강의는 <strong>지도</strong>입니다. 본인 속도로, 저렴하게, 스스로 갑니다. 부트캠프는 <strong>동승</strong>입니다. 멘토가 옆에 있고, 마감이 강제되고, 끝나면 결과물이 손에 남습니다. 원데이 참가비는 전액 캠프 크레딧이 되므로, 순서대로 올라와도 손해가 없습니다.</p></div></div>
       <div class="faq-item"><button class="faq-q" type="button">결과가 안 나오면 어떻게 되나요?<span class="fi">+</span></button>
         <div class="faq-a"><p>전 일정에 참석하고 (주말 부트캠프는 프리워크 완료 포함) 종료 시점에 결과물이 남지 않았다면, <strong>다음 회차에 무료로 다시 참여</strong>합니다. 전자상거래법에 따른 일반 환불은 <a href="/refund.html">환불 정책</a>에 따라 별도 적용됩니다.</p></div></div>
+      <div class="faq-item"><button class="faq-q" type="button">기업·단체 교육도 가능한가요?<span class="fi">+</span></button>
+        <div class="faq-a"><p>가능합니다. 삼성전자 임직원 200명 AI 세미나, 대학교 딥러닝 강의 등 기업·기관 교육을 진행해 왔습니다. 5명 이상 단체는 <strong>맞춤 커리큘럼 출강</strong>도 가능하니 신청 폼의 메모란 또는 카카오 채널로 문의해 주세요.</p></div></div>
     </div>
   </div>
 </section>
