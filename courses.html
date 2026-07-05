@@ -195,6 +195,21 @@ a{color:var(--clay-deep)}
 /* 카트리지 카드 */
 .cart-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px}
 @media(max-width:760px){.cart-grid{grid-template-columns:1fr}}
+.now-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+@media(max-width:720px){.now-grid{grid-template-columns:1fr}}
+.now-card{display:flex;flex-direction:column;gap:10px;background:var(--page);border:2px solid var(--ink);box-shadow:6px 6px 0 var(--ink);padding:24px 24px 20px;text-decoration:none;color:var(--ink);transition:transform .05s,box-shadow .05s}
+.now-card:hover{transform:translate(2px,2px);box-shadow:3px 3px 0 var(--ink)}
+.now-card.dark{background:var(--ink);color:#D8D3C4}
+.now-card.dark h3{color:var(--page)}
+.now-card .nc-tag{font-family:var(--font-pixel);font-size:11px;color:var(--clay);letter-spacing:.1em}
+.now-card h3{font-size:21px;margin:0}
+.now-card p{font-size:14.5px;line-height:1.75;margin:0}
+.now-card .nc-meta{font-family:var(--font-mono);font-size:12.5px;color:var(--ink-soft);border-top:1.5px dashed var(--line);padding-top:12px}
+.now-card.dark .nc-meta{color:#A39D90}
+.now-card .nc-meta strong{color:var(--clay-deep)}
+.now-card.dark .nc-meta strong{color:var(--gold)}
+.now-card .nc-go{font-family:var(--font-arcade);font-size:10px;color:var(--clay);margin-top:4px}
+.cart-prep{font-family:var(--font-pixel);font-size:10px;background:var(--ink);color:var(--gold);padding:3px 10px;letter-spacing:.08em}
 .cart{background:var(--page);border:2px solid var(--ink);box-shadow:7px 7px 0 rgba(31,30,26,.2);position:relative;display:flex;flex-direction:column}
 .cart .cart-top{background:repeating-linear-gradient(90deg,var(--ink) 0 10px,transparent 10px 16px);height:14px;border-bottom:2px solid var(--ink)}
 .cart .cart-head{background:var(--kraft);border-bottom:2px solid var(--ink);padding:12px 20px;display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}
@@ -354,7 +369,7 @@ footer .legal a{color:var(--ink-soft)}
         <span class="m-arrow">▼</span>
         <h3>온라인 강의 · 자기주도</h3>
         <p>본인 속도로, 저렴하게, 스스로. PC·모바일 어디서든. First AI(4주)와 Korean SaaS(6주)부터 시작합니다.</p>
-        <span class="m-foot">₩99,000부터 · Q3 2026 · 아래에서 카트리지 선택 ▼</span>
+        <span class="m-foot">₩99,000부터 · 🚧 준비 중 (Q3 오픈) · 지금은 사전 등록만 ▼</span>
       </a>
       <a class="mode-card offline" href="/bootcamp">
         <span class="m-tag">MODE 2 · OFFLINE</span>
@@ -373,17 +388,41 @@ footer .legal a{color:var(--ink-soft)}
   </div>
 </section>
 
-<!-- CARTRIDGES — 사전 등록 중인 강의 -->
+<!-- NOW OPEN — 지금 등록 가능한 클래스 -->
+<section class="section" id="open-now">
+  <div class="wrap">
+    <div class="sec-head reveal"><span class="tag">● NOW OPEN</span><h2>지금 등록 가능한 클래스</h2><span class="rule"></span></div>
+    <p class="sec-sub reveal">현재 실제로 신청·결제가 가능한 것은 이 두 개뿐입니다. 부산 오프라인 · 선착순.</p>
+    <div class="now-grid reveal">
+      <a class="now-card" href="/bootcamp">
+        <span class="nc-tag">8/1 (토) · 원데이</span>
+        <h3>원데이 인텐시브</h3>
+        <p>Claude 완전 입문 · 비개발자 대상 · 코딩 없음. 하루 6시간에 사용법 전체를 실습으로 끝냅니다.</p>
+        <span class="nc-meta">₩290,000 → 얼리버드 <strong>₩190,000</strong> · 선착순 20석</span>
+        <span class="nc-go">▶ 자리 확보하기</span>
+      </a>
+      <a class="now-card dark" href="/bootcamp">
+        <span class="nc-tag">8/8 (토) ~ 9 (일) · 부트캠프</span>
+        <h3>주말 빌드 캠프</h3>
+        <p>이틀 만에 본인 서비스를 라이브로 출시하고 데모데이까지. 멘토 1:3~4 밀착.</p>
+        <span class="nc-meta">₩1,500,000 → 1기 <strong>₩990,000</strong> · 8~12명 (원데이 수료 시 ₩800,000)</span>
+        <span class="nc-go">▶ 자리 확보하기</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- CARTRIDGES — 준비 중인 강의 -->
 <section class="section kraft" id="cartridges">
   <div class="wrap">
-    <div class="sec-head reveal"><span class="tag">NOW LOADING</span><h2>지금 사전 등록 중인 강의</h2><span class="rule"></span></div>
-    <p class="sec-sub reveal">Q3 2026 출시 예정 · 1기 50명 한정. 카트리지를 고르면 상세 페이지로 이동합니다. <a href="/sample">맛보기 레슨 먼저 보기 →</a></p>
+    <div class="sec-head reveal"><span class="tag">PREPARING</span><h2>준비 중인 강의 — 지금은 사전 등록만</h2><span class="rule"></span></div>
+    <p class="sec-sub reveal"><strong>아직 수강할 수 없습니다.</strong> Q3 2026 출시 예정 · 1기 50명 한정 · 사전 등록은 무료이며 결제가 발생하지 않습니다. <a href="/sample">맛보기 레슨 먼저 보기 →</a></p>
 
     <div class="cart-grid">
       <article class="cart reveal">
         <div class="cart-top" aria-hidden="true"></div>
         <div class="cart-head">
-          <span class="cart-no">COURSE 00</span><span class="cart-star">⭐ 입문은 여기부터</span>
+          <span class="cart-no">COURSE 00</span><span class="cart-star">⭐ 입문은 여기부터</span><span class="cart-prep">🚧 준비 중 · Q3 오픈</span>
         </div>
         <div class="cart-body">
           <h3>First AI Service in 30 min</h3>
@@ -403,7 +442,7 @@ footer .legal a{color:var(--ink-soft)}
         <div class="cart-top" aria-hidden="true"></div>
         <div class="cart-head">
           <span class="cart-no">COURSE 01</span>
-          <span class="cart-star">MAIN QUEST</span>
+          <span class="cart-star">MAIN QUEST</span><span class="cart-prep">🚧 준비 중 · Q3 오픈</span>
         </div>
         <div class="cart-body">
           <h3>Korean SaaS, Launch in a Week</h3>
