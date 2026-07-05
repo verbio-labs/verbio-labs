@@ -4218,11 +4218,10 @@ const SFX=(()=>{
 
 /* ============================================================
    퍼널 게이트 — LV.2+는 카카오 채널 멤버 전용
-   ▼ 배포 전 아래 두 값을 교체하세요
    ============================================================ */
 const GATE={
-  kakaoUrl:'https://pf.kakao.com/_xebtPX',  // TODO: 실제 채널 URL로 교체
-  code:'PLAYER1UP',                              // TODO: 환영 메시지에 넣을 입장 코드로 교체
+  kakaoUrl:'https://pf.kakao.com/_xebtPX',
+  code:'PLAYER1UP',
   freeLevels:['lv0','lv1'],
   get unlocked(){return localStorage.getItem('vl_member')==='1'},
   unlock(){localStorage.setItem('vl_member','1')},
