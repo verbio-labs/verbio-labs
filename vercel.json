@@ -3,6 +3,8 @@
   "trailingSlash": false,
   "redirects": [
     { "source": "/apply", "destination": "/join" },
+    { "source": "/oneday", "destination": "/bootcamp" },
+    { "source": "/camp", "destination": "/bootcamp" },
     { "source": "/free", "destination": "/claude-guide" },
     { "source": "/ebook", "destination": "/claude-guide" }
   ]
