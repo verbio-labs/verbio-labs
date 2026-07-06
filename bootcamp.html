@@ -163,7 +163,15 @@ html{scroll-padding-top:52px}
 .seat.taken{background:var(--clay);border-color:var(--clay);color:var(--page)}
 .seat.hold{background:#4A4438;border-color:var(--gold);color:var(--gold);animation:blink 1.4s steps(1) infinite}
 .seat.you{border-color:var(--gold);color:var(--gold);animation:blink 1.4s steps(1) infinite;cursor:pointer}
-.seat-cap{font-family:var(--font-mono);font-size:12px;color:#B8B2A0;padding:6px 16px 16px}
+.seat-cap{font-family:var(--font-mono);font-size:12px;color:#B8B2A0;padding:6px 16px 12px}
+.sb-sub{display:flex;align-items:center;gap:12px;flex-wrap:wrap;border-top:1.5px dashed #57544B;margin:0 16px;padding:12px 0 14px}
+.sb-sub-label{font-family:var(--font-pixel);font-size:10.5px;color:#B8B2A0;letter-spacing:.05em}
+.mini-grid{display:flex;gap:4px}
+.mini{width:15px;height:15px;border:1.5px solid #57544B;background:#2B2A24}
+.mini.taken{background:var(--clay);border-color:var(--clay)}
+.mini.hold{background:#4A4438;border-color:var(--gold);animation:blink 1.4s steps(1) infinite}
+.sb-sub-count{font-family:var(--font-mono);font-size:12px;color:#B8B2A0}
+.sb-sub-count strong{color:var(--gold)}
 .seat-cap strong{color:var(--page)}
 
 /* 문제/결과 리스트 */
@@ -388,6 +396,11 @@ footer .legal a{color:var(--ink-soft)}
       <div class="sb-head"><span><span class="live">●</span> SEAT MAP — 원데이 1회차</span><span>선착순 20석</span></div>
       <div class="seat-grid" id="seat-grid" aria-hidden="true"></div>
       <p class="seat-cap" id="seat-cap" aria-live="polite"></p>
+      <div class="sb-sub">
+        <span class="sb-sub-label">주말 부트캠프 1기 · 8/8~9</span>
+        <div class="mini-grid" id="camp-grid" aria-hidden="true"></div>
+        <span class="sb-sub-count" id="camp-cap"></span>
+      </div>
     </div>
   </div>
 </section>
@@ -844,6 +857,19 @@ function renderSeats(){
       ? '지금 등록하면 '+t.label+' 첫 번째 자리입니다.'
       : '현재 '+u+'명 진행 중 · 잔여 '+l+'석';
   });
+  /* 부트캠프 미니 바 */
+  const c=SEATS.camp, cu=c.taken+c.pending, cl=Math.max(c.cap-cu,0);
+  const cg=document.getElementById('camp-grid');
+  if(cg){
+    cg.innerHTML='';
+    for(let i=0;i<c.cap;i++){
+      const m=document.createElement('div');
+      m.className='mini'+(i<c.taken?' taken':(i<cu?' hold':''));
+      cg.appendChild(m);
+    }
+  }
+  const cc=document.getElementById('camp-cap');
+  if(cc) cc.innerHTML = cu===0 ? '12석 전원 모집 중' : '잔여 <strong>'+cl+'석</strong> / '+c.cap+'석';
   const st=document.getElementById('st-seats');
   if(st) st.textContent = used>0 ? '(잔여 '+left+'석)' : '(선착순 20석)';
   const xs=document.getElementById('x-seats');
