@@ -83,6 +83,18 @@ body[data-view="chapter"] #chapter-shell{display:block}
 .party-xpbar i{display:block;height:100%;background:var(--gold);width:0%;transition:width .6s ease}
 .party-next{font-family:var(--font-mono);font-size:10.5px;color:#78736A;margin-top:4px}
 .party-fed{font-family:var(--font-mono);font-size:11px;color:#F08A8A;margin-top:4px}
+.bq{margin-top:26px;border:2px solid var(--ink);background:var(--page);box-shadow:4px 4px 0 var(--ink);padding:18px 18px 16px;position:relative}
+.bq::before{content:"BOSS QUEST — 실전 과제";position:absolute;top:-9px;left:14px;background:var(--ink);color:var(--gold);font-family:var(--font-pixel);font-size:10px;padding:1px 8px;letter-spacing:.08em}
+.bq.done{border-color:#4E7A4E}
+.bq.done::before{content:"BOSS QUEST — CLEAR ✔";background:#4E7A4E;color:#F6F1E5}
+.bq-name{font-family:var(--font-pixel);font-size:13px;margin:4px 0 8px}
+.bq-task{font-size:14px;line-height:1.7;color:var(--ink)}
+.bq-meta{font-family:var(--font-mono);font-size:11px;color:#78736A;margin:8px 0 12px}
+.bq-btns{display:flex;gap:10px;flex-wrap:wrap}
+.bq-btn{font-family:var(--font-pixel);font-size:11px;border:2px solid var(--ink);background:#5865F2;color:#fff;padding:8px 12px;cursor:pointer;box-shadow:2px 2px 0 var(--ink);text-decoration:none;display:inline-block}
+.bq-btn.chk{background:var(--gold);color:var(--ink)}
+.bq-btn:active{transform:translate(2px,2px);box-shadow:none}
+.bq-btn[disabled]{opacity:.55;cursor:default}
 .vl-fish{position:fixed;z-index:399;font-size:20px;pointer-events:none;animation:fishpop .3s ease}
 .vl-heart{position:fixed;z-index:401;color:#F08A8A;font-size:14px;pointer-events:none;animation:heartup 1.3s ease forwards}
 .vl-bubble{position:fixed;z-index:401;font-family:var(--font-pixel);font-size:11px;background:var(--page);border:1.5px solid var(--ink);box-shadow:2px 2px 0 var(--ink);padding:4px 8px;pointer-events:none;white-space:nowrap;animation:fishpop .25s ease}
@@ -687,14 +699,27 @@ footer .barcode::after{content:"NO.20260704";position:absolute;bottom:-16px;left
   <div class="gate-box">
     <button class="gate-close" onclick="closeGate()" aria-label="닫기">✕</button>
     <p class="g-title">🔒 MEMBERS ONLY</p>
-    <p><strong>이 책은 채널 멤버 전용입니다 — 멤버십도 무료입니다.</strong><br>
-    추가는 3초, 콘텐츠는 계속 전부 무료예요.</p>
-    <div class="gate-steps">
-      <b>①</b> 아래 버튼으로 카카오 채널 추가<br>
-      <b>②</b> 자동 환영 메시지에서 <b>입장 코드</b> 확인<br>
-      <b>③</b> 코드 입력 → 전 챕터 영구 잠금해제
+    <div id="gate-mode-open">
+      <p><strong>이 책은 채널 멤버 전용입니다 — 멤버십도 무료입니다.</strong><br>
+      추가는 3초, 콘텐츠는 계속 전부 무료예요.</p>
+      <div class="gate-steps">
+        <b>①</b> 아래 버튼으로 카카오 채널 추가<br>
+        <b>②</b> 자동 환영 메시지에서 <b>입장 코드</b> 확인<br>
+        <b>③</b> 코드 입력 → 전 챕터 영구 잠금해제
+      </div>
+      <a class="gate-kakao" href="#" target="_blank" rel="noopener">💬 카카오 채널 추가하고 코드 받기</a>
     </div>
-    <a class="gate-kakao" href="#" target="_blank" rel="noopener">💬 카카오 채널 추가하고 코드 받기</a>
+    <div id="gate-mode-closed" style="display:none">
+      <p><strong>전자책 무료 공개가 종료되었습니다.</strong><br>
+      공개 기간에 입장한 멤버는 계속 전 챕터를 보실 수 있어요.</p>
+      <div class="gate-steps">
+        <b>▸</b> 이미 <b>입장 코드</b>를 받으셨다면 아래에 입력하세요<br>
+        <b>▸</b> 전자책 전권은 <b>8/1 원데이 인텐시브</b> 수강생에게 제공됩니다<br>
+        <b>▸</b> 다음 무료 공개 소식은 카카오 채널에서 가장 먼저 알려드려요
+      </div>
+      <a class="gate-kakao gate-oneday" href="https://verbiolabs.com/oneday" target="_blank" rel="noopener" style="background:#1A1815;color:#F6F1E5">🎮 8/1 원데이 인텐시브 보기</a>
+      <a class="gate-kakao" href="#" target="_blank" rel="noopener">💬 채널 추가하고 다음 공개 알림 받기</a>
+    </div>
     <div class="gate-code">
       <input id="gate-input" placeholder="입장 코드" aria-label="입장 코드" maxlength="20" autocomplete="off" autocapitalize="characters" autocorrect="off" spellcheck="false" enterkeyhint="done">
       <button onclick="tryCode()">확인 ▸</button>
@@ -4330,11 +4355,16 @@ const GATE={
   kakaoUrl:'https://pf.kakao.com/_xebtPX',
   code:'PLAYER1UP',
   freeLevels:[], /* 전 챕터 채널 멤버 전용 (2026-07-06 전환) — 코드는 채널 추가 시 무료 발급 */
+  closeAt:new Date(2026,6,9,0,0), /* 무료 공개 종료: 7/8 자정 — 이후 신규 안내는 원데이·재공개 대기 */
+  get closed(){return Date.now()>=this.closeAt.getTime();},
   get unlocked(){return localStorage.getItem('vl_member')==='1'},
   unlock(){localStorage.setItem('vl_member','1')},
   isLocked(lv){return !this.freeLevels.includes(lv)&&!this.unlocked}
 };
 function openGate(){
+  var c=GATE.closed;
+  document.getElementById('gate-mode-open').style.display=c?'none':'';
+  document.getElementById('gate-mode-closed').style.display=c?'':'none';
   document.getElementById('gate').classList.add('on');
   document.getElementById('gate-err').classList.remove('on');
   setTimeout(function(){var i=document.getElementById('gate-input');i&&i.focus();},60);
@@ -4511,6 +4541,62 @@ const store={
 };
 
 /* ============================================================
+   BOSS QUEST — 레벨별 실전 과제 (디스코드 제출)
+   ============================================================ */
+const DISCORD_URL='https://discord.gg/NFqACybMVX';
+const QUESTS={
+ lv0:{name:'첫 교신 기록',xp:150,task:'Claude에게 "내 일에서 AI가 대신해줬으면 하는 일 3가지"를 물어보고, 답변 스크린샷과 함께 그중 제일 기대되는 한 가지를 적어 제출하세요.'},
+ lv1:{name:'눈을 달아주다',xp:150,task:'아무 PDF나 사진 속 표를 Claude에 올려 3문장 요약을 받아보세요. 원본과 요약이 같이 보이는 스크린샷을 제출하세요.'},
+ lv2:{name:'연금술 비교 실험',xp:200,task:'같은 질문을 ①그냥 ②페르소나+예시를 붙여서 두 번 물어보고, 답변 품질이 어떻게 달라졌는지 비교 스크린샷 2장을 제출하세요.'},
+ lv3:{name:'나만의 작업실 개설',xp:250,task:'내 업무 자료 1개 이상을 넣은 Project를 만들고, 그 프로젝트에 질문해 받은 첫 답변 스크린샷을 제출하세요.'},
+ lv4:{name:'자동화 첫 가동',xp:250,task:'Claude Code 또는 Cowork에게 실제 작업(폴더 정리·파일 변환·초안 생성 등) 하나를 시켜보고, 지시문과 결과 스크린샷을 제출하세요.'},
+ lv5:{name:'최종 던전 입장',xp:300,task:'API 첫 호출 또는 MCP 연결 중 하나를 성공시키고, 응답이 찍힌 화면을 제출하세요. 막힌 지점도 함께 적으면 동료들이 도와줍니다.'},
+ lv6:{name:'프롬프트 자산 공개',xp:250,task:'내가 만든 최고의 프롬프트 템플릿 1개를 "그대로 복붙해서 쓸 수 있는 형태"로 정리해 공유하세요.'},
+ lv7:{name:'1인 개발팀 가동 보고',xp:300,task:'에이전트에게 작은 업무 하나를 통째로 위임한 사례(지시문 + 결과 + 걸린 시간)를 공유하세요.'},
+ lv8:{name:'아키텍트의 스케치',xp:300,task:'만들고 싶은 서비스의 구조를 5줄(누가·무엇을·어떤 화면·어떤 데이터·어떤 AI 호출)로 설계해 올리고 동료 피드백을 받아보세요.'},
+ lv9:{name:'전당 입성 선언',xp:400,task:'PARTY 카드의 만렙 치즈냥 스크린샷과 함께 완주 소감, 그리고 다음에 만들 것 한 가지를 선언하세요.'}
+};
+const questStore={
+  get done(){try{return JSON.parse(localStorage.getItem('vl_quests')||'[]')}catch(e){return[]}},
+  isDone(lv){return this.done.includes(lv)},
+  mark(lv){const q=this.done;if(!q.includes(lv)){q.push(lv);localStorage.setItem('vl_quests',JSON.stringify(q));}}
+};
+function questTpl(lv){
+  const L=LEVELS.find(l=>l.id===lv),Q=QUESTS[lv];
+  return '[BOSS QUEST · LV.'+L.num+' '+L.title+'] '+Q.name+'\n과제: '+Q.task+'\n제출: (스크린샷 첨부)\n한 줄 소감: ';
+}
+function questSubmit(lv){
+  const t=questTpl(lv);
+  const go=()=>{showToast('제출 템플릿 복사됨 — 디스코드에 붙여넣으세요!');window.open(DISCORD_URL,'_blank');};
+  if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(go,go);}else{go();}
+}
+function questComplete(lv){
+  if(questStore.isDone(lv))return;
+  questStore.mark(lv);
+  const Q=QUESTS[lv];
+  SFX.coin&&SFX.coin();
+  showToast('BOSS QUEST CLEAR! +'+Q.xp+' XP');
+  if(typeof nekoFeed==='function')nekoFeed(Q.xp);
+  try{localStorage.setItem('vl_cat_fed',JSON.stringify({d:new Date().toDateString(),n:fedToday()+1}));}catch(e){}
+  renderParty();catCheckEvo();
+  renderLevel(lv);
+}
+function questCard(lv){
+  const Q=QUESTS[lv];if(!Q)return'';
+  const done=questStore.isDone(lv), locked=GATE.isLocked(lv);
+  return `<div class="bq${done?' done':''}">
+    <p class="bq-name">${Q.name}</p>
+    <p class="bq-task">${Q.task}</p>
+    <p class="bq-meta">보상 ▲ ${Q.xp} XP · 제출은 디스코드 #과제-제출 채널</p>
+    <div class="bq-btns">
+      ${locked?`<button class="bq-btn" onclick="openGate();return false;">🔒 멤버 잠금해제 후 도전</button>`:
+      `<button class="bq-btn" onclick="questSubmit('${lv}')">💬 템플릿 복사 + 디스코드 제출</button>
+      ${done?`<button class="bq-btn chk" disabled>✔ CLEAR</button>`:`<button class="bq-btn chk" onclick="questComplete('${lv}')">과제 완료 체크</button>`}`}
+    </div>
+  </div>`;
+}
+
+/* ============================================================
    렌더링 — 허브 퀘스트 카드
    ============================================================ */
 function starStr(d){return '★'.repeat(d)+'☆'.repeat(5-d);}
@@ -4598,6 +4684,7 @@ function renderLevel(lvId){
           </a>`;}).join('')}
       </div>
     </div>
+    ${questCard(L.id)}
     <div class="lv-nav">
       ${prev?`<a href="#${prev.id}">◂ LV.${+prev.num} ${prev.title}</a>`:`<a href="#home">◂ 월드맵</a>`}
       ${next?`<a href="#${next.id}">LV.${+next.num} ${next.title} ▸</a>`:`<a href="#home">월드맵 ▸</a>`}
@@ -4673,8 +4760,9 @@ addEventListener('hashchange',route);
 const CAT_SPR=[["......................|......................|......................|......................|.........oooo.........|........oyyyyo........|.......oyyyyyyo.......|......oyyyyyydyo......|......oydyyyyyyo......|.....oyyyyyyyyyyo.....|.....oyyyyyyyyyyo.....|.....oyyyyyyyyyyo.....|.....oyyyyyydyyyo.....|.....oyyyyyyyyyyo.....|.....oyyyyyyyyyyo.....|......oyydyyyyyo......|......oyyyyyyyyo......|.......oyyyyyyo.......|........oyyyyo........|.........oooo.........|......................|......................","......................|......................|......................|......................|..........oooo........|.........oyyyyo.......|........oyyyyyyo......|.......oyyyyyydyo.....|.......oydyyyyyyo.....|......oyyyyyyyyyyo....|......oyyyyyyyyyyo....|......oyyyyyyyyyyo....|......oyyyyyydyyyo....|......oyyyyyyyyyyo....|......oyyyyyyyyyyo....|.......oyydyyyyyo.....|.......oyyyyyyyyo.....|........oyyyyyyo......|.........oyyyyo.......|..........oooo........|......................|......................"],["....o............o....|....oo..........oo....|....opo.oooooo.opo....|....obbobsbsbsobbo....|...obbbbbsbsbsbbbbo...|...obbbbbbbbbbbbbbo...|..obbbbbbbbbbbbbbbbo..|..obbbewbbbbbbewbbbo..|ooobbbeebccccbeebbbooo|..obppbbccooccbbppbo..|oooobbbbco..ocbbbbbooo|....obbbceooecbbbbbbo.|.....oobbccccbboobsso.|.......obbbbbbo..osso.|......obbbccbbboobsso.|.....obbbccccbbbbbsso.|.....obbccccccbbbbsso.|.....obbbccccbbboooo..|......obbbccbbbo......|......obbbccbbbo......|.......oooooooo.......|......................","....o............o....|....oo..........oo....|....opo.oooooo.opo....|....obbobsbsbsobbo....|...obbbbbsbsbsbbbbo...|...obbbbbbbbbbbbbbo...|..obbbbbbbbbbbbbbbbo..|..obbbbbbbbbbbbbbbbo..|ooobbbeeecccceeebbbooo|..obppbbccooccbbppbo..|oooobbbbco..ocbbbbbooo|....obbbceooecbbbbsso.|.....oobbccccbbobbsso.|.......obbbbbbo.obsso.|......obbbccbbbobbsso.|.....obbbccccbbbbbsso.|.....obbccccccbbbooo..|.....obbbccccbbbo.....|......obbbccbbbo......|......obbbccbbbo......|.......oooooooo.......|......................"],["....o............o....|....oo..........oo....|....opo.oooooo.opo....|....obbobsbsbsobbo....|...obbbbbsbsbsbbbbo...|...obbbbbbbbbbbbbbo...|..obbbbbbbbbbbbbbbbo..|..obbbewbbbbbbewbbbo..|ooobbbeebccccbeebbbooo|..obppbbccooccbbppbo..|oooobbbbco..ocbbbbbooo|....obbbceooecbbbbbbo.|.....obbbccccbbbobsso.|......orrrrgrrro.osso.|......orrrgggrrrobsso.|.....obbbccgcbbbbbsso.|.....obbccccccbbbbsso.|.....obbbccccbbboooo..|......obbbccbbbo......|......obbbccbbbo......|.......oooooooo.......|......................","....o............o....|....oo..........oo....|....opo.oooooo.opo....|....obbobsbsbsobbo....|...obbbbbsbsbsbbbbo...|...obbbbbbbbbbbbbbo...|..obbbbbbbbbbbbbbbbo..|..obbbbbbbbbbbbbbbbo..|ooobbbeeecccceeebbbooo|..obppbbccooccbbppbo..|oooobbbbco..ocbbbbbooo|....obbbceooecbbbbsso.|.....obbbccccbbbbbsso.|......orrrrgrrrrbbsso.|......orrrgggrrrbbsso.|.....obbbccgcbbbbbsso.|.....obbccccccbbbooo..|.....obbbccccbbbo.....|......obbbccbbbo......|......obbbccbbbo......|.......oooooooo.......|......................"],["....o............o....|....oo..........oo....|...orroooooooooorro...|...orrrrrorrorrrrro..o|...orrrrrorrorrrrrrooo|...orrrrrorrorrrrrbro.|..obrrrrrrrrrrrrrrbro.|..obbbewbbbbbbewbbbbo.|ooobbbeebccccbeebbbooo|..obppbbccooccbbppbo..|oooobbbbco..ocbbbbbooo|....obbbceooecbbbbbbo.|.....oobbccccbboobsso.|.......obbbbbbo..osso.|......obbbccbbboobsso.|.....obbbccccbbbbbsso.|.....obbccccccbbbbsso.|.....obbbccccbbboooo..|......obbbccbbbo......|......obbbccbbbo......|.......oooooooo.......|......................","....o............o....|....oo..........oo....|...orroooooooooorro...|...orrrrrorrorrrrro..o|...orrrrrorrorrrrrrooo|...orrrrrorrorrrrrbro.|..obrrrrrrrrrrrrrrbro.|..obbbbbbbbbbbbbbbbbo.|ooobbbeeecccceeebbbooo|..obppbbccooccbbppbo..|oooobbbbco..ocbbbbbooo|....obbbceooecbbbbsso.|.....oobbccccbbobbsso.|.......obbbbbbo.obsso.|......obbbccbbbobbsso.|.....obbbccccbbbbbsso.|.....obbccccccbbbooo..|.....obbbccccbbbo.....|......obbbccbbbo......|......obbbccbbbo......|.......oooooooo.......|......................"],["....o....oooo....o....|....oo..ommmmo..oo....|....opo.ommmmo.opo....|....obbommmmmmobbo....|...ommmmmmmmmmmmmmo...|...ommmmmmmmmmmmmmo...|..obbbbbbbbbbbbbbbbo..|..obbbewbbbbbbewbbbo..|ooobbbeebccccbeebbbooo|..obppbbccooccbbppbo..|oooobbbbco..ocbbbbbooo|....obbbceooecbbbbbbo.|.....oobbccccbboobsso.|.......obbbbbbo..osso.|......obbbccbbboobsso.|.....obbbccccbbbbbsso.|.....obbccccccbbbbsso.|.....obbbccccbbboooo..|......obbbccbbbo......|......obbbccbbbo......|.......oooooooo.......|......................","....o....oooo....o....|....oo..ommmmo..oo....|....opo.ommmmo.opo....|....obbommmmmmobbo....|...ommmmmmmmmmmmmmo...|...ommmmmmmmmmmmmmo...|..obbbbbbbbbbbbbbbbo..|..obbbbbbbbbbbbbbbbo..|ooobbbeeecccceeebbbooo|..obppbbccooccbbppbo..|oooobbbbco..ocbbbbbooo|....obbbceooecbbbbsso.|.....oobbccccbbobbsso.|.......obbbbbbo.obsso.|......obbbccbbbobbsso.|.....obbbccccbbbbbsso.|.....obbccccccbbbooo..|.....obbbccccbbbo.....|......obbbccbbbo......|......obbbccbbbo......|.......oooooooo.......|......................"],["....o............o....|....oo..........oo....|....opo.oooooo.opo....|....obbobsbsbsobbo....|...obbbbbsbsbsbbbbo...|...obbbbbbbbbbbbbbo...|..obkkkkkkkkkkkkkkbo..|..obkkokkkkkkokkkkbo..|ooobkkkkkkkkkkkkkkbooo|..obkkkkkkookkkkkkbo..|oooobbbbco..ocbbbbbooo|....obbbceooecbbbbbbo.|.....obbbccccbbbobsso.|......onnnnnnnno.osso.|......onnnnnnnnnobsso.|.....obbbccccbbbbbsso.|.....obbccccccbbbbsso.|.....obbbccccbbboooo..|......obbbccbbbo......|......obbbccbbbo......|.......oooooooo.......|......................","....o............o....|....oo..........oo....|....opo.oooooo.opo....|....obbobsbsbsobbo....|...obbbbbsbsbsbbbbo...|...obbbbbbbbbbbbbbo...|..obkkkkkkkkkkkkkkbo..|..obkkokkkkkkokkkkbo..|ooobkkkkkkkkkkkkkkbooo|..obkkkkkkookkkkkkbo..|oooobbbbco..ocbbbbbooo|....obbbceooecbbbbsso.|.....obbbccccbbbbbsso.|......onnnnnnnnnbbsso.|......onnnnnnnnnbbsso.|.....obbbccccbbbbbsso.|.....obbccccccbbbooo..|.....obbbccccbbbo.....|......obbbccbbbo......|......obbbccbbbo......|.......oooooooo.......|......................"]];
 const CAT_PAL={'o':'#3A342B','b':'#F6B24E','s':'#E5942F','c':'#FFF3DC','e':'#2B2620','w':'#FFFFFF','p':'#F7A8A8','r':'#D96A57','g':'#E8C547','m':'#7E6BD0','k':'#23211C','n':'#6FE3C1','y':'#FFE07A','d':'#E8C99B'};
 const CAT_STAGES=['알','아기 치즈냥','꼬마냥','모험냥','마법냥','전설의 사이버냥'];
-const CAT_MAX_XP=FLAT.reduce((a,c)=>a+(c.xp||0),0);
-function catXP(){return store.read.reduce((a,id)=>{const c=FLAT.find(f=>f.id===id);return a+(c&&c.xp||0);},0);}
+const QUEST_XP_TOTAL=Object.values(QUESTS).reduce((a,q)=>a+q.xp,0);
+const CAT_MAX_XP=FLAT.reduce((a,c)=>a+(c.xp||0),0)+QUEST_XP_TOTAL;
+function catXP(){const r=store.read.reduce((a,id)=>{const c=FLAT.find(f=>f.id===id);return a+(c&&c.xp||0);},0);const q=questStore.done.reduce((a,lv)=>a+(QUESTS[lv]&&QUESTS[lv].xp||0),0);return r+q;}
 function catStage(){
   const n=store.read.length; if(n===0) return 0;
   const p=catXP()/CAT_MAX_XP*100;
@@ -4705,7 +4793,7 @@ function renderParty(){
   const nextP=[1,25,50,75,100][Math.min(st,4)];
   document.getElementById('party-next').textContent = st>=5 ? '★ 최종 진화 완료 — 37챕터의 전설' : 'XP '+xp+' / '+CAT_MAX_XP+' · 다음 진화까지 '+Math.max(0,Math.ceil(CAT_MAX_XP*nextP/100-xp))+' XP';
   const fed=fedToday();
-  document.getElementById('party-fed').textContent='오늘의 츄르 '+'♥'.repeat(Math.min(fed,3))+'♡'.repeat(Math.max(0,3-fed))+(fed>3?' +'+(fed-3):'')+(fed>=3?' — 배부른 냥이':' — 챕터 완독마다 한 마리');
+  document.getElementById('party-fed').textContent='오늘의 츄르 '+'♥'.repeat(Math.min(fed,3))+'♡'.repeat(Math.max(0,3-fed))+(fed>3?' +'+(fed-3):'')+(fed>=3?' — 배부른 냥이':' — 챕터 완독마다 한 마리')+' · 보스 과제 '+questStore.done.length+'/'+Object.keys(QUESTS).length;
   catRepaint();
 }
 document.getElementById('party-name').addEventListener('click',()=>{
@@ -5327,7 +5415,7 @@ function quizResult(){
 }
 
 /* ---------- 초기 렌더 ---------- */
-document.querySelectorAll('.gate-kakao').forEach(a=>a.href=GATE.kakaoUrl);
+document.querySelectorAll('.gate-kakao:not(.gate-oneday)').forEach(a=>a.href=GATE.kakaoUrl);
 document.getElementById('gate-input').addEventListener('keydown',e=>{if(e.key==='Enter')tryCode();});
 document.getElementById('gate').addEventListener('click',e=>{if(e.target.id==='gate')closeGate();});
 renderHub();
