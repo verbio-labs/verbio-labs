@@ -55,8 +55,10 @@ h2{font-family:var(--font-pixel);font-size:19px;margin:10px 0 18px}
 .order{border:2px solid var(--ink);background:var(--page);box-shadow:5px 5px 0 var(--ink);padding:22px 20px}
 .order label{display:block;font-family:var(--font-mono);font-size:12px;margin:12px 0 4px;color:var(--ink-soft)}
 .order input{width:100%;padding:11px 12px;border:1.5px solid var(--line);background:#FBF7EC;font-family:var(--font-mono);font-size:15px}
+.order input[type=checkbox]{width:16px;height:16px;flex:none;margin-top:3px;accent-color:var(--clay)}
 .order input.bad{border-color:var(--clay-deep)}
-.agree{font-size:13px;margin-top:12px;display:flex;gap:8px;align-items:flex-start}
+.agree{font-size:13px;margin-top:12px;display:flex;gap:10px;align-items:flex-start;text-align:left}
+.agree label{display:inline;margin:0;padding:0;font-family:var(--font-body);font-size:13px;color:var(--ink);line-height:1.7;flex:1;cursor:pointer}
 .err{display:none;color:var(--clay-deep);font-size:13px;margin-top:10px}
 .err.on{display:block}
 .paybox{display:none;border:2px dashed var(--gold);background:#FBF7EC;padding:18px;margin-top:16px;scroll-margin-top:60px}
@@ -105,12 +107,47 @@ footer a{color:var(--ink-soft)}
 
     <div style="margin-top:30px">
       <span class="tag">FREE SAMPLE</span>
-      <h2>맛보기 — 금고 20종 중 1번을 그대로 공개합니다</h2>
-      <div class="faq" style="font-family:var(--font-mono);font-size:13px;white-space:pre-wrap;line-height:1.7"><b>01. 블로그 포스팅 공장 — 키워드 하나로 검색 노출용 글 초안</b>당신은 10년차 블로그 전업 작가입니다. 키워드 「{키워드}」로 네이버/구글 검색 노출을 노리는 글을 씁니다.
-독자: {타깃 독자}
-조건: ①제목 후보 5개(숫자+호기심형) ②서론은 독자의 고민 공감 3문장 ③소제목 4개 구조 ④경험담 톤 ⑤마지막에 다음 글 예고 1줄
-분량 1,500자. 광고 티 나는 표현 금지.</div>
-      <p class="note">이런 밀도의 프롬프트가 19개 더 있습니다 — 변수({ })만 바꿔 넣으면 바로 일합니다.</p>
+      <h2>맛보기 — 금고 1번 「블로그 포스팅 공장 v2.0」 전문 공개</h2>
+      <p class="note" style="margin:0 0 10px">이게 20종 중 <strong>1번</strong>입니다. 밀도를 직접 확인하세요 — 나머지 19개도 이 수준입니다.</p>
+      <div class="faq" style="font-family:var(--font-mono);font-size:12.5px;white-space:pre-wrap;line-height:1.75;max-height:520px;overflow-y:auto">[SYSTEM] 블로그 포스팅 공장 v2.0 — 검색 상위 노출 전용 집필 엔진
+
+당신은 네이버·구글 SEO로 월 50만 뷰를 만드는 10년차 전업 블로그 작가이자 검색의도 분석가입니다. 아래 입력 4줄만 받으면, 바로 발행 가능한 완성 원고를 생산합니다.
+
+■ 입력 (이 4줄만 채우세요)
+· 키워드: {키워드}
+· 타깃 독자: {누가 읽는가 — 예: 30대 워킹맘}
+· 글의 목적: {정보 제공 / 상품 유도 / 방문 유도 중 택1}
+· 내 경험 한 줄: {있으면 — 진정성 재료로 사용, 없으면 "없음"}
+
+■ STEP 1 — 검색의도 분석 (본문 쓰기 전 반드시 먼저 출력)
+① 이 키워드를 검색하는 사람의 진짜 질문 3개
+② 정보형/거래형/탐색형 중 의도 판정 + 근거 한 줄
+③ 상위 노출 글들이 놓치고 있을 빈틈 1개 → 우리 글의 차별점으로 선언
+
+■ STEP 2 — 제목 엔지니어링
+서로 다른 공식으로 후보 5개: ①숫자형 ②경험고백형 ③질문형 ④비교형 ⑤경고형
+규칙: 28자 이내 · 키워드 앞쪽 배치 · 특수문자 1개 이하 · 클릭 후 실망시키는 낚시 금지
+→ 최종 1개 추천 + 고른 이유 한 줄
+
+■ STEP 3 — 본문 집필 (1,500±200자)
+· 서론 3문장: 독자 상황 공감 → 이 글이 주는 것 → 읽는 데 걸리는 시간
+· 소제목 4개 — 각 소제목에 연관 검색어를 1개씩 자연스럽게 삽입
+· 문단당 3문장 이하, 모바일 기준 줄바꿈
+· 경험담 톤("~하더라고요") 6 : 정보 톤 4
+· 본문 중간 1곳: 독자가 저장하고 싶어질 [핵심 요약 박스]
+· 마지막: 다음 글 예고 1줄 + 댓글을 부르는 질문 1개
+
+■ STEP 4 — 발행 전 자가 검수 (체크리스트로 출력)
+□ 키워드가 제목·첫 문단·소제목 1개·마지막 문단에 자연스럽게 들어갔는가
+□ 같은 문장 시작이 3회 이상 반복되지 않는가
+□ 근거 없는 단정("무조건", "100%")이 없는가
+□ AI 티 나는 표현("~에 대해 알아보겠습니다") 0개인가
+□ 광고로 오해될 문장에 근거·출처가 붙어 있는가
+→ 하나라도 실패하면 해당 문단을 스스로 고친 뒤, 최종본만 다시 출력
+
+■ 금지
+과장·허위 / 타 글 문장 복제 / 의미 없는 인사말 / "오늘은 ~ 포스팅을 해보려고 합니다"로 시작</div>
+      <p class="note">복사 → 변수 4줄 채우기 → 실행. 이런 "일하는 시스템"이 사이드잡 10종 + 업무 자동화 10종으로 들어 있습니다.</p>
     </div>
   </div>
 </section>
@@ -124,7 +161,7 @@ footer a{color:var(--ink-soft)}
       <input id="sk-web" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px" aria-hidden="true">
       <label for="sk-phone">연락처 (코드 받으실 번호) *</label><input id="sk-phone" name="phone" type="tel" maxlength="14" inputmode="tel" autocomplete="tel">
       <label for="sk-email">이메일 *</label><input id="sk-email" name="email" type="email" maxlength="60" inputmode="email" autocomplete="email">
-      <div class="agree"><input type="checkbox" id="sk-refund"><label for="sk-refund">열람 코드를 <strong>등록(사용)한 후에는 환불이 불가</strong>함을 확인했습니다. 코드 미사용 시에는 발송 후에도 7일 이내 100% 환불됩니다. 구매 전 <a href="/sample" target="_blank">무료 맛보기 레슨</a>에서 콘텐츠를 확인하실 수 있습니다. *</label></div>
+      <div class="agree"><input type="checkbox" id="sk-refund"><label for="sk-refund">디지털 콘텐츠 특성상 <strong>입금 후에는 환불이 불가</strong>함을 확인했습니다. 구매 전 <a href="/claude-guide" target="_blank">무료 챕터(LV.0~1)</a>와 위 샘플 프롬프트로 콘텐츠를 충분히 확인하세요. <span style="font-size:11.5px;color:var(--ink-soft)">(열람 코드 발송 전에는 전자상거래법 제17조에 따른 청약철회가 가능합니다)</span> *</label></div>
       <div class="agree"><input type="checkbox" id="sk-privacy"><label for="sk-privacy">주문 처리를 위한 개인정보 수집·이용에 동의합니다. (이름·연락처·이메일 / 재화 공급 완료 후 파기하되 관계 법령에 따른 거래기록은 5년간 보존) *</label></div>
       <p class="err" id="sk-err" role="alert"></p>
       <button type="button" class="btn" id="sk-submit" onclick="submitKit()">주문하고 입금 안내 받기 ▶</button>
@@ -148,7 +185,7 @@ footer a{color:var(--ink-soft)}
       <div class="faq"><b>Q. 8/1 원데이 클래스와는 뭐가 다른가요?</b><p>스타터 킷은 혼자 공부하는 디지털 키트, <a href="/oneday">원데이 인텐시브</a>는 부산에서 강사 옆에 앉아 하루 만에 끝내는 오프라인 수업입니다. 원데이 수강생에게는 스타터 킷이 포함됩니다.</p></div>
     </div>
 
-    <p class="disclaimer">본 상품은 AI 활용 능력을 익히는 교육 콘텐츠이며, 특정 수익이나 소득을 보장하지 않습니다. 소개되는 사례는 개인의 결과로 구매자의 성과와 다를 수 있습니다. · 환불: 열람 코드 발송 전 100% 환불, 열람 코드 등록(사용) 후에는 「전자상거래법」 제17조 제2항에 따라 청약철회가 제한되며, 미사용 코드는 발송 후 7일 이내 전액 환불됩니다.</p>
+    <p class="disclaimer">본 상품은 AI 활용 능력을 익히는 교육 콘텐츠이며, 특정 수익이나 소득을 보장하지 않습니다. 소개되는 사례는 개인의 결과로 구매자의 성과와 다를 수 있습니다. · 환불: 열람 코드 발송 전 100% 환불, 디지털 콘텐츠 특성상 입금 후에는 환불이 불가하며(「전자상거래법」 제17조 제2항), 열람 코드 발송 전에는 동법 제17조에 따른 청약철회가 가능합니다. 구매 전 무료 챕터(LV.0~1)와 샘플 프롬프트로 콘텐츠를 확인하시기 바랍니다.</p>
   </div>
 </section>
 
