@@ -843,7 +843,7 @@ document.addEventListener('click',e=>{
    taken   = 입금 확인 완료 (확정)
    pending = 신청서 접수, 입금 대기 (Slack 알림 오면 +1, 입금 확인되면 pending-1 → taken+1, 미입금 이탈 시 -1) */
 const SEATS={
-  oneday:{cap:20,taken:11,pending:0,label:'원데이 1회차'}, /* taken 11 = 사전 예약자 입금 확인 완료 (2026-07-05 기준). 이후 신청은 Slack 접수 → pending → 입금 확인 시 taken */
+  oneday:{cap:20,taken:1,pending:0,label:'원데이 1회차'}, /* 2026-07-09 실결제 기준 정정. 규칙: 입금 확인된 실제 인원만 taken. 낮은 수(<5)일 땐 아래 로직이 카운트 대신 '모집 중'으로 표시 */
   camp:{cap:12,taken:0,pending:0,label:'부트캠프 1기'}
 };
 const RECENT=[
@@ -864,14 +864,14 @@ function renderSeats(){
     }
   }
   const cap=document.getElementById('seat-cap');
-  if(cap) cap.innerHTML = used===0
-    ? '<strong>접수가 열렸습니다.</strong> 지금 등록하면 P1 — 1기의 첫 번째 이름이 됩니다. 얼리버드 ₩190,000은 이 20석에서 끝납니다.'
+  if(cap) cap.innerHTML = used<5
+    ? '<strong>1기 모집 중 — 선착순 20석.</strong> 얼리버드 ₩190,000은 이 20석에서 끝납니다.'
     : '확정 <strong>'+s.taken+'석</strong>'+(s.pending>0?' · 입금 대기 <strong>'+s.pending+'건</strong>':'')+' · 잔여 <strong>'+left+'석</strong>'+(RECENT.length?' · 최근: '+RECENT.slice(-2).join(', '):'');
   document.querySelectorAll('[data-seats]').forEach(el=>{
     const t=SEATS[el.dataset.seats]; if(!t)return;
     const u=t.taken+t.pending, l=Math.max(t.cap-u,0);
-    el.textContent = u===0
-      ? '지금 등록하면 '+t.label+' 첫 번째 자리입니다.'
+    el.textContent = u<5
+      ? t.label+' 선착순 '+t.cap+'석 모집 중'
       : '현재 '+u+'명 진행 중 · 잔여 '+l+'석';
   });
   /* 부트캠프 미니 바 */
@@ -888,9 +888,9 @@ function renderSeats(){
   const cc=document.getElementById('camp-cap');
   if(cc) cc.innerHTML = cu===0 ? '12석 전원 모집 중' : '잔여 <strong>'+cl+'석</strong> / '+c.cap+'석';
   const st=document.getElementById('st-seats');
-  if(st) st.textContent = used>0 ? '(잔여 '+left+'석)' : '(선착순 20석)';
+  if(st) st.textContent = used>=5 ? '(잔여 '+left+'석)' : '(선착순 20석)';
   const xs=document.getElementById('x-seats');
-  if(xs) xs.textContent = used>0 ? '현재 잔여 '+left+'석 / 20석' : '아직 20석 전부 비어 있습니다 — 1번 자리의 주인공이 되세요.';
+  if(xs) xs.textContent = used>=5 ? '현재 잔여 '+left+'석 / 20석' : '선착순 20석 — 지금이 가장 이른 자리입니다.';
   if(left===0){ /* 만석 → 대기 신청 전환 (ASC 패턴: 마감 후에도 리드 수집) */
     document.querySelectorAll('a[href="#reserve"]').forEach(a=>{if(a.closest('#sticky')||a.classList.contains('press-start'))a.textContent='▶ 대기 신청하기 (1회차 마감)';});
   }
