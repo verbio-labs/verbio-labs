@@ -4662,6 +4662,29 @@ function authLogin(provider){
   if(!sbAuth){showToast('로그인 준비 중 — 잠시 후 다시 눌러주세요.');return;}
   sbAuth.auth.signInWithOAuth({provider:provider,options:{redirectTo:location.origin+location.pathname}});
 }
+async function checkEntitlement(){
+  /* 로그인 계정에 구매 권한이 있으면 전권+금고 자동 오픈 (관리자 승인 기반) */
+  if(!sbAuth) return;
+  try{
+    const {data,error}=await sbAuth.from('entitlements').select('product').limit(1);
+    if(!error&&data&&data.length){
+      const first=!GATE.paid;
+      try{localStorage.setItem('vl_paid','1');}catch(e){}
+      if(first){
+        document.querySelectorAll('.plug').forEach(function(el){el.remove();});
+        renderVault();route();
+        showToast('구매 계정 확인 — 전 챕터 + 프롬프트 금고가 열렸습니다!');
+      }
+    }
+  }catch(e){}
+}
+function authWho(email){
+  var nav=document.querySelector('.termbar nav'); if(!nav||document.getElementById('auth-out'))return;
+  var a=document.createElement('a'); a.id='auth-out'; a.href='#'; a.title=email||'';
+  a.textContent='LOGOUT';
+  a.addEventListener('click',function(e){e.preventDefault();if(sbAuth)sbAuth.auth.signOut().then(function(){location.reload();});});
+  nav.insertBefore(a,nav.querySelector('#sfx-toggle'));
+}
 function authGateInit(){
   if(!AUTH_REQUIRED) return;
   var sc=document.createElement('script');
@@ -4671,8 +4694,9 @@ function authGateInit(){
     const {data:{session}}=await sbAuth.auth.getSession();
     const ag=document.getElementById('authgate');
     if(!session){ag.classList.add('on');document.body.style.overflow='hidden';}
+    else{authWho(session.user.email);checkEntitlement();}
     sbAuth.auth.onAuthStateChange(function(ev,s){
-      if(s){ag.classList.remove('on');document.body.style.overflow='';}
+      if(s){ag.classList.remove('on');document.body.style.overflow='';authWho(s.user.email);checkEntitlement();}
     });
   };
   document.head.appendChild(sc);

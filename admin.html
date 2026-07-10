@@ -177,7 +177,14 @@ async function confirmPay(id){
     if(e2){$('dash-msg').textContent='코드 잠금 실패: '+e2.message;return;}
     const {error:e3}=await sb.from('orders').update({status:'입금확인',code:code}).eq('id',id);
     if(e3){$('dash-msg').textContent=e3.message;return;}
-    $('dash-msg').textContent='✓ 입금확인 + 코드 '+code+' 배정 — [발송문구 복사]로 이어가세요.';
+    let entMsg='';
+    if(o.email){
+      const {error:e4}=await sb.from('entitlements').upsert({email:o.email.trim().toLowerCase(),product:'starterkit',order_id:id},{onConflict:'email,product'});
+      entMsg=e4?' (⚠ 계정 권한 부여 실패: '+e4.message+')':' + 계정('+o.email+') 전권 권한 부여됨';
+    }else{
+      entMsg=' (⚠ 이메일 없음 — 코드로만 발송)';
+    }
+    $('dash-msg').textContent='✓ 입금 승인 + 코드 '+code+' 배정'+entMsg+' — [발송문구 복사]로 이어가세요.';
   }else{
     const {error}=await sb.from('orders').update({status:'입금확인'}).eq('id',id);
     if(error){$('dash-msg').textContent=error.message;return;}
@@ -193,8 +200,8 @@ async function setStatus(id,st){
 function copyMsg(id){
   const o=ORDERS.find(x=>x.id===id);if(!o||!o.code)return;
   const msg=`[VERBIO LABS] ${o.name}님, 스타터 킷 결제 확인됐습니다 🔑
-① 열람 링크(누르면 자동 인증): https://verbiolabs.com/claude-guide?code=${o.code}
-② 코드 직접 입력 시: ${o.code}
+① 가장 쉬운 방법: verbiolabs.com/claude-guide 에서 주문하신 이메일(${o.email||'주문 이메일'})로 카카오/구글 로그인 — 자동으로 전권이 열립니다.
+② 로그인이 어려우면 열람 링크: https://verbiolabs.com/claude-guide?code=${o.code}
 ③ 디스코드 멤버십: https://discord.gg/KJAZS4YrwK 입장 후 이 메시지를 보여주시면 멤버 역할을 드려요.
 궁금한 건 이 채널로 언제든 물어보세요!`;
   navigator.clipboard.writeText(msg).then(()=>{$('dash-msg').textContent='✓ 발송 문구 복사됨 — 문자/카톡에 붙여넣고, 보낸 뒤 [발송완료]를 눌러주세요.';},()=>{$('dash-msg').textContent=msg;});
