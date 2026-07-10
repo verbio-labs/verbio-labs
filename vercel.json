@@ -2,10 +2,25 @@
   "cleanUrls": true,
   "trailingSlash": false,
   "redirects": [
-    { "source": "/apply", "destination": "/join" },
-    { "source": "/oneday", "destination": "/bootcamp" },
-    { "source": "/camp", "destination": "/bootcamp" },
-    { "source": "/free", "destination": "/claude-guide" },
-    { "source": "/ebook", "destination": "/claude-guide" }
+    {
+      "source": "/apply",
+      "destination": "/join"
+    },
+    {
+      "source": "/camp",
+      "destination": "/bootcamp"
+    },
+    {
+      "source": "/free",
+      "destination": "/claude-guide"
+    },
+    {
+      "source": "/ebook",
+      "destination": "/claude-guide"
+    },
+    {
+      "source": "/kit",
+      "destination": "/starter-kit"
+    }
   ]
 }

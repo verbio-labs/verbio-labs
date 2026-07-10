@@ -196,6 +196,7 @@ a{color:var(--clay-deep)}
 .cart-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px}
 @media(max-width:760px){.cart-grid{grid-template-columns:1fr}}
 .now-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.now-grid .now-card:last-child{grid-column:1/-1}
 @media(max-width:720px){.now-grid{grid-template-columns:1fr}}
 .now-card{display:flex;flex-direction:column;gap:10px;background:var(--page);border:2px solid var(--ink);box-shadow:6px 6px 0 var(--ink);padding:24px 24px 20px;text-decoration:none;color:var(--ink);transition:transform .05s,box-shadow .05s}
 .now-card:hover{transform:translate(2px,2px);box-shadow:3px 3px 0 var(--ink)}
@@ -406,10 +407,10 @@ footer .legal a{color:var(--ink-soft)}
 <section class="section" id="open-now">
   <div class="wrap">
     <div class="sec-head reveal"><span class="tag">● NOW OPEN</span><h2>지금 등록 가능한 클래스</h2><span class="rule"></span></div>
-    <p class="sec-sub reveal">현재 실제로 신청·결제가 가능한 것은 이 두 개뿐입니다. 부산 오프라인 · 선착순.</p>
+    <p class="sec-sub reveal">현재 실제로 신청·결제가 가능한 것은 이 세 개뿐입니다. 오프라인은 부산 · 선착순.</p>
     <div class="now-grid reveal">
-      <a class="now-card" href="/bootcamp">
-        <span class="nc-tag">8/1 (토) · 원데이</span>
+      <a class="now-card" href="/oneday">
+        <span class="nc-tag">8/1 (토) · 원데이 · 기초반</span>
         <h3>원데이 인텐시브</h3>
         <p>Claude 완전 입문 · 비개발자 대상 · 코딩 없음. 하루 6시간에 사용법 전체를 실습으로 끝냅니다.</p>
         <span class="nc-meta">₩290,000 → 얼리버드 <strong>₩190,000</strong> · 선착순 20석</span>
@@ -421,6 +422,13 @@ footer .legal a{color:var(--ink-soft)}
         <p>이틀 만에 본인 서비스를 라이브로 출시하고 데모데이까지. 멘토 1:3~4 밀착.</p>
         <span class="nc-meta">₩1,500,000 → 1기 <strong>₩990,000</strong> · 8~12명 (원데이 수료 시 ₩800,000)</span>
         <span class="nc-go">▶ 자리 확보하기</span>
+      </a>
+      <a class="now-card" href="/starter-kit">
+        <span class="nc-tag">DIGITAL · 즉시 시작</span>
+        <h3>제2의 월급 스타터 킷</h3>
+        <p>전자책 37챕터 전권 + 딸깍 프롬프트 20종 + 디스코드 멤버십. 결제 후 24시간 내 개인 코드 발송.</p>
+        <span class="nc-meta">₩81,000 → <strong>₩33,000</strong> · 1회 결제 평생 소장</span>
+        <span class="nc-go">▶ 킷 열기</span>
       </a>
     </div>
   </div>
@@ -479,8 +487,8 @@ footer .legal a{color:var(--ink-soft)}
     <div class="free-grid reveal">
       <a class="free-card" href="/claude-guide">
         <span class="f-tag">FREE ITEM · EBOOK</span>
-        <span class="f-title">무료 전자책으로 시작하기</span><br>
-        <span class="f-sub">결제 없이 먼저 배워보기 → /claude-guide</span>
+        <span class="f-title">전자책 LV.0~1 무료로 읽기</span><br>
+        <span class="f-sub">결제 없이 8챕터 먼저 → /claude-guide</span>
       </a>
       <a class="free-card" href="/sample">
         <span class="f-tag">FREE ITEM · DEMO</span>
@@ -664,7 +672,7 @@ footer .legal a{color:var(--ink-soft)}
     <div class="cols">
       <div class="logo">VERBIO LABS<span class="dot">_</span></div>
       <nav>
-        <a href="/">Home</a><a href="/claude-guide">무료 전자책</a><a href="/sample">맛보기 레슨</a><a href="/bootcamp">Bootcamp</a><a href="/join">AI Cartel</a><a href="mailto:lulu066666@gmail.com">Contact</a>
+        <a href="/">Home</a><a href="/starter-kit">스타터 킷</a><a href="/sample">맛보기 레슨</a><a href="/bootcamp">Bootcamp</a><a href="/join">AI Cartel</a><a href="mailto:lulu066666@gmail.com">Contact</a>
       </nav>
       <div class="barcode" aria-hidden="true"></div>
     </div>

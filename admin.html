@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex,nofollow">
+<title>ADMIN · Verbio Labs</title>
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+@font-face{font-family:'Galmuri11';src:url('https://cdn.jsdelivr.net/npm/galmuri@2.36.0/dist/Galmuri11.woff2') format('woff2');font-display:swap}
+:root{--paper:#F0EEE6;--page:#FAF9F5;--ink:#1F1E1A;--soft:#5C5749;--clay:#D97757;--clay-deep:#B85C3E;--moss:#5E8D7A;--gold:#B99A45;--line:#CFC7B4;--px:'Galmuri11','IBM Plex Mono',monospace;--mono:'IBM Plex Mono',monospace}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font-family:var(--mono);font-size:14px;line-height:1.6}
+.wrap{max-width:1100px;margin:0 auto;padding:0 16px}
+header{background:var(--ink);color:#D8D3C4;padding:10px 0;border-bottom:3px solid var(--clay)}
+header .wrap{display:flex;justify-content:space-between;align-items:center}
+header b{font-family:var(--px)}
+header button{font-family:var(--px);font-size:11px;background:transparent;color:#D8D3C4;border:1px solid #57544B;padding:4px 10px;cursor:pointer}
+/* 로그인 */
+#login{max-width:360px;margin:80px auto;border:2px solid var(--ink);background:var(--page);box-shadow:5px 5px 0 var(--ink);padding:26px}
+#login h1{font-family:var(--px);font-size:17px;margin-bottom:16px}
+#login input{width:100%;padding:11px;border:1.5px solid var(--line);background:#FBF7EC;font-family:var(--mono);font-size:14px;margin-bottom:10px}
+#login button{width:100%;font-family:var(--px);font-size:13px;background:var(--clay);color:#fff;border:2px solid var(--ink);box-shadow:3px 3px 0 var(--ink);padding:12px;cursor:pointer}
+#login .sub{font-size:12px;color:var(--soft);margin-top:10px;text-align:center}
+#login .sub a{color:var(--clay);cursor:pointer}
+.msg{font-size:12.5px;margin-top:10px;color:var(--clay-deep);white-space:pre-wrap}
+/* 대시보드 */
+#dash{display:none;padding:22px 0 60px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:20px}
+.card{border:2px solid var(--ink);background:var(--page);box-shadow:3px 3px 0 var(--ink);padding:12px 14px}
+.card .k{font-size:11px;color:var(--soft)}
+.card .v{font-family:var(--px);font-size:20px;margin-top:2px}
+.tabs{display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap}
+.tab{font-family:var(--px);font-size:11px;border:2px solid var(--ink);background:var(--page);padding:6px 12px;cursor:pointer}
+.tab.on{background:var(--ink);color:var(--gold)}
+.toolbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;gap:10px;flex-wrap:wrap}
+.toolbar .hint{font-size:11.5px;color:var(--soft)}
+table{width:100%;border-collapse:collapse;background:var(--page);border:2px solid var(--ink)}
+th{font-family:var(--px);font-size:10.5px;text-align:left;background:var(--ink);color:#D8D3C4;padding:8px 10px;white-space:nowrap}
+td{padding:9px 10px;border-bottom:1px solid var(--line);font-size:12.5px;vertical-align:top}
+tr:hover td{background:#F5EFDE}
+.st{display:inline-block;font-family:var(--px);font-size:10px;padding:2px 7px;border:1.5px solid var(--ink);white-space:nowrap}
+.st.신규{background:#FFF3C9}
+.st.입금확인{background:#DDEBE1}
+.st.코드발송{background:var(--moss);color:#fff}
+.st.좌석확정{background:var(--moss);color:#fff}
+.st.취소{background:#eee;color:#888;border-color:#aaa}
+.act{font-family:var(--px);font-size:10px;border:1.5px solid var(--ink);background:var(--gold);padding:4px 8px;cursor:pointer;margin:2px 2px 0 0;box-shadow:2px 2px 0 var(--ink);white-space:nowrap}
+.act.gray{background:var(--page)}
+.act.red{background:#E2B7A8}
+.act:active{transform:translate(1px,1px);box-shadow:1px 1px 0 var(--ink)}
+.code{font-weight:600;color:var(--clay-deep)}
+.empty{padding:30px;text-align:center;color:var(--soft)}
+@media(max-width:760px){table,thead,tbody,tr{display:block}thead{display:none}td{border:none;padding:3px 10px}tr{border-bottom:2px solid var(--ink);padding:8px 0}}
+</style>
+</head>
+<body>
+
+<header><div class="wrap"><b>VERBIO LABS · ADMIN</b><span><span id="who" style="font-size:11px;margin-right:10px"></span><button id="logout" style="display:none" onclick="doLogout()">로그아웃</button></span></div></header>
+
+<div id="login">
+  <h1>🔐 관리자 로그인</h1>
+  <input id="lg-email" type="email" placeholder="이메일" autocomplete="username" value="jyan0831@gmail.com">
+  <input id="lg-pw" type="password" placeholder="비밀번호" autocomplete="current-password">
+  <button onclick="doLogin()">로그인 ▶</button>
+  <p class="sub">첫 사용이면 <a onclick="doSignup()">이 이메일·비밀번호로 계정 만들기</a><br>(관리자 이메일 외에는 데이터가 보이지 않습니다)</p>
+  <p class="msg" id="lg-msg"></p>
+</div>
+
+<div id="dash" class="wrap">
+  <div class="cards" id="cards"></div>
+  <div class="tabs" id="tabs">
+    <button class="tab on" data-f="all">전체</button>
+    <button class="tab" data-f="starterkit">스타터 킷</button>
+    <button class="tab" data-f="oneday">원데이</button>
+    <button class="tab" data-f="camp">캠프</button>
+    <button class="tab" data-f="신규">처리 대기만</button>
+  </div>
+  <div class="toolbar">
+    <span class="hint">입금 확인 → [입금 승인] 클릭 → 스타터 킷은 코드가 자동 배정됩니다 → [발송문구 복사] → 문자/카톡 전송 → [발송완료]</span>
+    <button class="act gray" onclick="loadOrders()">↺ 새로고침</button>
+  </div>
+  <div style="overflow-x:auto"><table>
+    <thead><tr><th>시각</th><th>구분</th><th>이름</th><th>연락처</th><th>이메일</th><th>메모</th><th>상태</th><th>코드</th><th>액션</th></tr></thead>
+    <tbody id="rows"></tbody>
+  </table></div>
+  <p class="msg" id="dash-msg"></p>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<script>
+const SB_URL='https://kpqrvvfcirkxlihcibqr.supabase.co';
+const SB_KEY='sb_publishable__ywsnui3UjB6Xls94pmbTQ_c13LyARM';
+const sb=window.supabase.createClient(SB_URL,SB_KEY);
+const $=id=>document.getElementById(id);
+let ORDERS=[],FILTER='all';
+
+async function doLogin(){
+  $('lg-msg').textContent='';
+  const {error}=await sb.auth.signInWithPassword({email:$('lg-email').value.trim(),password:$('lg-pw').value});
+  if(error){$('lg-msg').textContent='로그인 실패: '+error.message;return;}
+  boot();
+}
+async function doSignup(){
+  $('lg-msg').textContent='';
+  const {error}=await sb.auth.signUp({email:$('lg-email').value.trim(),password:$('lg-pw').value});
+  $('lg-msg').textContent=error?('가입 실패: '+error.message):'가입 요청 완료 — 메일함에서 확인(Confirm) 링크를 누른 뒤 로그인하세요.';
+}
+async function doLogout(){await sb.auth.signOut();location.reload();}
+
+async function boot(){
+  const {data:{session}}=await sb.auth.getSession();
+  if(!session)return;
+  $('login').style.display='none';$('dash').style.display='block';
+  $('logout').style.display='inline-block';$('who').textContent=session.user.email;
+  loadOrders();
+}
+
+function trackOf(o){
+  if(o.type==='starterkit')return 'starterkit';
+  if((o.track||'').indexOf('원데이')>=0)return 'oneday';
+  if((o.track||'').indexOf('캠프')>=0)return 'camp';
+  return 'etc';
+}
+async function loadOrders(){
+  const {data,error}=await sb.from('orders').select('*').order('created_at',{ascending:false}).limit(500);
+  if(error){$('dash-msg').textContent='조회 실패: '+error.message+' (관리자 이메일로 로그인했는지 확인)';return;}
+  ORDERS=data||[];renderCards();renderRows();
+}
+function renderCards(){
+  const n=s=>ORDERS.filter(s).length;
+  const kitSent=n(o=>o.type==='starterkit'&&o.status==='코드발송');
+  const onedayOk=n(o=>trackOf(o)==='oneday'&&(o.status==='입금확인'||o.status==='좌석확정'));
+  const campOk=n(o=>trackOf(o)==='camp'&&(o.status==='입금확인'||o.status==='좌석확정'));
+  $('cards').innerHTML=`
+    <div class="card"><div class="k">처리 대기 (신규)</div><div class="v">${n(o=>o.status==='신규')}</div></div>
+    <div class="card"><div class="k">스타터 킷 발송</div><div class="v">${kitSent}<span style="font-size:11px"> · ₩${(kitSent*33000).toLocaleString()}</span></div></div>
+    <div class="card"><div class="k">원데이 확정 좌석</div><div class="v">${onedayOk} / 20</div></div>
+    <div class="card"><div class="k">캠프 확정</div><div class="v">${campOk} / 12</div></div>
+    <div class="card"><div class="k">총 주문</div><div class="v">${ORDERS.length}</div></div>`;
+  if(onedayOk>0) $('dash-msg').textContent='ℹ️ 원데이 확정 좌석이 바뀌면 bootcamp.html의 SEATS(taken)도 같이 갱신하세요.';
+}
+function renderRows(){
+  const rows=ORDERS.filter(o=>{
+    if(FILTER==='all')return true;
+    if(FILTER==='신규')return o.status==='신규';
+    return trackOf(o)===FILTER;
+  });
+  if(!rows.length){$('rows').innerHTML='<tr><td colspan="9" class="empty">주문이 없습니다</td></tr>';return;}
+  $('rows').innerHTML=rows.map(o=>{
+    const t=new Date(o.created_at).toLocaleString('ko-KR',{month:'numeric',day:'numeric',hour:'2-digit',minute:'2-digit'});
+    const kind=o.type==='starterkit'?'🔑 킷':(trackOf(o)==='oneday'?'🎮 원데이':(trackOf(o)==='camp'?'🏕 캠프':o.type));
+    let acts='';
+    if(o.status==='신규'){
+      acts+=`<button class="act" onclick="confirmPay('${o.id}')">입금 승인</button>`;
+      acts+=`<button class="act red" onclick="setStatus('${o.id}','취소')">취소</button>`;
+    }else if(o.status==='입금확인'&&o.type==='starterkit'&&o.code){
+      acts+=`<button class="act" onclick="copyMsg('${o.id}')">발송문구 복사</button>`;
+      acts+=`<button class="act gray" onclick="setStatus('${o.id}','코드발송')">발송완료</button>`;
+    }else if(o.status==='코드발송'&&o.code){
+      acts+=`<button class="act gray" onclick="copyMsg('${o.id}')">문구 재복사</button>`;
+    }
+    return `<tr><td>${t}</td><td>${kind}</td><td><b>${esc(o.name)}</b></td><td>${esc(o.phone||'')}</td><td>${esc(o.email||'')}</td><td style="max-width:180px">${esc(o.note||'')}</td><td><span class="st ${o.status}">${o.status}</span></td><td class="code">${o.code||''}</td><td>${acts}</td></tr>`;
+  }).join('');
+}
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;');}
+
+async function confirmPay(id){
+  const o=ORDERS.find(x=>x.id===id);if(!o)return;
+  if(o.type==='starterkit'){
+    // 미발급 코드 1개 배정
+    const {data:codes,error:e1}=await sb.from('kit_codes').select('code').eq('issued',false).limit(1);
+    if(e1||!codes||!codes.length){$('dash-msg').textContent='코드 배정 실패: '+(e1?e1.message:'남은 코드 없음 — 새 배치 필요');return;}
+    const code=codes[0].code;
+    const {error:e2}=await sb.from('kit_codes').update({issued:true,issued_at:new Date().toISOString(),order_id:id,buyer_name:o.name}).eq('code',code).eq('issued',false);
+    if(e2){$('dash-msg').textContent='코드 잠금 실패: '+e2.message;return;}
+    const {error:e3}=await sb.from('orders').update({status:'입금확인',code:code}).eq('id',id);
+    if(e3){$('dash-msg').textContent=e3.message;return;}
+    $('dash-msg').textContent='✓ 입금확인 + 코드 '+code+' 배정 — [발송문구 복사]로 이어가세요.';
+  }else{
+    const {error}=await sb.from('orders').update({status:'입금확인'}).eq('id',id);
+    if(error){$('dash-msg').textContent=error.message;return;}
+    $('dash-msg').textContent='✓ 좌석 확정 처리됨 — bootcamp.html SEATS 갱신 잊지 마세요.';
+  }
+  loadOrders();
+}
+async function setStatus(id,st){
+  const {error}=await sb.from('orders').update({status:st}).eq('id',id);
+  if(error){$('dash-msg').textContent=error.message;return;}
+  loadOrders();
+}
+function copyMsg(id){
+  const o=ORDERS.find(x=>x.id===id);if(!o||!o.code)return;
+  const msg=`[VERBIO LABS] ${o.name}님, 스타터 킷 결제 확인됐습니다 🔑
+① 열람 링크(누르면 자동 인증): https://verbiolabs.com/claude-guide?code=${o.code}
+② 코드 직접 입력 시: ${o.code}
+③ 디스코드 멤버십: https://discord.gg/KJAZS4YrwK 입장 후 이 메시지를 보여주시면 멤버 역할을 드려요.
+궁금한 건 이 채널로 언제든 물어보세요!`;
+  navigator.clipboard.writeText(msg).then(()=>{$('dash-msg').textContent='✓ 발송 문구 복사됨 — 문자/카톡에 붙여넣고, 보낸 뒤 [발송완료]를 눌러주세요.';},()=>{$('dash-msg').textContent=msg;});
+}
+
+document.querySelectorAll('.tab').forEach(b=>b.addEventListener('click',()=>{
+  document.querySelectorAll('.tab').forEach(x=>x.classList.remove('on'));
+  b.classList.add('on');FILTER=b.dataset.f;renderRows();
+}));
+$('lg-pw').addEventListener('keydown',e=>{if(e.key==='Enter')doLogin();});
+boot();
+</script>
+</body>
+</html>

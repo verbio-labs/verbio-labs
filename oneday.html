@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>오프라인 부트캠프 · 주말 이틀 만에 출시 · 부산 · Verbio Labs</title>
-<meta name="description" content="주말 이틀이면 충분합니다. 당신의 서비스가 세상에 배포됩니다. 부산 주말 빌드 캠프 — 멘토 1:3~4, 데모데이, 결과 보증. 입문은 8/1 원데이 인텐시브부터.">
-<link rel="canonical" href="https://verbiolabs.com/bootcamp">
+<title>원데이 인텐시브 · 제2의 월급 기초반 · 8/1 부산 · Verbio Labs</title>
+<meta name="description" content="코딩 몰라도 됩니다. 하루 6시간, 옆에 앉아 따라 하면 AI가 내 일을 대신하기 시작합니다. 8/1(토) 부산 · 선착순 20석 · 자격 검정 무료.">
+<link rel="canonical" href="https://verbiolabs.com/oneday">
 <meta name="robots" content="index, follow">
 <meta name="author" content="Verbio Labs (Sikbang English)">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
@@ -15,9 +15,9 @@
 <meta name="theme-color" content="#1F1E1A">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Verbio Labs">
-<meta property="og:url" content="https://verbiolabs.com/bootcamp">
-<meta property="og:title" content="오프라인 부트캠프 · 주말 이틀 만에 출시 · 부산 · Verbio Labs">
-<meta property="og:description" content="주말 이틀이면, 당신의 서비스가 세상에 배포됩니다. 8/8~9 부산 · 멘토 1:3~4 · 데모데이 · 결과 보증. 입문은 8/1 원데이부터.">
+<meta property="og:url" content="https://verbiolabs.com/oneday">
+<meta property="og:title" content="원데이 인텐시브 — 하루면 AI가 내 일을 시작합니다 · 8/1 부산">
+<meta property="og:description" content="코딩 몰라도 됩니다. 8/1(토) 부산 해운대, 하루 6시간 — 업무 템플릿 3종과 직접 만든 도구 1개를 들고 퇴근합니다. 선착순 20석 · 자격 검정 무료.">
 <meta property="og:image" content="https://verbiolabs.com/og-courses.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -25,15 +25,15 @@
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "Course",
-  "name": "Verbio Labs Offline Bootcamp (Busan)",
-  "description": "부산 오프라인 부트캠프. 원데이 인텐시브(입문자용 Claude 사용법 하루 완성, 선착순 20석)와 주말 빌드 캠프(2일 12시간, 라이브 출시와 데모데이).",
-  "provider": { "@type": "Organization", "name": "Verbio Labs", "url": "https://verbiolabs.com/" },
-  "offers": [
-    { "@type": "Offer", "name": "주말 빌드 캠프 1기", "price": "990000", "priceCurrency": "KRW", "availability": "https://schema.org/PreOrder" }
-  ],
-  "courseMode": "Onsite",
-  "locationCreated": { "@type": "Place", "name": "Busan, Korea" }
+  "@type": "Event",
+  "name": "원데이 인텐시브 — Claude 하루 완성 (제2의 월급 기초반)",
+  "description": "AI 입문자용 오프라인 클래스. 코딩 없이 하루 6시간, 업무 템플릿 3종·실사용 도구 1개·자격 검정까지.",
+  "startDate": "2026-08-01T10:00:00+09:00",
+  "endDate": "2026-08-01T17:00:00+09:00",
+  "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+  "location": { "@type": "Place", "name": "해운대 채움공간", "address": "부산광역시 해운대구" },
+  "organizer": { "@type": "Organization", "name": "Verbio Labs", "url": "https://verbiolabs.com/" },
+  "offers": { "@type": "Offer", "name": "1회차 얼리버드", "price": "190000", "priceCurrency": "KRW", "availability": "https://schema.org/InStock", "url": "https://verbiolabs.com/oneday" }
 }
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -98,7 +98,7 @@ a{color:var(--clay-deep)}
 .section.kraft{background:var(--kraft);border-top:1.5px solid var(--ink);border-bottom:1.5px solid var(--ink)}
 .reveal{opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .6s cubic-bezier(.2,.7,.3,1)}
 .reveal.in{opacity:1;transform:none}
-@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}.cursor,.press-start,.seat.hold,.seat.you,.mini.hold,.live,.sb-head .live{animation:none!important}}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}.cursor,.press-start,.seat.hold,.seat.you,.live,.sb-head .live{animation:none!important}}
 
 /* 히어로 */
 .hero{padding:64px 0 40px;position:relative;overflow:hidden}
@@ -351,55 +351,52 @@ footer .legal a{color:var(--ink-soft)}
 <!-- 터미널바 -->
 <header class="termbar">
   <div class="wrap">
-    <div class="prompt"><span class="dollar">verbio@labs</span>:<span class="path">~/bootcamp</span>$ ./press_start.sh --busan<span class="cursor"></span></div>
+    <div class="prompt"><span class="dollar">verbio@labs</span>:<span class="path">~/oneday</span>$ ./second_salary.sh --basic<span class="cursor"></span></div>
     <nav>
       <a href="/">HOME</a>
       <a href="/claude-guide">전자책</a>
       <a href="/courses">COURSES</a>
       <a href="/join">CARTEL</a>
       <button id="sfx-toggle" class="sfx-btn" aria-label="효과음 켜기/끄기">♪ ON</button>
-    </nav>
+    <a href="#reserve" style="color:var(--gold)">▶ 신청</a></nav>
   </div>
 </header>
 
 <!-- HERO -->
 <section class="hero">
-  <div class="stamp">심화반<br>BUSAN<br>———<br>DEMO DAY</div>
+  <div class="stamp">기초반<br>BUSAN<br>———<br>8/1 SAT</div>
   <div class="wrap">
-    <span class="pill dark">제2의 월급 · 심화반</span>
-    <span class="pill">8/8~9 · 부산</span>
-    <span class="pill hot">정원 8~12명</span>
-    <span class="pill">1기 ₩990,000</span>
-    <h1>주말 이틀이면 충분합니다.<br><em>당신의 서비스가 세상에 배포됩니다.</em></h1>
+    <span class="pill dark">제2의 월급 · 기초반</span>
+    <span class="pill">8/1 (토) · 부산</span>
+    <span class="pill hot">선착순 20석</span>
+    <span class="pill">얼리버드 ₩190,000</span>
+    <h1>코딩 1도 몰라도 됩니다.<br><em>하루만 옆에 앉아 계세요.</em></h1>
     <p class="sub">
-      온라인 강의가 지도라면, 캠프는 동승입니다. 옆에서 봐주는 멘토, 구조적으로 강제되는 마감,
-      그리고 일요일 오후 4시 — 사람들 앞에서 내 서비스 URL로 발표하는 데모데이까지.
+      유튜브 저장만 200개, 시작은 0번이죠? 압니다. 그래서 하루로 압축했습니다 —
+      제가 만들어 둔 걸 딸깍 따라 하다 보면, 저녁엔 AI가 당신 일을 하고 있습니다.
+      병맛처럼 시작해서 "어? 이거 진짜네"로 끝나는 6시간.
     </p>
-    <div class="typeline"><span class="dollar">$</span> ./launch --where=busan --when=weekend</div>
+    <div class="typeline"><span class="dollar">$</span> ./second-salary --level=basic --day=1</div>
     <div class="dday" id="dday" aria-live="polite"></div>
     <a class="press-start" href="#reserve">▶ 자리 확보하기</a>
     <div class="ghost-row">
-      <a href="/oneday">입문이라면 8/1 원데이부터 (수료 시 크레딧 ₩190,000) →</a>
+      <a href="https://open.kakao.com/o/pgvb1sCi" target="_blank" rel="noopener">신청 전 궁금한 건 오픈채팅에서 →</a>
       <a href="/starter-kit">₩33,000 스타터 킷으로 먼저 시작하기 →</a>
       <a href="/courses">온라인 강의 미리 보기 (Q3 오픈 · 사전 등록) →</a>
     </div>
 
     <div class="status-window">
-      <div class="cell"><span class="num">12h</span><span class="lbl">주말 이틀</span></div>
-      <div class="cell"><span class="num">부산</span><span class="lbl">LOCATION · 확정 시 공지</span></div>
-      <div class="cell"><span class="num">8/8~9</span><span class="lbl">10:00~17:00</span></div>
-      <div class="cell"><span class="num">라이브 출시</span><span class="lbl">OUTCOME</span></div>
+      <div class="cell"><span class="num">6h</span><span class="lbl">하루 완성</span></div>
+      <div class="cell"><span class="num">해운대</span><span class="lbl">채움공간 · 확정</span></div>
+      <div class="cell"><span class="num">8/1 (토)</span><span class="lbl">10:00~17:00</span></div>
+      <div class="cell"><span class="num">딸깍 자동화</span><span class="lbl">저녁에 들고 감</span></div>
     </div>
 
     <!-- 좌석 보드 (실제 신청 수 기준) -->
     <div class="seatboard reveal" id="seatboard">
-      <div class="sb-head"><span><span class="live">●</span> SEAT MAP — 빌드 캠프 1기</span><span>정원 8~12명</span></div>
-      <div class="sb-sub" style="border-top:none;padding-top:4px">
-        <span class="sb-sub-label">8/8 (토) ~ 9 (일)</span>
-        <div class="mini-grid" id="camp-grid" aria-hidden="true"></div>
-        <span class="sb-sub-count" id="camp-cap"></span>
-      </div>
-      <p class="seat-cap" style="padding:6px 16px 12px;font-size:12px">입문·기초는 <a href="/oneday">8/1 원데이 인텐시브</a>에서 — 캠프는 전자책(스타터 킷) 완독 또는 원데이 수료 후가 최적입니다.</p>
+      <div class="sb-head"><span><span class="live">●</span> SEAT MAP — 원데이 1회차</span><span>선착순 20석</span></div>
+      <div class="seat-grid" id="seat-grid" aria-hidden="true"></div>
+      <p class="seat-cap" id="seat-cap" aria-live="polite"></p>
     </div>
   </div>
 </section>
@@ -407,14 +404,14 @@ footer .legal a{color:var(--ink-soft)}
 <!-- PROBLEM -->
 <section class="section">
   <div class="wrap">
-    <div class="sec-head reveal"><span class="tag">THE PROBLEM</span><h2>강의는 다 들었는데, 아직 내 서비스는 없으신가요?</h2><span class="rule"></span></div>
+    <div class="sec-head reveal"><span class="tag">THE PROBLEM</span><h2>저장한 강의는 많은데, 해본 건 없으시죠?</h2><span class="rule"></span></div>
     <p class="sec-sub reveal">온라인만으로 안 되는 구간이 있습니다. 의지의 문제가 아니라 구조의 문제입니다.</p>
     <ul class="pd-list reveal">
-      <li class="pd-row bad"><span class="pd-mark">✗</span><span class="pd-text">강의는 다 봤는데, <strong>내 프로젝트는 시작도 못 했다.</strong></span></li>
-      <li class="pd-row bad"><span class="pd-mark">✗</span><span class="pd-text">혼자 하다 에러 하나에 막히면, <strong>그날 작업이 거기서 끝난다.</strong></span></li>
+      <li class="pd-row bad"><span class="pd-mark">✗</span><span class="pd-text">유튜브 저장만 200개, <strong>내 일에 써본 건 0번이다.</strong></span></li>
+      <li class="pd-row bad"><span class="pd-mark">✗</span><span class="pd-text">ChatGPT 창을 켜놓고 <strong>뭘 시켜야 할지 몰라 그냥 닫는다.</strong></span></li>
       <li class="pd-row bad"><span class="pd-mark">✗</span><span class="pd-text">마감이 없으니 <strong>"다음 주말에 하자"가 반년째</strong> 반복되고 있다.</span></li>
       <li class="pd-row bad"><span class="pd-mark">✗</span><span class="pd-text">물어볼 사람이 없다. <strong>주변에 AI로 뭔가 만드는 사람이 없다.</strong></span></li>
-      <li class="pd-row bad"><span class="pd-mark">✗</span><span class="pd-text">도메인 연결·배포·공개, <strong>출시 직전 단계에서 매번 멈춘다.</strong></span></li>
+      <li class="pd-row bad"><span class="pd-mark">✗</span><span class="pd-text">남들은 AI로 3시간 일을 30분에 끝낸다는데, <strong>나만 그대로다.</strong></span></li>
     </ul>
   </div>
 </section>
@@ -422,14 +419,14 @@ footer .legal a{color:var(--ink-soft)}
 <!-- OUTCOME -->
 <section class="section kraft">
   <div class="wrap">
-    <div class="sec-head reveal"><span class="tag">THE OUTCOME</span><h2>캠프가 끝난 월요일의 모습</h2><span class="rule"></span></div>
-    <p class="sec-sub reveal">주말 이틀의 결과물은 수료증이 아닙니다. 인터넷에 떠 있는 본인 서비스입니다.</p>
+    <div class="sec-head reveal"><span class="tag">THE OUTCOME</span><h2>수업 다음 날, 월요일 아침의 모습</h2><span class="rule"></span></div>
+    <p class="sec-sub reveal">하루의 결과물은 필기 노트가 아닙니다. 월요일부터 바로 일하는 나만의 AI 세트입니다.</p>
     <ul class="pd-list reveal">
-      <li class="pd-row good"><span class="pd-mark">✓</span><span class="pd-text">본인 도메인에 <strong>라이브로 떠 있는 서비스</strong>가 있다.</span></li>
-      <li class="pd-row good"><span class="pd-mark">✓</span><span class="pd-text">사람들 앞에서 <strong>데모데이 발표</strong>를 마쳤고, 촬영본이 손에 남았다.</span></li>
-      <li class="pd-row good"><span class="pd-mark">✓</span><span class="pd-text">막히면 물어볼 <strong>부산의 동료들</strong>이 생겼다. 캠프가 끝나도 관계는 계속된다.</span></li>
-      <li class="pd-row good"><span class="pd-mark">✓</span><span class="pd-text">출시 과정을 한 번 완주했다. <strong>다음 아이디어는 혼자서도 띄울 수 있다.</strong></span></li>
-      <li class="pd-row good"><span class="pd-mark">✓</span><span class="pd-text">"만들고 있어요"가 아니라 <strong>"여기 있어요, 써보세요"</strong>라고 말하게 된다.</span></li>
+      <li class="pd-row good"><span class="pd-mark">✓</span><span class="pd-text">출근하자마자 <strong>어제 만든 템플릿에 메일 초안</strong>을 시키고 있다.</span></li>
+      <li class="pd-row good"><span class="pd-mark">✓</span><span class="pd-text">내 업무 자료가 통째로 들어간 <strong>나만의 클로드 프로젝트</strong>가 돌아간다.</span></li>
+      <li class="pd-row good"><span class="pd-mark">✓</span><span class="pd-text">브라우저 즐겨찾기에 <strong>내 손으로 만들어 게시한 도구</strong> 링크가 있다.</span></li>
+      <li class="pd-row good"><span class="pd-mark">✓</span><span class="pd-text">「AI활용전문가」 <strong>자격증이 손에 있다</strong> — 응시료 15만 원은 안 냈다.</span></li>
+      <li class="pd-row good"><span class="pd-mark">✓</span><span class="pd-text">"언젠가 배워야지"가 끝났다. <strong>다음 궁금증은 오픈채팅에 물어보면 된다.</strong></span></li>
     </ul>
   </div>
 </section>
@@ -440,29 +437,29 @@ footer .legal a{color:var(--ink-soft)}
     <div class="sec-head reveal"><span class="tag">WHY THIS WORKS</span><h2>온라인이 못 주는 세 가지를, 현장이 줍니다</h2><span class="rule"></span></div>
     <p class="sec-sub reveal">실시간 멘토링, 강제되는 마감, 그리고 네트워크. 이 세 가지가 완주율을 바꿉니다.</p>
     <div class="why-grid reveal">
-      <div class="law"><span class="ln">01</span><h4>멘토 밀착 1:3~4</h4><p><strong>에러에 10분 이상 혼자 막혀 있지 않습니다.</strong> 주말 부트캠프는 대표 + 멘토 2명이 그 자리에서 함께 풉니다.</p></div>
-      <div class="law"><span class="ln">02</span><h4>강제되는 마감</h4><p>Day 1 오후 4시 <strong>1차 배포</strong>, Day 2 오후 4시 <strong>데모데이</strong>. 시간표 자체가 마감입니다. 미루고 싶어도 미룰 틈이 없습니다.</p></div>
-      <div class="law"><span class="ln">03</span><h4>부산 현장 네트워크</h4><p>참가자는 부산 AI 메이커 커뮤니티 <strong>AI Cartel에 정식 편입</strong>됩니다. 캠프의 동료가 이후의 동료가 됩니다.</p></div>
-      <div class="law"><span class="ln">04</span><h4>프리워크 시스템</h4><p>주말 부트캠프는 <strong>프리워크가 선수 조건</strong> (1기는 전자책 완독으로 대체 — 전자책이 담긴 스타터 킷을 등록 시 제공). 기본기는 미리 끝내고, 현장의 12시간은 온전히 빌드에만 씁니다.</p></div>
+      <div class="law"><span class="ln">01</span><h4>막히면 그 자리에서 해결</h4><p><strong>손들면 강사가 옵니다.</strong> 유튜브는 내 화면을 못 보지만, 여기선 10초 안에 "아, 여기요" 하고 넘어갑니다.</p></div>
+      <div class="law"><span class="ln">02</span><h4>실습 5회 = 5개의 마감</h4><p>듣기만 하는 구간이 없습니다. <strong>매 실습마다 결과물이 하나씩</strong> — 시간표가 곧 마감이라 딴생각할 틈이 없습니다.</p></div>
+      <div class="law"><span class="ln">03</span><h4>내 자료로 실습</h4><p>예제 파일이 아니라 <strong>각자 실제 업무 자료</strong>를 가져와 만듭니다. 그래서 월요일에 바로 씁니다 — 집에 가서 응용할 필요가 없어요.</p></div>
+      <div class="law"><span class="ln">04</span><h4>끝나도 혼자가 아님</h4><p>수업 후에도 <strong>오픈채팅·디스코드</strong>에서 질문을 받습니다. 스타터 킷(전자책 전권+프롬프트 20종)이 포함되어 복습 자료도 평생 남습니다.</p></div>
     </div>
 
     <div class="vs-grid reveal">
       <div class="vs-col bad">
-        <h4>✕ 혼자 할 때</h4>
+        <h4>✕ 유튜브로 혼자</h4>
         <ul>
-          <li>강의만 듣고 끝 — 결과물이 없음</li>
-          <li>에러 하나에 반나절, 결국 창을 닫음</li>
-          <li>"언젠가 출시해야지"가 6개월째</li>
-          <li>방향이 맞는지 물어볼 사람이 없음</li>
+          <li>저장만 쌓이고 해본 건 없음</li>
+          <li>뭘 시켜야 할지 몰라 창을 닫음</li>
+          <li>"주말에 해야지"가 반년째</li>
+          <li>이게 맞는지 물어볼 데가 없음</li>
         </ul>
       </div>
       <div class="vs-col good">
-        <h4>✓ 부트캠프에서</h4>
+        <h4>✓ 원데이에서</h4>
         <ul>
-          <li>주말이 끝나면 라이브 URL이 남음</li>
-          <li>막히면 그 자리에서 멘토와 해결</li>
-          <li>오후 4시 배포 — 시간표가 마감</li>
-          <li>데모데이 피드백 + AI Cartel 동료</li>
+          <li>저녁에 결과물 3종을 들고 감</li>
+          <li>막히면 손들고 10초 안에 해결</li>
+          <li>실습 5회가 마감 — 미룰 틈 없음</li>
+          <li>자격증 + 계속 물어볼 커뮤니티</li>
         </ul>
       </div>
     </div>
@@ -472,19 +469,22 @@ footer .legal a{color:var(--ink-soft)}
 <!-- QUEST SELECT -->
 <section class="section kraft" id="programs">
   <div class="wrap">
-    <div class="sec-head reveal"><span class="tag">QUEST SELECT</span><h2>주말 빌드 캠프 — 정점</h2><span class="rule"></span></div>
-    <p class="sec-sub reveal">이틀 만에 진짜 출시까지. 처음이라면 <a href="/oneday"><strong>8/1 원데이 인텐시브(기초반)</strong></a>로 시작하는 걸 추천해요 — 수료 시 캠프 크레딧 ₩190,000이 생깁니다.</p>
+    <div class="sec-head reveal"><span class="tag">QUEST SELECT</span><h2>기초반에서 하는 일</h2><span class="rule"></span></div>
+    <p class="sec-sub reveal">"나도 되나?" 싶은 분 기준으로 설계했습니다. 애 재우고 짬내던 그 열정이면 충분해요. 다음 단계(주말 빌드 캠프)는 <a href="/bootcamp">여기</a>.</p>
 
-    <div class="qcard reveal">
-      <span class="q-tag">빌드 캠프 · 1기</span>
-      <h3>주말 빌드 캠프 · 이틀 만에 출시까지</h3>
-      <p class="q-sum">토+일 연속 2일, 하루 6시간 (총 12시간). 주말이 끝나는 순간 각자 라이브 URL로 서비스를 출시하고 데모데이 발표까지 마칩니다.<br><span style="color:var(--ink-soft);font-size:14px">이런 걸 만들어 갑니다 — 예약 받는 매장 페이지 · 견적 계산기 · AI 상담 위젯 · 뉴스레터 구독 랜딩 · 포트폴리오+문의 폼 · 나만의 SaaS 첫 버전</span></p>
-      <div class="qrow"><span class="qk">일정</span><span class="qv"><strong>8월 8일 (토) ~ 9일 (일), 매일 10:00~17:00</strong></span></div>
-      <div class="qrow"><span class="qk">정원</span><span class="qv">8~12명 · 대표 + 멘토 2명 (멘토 1:3~4)</span></div>
-      <div class="qrow"><span class="qk">선수</span><span class="qv">프리워크 필수 · <strong>1기는 전자책 완독(STORY·LV.4) + 사전 셋업 과제로 대체 — 스타터 킷(₩33,000 상당) 등록 시 제공</strong></span></div>
-      <div class="qrow"><span class="qk">결과</span><span class="qv">라이브 URL로 출시된 본인 서비스 + 데모데이 발표·촬영본</span></div>
-      <div class="qrow"><span class="qk">가격</span><span class="qv">정가 ₩1,500,000 · <strong>1기 얼리버드 ₩990,000</strong> · 원데이 수료자 ₩800,000</span></div>
+    <div class="qcard hotline reveal">
+      <span class="q-tag">TRACK A · 선착순 20석</span>
+      <h3>원데이 인텐시브 · 하루 만에 Claude를 업무 동료로</h3>
+      <p class="q-sum">완전 입문 기준, 코딩 없음. 대화 공식부터 파일 활용, 나만의 프로젝트, 실사용 도구 제작, 자동화 설계까지, Claude 사용법 전체를 하루에 실습으로 끝냅니다. 각자 실제 업무 자료를 가져와, 월요일부터 내 일에 바로 쓰는 도구로 만들어 갑니다.</p>
+      <div class="qrow"><span class="qk">일정</span><span class="qv"><strong>2026년 8월 1일 (토) 10:00~17:00</strong> · 점심 1시간</span></div>
+      <div class="qrow"><span class="qk">정원</span><span class="qv"><strong>20명 한정 · 선착순 마감</strong> (좌석 현황은 위 SEAT MAP)</span></div>
+      <div class="qrow"><span class="qk">대상</span><span class="qv">완전 입문 · 비개발자 환영 (코딩 다루지 않음)</span></div>
+      <div class="qrow"><span class="qk">결과</span><span class="qv">업무 프롬프트 템플릿 3종 + 나만의 프로젝트 + 실사용 도구 1개 + 자동화 로드맵</span></div>
+      <div class="qrow"><span class="qk">자격증</span><span class="qv"><strong>「AI활용전문가」 자격 검정 무료 응시</strong> (응시료 ₩150,000 상당) · 합격 시 당일 자격증 발급</span></div>
+      <div class="qrow"><span class="qk">가격</span><span class="qv">₩290,000 · <strong>1회차 얼리버드 ₩190,000</strong> · 참가비 전액이 캠프 크레딧</span></div>
     </div>
+
+    
   </div>
 </section>
 
@@ -492,7 +492,7 @@ footer .legal a{color:var(--ink-soft)}
 <section class="section">
   <div class="wrap">
     <div class="sec-head reveal"><span class="tag">TRACK RECORD</span><h2>책으로 배운 게 아닙니다</h2><span class="rule"></span></div>
-    <p class="sec-sub reveal">가르쳤고, 출시했고, 운영했습니다. 이 캠프의 커리큘럼은 강의 현장과 지금 운영 중인 제품에서 그대로 가져왔습니다.</p>
+    <p class="sec-sub reveal">가르쳤고, 출시했고, 운영했습니다. 이 클래스의 커리큘럼은 강의 현장과 지금 운영 중인 제품에서 그대로 가져왔습니다.</p>
     <div class="track-stats reveal">
       <div class="tstat"><span class="n">3년</span><span class="l">대학 딥러닝·AI 전공과목 전담</span></div>
       <div class="tstat"><span class="n">200명</span><span class="l">삼성전자 임직원 AI 세미나</span></div>
@@ -506,14 +506,14 @@ footer .legal a{color:var(--ink-soft)}
     </div>
 
     <div class="live-proof reveal">
-      <p class="lp-lead">캠프에서 가르치는 방법 그대로 만든 서비스들입니다. <strong>지금 눌러보세요 — 전부 실제로 작동합니다.</strong></p>
+      <p class="lp-lead">수업에서 가르치는 방법 그대로 만든 서비스들입니다. <strong>지금 눌러보세요 — 전부 실제로 작동합니다.</strong></p>
       <div class="lp-grid">
         <a class="lp-card" href="https://apps.apple.com/kr/app/%EC%A7%81%EC%8B%9C-%EA%B5%AD%ED%9A%8C-%EA%B0%90%EC%8B%9C/id6782101748" target="_blank" rel="noopener"><span class="lp-name">직시</span><span class="lp-desc">App Store 뉴스 카테고리 무료 앱 10위</span><span class="lp-go">LIVE ↗</span></a>
         <a class="lp-card" href="https://sikbang-eng.replit.app/" target="_blank" rel="noopener"><span class="lp-name">SpeakCoach AI</span><span class="lp-desc">첫 달 사용자 1,000명 · 운영 중</span><span class="lp-go">LIVE ↗</span></a>
         <a class="lp-card" href="https://topikiq.com" target="_blank" rel="noopener"><span class="lp-name">TopikIQ</span><span class="lp-desc">iOS·AOS 양대 스토어 배포</span><span class="lp-go">LIVE ↗</span></a>
         <a class="lp-card" href="https://sikbang.co" target="_blank" rel="noopener"><span class="lp-name">식빵영어</span><span class="lp-desc">3년 만에 팔로워 2만 · 수강생 4,000+</span><span class="lp-go">LIVE ↗</span></a>
       </div>
-      <p class="lp-note">1기 데모데이가 끝나면, 이 자리는 참가자들의 라이브 서비스 갤러리가 됩니다.</p>
+      <p class="lp-note">1회차 쇼케이스가 끝나면, 이 자리는 참가자들의 라이브 서비스 갤러리가 됩니다.</p>
     </div>
   </div>
 </section>
@@ -522,57 +522,30 @@ footer .legal a{color:var(--ink-soft)}
 <section class="section kraft" id="timetable">
   <div class="wrap">
     <div class="sec-head reveal"><span class="tag">TIMETABLE</span><h2>시간표. 미룰 틈이 없습니다</h2><span class="rule"></span></div>
-    <p class="sec-sub reveal">이틀의 시간표입니다. 모든 구간의 끝에 눈에 보이는 결과가 하나씩 나옵니다.</p>
+    <p class="sec-sub reveal">모든 구간의 끝에 눈에 보이는 결과가 하나씩 나옵니다 — "내 말이 맞지?"를 하루에 열 번쯤 듣게 되실 거예요.</p>
 
     <div class="qcard reveal">
-      <span class="q-tag">STAGE · CAMP DAY 1 · 8/8 (토)</span>
-      <h3>만들고, 오늘 안에 인터넷에 띄운다</h3>
-      <p class="q-sum">첫날의 목표는 완성도가 아니라 배포입니다. 오후 4시, 본인 도메인에 첫 버전이 뜹니다.</p>
-      <div class="qrow"><span class="qk">10:00</span><span class="qv">킥오프 · 아이디어 1장 기획 — "누구의 어떤 문제를, 어떤 기능 하나로" 범위 확정 (멘토 1:1 스코프 점검)</span></div>
-      <div class="qrow"><span class="qk">10:40</span><span class="qv">셋업 검수 · Claude Code — GitHub — Vercel 연결 확인 (프리워크 완료 상태 점검)</span></div>
-      <div class="qrow"><span class="qk">11:00</span><span class="qv">빌드 스프린트 ① · CLAUDE.md 작성 → 첫 프롬프트로 서비스 뼈대 생성 → 랜딩 + 핵심 화면</span></div>
-      <div class="qrow"><span class="qk">12:30</span><span class="qv">점심 1시간 · 같이 나가 먹기 (네트워킹)</span></div>
-      <div class="qrow"><span class="qk">13:30</span><span class="qv">빌드 스프린트 ② · 핵심 기능 구현 — 신청·문의 폼 + 데이터 저장(DB) + 모바일 대응</span></div>
-      <div class="qrow"><span class="qk">15:30</span><span class="qv">출시 준비 · 본인 도메인 구입 — 연결 — 배포 파이프라인 세팅</span></div>
-      <div class="qrow boss"><span class="qk">16:00</span><span class="qv">BOSS · 1차 배포 — 본인 도메인에 라이브. 오늘 안에 인터넷에 뜬다</span></div>
-      <div class="qrow"><span class="qk">16:40</span><span class="qv">Day 1 회고 · 내일 추가할 기능을 <strong>딱 하나만</strong> 고릅니다 — "이것도 저것도" 붙이다 보면 출시가 밀립니다. 범위를 지켜야 내일 데모데이가 지켜집니다</span></div>
+      <span class="q-tag">STAGE · 원데이 8/1 (토)</span>
+      <h3>Claude 완전 사용법, 하루 완성</h3>
+      <p class="q-sum">저녁에 들고 가는 것: 내 업무용 프롬프트 템플릿, 나만의 프로젝트, 실사용 도구, 자동화 로드맵.</p>
+      <div class="qrow"><span class="qk">10:00</span><span class="qv">오리엔테이션 · 30초 진단으로 시작점 확인 + Claude 계정·모델·요금제 한 번에 정리</span></div>
+      <div class="qrow"><span class="qk">10:20</span><span class="qv">모듈 1 · 대화의 기술 — 질문 공식(맥락·목적·조건), 잘 되는 예시 vs 안 되는 예시</span></div>
+      <div class="qrow"><span class="qk">10:50</span><span class="qv">실습 ① · 내 업무 글쓰기 — 메일·공지·보고 초안을 내 자료로 직접 (프롬프트 템플릿 1호 완성)</span></div>
+      <div class="qrow"><span class="qk">11:30</span><span class="qv">모듈 1.5 · 파일·이미지 활용 — PDF 통째로 요약, 사진 속 표 추출, 긴 자료에 질문하는 법</span></div>
+      <div class="qrow"><span class="qk">12:00</span><span class="qv">실습 ② · 내 자료 분석 — 실제 문서 업로드해서 요약·정리 (템플릿 2호 완성)</span></div>
+      <div class="qrow"><span class="qk">12:30</span><span class="qv">점심 1시간 · 원하는 사람들끼리 같이 (네트워킹)</span></div>
+      <div class="qrow"><span class="qk">13:30</span><span class="qv">모듈 2 · 나만의 시스템 — Projects 지식 베이스로 "매번 설명하는 일" 없애기</span></div>
+      <div class="qrow"><span class="qk">14:00</span><span class="qv">실습 ③ · 내 업무 프로젝트 만들기 — 지식 베이스 세팅 완료 상태로 (LOOT: 프로젝트)</span></div>
+      <div class="qrow"><span class="qk">14:40</span><span class="qv">모듈 2.5 · Artifacts — 답변이 아니라 "쓸 수 있는 도구"를 받아내는 법</span></div>
+      <div class="qrow"><span class="qk">15:00</span><span class="qv">실습 ④ · 실사용 도구 1개 제작·게시 — 계산기·체크리스트·미니 대시보드 등 (LOOT: 도구)</span></div>
+      <div class="qrow"><span class="qk">15:40</span><span class="qv">모듈 3 · 자동화의 세계 — Claude Code·Cowork 라이브 시연 (주말 부트캠프 예고편)</span></div>
+      <div class="qrow"><span class="qk">16:00</span><span class="qv">실습 ⑤ · 내 반복업무 자동화 로드맵 1장 + 자동화 지시문 (템플릿 3호 완성)</span></div>
+      <div class="qrow"><span class="qk">16:20</span><span class="qv">쇼케이스 · 각자 만든 도구 공유 + 다음 단계 안내</span></div>
+      <div class="qrow boss"><span class="qk">16:35</span><span class="qv">BONUS STAGE · 「AI활용전문가」 자격 검정 응시 — 응시료 ₩150,000 상당 무료 (오늘 배운 내용으로 충분)</span></div>
+      <div class="qrow"><span class="qk">17:00</span><span class="qv">수료 · 합격자 당일 자격증 발급 · 단체 사진</span></div>
     </div>
 
-    <div class="qcard reveal">
-      <span class="q-tag">STAGE · CAMP DAY 2 · 8/9 (일)</span>
-      <h3>다듬고, 사람들 앞에서 출시를 선언한다</h3>
-      <p class="q-sum">둘째 날의 목표는 출시 선언입니다. 오후 4시 데모데이, 각자의 라이브 URL로 발표합니다.</p>
-      <div class="qrow"><span class="qk">10:00</span><span class="qv">빌드 스프린트 ③ · 돈 받는 구조 — 결제·예약·신청 확정 플로우 + 구글 소셜 로그인 붙이기 (서비스 유형별 멘토 밀착)</span></div>
-      <div class="qrow"><span class="qk">11:30</span><span class="qv">신뢰 요소 · OG 공유 카드 — 파비콘 — 필수 표기(개인정보·연락처) — "진짜 서비스처럼 보이게"</span></div>
-      <div class="qrow"><span class="qk">12:00</span><span class="qv">사장님 기초 30분 · 사업자등록 — 통신판매업 신고 — 부가세·종소세 개념 한 장 정리. 개념만 알아도 셀프 신고로 연 60만 원대 회계 비용을 아낍니다</span></div>
-      <div class="qrow"><span class="qk">12:30</span><span class="qv">점심 1시간</span></div>
-      <div class="qrow"><span class="qk">13:30</span><span class="qv">유입 퍼널 구축 · 배포해도 아무도 안 오면 끝 — 검색(SEO)·SNS·커뮤니티에서 내 서비스로 흘러오는 길을 설계하고, GA·MS Clarity를 심어 방문자가 어디서 와서 어디서 이탈하는지 측정합니다. 목표: 첫 사용자 10명 확보 플랜 1장</span></div>
-      <div class="qrow"><span class="qk">14:30</span><span class="qv">최종 폴리시 · 버그 킬링 — 보안 점검(API 키 노출 차단·환경변수 정리) — 문구 다듬기 — 데모 리허설</span></div>
-      <div class="qrow"><span class="qk">15:20</span><span class="qv">BONUS STAGE · 「인공지능활용마스터」 자격 검정 응시 — 응시료 ₩200,000 상당 무료</span></div>
-      <div class="qrow boss"><span class="qk">16:00</span><span class="qv">FINAL BOSS · 데모데이 — 각자 라이브 URL로 3분 발표 + 사진·영상 촬영</span></div>
-      <div class="qrow"><span class="qk">17:00</span><span class="qv">수료 · AI Cartel 편입 · 2주 후속 코칭 시작</span></div>
-    </div>
-  </div>
-</section>
-
-<!-- VALUE STACK -->
-<section class="section">
-  <div class="wrap">
-    <div class="sec-head reveal"><span class="tag">WHAT YOU GET</span><h2>이틀에 담기는 모든 것 · 주말 빌드 캠프</h2><span class="rule"></span></div>
-    <p class="sec-sub reveal">캠프는 주말에 끝나지만, 받아 가는 것은 주말로 끝나지 않습니다.</p>
-    <div class="stack reveal">
-      <div class="srow"><div><div class="sn">토+일 2일 밀착 빌드 <span class="stag">CORE</span></div><p class="sd">총 12시간 · 대표 + 멘토 2명 · 멘토 1:3~4. 막히는 즉시 그 자리에서 해결하며 전진합니다.</p></div><span class="sp">포함</span></div>
-      <div class="srow"><div><div class="sn">데모데이 <span class="stag">CORE</span></div><p class="sd">각자의 라이브 URL로 발표. 사진·영상 촬영본까지 챙겨 드립니다. 포트폴리오와 SNS에 바로 올리세요.</p></div><span class="sp">포함</span></div>
-      <div class="srow"><div><div class="sn">제2의 월급 스타터 킷 <span class="stag">PREWORK</span></div><p class="sd">전자책 전권 + 딸깍 프롬프트 20종 + 디스코드 멤버십. 1기 프리워크(전자책 완독)를 이걸로 진행합니다.</p></div><span class="sp">₩33,000 상당</span></div>
-      <div class="srow"><div><div class="sn">2주 후속 1:1 코칭 <span class="stag">FOLLOW-UP</span></div><p class="sd">캠프가 끝난 뒤 2주간, 못다 한 마무리부터 다음 단계까지 1:1로 챙깁니다.</p></div><span class="sp">포함</span></div>
-      <div class="srow"><div><div class="sn">AI Cartel 평생 멤버십 <span class="stag">COMMUNITY</span></div><p class="sd">부산 AI 메이커 커뮤니티 정식 편입. 오프라인 모임과 채널에서 캠프가 끝난 뒤에도 계속 만납니다.</p></div><span class="sp">포함</span></div>
-      <div class="srow"><div><div class="sn">런치킷 · 템플릿 · 체크리스트 <span class="stag">KIT</span></div><p class="sd">캠프에서 쓰는 사이트 템플릿과 출시 체크리스트 일체. 다음 프로젝트에도 재사용할 수 있습니다.</p></div><span class="sp">포함</span></div>
-      <div class="srow"><div><div class="sn">「인공지능활용마스터」 자격 검정 <span class="stag">CERT</span></div><p class="sd">응시료 ₩200,000 상당의 자격 검정을 캠프 안에서 무료로 응시합니다. 합격 시 당일 자격증 발급. 자격기본법 제17조에 따른 등록민간자격 (등록번호 2026-002643 · 주무부처 과학기술정보통신부).</p></div><span class="sp">포함</span></div>
-      <div class="srow"><div><div class="sn">멘토 트랙 · 외부 강의 기회 <span class="stag">PATH</span></div><p class="sd">수료 후 AI Cartel 코어로 활동하면 차기 캠프 멘토로 등판할 수 있습니다. 검증된 멘토에게는 기업 세미나·외부 강의 공동 등판 기회가 열립니다. 배우는 사람에서 가르치는 사람으로.</p></div><span class="sp">포함</span></div>
-      <div class="srow"><div><div class="sn">결과 보증 <span class="stag">GUARANTEE</span></div><p class="sd">종료 시 결과물이 남지 않으면 다음 회차에 무료로 다시 참여합니다.</p></div><span class="sp">포함</span></div>
-    </div>
-    <div class="stack-total"><span class="tl">주말 빌드 캠프 정가</span><span class="tv">₩1,500,000</span></div>
-  </div>
+      </div>
 </section>
 
 <!-- INSERT COIN / RESERVE -->
@@ -582,42 +555,30 @@ footer .legal a{color:var(--ink-soft)}
     <p class="sec-sub reveal">신청서 제출은 무료입니다. 좌석은 입금 확인 순서로 확정되며, 입금 전에는 돈 나갈 일이 전혀 없습니다.</p>
 
     <div class="coin-card reveal">
-      <div class="c-eyebrow">TRACK B · 주말 빌드 캠프 · 1기</div>
-      <h3>이틀 만에 출시까지 · 토+일 12시간</h3>
-      <div class="price-row"><span class="price-strike">₩1,500,000</span><span class="price-new">₩990,000</span></div>
-      <p class="price-save">1기 얼리버드 · 2기부터 정가 ₩1,500,000</p>
-      <p class="seats-line" data-seats="camp" aria-live="polite"></p>
-      <p class="c-desc"><strong>8월 8일 (토) ~ 9일 (일), 매일 10:00~17:00.</strong> 정원 8~12명, 멘토 1:3~4. <strong>1기 프리워크는 전자책 완독(STORY + LV.4) + 사전 셋업 과제로 진행 — 프리워크용 스타터 킷은 등록 확정 시 제공</strong>되며, 등록 확정 시 과제 안내를 보내드립니다.</p>
+      <div class="c-eyebrow">TRACK A · 원데이 인텐시브 · 1회차</div>
+      <h3>하루 만에, Claude를 업무 동료로</h3>
+      <div class="price-row"><span class="price-strike">₩290,000</span><span class="price-new">₩190,000</span></div>
+      <p class="price-save">1회차 얼리버드 · 정원 20명 선착순</p>
+      <p class="seats-line" data-seats="oneday" aria-live="polite"></p>
+      <p class="c-desc"><strong>8월 1일 (토) 10:00~17:00 · 부산 해운대 채움공간.</strong> 노트북만 들고 오세요. 상세 오시는 길은 등록 확정 시 안내드립니다.</p>
       <ul class="c-loot">
-        <li>본인 도메인에 라이브로 출시된 서비스 (일요일 오후 4시 기준)</li>
-        <li>데모데이 발표 + 사진·영상 촬영본 (포트폴리오·SNS용)</li>
-        <li>2주 후속 1:1 코칭 (마무리 지원)</li>
-        <li>「인공지능활용마스터」 자격 검정 무료 응시 + 합격 시 당일 자격증 발급 (응시료 ₩200,000 상당)</li>
-        <li>AI Cartel 평생 멤버십 + 멘토 트랙 자격</li>
-        <li>런치킷·템플릿·출시 체크리스트 일체</li>
+        <li>내 업무에 맞춘 프롬프트 템플릿 3종 (현장에서 직접 제작)</li>
+        <li>나만의 Claude 프로젝트 1개 (지식 베이스 세팅 완료 상태)</li>
+        <li>바로 쓰는 실사용 도구 1개 (Artifacts로 제작·게시)</li>
+        <li>내 반복업무 자동화 로드맵 1장</li>
+        <li>「AI활용전문가」 자격 검정 무료 응시 + 합격 시 당일 자격증 발급 (응시료 ₩150,000 상당)</li>
+        <li>제2의 월급 스타터 킷 — 전자책 전권 + 딸깍 프롬프트 20종 + 디스코드 멤버십 (₩33,000 상당)</li>
+        <li>주말 부트캠프 크레딧 ₩190,000 (참가비 전액)</li>
       </ul>
-      <button type="button" class="coin-btn" onclick="openApply('camp')">▶ 부트캠프 자리 확보</button>
-      <p class="c-note" style="color:var(--moss)"><strong>결과 보증</strong> — 종료 시 결과물이 남지 않으면 다음 회차에 무료로 다시 참여합니다.</p>
-      <p class="c-note credit"><strong>얼리버드로 ₩510,000 절약 + 검정료 ₩200,000 무료.</strong> 원데이 수료자는 여기서 ₩190,000이 더 차감되어 ₩800,000에 참여합니다.</p>
-      <p class="c-note"><a href="/oneday">원데이(8/1)</a>를 먼저 듣고 오면 크레딧과 실습 감각을 모두 안고 시작합니다. 결제 시 <a href="/refund">환불 규정</a>에 동의한 것으로 간주됩니다.</p>
+      <button type="button" class="coin-btn" onclick="openApply('oneday')">▶ 원데이 자리 확보</button>
+      <p class="c-note credit"><strong>참가비 ₩190,000 · 포함된 실측 가치 ₩373,000+</strong> — 자격 검정료 ₩150,000 + 스타터 킷 ₩33,000 + 주말 부트캠프 크레딧 ₩190,000 (결제 시 전액 차감). 참가비보다 포함 가치가 큽니다.</p>
+      <p class="c-note">신청서 제출은 무료이며, 입금 시 <a href="/refund">환불 규정</a>에 동의한 것으로 간주됩니다. 마음이 바뀌면 규정에 따라 언제든 환불됩니다.</p>
+      <p class="c-note">₩190,000이 아직 부담이라면 — 전자책 전권 + 프롬프트 20종이 담긴 <a href="/starter-kit">스타터 킷(₩33,000)</a>으로 먼저 시작하세요. 준비되면 원데이로 올라오시면 됩니다.</p>
     </div>
 
-    <p class="scarcity reveal"><strong>1기 8~12명 한정.</strong> 2기부터 정가 ₩1,500,000 — 파일럿 가격은 진짜로 다시 없습니다.</p>
-  </div>
-</section>
+    
 
-<!-- GUARANTEE -->
-<section class="section">
-  <div class="wrap">
-    <div class="savepoint reveal">
-      <h3>결과물이 안 남으면, 다음 회차 무료 재참여.</h3>
-      <p>법정 환불권은 그대로 두고, 결과까지 책임을 더합니다. 이 클래스의 목표는 수강이 아니라 손에 남는 결과물이기 때문입니다. 아래 조건을 지켰는데도 종료 시점에 결과물(<strong>원데이는 템플릿·프로젝트·도구 세트, 주말 부트캠프는 본인 라이브 URL</strong>)이 남지 않았다면, 다음 회차에 무료로 다시 참여할 수 있습니다.</p>
-      <ol>
-        <li>전 일정 참석 (원데이 1일 · 주말 부트캠프 2일)</li>
-        <li>주말 부트캠프의 경우, 프리워크 완료 상태로 참여 (1기는 온라인 강의 출시 전이므로 전자책 완독 + 사전 셋업 과제로 대체)</li>
-      </ol>
-      <p class="fine">전자상거래법에 따른 일반 환불 규정은 별도로 적용됩니다. <a href="/refund">환불 정책 전문 보기</a></p>
-    </div>
+    <p class="scarcity reveal"><strong>원데이 1회차 20석 한정 — 마감 후엔 다음 회차 대기.</strong> 파일럿 이후 회차부터 가격을 올립니다 (진짜로 올립니다).</p>
   </div>
 </section>
 
@@ -627,21 +588,19 @@ footer .legal a{color:var(--ink-soft)}
     <div class="sec-head reveal"><span class="tag">FAQ.LOG</span><h2>결정하기 전, 마지막 질문들</h2><span class="rule"></span></div>
     <div class="faq reveal">
       <div class="faq-item"><button class="faq-q" type="button">코딩을 한 번도 안 해봤는데 참여할 수 있나요?<span class="fi">+</span></button>
-        <div class="faq-a"><p><strong><a href="/oneday">원데이 인텐시브</a>는 완전 입문 기준으로 설계됐습니다.</strong> 코딩을 다루지 않고, Claude 사용법 전체(대화 공식 → 파일 활용 → 프로젝트 → 도구 제작 → 자동화 설계)를 실습으로 익힙니다. <strong>주말 빌드 캠프는 출시가 목표라 온라인 강의 프리워크가 선수 조건</strong>입니다.</p></div></div>
-      <div class="faq-item"><button class="faq-q" type="button">프리워크가 정확히 뭔가요?<span class="fi">+</span></button>
-        <div class="faq-a"><p>주말 부트캠프 참가 전에 온라인 강의(<a href="/courses/first-ai">First AI</a> 또는 <a href="/courses/korean-saas">Korean SaaS</a>)를 먼저 수강하는 것입니다. 도구 설치, 기본 개념, 첫 배포 경험을 미리 마치고 오면, 현장에서는 본인 프로젝트 빌드에만 집중할 수 있습니다. <strong>1기(8월)는 온라인 강의 출시 전이므로, 프리워크를 전자책 완독(STORY 모드 + LV.4)과 사전 셋업 과제(Claude 구독 — Max 권장·Claude Code 설치·만들 아이디어 1개)로 대체합니다.</strong></p></div></div>
+        <div class="faq-a"><p><strong>원데이 인텐시브는 완전 입문 기준으로 설계됐습니다.</strong> 코딩을 다루지 않고, Claude 사용법 전체(대화 공식 → 파일 활용 → 프로젝트 → 도구 제작 → 자동화 설계)를 실습으로 익힙니다. 심화(출시)까지 가고 싶다면 <a href="/bootcamp">주말 빌드 캠프</a>가 다음 단계입니다 — 원데이 수강료 전액이 크레딧이 돼요.</p></div></div>
+      
       <div class="faq-item"><button class="faq-q" type="button">무엇을 준비해 가야 하나요?<span class="fi">+</span></button>
         <div class="faq-a"><p><strong>본인 노트북 필수</strong>입니다 (충전기 포함). 높은 사양은 필요 없고, 인터넷 연결이 되는 노트북이면 충분합니다. 점심은 제공되지 않지만, 점심시간 1시간은 넉넉히 잡아 두었습니다. 원하는 분들끼리 같이 나가서 드세요. 그 시간이 곧 네트워킹입니다.</p></div></div>
       <div class="faq-item"><button class="faq-q" type="button">일정과 장소가 어떻게 되나요?<span class="fi">+</span></button>
-        <div class="faq-a"><p><strong>원데이는 8월 1일 (토), 주말 빌드 캠프는 8월 8일 (토) ~ 9일 (일), 모두 10:00~17:00</strong>입니다. 원데이는 <strong>부산 해운대 채움공간</strong>, 캠프 장소는 확정 즉시 등록자에게 가장 먼저 안내드립니다.</p></div></div>
-      <div class="faq-item"><button class="faq-q" type="button">정원 8~12명은 어떻게 집계되나요?<span class="fi">+</span></button>
-        <div class="faq-a"><p>상단 SEAT MAP의 12칸은 <strong>실제 입금 확인 순서</strong> 그대로 칠해집니다. 부풀리거나 임의로 줄이지 않습니다. 12명 도달 시 등록이 마감되고, 이후 신청자는 2기 대기 명단으로 안내됩니다.</p></div></div>
+        <div class="faq-a"><p><strong>8월 1일 (토) 10:00~17:00, 부산 해운대 채움공간(확정)</strong>입니다. 상세 오시는 길은 등록 확정 시 안내드립니다. 점심 1시간은 함께 나가서 먹어요 — 이때 질문이 제일 많이 풀립니다.</p></div></div>
+      <div class="faq-item"><button class="faq-q" type="button">선착순 20석은 어떻게 집계되나요?<span class="fi">+</span></button>
+        <div class="faq-a"><p>페이지 상단 SEAT MAP과 가격 카드의 잔여석은 <strong>실제 사전 등록 접수 순서</strong> 그대로 반영됩니다. 부풀리거나 임의로 줄이지 않습니다. 정원 도달 시 등록이 마감되고, 이후 신청자는 다음 회차 대기 명단으로 안내됩니다.</p></div></div>
       <div class="faq-item"><button class="faq-q" type="button">Claude 사용 비용이 따로 드나요?<span class="fi">+</span></button>
-        <div class="faq-a"><p>트랙에 따라 다릅니다. <strong>원데이는 Pro 구독(월 $20)이면 충분</strong>합니다. 코딩 없이 Claude 앱만 사용하기 때문입니다. <strong>주말 부트캠프는 Max 구독(월 $100)을 권장</strong>합니다. 이틀간 Claude Code를 집중적으로 돌리기 때문에 $20 요금제로는 사용량 한도에 걸려 빌드가 끊깁니다. 캠프가 있는 달만 Max로 올렸다가 다음 달에 내리면 되고, 정확한 결제 시점과 방법은 클래스 안내 메일에서 단계별로 알려드립니다.</p></div></div>
+        <div class="faq-a"><p>트랙에 따라 다릅니다. <strong>원데이는 Pro 구독(월 $20)이면 충분</strong>합니다. 코딩 없이 Claude 앱만 사용하기 때문입니다. 구독이 아직 없다면 수업 전 안내 메일에서 가입 방법을 단계별로 알려드리니 미리 하실 것도 없습니다.</p></div></div>
       <div class="faq-item"><button class="faq-q" type="button">온라인 강의와 뭐가 다른가요?<span class="fi">+</span></button>
-        <div class="faq-a"><p>온라인 강의는 <strong>지도</strong>입니다. 본인 속도로, 저렴하게, 스스로 갑니다. 부트캠프는 <strong>동승</strong>입니다. 멘토가 옆에 있고, 마감이 강제되고, 끝나면 결과물이 손에 남습니다. 원데이 참가비는 전액 캠프 크레딧이 되므로, 순서대로 올라와도 손해가 없습니다.</p></div></div>
-      <div class="faq-item"><button class="faq-q" type="button">결과가 안 나오면 어떻게 되나요?<span class="fi">+</span></button>
-        <div class="faq-a"><p>전 일정에 참석하고 (주말 부트캠프는 프리워크 완료 포함) 종료 시점에 결과물이 남지 않았다면, <strong>다음 회차에 무료로 다시 참여</strong>합니다. 전자상거래법에 따른 일반 환불은 <a href="/refund">환불 정책</a>에 따라 별도 적용됩니다.</p></div></div>
+        <div class="faq-a"><p>영상은 <strong>지도</strong>고, 원데이는 <strong>동승 체험</strong>입니다. 강사가 옆에 있고, 실습이 강제되고, 저녁에 결과물이 손에 남습니다. 더 깊이 가고 싶어지면 — 원데이 참가비 전액이 <a href="/bootcamp">주말 빌드 캠프</a> 크레딧이 되므로 순서대로 올라와도 손해가 없습니다.</p></div></div>
+      
       <div class="faq-item"><button class="faq-q" type="button">자격증은 어떤 자격인가요?<span class="fi">+</span></button>
         <div class="faq-a"><p>원데이 수료 시 <strong>「AI활용전문가」</strong>(등록번호 2026-003897), 부트캠프 수료 시 <strong>「인공지능활용마스터」</strong>(등록번호 2026-002643) 자격 검정에 무료로 응시할 수 있습니다 (응시료 각 ₩150,000 · ₩200,000 상당). 자격등록기관은 한국직업능력연구원, 발급기관은 <a href="https://ksap.kr/courses/ai-utilization-specialist/" target="_blank" rel="noopener">한국자격검정진흥원</a>, 주무부처는 과학기술정보통신부입니다. 합격 시 당일 자격증이 발급됩니다. <strong>본 자격은 「자격기본법」 제17조에 따라 등록된 민간자격이며, 국가공인 자격이 아닙니다.</strong></p></div></div>
       <div class="faq-item"><button class="faq-q" type="button">스타터 킷을 이미 구매했는데, 중복 아닌가요?<span class="fi">+</span></button>
@@ -658,7 +617,7 @@ footer .legal a{color:var(--ink-soft)}
     <div class="cols">
       <div class="logo">VERBIO LABS<span class="dot">_</span></div>
       <nav>
-        <a href="/">Home</a><a href="/oneday">원데이</a><a href="/starter-kit">스타터 킷</a><a href="/courses">Courses</a><a href="/join">AI Cartel</a><a href="mailto:lulu066666@gmail.com">Contact</a>
+        <a href="/">Home</a><a href="/starter-kit">스타터 킷</a><a href="/courses">Courses</a><a href="/join">AI Cartel</a><a href="mailto:lulu066666@gmail.com">Contact</a>
       </nav>
       <div class="barcode" aria-hidden="true"></div>
     </div>
@@ -687,8 +646,8 @@ footer .legal a{color:var(--ink-soft)}
       <div class="f-row">
         <label>트랙 선택 <span class="req">*</span></label>
         <div class="radio-grid">
+          <div style="font-family:var(--font-mono);font-size:14px;padding:10px 0"><strong>원데이 인텐시브</strong> · 8/1(토) 해운대 · ₩190,000<input type="radio" name="track" value="원데이 인텐시브" checked hidden></div>
           
-          <div style="font-family:var(--font-mono);font-size:14px;padding:10px 0"><strong>주말 빌드 캠프 1기</strong> · 8/8~9 · ₩990,000 (원데이 수료자 ₩800,000)<input type="radio" name="track" value="주말 빌드 캠프" checked hidden></div>
         </div>
       </div>
       <div class="f-row"><label for="ap-name">이름 <span class="req">*</span></label><input type="text" id="ap-name" placeholder="홍길동" maxlength="20"></div>
@@ -715,12 +674,12 @@ footer .legal a{color:var(--ink-soft)}
       <p class="pay-hero wait-hero">WAITLIST SAVED!<br>대기 명단에 올랐습니다. 자리가 나면 접수 순서대로 연락드립니다. 입금은 자리 안내를 받은 뒤에만 하시면 됩니다. 기다리는 동안 <a href="/starter-kit">스타터 킷</a>으로 먼저 시작해 두시면, 자리가 났을 때 바로 실습에 들어갑니다.</p>
       <div class="pay-card">
         <span class="bank">카카오뱅크 3333-06-0399628<br>예금주: 안준영</span>
-        <span class="amt" id="pay-amt">₩990,000</span>
+        <span class="amt" id="pay-amt">₩190,000</span>
         <button type="button" class="copy-btn" onclick="copyAccount()">계좌번호 복사</button>
       </div>
       <p class="pay-note">
-        <strong>입금자명은 신청자 이름과 동일하게</strong> 해주세요. 원데이 수료자(₩800,000)는 신청 폼 메모란에 "원데이 수료"라고 적어주시면 확인 후 안내드립니다.<br>
-        입금 확인 즉시 <strong>웰컴 킷</strong>(스타터 킷 열람 코드 + 사전 셋업 가이드 + 첫 미니 과제)이 바로 발송됩니다 — 클래스는 그날부터 시작입니다.<br>
+        <strong>입금자명은 신청자 이름과 동일하게</strong> 해주세요.<br>
+        입금 확인 즉시 <strong>웰컴 킷</strong>(사전 셋업 가이드 + 첫 미니 과제 + 우선 학습 챕터)이 바로 발송됩니다 — 클래스는 그날부터 시작입니다.<br>
         좌석은 <strong>입금 확인 순서</strong>로 확정되며, 확인 후 순차적으로 SEAT MAP에 반영되고 확정 문자를 드립니다.<br>
         장소 미확정이 부담스러우면 입금은 장소 공지 후에 하셔도 됩니다. 단, 좌석 순번은 입금 순입니다.<br>
         환불은 <a href="/refund" style="color:var(--clay-deep)">환불 규정</a>에 따라 언제든 가능합니다.
@@ -735,10 +694,10 @@ footer .legal a{color:var(--ink-soft)}
   <div class="exit-box">
     <button class="exit-close" onclick="closeExit()" aria-label="닫기">✕</button>
     <p class="x-title">잠깐, PLAYER.<br>저장하지 않고 나가시겠습니까?</p>
-    <p><strong>1기 얼리버드 ₩990,000은 8~12명으로 끝납니다.</strong><br>2기부터는 정가 ₩1,500,000 — 파일럿 가격은 다시 오지 않습니다.</p>
+    <p><strong>얼리버드 ₩190,000은 1회차 20석으로 끝납니다.</strong><br>마감되면 다음 회차 대기 명단으로 넘어가고, 가격은 인상됩니다.</p>
     <p class="x-seats" id="x-seats"></p>
-    <button type="button" class="press-start" onclick="closeExit();openApply('camp')" style="animation:none">▶ 자리 먼저 확보하기</button>
-    <p class="x-sub">이틀이 아직 부담이라면 — <a href="/oneday" style="color:inherit;text-decoration:underline">8/1 원데이(₩190,000, 수료 시 전액 크레딧)부터 →</a></p>
+    <button type="button" class="press-start" onclick="closeExit();openApply('oneday')" style="animation:none">▶ 자리 먼저 확보하기</button>
+    <p class="x-sub">아직 확신이 없다면 — <a href="/starter-kit" style="color:inherit;text-decoration:underline">₩33,000 스타터 킷으로 먼저 시작하기 →</a></p>
       <p class="x-sub">신청서 제출은 무료 · 좌석은 입금 순 확정</p>
   </div>
 </div>
@@ -839,11 +798,11 @@ function renderSeats(){
   const cc=document.getElementById('camp-cap');
   if(cc) cc.innerHTML = cu===0 ? c.cap+'석 전원 모집 중' : '잔여 <strong>'+cl+'석</strong> / '+c.cap+'석';
   const st=document.getElementById('st-seats');
-  if(st) st.textContent = cu>=4 ? '(잔여 '+cl+'석)' : '(정원 '+c.cap+'명)';
+  if(st) st.textContent = used>=5 ? '(잔여 '+left+'석)' : '(선착순 20석)';
   const xs=document.getElementById('x-seats');
-  if(xs) xs.textContent = cu>=4 ? '현재 잔여 '+cl+'석 / '+c.cap+'석' : '1기 정원 '+c.cap+'명 — 지금이 가장 이른 자리입니다.';
-  if(cl===0){ /* 캠프 만석 → 대기 신청 전환 */
-    document.querySelectorAll('a[href="#reserve"],.coin-btn').forEach(a=>{if(a.closest('#sticky')||a.classList.contains('press-start')||a.classList.contains('coin-btn'))a.textContent='▶ 대기 신청하기 (1기 마감)';});
+  if(xs) xs.textContent = used>=5 ? '현재 잔여 '+left+'석 / 20석' : '선착순 20석 — 지금이 가장 이른 자리입니다.';
+  if(left===0){ /* 만석 → 대기 신청 전환 (ASC 패턴: 마감 후에도 리드 수집) */
+    document.querySelectorAll('a[href="#reserve"],.coin-btn').forEach(a=>{if(a.closest('#sticky')||a.classList.contains('press-start')||a.classList.contains('coin-btn'))a.textContent='▶ 대기 신청하기 (1회차 마감)';});
   }
 }
 renderSeats();
@@ -853,12 +812,10 @@ renderSeats();
   var el=document.getElementById('dday'); if(!el) return;
   var now=new Date(); now.setHours(0,0,0,0);
   var dd=function(y,m,d){ return Math.ceil((new Date(y,m,d)-now)/86400000); };
-  var a=dd(2026,7,1), b=dd(2026,7,8);
-  if(a>0)        el.textContent='⏱ 원데이(8/1) D-'+a+' · 부트캠프(8/8) D-'+b;
-  else if(a===0) el.textContent='⏱ 원데이 오늘 진행! · 부트캠프(8/8) D-'+b;
-  else if(b>0)   el.textContent='⏱ 부트캠프(8/8) D-'+b;
-  else if(b===0) el.textContent='⏱ 부트캠프 오늘 시작!';
-  else el.remove();
+  var a=dd(2026,7,1);
+  if(a>0)        el.textContent='⏱ 8/1(토) D-'+a+' · 선착순 20석';
+  else if(a===0) el.textContent='⏱ 오늘 진행! 해운대 채움공간';
+  else           el.textContent='1회차 종료 — 다음 회차는 대기 신청 순으로 안내';
 })();
 
 /* ═══ FAQ ═══ */

@@ -60,4 +60,6 @@
     <changefreq>yearly</changefreq>
     <priority>0.4</priority>
   </url>
+  <url><loc>https://verbiolabs.com/starter-kit</loc></url>
+  <url><loc>https://verbiolabs.com/oneday</loc></url>
 </urlset>
