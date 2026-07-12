@@ -97,6 +97,10 @@ body[data-view="chapter"] #chapter-shell{display:block}
 .vp-foot{margin-top:9px;font-size:11.5px;font-weight:700;color:#B85C3E;cursor:pointer;user-select:none}
 .vp-foot::after{content:"▾ 프롬프트 미리보기"}
 .vp.open .vp-foot::after{content:"▴ 접기"}
+#vault-body.collapsed{display:none}
+.vault-toggle{margin-left:auto;font-size:13px;font-weight:700;color:var(--clay);white-space:nowrap;user-select:none}
+.vault-toggle::after{content:"▾ 금고 펼치기"}
+.vault-box.vopen .vault-toggle::after{content:"▴ 금고 접기"}
 .vp-copy{font-family:var(--font-pixel);font-size:10px;border:2px solid var(--ink);background:var(--gold);color:var(--ink);padding:6px 10px;cursor:pointer;box-shadow:2px 2px 0 var(--ink);white-space:nowrap}
 .vp-copy:active{transform:translate(2px,2px);box-shadow:none}
 .vault-lock{text-align:center;padding:26px 14px;border:2px dashed var(--line);background:#FBF7EC}
@@ -885,7 +889,7 @@ footer .barcode::after{content:"NO.20260704";position:absolute;bottom:-16px;left
   <section class="questmap" id="vault-sec">
     <div class="wrap">
       <div class="vault-box reveal">
-        <div class="vault-head"><h2>🔑 딸깍 프롬프트 금고</h2><span class="vault-sub">복붙하면 바로 일하는 실전 프롬프트 20종 — 스타터 킷 전용</span></div>
+        <div class="vault-head" onclick="toggleVaultAll()" style="cursor:pointer" title="클릭해서 금고 접기/펼치기"><h2>🔑 딸깍 프롬프트 금고</h2><span class="vault-sub">복붙하면 바로 일하는 실전 프롬프트 20종 — 스타터 킷 전용</span><span class="vault-toggle" id="vault-toggle"></span></div>
         <div id="vault-body"></div>
       </div>
     </div>
@@ -4454,6 +4458,22 @@ function copyVault(i,btn){
   if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(ok,fb);}else{fb();}
 }
 function toggleVault(i){var el=document.getElementById('vpc-'+i);if(el)el.classList.toggle('open');}
+function toggleVaultAll(){
+  var b=document.getElementById('vault-body');if(!b)return;
+  var box=b.closest('.vault-box');
+  var open=!b.classList.toggle('collapsed');
+  if(box)box.classList.toggle('vopen',open);
+  try{localStorage.setItem('vl_vault_open',open?'1':'0');}catch(e){}
+}
+function initVaultFold(){
+  var b=document.getElementById('vault-body');if(!b)return;
+  var box=b.closest('.vault-box');
+  var pref=null;try{pref=localStorage.getItem('vl_vault_open');}catch(e){}
+  var open=(pref!==null)?(pref==='1'):!GATE.paid; /* 구매자는 기본 접힘, 미구매자는 잠금 안내 노출 */
+  b.classList.toggle('collapsed',!open);
+  if(box)box.classList.toggle('vopen',open);
+}
+initVaultFold();
 function openGate(){
   var c=GATE.closed;
   document.getElementById('gate-mode-open').style.display=c?'none':'';
