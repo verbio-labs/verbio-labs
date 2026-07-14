@@ -354,6 +354,15 @@ footer .legal a{color:var(--ink-soft)}
 #exit .x-seats{font-size:15px}
 #exit .x-sub{font-size:12px}
 </style>
+<!-- Meta Pixel -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init','1414432007033883');fbq('track','PageView');
+</script>
 </head>
 <body>
 
@@ -993,5 +1002,13 @@ function closeExit(){document.getElementById('exit').classList.remove('on');}
 <!-- Vercel Web Analytics + Speed Insights -->
 <script defer src="/_vercel/insights/script.js"></script>
 <script defer src="/_vercel/speed-insights/script.js"></script>
+<script>
+/* 신청(orders POST) 성공 시 Meta Lead 이벤트 */
+(function(){var of=window.fetch;window.fetch=function(){var a=arguments,p=of.apply(this,a);
+try{var u=String(a[0]&&a[0].url||a[0]);
+if(u.indexOf('/rest/v1/orders')>-1&&(!a[1]||(a[1].method||'').toUpperCase()==='POST')){
+p.then(function(r){if(r&&r.ok&&typeof fbq!=='undefined')fbq('track','Lead');});}}catch(e){}
+return p;};})();
+</script>
 </body>
 </html>
