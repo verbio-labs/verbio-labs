@@ -773,7 +773,7 @@ document.addEventListener('click',e=>{
    taken   = 입금 확인 완료 (확정)
    pending = 신청서 접수, 입금 대기 (Slack 알림 오면 +1, 입금 확인되면 pending-1 → taken+1, 미입금 이탈 시 -1) */
 const SEATS={
-  oneday:{cap:20,taken:1,pending:0,label:'원데이 1회차'}, /* 2026-07-09 실결제 기준 정정. 규칙: 입금 확인된 실제 인원만 taken. 낮은 수(<5)일 땐 아래 로직이 카운트 대신 '모집 중'으로 표시 */
+  oneday:{cap:20,taken:4,pending:0,label:'원데이 1회차'}, /* 2026-07-09 실결제 기준 정정. 규칙: 입금 확인된 실제 인원만 taken. 낮은 수(<5)일 땐 아래 로직이 카운트 대신 '모집 중'으로 표시 */
   camp:{cap:12,taken:0,pending:0,label:'부트캠프 1기'}
 };
 const RECENT=[
