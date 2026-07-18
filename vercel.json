@@ -21,6 +21,14 @@
     {
       "source": "/kit",
       "destination": "/starter-kit"
+    },
+    {
+      "source": "/play",
+      "destination": "https://www.notion.so/39ac7de0b17081bfaf49d6102defa74e"
+    },
+    {
+      "source": "/qr",
+      "destination": "https://www.notion.so/39ac7de0b17081bfaf49d6102defa74e"
     }
   ]
 }
