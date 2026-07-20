@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI ANALYTICS · Verbio Labs Admin</title>
+<meta name="robots" content="noindex, nofollow">
+<style>
+:root{--paper:#F0EEE6;--page:#FAF9F5;--ink:#1F1E1A;--soft:#5C5749;--clay:#D97757;--deep:#B85C3E;--moss:#5E8D7A;--gold:#B99A45;--line:#CFC7B4;--mono:'IBM Plex Mono',Menlo,monospace}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font-family:-apple-system,'Apple SD Gothic Neo',sans-serif;font-size:14px;line-height:1.6}
+header{background:var(--ink);color:#E8E3D4;padding:12px 0;border-bottom:3px solid var(--clay)}
+header .wrap{display:flex;justify-content:space-between;align-items:center}
+.wrap{max-width:1100px;margin:0 auto;padding:0 20px}
+h1{font-size:16px;font-family:var(--mono)}
+h2{font-size:15px;margin:26px 0 10px;display:flex;align-items:center;gap:8px}
+h2 .tag{background:var(--ink);color:var(--page);font-family:var(--mono);font-size:10px;padding:2px 8px}
+button{cursor:pointer;font-family:inherit}
+.card{background:#fff;border:2px solid var(--ink);box-shadow:4px 4px 0 rgba(31,30,26,.18);padding:16px}
+.grid{display:grid;gap:14px}
+.kpi{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}
+.kpi .card{padding:14px}
+.kpi b{font-size:26px;font-family:var(--mono);display:block}
+.kpi span{font-size:11.5px;color:var(--soft)}
+.kpi .sub{font-size:11px;color:var(--moss);font-family:var(--mono)}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th,td{padding:7px 9px;border-bottom:1px dashed var(--line);text-align:left}
+th{font-family:var(--mono);font-size:11px;color:var(--soft);text-transform:uppercase}
+.bar{height:22px;background:var(--clay);min-width:2px}
+.funnel-row{display:grid;grid-template-columns:150px 1fr 90px 90px;gap:10px;align-items:center;padding:8px 0;border-bottom:1px dashed var(--line)}
+.leak{color:#C0392B;font-weight:700;font-family:var(--mono);font-size:12px}
+.ok-b{display:inline-block;padding:2px 10px;font-family:var(--mono);font-size:11px;border:1.5px solid}
+.ok-b.g{color:#2E7D4F;border-color:#2E7D4F;background:#EAF4EE}
+.ok-b.r{color:#C0392B;border-color:#C0392B;background:#FBEDEA}
+.ok-b.y{color:#8a6d1a;border-color:#B99A45;background:#F7F1DF}
+#login{max-width:340px;margin:80px auto;display:grid;gap:10px}
+#login input{padding:10px;border:2px solid var(--ink);font-size:14px}
+#login button{padding:10px;background:var(--ink);color:#fff;border:none;font-weight:700}
+#dash{display:none;padding-bottom:70px}
+.muted{color:var(--soft);font-size:12px}
+.two{grid-template-columns:1fr 1fr}
+@media(max-width:800px){.two{grid-template-columns:1fr}.funnel-row{grid-template-columns:110px 1fr 70px 70px}}
+canvas{max-height:260px}
+.note{background:#FFF7F2;border:1.5px dashed var(--clay);padding:10px 14px;font-size:12.5px;margin-top:8px}
+a{color:var(--deep)}
+.range-btn{border:1.5px solid var(--ink);background:#fff;padding:4px 12px;font-family:var(--mono);font-size:12px}
+.range-btn.on{background:var(--ink);color:#fff}
+</style>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+</head>
+<body>
+<header><div class="wrap"><h1>VERBIO LABS · AI ANALYTICS</h1><span><a href="/admin" style="color:#E8E3D4;font-size:12px;margin-right:14px">주문 관리 →</a><span id="who" style="font-size:11px;margin-right:10px"></span><button id="logout" style="display:none;background:none;border:1px solid #57544B;color:#D8D3C4;padding:3px 10px" onclick="doLogout()">로그아웃</button></span></div></header>
+
+<div id="login">
+  <b style="font-family:var(--mono)">ADMIN LOGIN</b>
+  <input id="lg-email" type="email" placeholder="이메일" autocomplete="username" value="lulu05@naver.com">
+  <input id="lg-pw" type="password" placeholder="비밀번호" autocomplete="current-password">
+  <button onclick="doLogin()">로그인</button>
+  <p id="lg-msg" class="muted"></p>
+</div>
+
+<div id="dash" class="wrap">
+  <p style="margin-top:18px" class="muted">기간:
+    <button class="range-btn on" data-d="7" onclick="setRange(7,this)">7일</button>
+    <button class="range-btn" data-d="14" onclick="setRange(14,this)">14일</button>
+    <button class="range-btn" data-d="30" onclick="setRange(30,this)">30일</button>
+    <span id="loading"></span>
+  </p>
+
+  <h2><span class="tag">01</span>핵심 지표</h2>
+  <div class="kpi" id="kpis"></div>
+
+  <h2><span class="tag">02</span>퍼널 — 방문자가 어디서 새는가</h2>
+  <div class="card" id="funnel"></div>
+  <p class="note" id="leak-note"></p>
+
+  <div class="grid two">
+    <div>
+      <h2><span class="tag">03</span>유입 채널</h2>
+      <div class="card"><canvas id="ch-channel"></canvas></div>
+    </div>
+    <div>
+      <h2><span class="tag">04</span>AI 엔진별 유입 (GEO 성과)</h2>
+      <div class="card" id="ai-table"></div>
+    </div>
+  </div>
+
+  <h2><span class="tag">05</span>일별 추이 — 전체 vs AI·검색 유입</h2>
+  <div class="card"><canvas id="ch-daily"></canvas></div>
+
+  <h2><span class="tag">06</span>페이지별 조회</h2>
+  <div class="card" id="pages"></div>
+
+  <h2><span class="tag">07</span>AEO 인프라 상태 (라이브 점검)</h2>
+  <div class="card" id="aeo-check">점검 중…</div>
+
+  <h2><span class="tag">08</span>AI 점유 수동 점검 — 주 1회 직접 물어보기</h2>
+  <div class="card">
+    <p class="muted">아래 링크로 실제 AI에게 물어보고, 우리가 답변에 인용되는지 확인하세요. (자동 측정 불가 영역 — 04번 표의 유입 수가 간접 지표)</p>
+    <table><thead><tr><th>질문</th><th>ChatGPT</th><th>Perplexity</th></tr></thead><tbody id="occupy"></tbody></table>
+    <p class="note">인용이 안 나오면: llms.txt 최신화 → 해당 질문의 답이 되는 FAQ를 페이지에 추가 → 2~4주 후 재확인. AEO는 축적 게임입니다.</p>
+  </div>
+</div>
+
+<script>
+const SB_URL='https://kpqrvvfcirkxlihcibqr.supabase.co';
+const SB_KEY='sb_publishable__ywsnui3UjB6Xls94pmbTQ_c13LyARM';
+const sb=window.supabase.createClient(SB_URL,SB_KEY);
+const $=id=>document.getElementById(id);
+let RANGE=7, charts={};
+
+async function doLogin(){
+  const {error}=await sb.auth.signInWithPassword({email:$('lg-email').value.trim(),password:$('lg-pw').value});
+  if(error){$('lg-msg').textContent='로그인 실패: '+error.message;return;}
+  location.reload();
+}
+async function doLogout(){await sb.auth.signOut();location.reload();}
+
+async function init(){
+  const {data:{session}}=await sb.auth.getSession();
+  if(!session){$('login').style.display='grid';return;}
+  $('login').style.display='none';$('dash').style.display='block';
+  $('logout').style.display='inline-block';$('who').textContent=session.user.email;
+  load();
+}
+function setRange(d,btn){RANGE=d;document.querySelectorAll('.range-btn').forEach(b=>b.classList.remove('on'));btn.classList.add('on');load();}
+
+async function load(){
+  $('loading').textContent=' 불러오는 중…';
+  const since=new Date(Date.now()-RANGE*864e5).toISOString();
+  const {data:ev,error}=await sb.from('site_events').select('event,path,ref_group,ref_detail,session_id,created_at,device').gte('created_at',since).order('created_at',{ascending:false}).limit(20000);
+  if(error){$('loading').textContent=' ⚠ '+error.message;return;}
+  const {data:ords}=await sb.from('orders').select('created_at,type,track').gte('created_at',since);
+  render(ev||[],ords||[]);
+  $('loading').textContent='';
+}
+
+function uniq(arr){return [...new Set(arr)];}
+function sess(evts){return uniq(evts.map(e=>e.session_id));}
+
+function render(ev,ords){
+  const pv=ev.filter(e=>e.event==='pageview');
+  const sAll=sess(pv);
+  const sAI=sess(pv.filter(e=>e.ref_group==='ai'));
+  const sSearch=sess(pv.filter(e=>e.ref_group==='search'));
+  const sAds=sess(pv.filter(e=>e.ref_group==='ads'));
+  const today=new Date();today.setHours(0,0,0,0);
+  const sToday=sess(pv.filter(e=>new Date(e.created_at)>=today));
+  const oneOrders=ords.filter(o=>o.type==='bootcamp'&&(o.track||'').includes('원데이')).length;
+  const kitOrders=ords.filter(o=>o.type==='starterkit').length;
+
+  $('kpis').innerHTML=[
+    ['오늘 방문(세션)',sToday.length,''],
+    [RANGE+'일 방문',sAll.length,''],
+    ['AI 유입',sAI.length,sAll.length?('전체의 '+(100*sAI.length/sAll.length).toFixed(1)+'%'):''],
+    ['검색 유입',sSearch.length,''],
+    ['광고 유입',sAds.length,''],
+    ['원데이 신청',oneOrders,'킷 '+kitOrders+'건'],
+  ].map(k=>`<div class="card"><b>${k[1]}</b><span>${k[0]}</span><div class="sub">${k[2]||''}</div></div>`).join('');
+
+  /* 퍼널 */
+  const sOneday=sess(pv.filter(e=>e.path.startsWith('/oneday')));
+  const sStart=sess(ev.filter(e=>e.event==='form_start'&&e.path.startsWith('/oneday')));
+  const sSubmit=sess(ev.filter(e=>e.event==='form_submit'&&e.path.startsWith('/oneday')));
+  const cardPay=sess(ev.filter(e=>e.event==='cta_card_pay'));
+  const steps=[['사이트 방문',sAll.length],['원데이 페이지 조회',sOneday.length],['신청폼 입력 시작',sStart.length],['신청 제출',sSubmit.length+cardPay.length]];
+  const max=Math.max(steps[0][1],1);
+  let worst={i:-1,rate:1};
+  $('funnel').innerHTML=steps.map((s,i)=>{
+    const prev=i?steps[i-1][1]:s[1];
+    const rate=prev?s[1]/prev:0;
+    if(i>0&&rate<worst.rate){worst={i,rate};}
+    return `<div class="funnel-row"><b>${s[0]}</b><div class="bar" style="width:${Math.max(100*s[1]/max,1)}%"></div><span style="font-family:var(--mono)">${s[1]}</span><span class="muted">${i?('전환 '+(100*rate).toFixed(1)+'%'):''}</span></div>`;
+  }).join('');
+  const names=['','방문→원데이 조회','원데이 조회→폼 시작','폼 시작→제출'];
+  $('leak-note').innerHTML=worst.i>0?`🚨 <b>최대 누수 구간: ${names[worst.i]}</b> — 전환율 ${(100*worst.rate).toFixed(1)}%. 이 구간을 먼저 고치는 것이 신청자 증가의 최단 경로입니다.`:'데이터 수집 중 — 배포 후 방문이 쌓이면 누수 구간이 표시됩니다.';
+
+  /* 채널 차트 */
+  const groups=['direct','search','social','ads','ai','other','internal'];
+  const labels={direct:'직접',search:'검색',social:'소셜',ads:'광고',ai:'AI 엔진',other:'기타',internal:'내부'};
+  const counts=groups.map(g=>sess(pv.filter(e=>e.ref_group===g)).length);
+  if(charts.ch)charts.ch.destroy();
+  charts.ch=new Chart($('ch-channel'),{type:'bar',data:{labels:groups.map(g=>labels[g]),datasets:[{data:counts,backgroundColor:['#5C5749','#5E8D7A','#B99A45','#8E6FAF','#D97757','#CFC7B4','#9aa'],borderColor:'#1F1E1A',borderWidth:2}]},options:{plugins:{legend:{display:false}},scales:{y:{ticks:{precision:0}}}}});
+
+  /* AI 엔진 표 */
+  const aiPv=pv.filter(e=>e.ref_group==='ai');
+  const byEngine={};
+  aiPv.forEach(e=>{(byEngine[e.ref_detail]=byEngine[e.ref_detail]||new Set()).add(e.session_id);});
+  const rows=Object.entries(byEngine).sort((a,b)=>b[1].size-a[1].size).map(([k,v])=>`<tr><td><b>${k}</b></td><td style="font-family:var(--mono)">${v.size}</td></tr>`).join('');
+  $('ai-table').innerHTML=rows?`<table><thead><tr><th>엔진</th><th>세션</th></tr></thead><tbody>${rows}</tbody></table>`:'<p class="muted">아직 AI 엔진발 유입이 기록되지 않았습니다. AEO는 인덱싱 후 2~6주부터 효과가 나타납니다 — 08번의 수동 점검을 병행하세요.</p>';
+
+  /* 일별 추이 */
+  const days=[...Array(RANGE)].map((_,i)=>{const d=new Date(Date.now()-(RANGE-1-i)*864e5);return d.toISOString().slice(5,10);});
+  const bySes={};
+  pv.forEach(e=>{const d=e.created_at.slice(5,10);(bySes[d]=bySes[d]||{all:new Set(),ai:new Set(),search:new Set()});bySes[d].all.add(e.session_id);if(e.ref_group==='ai')bySes[d].ai.add(e.session_id);if(e.ref_group==='search')bySes[d].search.add(e.session_id);});
+  if(charts.daily)charts.daily.destroy();
+  charts.daily=new Chart($('ch-daily'),{type:'line',data:{labels:days,datasets:[
+    {label:'전체 방문',data:days.map(d=>bySes[d]?bySes[d].all.size:0),borderColor:'#1F1E1A',tension:.3},
+    {label:'검색 유입',data:days.map(d=>bySes[d]?bySes[d].search.size:0),borderColor:'#5E8D7A',tension:.3},
+    {label:'AI 유입',data:days.map(d=>bySes[d]?bySes[d].ai.size:0),borderColor:'#D97757',tension:.3},
+  ]},options:{scales:{y:{ticks:{precision:0}}}}});
+
+  /* 페이지별 */
+  const byPath={};
+  pv.forEach(e=>{(byPath[e.path]=byPath[e.path]||{v:0,s:new Set()});byPath[e.path].v++;byPath[e.path].s.add(e.session_id);});
+  $('pages').innerHTML='<table><thead><tr><th>경로</th><th>조회수</th><th>세션</th></tr></thead><tbody>'+Object.entries(byPath).sort((a,b)=>b[1].v-a[1].v).slice(0,15).map(([p,o])=>`<tr><td style="font-family:var(--mono)">${p}</td><td>${o.v}</td><td>${o.s.size}</td></tr>`).join('')+'</tbody></table>';
+
+  aeoCheck();
+  occupancy();
+}
+
+/* AEO 인프라 라이브 점검 */
+async function aeoCheck(){
+  const checks=[];
+  async function chk(name,fn){try{const ok=await fn();checks.push([name,ok]);}catch(e){checks.push([name,false]);}}
+  await chk('llms.txt 존재',async()=>(await fetch('/llms.txt')).ok);
+  await chk('llms-full.txt 존재',async()=>(await fetch('/llms-full.txt')).ok);
+  await chk('llms.txt 최신(30일 내 갱신 표기)',async()=>{const t=await (await fetch('/llms.txt')).text();const m=t.match(/마지막 갱신: (\d{4}-\d{2}-\d{2})/);return m&&(Date.now()-new Date(m[1]))/864e5<30;});
+  await chk('robots.txt — GPTBot 허용',async()=>{const t=await (await fetch('/robots.txt')).text();return t.includes('GPTBot');});
+  await chk('robots.txt — ClaudeBot·Perplexity 허용',async()=>{const t=await (await fetch('/robots.txt')).text();return t.includes('ClaudeBot')&&t.includes('PerplexityBot');});
+  await chk('sitemap.xml 유효',async()=>{const t=await (await fetch('/sitemap.xml')).text();return t.includes('<urlset');});
+  await chk('원데이 — Event 스키마',async()=>{const t=await (await fetch('/oneday')).text();return t.includes('"@type": "Event"')||t.includes('"@type":"Event"');});
+  await chk('원데이 — FAQ 스키마',async()=>{const t=await (await fetch('/oneday')).text();return t.includes('FAQPage');});
+  await chk('스타터킷 — Product+FAQ 스키마',async()=>{const t=await (await fetch('/starter-kit')).text();return t.includes('"Product"')&&t.includes('FAQPage');});
+  $('aeo-check').innerHTML='<table><tbody>'+checks.map(([n,ok])=>`<tr><td>${n}</td><td><span class="ok-b ${ok?'g':'r'}">${ok?'PASS':'FAIL'}</span></td></tr>`).join('')+'</tbody></table><p class="note">FAIL이 있으면 배포 누락이거나 파일이 수정되며 깨진 것 — 코워크에 "AEO 체크 FAIL 고쳐줘"라고 알려주세요.</p>';
+}
+
+/* AI 점유 수동 점검 링크 */
+function occupancy(){
+  const qs=['부산 클로드 강의 추천','claude code 배우는 법 초보','클로드 사용법 하루만에 배우기','AI 활용 오프라인 클래스 부산','claude 프롬프트 템플릿 어디서 구해'];
+  $('occupy').innerHTML=qs.map(q=>`<tr><td>${q}</td><td><a target="_blank" rel="noopener" href="https://chatgpt.com/?q=${encodeURIComponent(q)}">물어보기 →</a></td><td><a target="_blank" rel="noopener" href="https://www.perplexity.ai/search?q=${encodeURIComponent(q)}">물어보기 →</a></td></tr>`).join('');
+}
+
+init();
+</script>
+</body>
+</html>

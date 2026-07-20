@@ -80,6 +80,48 @@ t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
 document,'script','https://connect.facebook.net/en_US/fbevents.js');
 fbq('init','1414432007033883');fbq('track','PageView');
 </script>
+
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "FAQPage",
+ "mainEntity": [
+  {
+   "@type": "Question",
+   "name": "완전 초보인데 쓸 수 있나요?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "가능합니다. 전자책이 계정 만들기부터 시작하고, 프롬프트 금고는 복사, 붙여넣기, 변수 채우기 세 동작이 전부입니다."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "카드 결제는 안 되나요?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "현재 계좌이체만 가능합니다. 카드 결제는 준비 중이며 열리는 대로 카카오 채널에서 안내됩니다."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "카카오 채널 코드가 이미 있는데요?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "채널 코드는 LV.2 보너스 스테이지를 열어줍니다(LV.0~1은 코드 없이 무료). 전권 37챕터, 프롬프트 금고 20종, 디스코드 멤버십은 스타터 킷 전용입니다."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "8/1 원데이 클래스와는 뭐가 다른가요?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "스타터 킷은 혼자 공부하는 디지털 키트이고, 원데이 인텐시브는 부산에서 강사와 함께 하루 만에 끝내는 오프라인 수업입니다. 원데이 수강생에게는 스타터 킷이 포함됩니다."
+   }
+  }
+ ]
+}
+</script>
+<script src="/vl-track.js" defer></script>
 </head>
 <body>
 
@@ -92,7 +134,7 @@ fbq('init','1414432007033883');fbq('track','PageView');
 
 <section class="hero">
   <div class="wrap">
-    <span class="pill">STARTER KIT</span><span class="pill" id="pill-price">₩33,000</span><span class="pill" id="pill-sale" style="background:var(--gold)">7/20까지 ₩10,000 할인</span>
+    <span class="pill">STARTER KIT</span><span class="pill" id="pill-price">₩33,000</span><span class="pill" id="pill-sale" style="background:var(--gold)">원데이 가는 날(8/1)까지 ₩10,000 할인</span>
     <h1>제2의 월급<br>스타터 킷</h1>
     <p><strong>3일 무료 공개에 2,500명이 몰렸던 그 전자책.</strong><br>
     약속대로 문을 닫았고, 구매 문의가 이어져 유료판으로 다시 엽니다 —<br>
@@ -111,7 +153,7 @@ fbq('init','1414432007033883');fbq('track','PageView');
       <div class="srow"><div><div class="sn">🔑 딸깍 프롬프트 금고 20종</div><p class="sd">사이드잡 10종(블로그·상세페이지·릴스·전자책…) + 업무 자동화 10종(메일·보고서·엑셀·회의록…). 변수만 바꿔 넣으면 끝.</p></div><span class="sp">₩29,000</span></div>
       <div class="srow"><div><div class="sn">💬 디스코드 멤버십</div><p class="sd">레벨별 실전 과제 10종 제출 + 피드백, 오피스 아워 라이브 Q&A 참여권.</p></div><span class="sp">₩19,000</span></div>
       <div class="srow"><div><div class="sn">🐱 치즈냥 성장 시스템 + 보스 퀘스트</div><p class="sd">읽을수록 자라는 픽셀 고양이와 10개의 실전 과제 — 완독을 끝까지 끌고 가는 장치.</p></div><span class="sp">포함</span></div>
-      <div class="total"><span class="strike">₩81,000</span><span class="big" id="total-price">₩33,000</span><br><span style="font-size:12px;font-family:var(--font-mono)" id="total-sub">정가 ₩43,000 — 7/20(월)까지 런칭 할인 · 개인 열람 코드 · 평생 소장</span></div>
+      <div class="total"><span class="strike">₩81,000</span><span class="big" id="total-price">₩33,000</span><br><span style="font-size:12px;font-family:var(--font-mono)" id="total-sub">정가 ₩43,000 — 8/1(토)까지 런칭 할인 · 개인 열람 코드 · 평생 소장</span></div>
     </div>
     <div style="text-align:center"><a class="btn" href="#order">지금 주문하기 ▶</a></div>
     <p class="note">※ 전자책 LV.0~1(8챕터)은 누구나 무료로 읽을 수 있습니다 — 결제 전에 퀄리티를 직접 확인하세요. 전권·프롬프트 금고·디스코드 멤버십은 스타터 킷 전용입니다.</p>
@@ -211,7 +253,7 @@ fbq('init','1414432007033883');fbq('track','PageView');
 <script>
 const SB_URL='https://kpqrvvfcirkxlihcibqr.supabase.co',SB_ANON='sb_publishable__ywsnui3UjB6Xls94pmbTQ_c13LyARM';
 function sbLog(row){try{fetch(SB_URL+'/rest/v1/orders',{method:'POST',headers:{apikey:SB_ANON,Authorization:'Bearer '+SB_ANON,'Content-Type':'application/json',Prefer:'return=minimal'},body:JSON.stringify(row)}).catch(function(){});}catch(e){}}
-const KIT_SALE_END=new Date(2026,6,20,23,59,59); /* 7/20(월) 자정까지 런칭 할인 */
+const KIT_SALE_END=new Date(2026,7,1,23,59,59); /* 8/1(토) 원데이 당일까지 런칭 할인 연장 */
 const KIT_ONSALE=Date.now()<=KIT_SALE_END.getTime();
 const KIT_PRICE=KIT_ONSALE?33000:43000;
 (function(){
