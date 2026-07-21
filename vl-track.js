@@ -66,9 +66,15 @@
   }, true);
 
   // 3) 신청 폼 퍼널 (form_start 1회 + form_submit)
+  // 주의: 이 사이트의 신청 UI는 <form> 태그 없이 div+버튼으로 구성 — 입력 필드 포커스와 제출 버튼 클릭을 직접 감지
   var started = false;
   document.addEventListener('focusin', function (e) {
-    if (!started && e.target && e.target.closest && e.target.closest('form')) { started = true; send('form_start'); }
+    var t = e.target;
+    if (!started && t && t.matches && t.matches('input, textarea, select')) { started = true; send('form_start'); }
   }, true);
   document.addEventListener('submit', function () { send('form_submit'); }, true);
+  document.addEventListener('click', function (e) {
+    var s = e.target.closest && e.target.closest('#ap-submit, .apply-submit, [onclick*="submitApply"], [onclick*="submitKit"]');
+    if (s) send('form_submit');
+  }, true);
 })();
