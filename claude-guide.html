@@ -4708,9 +4708,18 @@ const AUTH_REQUIRED=true;
 const AUTH_URL='https://kpqrvvfcirkxlihcibqr.supabase.co';
 const AUTH_KEY='sb_publishable__ywsnui3UjB6Xls94pmbTQ_c13LyARM';
 let sbAuth=null;
+var pendingAuthProvider=null;
 function authLogin(provider){
-  if(!sbAuth){showToast('로그인 준비 중 — 잠시 후 다시 눌러주세요.');return;}
-  sbAuth.auth.signInWithOAuth({provider:provider,options:{redirectTo:location.origin+location.pathname}});
+  if(!sbAuth){pendingAuthProvider=provider;showToast('로그인 모듈 불러오는 중… 준비되면 자동으로 진행됩니다.');return;}
+  sbAuth.auth.signInWithOAuth({provider:provider,options:{redirectTo:location.origin+location.pathname}})
+    .then(function(r){if(r&&r.error)showToast('로그인 오류: '+r.error.message+' — 새로고침 후 다시 시도해주세요.');})
+    .catch(function(e){showToast('로그인 오류: '+(e&&e.message||e)+' — 새로고침 후 다시 시도해주세요.');});
+}
+/* 인앱 브라우저(카톡·인스타·페북 등) 감지 — 구글 로그인 차단 대응 */
+function inAppBrowser(){
+  var ua=navigator.userAgent||'';
+  return /KAKAOTALK|Instagram|FBAN|FBAV|FB_IAB|Line\/|NAVER\(inapp|DaumApps|everytimeApp|whale.*inapp/i.test(ua)?
+    (/KAKAOTALK/i.test(ua)?'kakao':'etc'):null;
 }
 async function checkEntitlement(){
   /* 로그인 계정에 구매 권한이 있으면 전권+금고 자동 오픈 (관리자 승인 기반) */
@@ -4752,6 +4761,28 @@ function authGateInit(){
   sc.src='https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js';
   sc.onload=async function(){
     sbAuth=window.supabase.createClient(AUTH_URL,AUTH_KEY);
+    /* 콜백 에러를 화면에 표면화 — "그냥 안 돼요" 신고 방지 */
+    try{
+      var hp=new URLSearchParams((location.hash||'').replace(/^#/,''));
+      var hDesc=hp.get('error_description')||hp.get('error');
+      if(hDesc){showToast('로그인 실패: '+decodeURIComponent(hDesc.replace(/\+/g,' '))+' — 다시 시도하거나 다른 방법(카카오/구글)을 눌러주세요.');history.replaceState(null,'',location.pathname+location.search);}
+    }catch(e){}
+    /* 준비 전 클릭했던 사용자 자동 진행 */
+    if(pendingAuthProvider){var pp=pendingAuthProvider;pendingAuthProvider=null;authLogin(pp);}
+    /* 인앱 브라우저 경고 주입 */
+    try{
+      var iab=inAppBrowser();
+      if(iab){
+        var ag0=document.getElementById('authgate');
+        var warn=document.createElement('p');
+        warn.style.cssText='margin:10px auto 0;max-width:340px;font-size:12px;line-height:1.6;color:#B85C3E;background:#FFF7F2;border:1.5px dashed #D97757;padding:8px 12px;';
+        warn.innerHTML=(iab==='kakao'
+          ?'⚠ 카카오톡 안 브라우저에서는 <b>구글 로그인이 차단</b>될 수 있어요. 카카오 로그인을 쓰시거나, 우측 하단 <b>⋯ → 다른 브라우저로 열기</b>를 눌러주세요.'
+          :'⚠ 인스타그램/앱 안 브라우저에서는 <b>구글 로그인이 차단</b>될 수 있어요. 카카오 로그인을 쓰시거나, 우측 상단 <b>⋯ → 외부 브라우저로 열기</b>를 눌러주세요.');
+        var box=ag0&&ag0.querySelector('.ag-box')||ag0;
+        if(box)box.appendChild(warn);
+      }
+    }catch(e){}
     const {data:{session}}=await sbAuth.auth.getSession();
     const ag=document.getElementById('authgate');
     if(!session){ag.classList.add('on');document.body.style.overflow='hidden';}
