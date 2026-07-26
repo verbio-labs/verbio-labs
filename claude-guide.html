@@ -5706,5 +5706,23 @@ route();
 <!-- Vercel Web Analytics + Speed Insights -->
 <script defer src="/_vercel/insights/script.js"></script>
 <script defer src="/_vercel/speed-insights/script.js"></script>
+
+<!-- ONEDAY D-DAY 스티키 바 — 전자책 독자 → 원데이 도선 -->
+<div id="vl-dday" style="display:none;position:fixed;left:0;right:0;bottom:0;z-index:900;background:#1A1815;border-top:3px solid #D97757;padding:10px 14px;font-family:'IBM Plex Mono','Galmuri11',monospace;text-align:center">
+  <a href="/oneday" style="color:#F6F1E5;text-decoration:none;font-size:13px;letter-spacing:.02em">
+    ⚑ <strong style="color:#D97757">8/1(토) 부산 원데이</strong> <span id="vl-dday-n" style="color:#E7C46B;font-weight:700"></span> · 얼리버드 ₩190,000 · <u>잔여 좌석 확인 →</u>
+  </a>
+  <button onclick="var d=document.getElementById('vl-dday');d.style.display='none';try{localStorage.setItem('vl_dday_hide','1')}catch(e){}" aria-label="닫기" style="position:absolute;right:8px;top:50%;transform:translateY(-50%);background:none;border:0;color:#8A8474;font-size:16px;cursor:pointer;padding:4px 8px">✕</button>
+</div>
+<script>
+(function(){
+  try{ if(localStorage.getItem('vl_dday_hide')==='1') return; }catch(e){}
+  var end=new Date(2026,7,1,10,0,0), now=new Date();
+  if(now>=end) return;
+  var days=Math.ceil((new Date(2026,7,1)-new Date(now.getFullYear(),now.getMonth(),now.getDate()))/864e5);
+  document.getElementById('vl-dday-n').textContent = days<=0 ? 'TODAY' : 'D-'+days;
+  document.getElementById('vl-dday').style.display='block';
+})();
+</script>
 </body>
 </html>
