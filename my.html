@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>마이페이지 — VERBIO LABS</title>
+<meta name="description" content="내 크레딧·구매 내역·전자책 권한을 확인하세요. VERBIO LABS 멤버 페이지.">
+<meta name="robots" content="noindex">
+<style>
+:root{--ink:#1A1815;--paper:#F6F1E5;--clay:#D97757;--moss:#5E8D7A;--gold:#B99A45;--soft:#8A8474;--line:#D8D2C2;
+--font-mono:'IBM Plex Mono',ui-monospace,monospace;--font-body:'Pretendard',-apple-system,'Malgun Gothic',sans-serif}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font-family:var(--font-body);min-height:100vh}
+.termbar{background:var(--ink);color:#D8D3C4;font-family:var(--font-mono);font-size:12.5px;padding:9px 16px;border-bottom:3px solid var(--clay);display:flex;justify-content:space-between}
+.termbar a{color:#E8C97A;text-decoration:none}
+.wrap{max-width:680px;margin:0 auto;padding:40px 20px 80px}
+h1{font-size:26px;margin-bottom:6px}
+.sub{color:var(--soft);font-size:14px;margin-bottom:28px}
+.card{background:#fff;border:2px solid var(--ink);box-shadow:5px 5px 0 rgba(26,24,21,.15);padding:22px;margin-bottom:18px}
+.card h2{font-size:15px;font-family:var(--font-mono);color:var(--clay);margin-bottom:12px;letter-spacing:.5px}
+.btn{display:inline-block;background:var(--ink);color:#F6F1E5;border:none;padding:13px 22px;font-family:var(--font-mono);font-size:14px;cursor:pointer;text-decoration:none;box-shadow:4px 4px 0 rgba(26,24,21,.2)}
+.btn.kakao{background:#FEE500;color:#1A1815}
+.btn.ghost{background:transparent;color:var(--ink);border:2px solid var(--ink);box-shadow:none}
+.btn+.btn{margin-left:10px}
+.big{font-size:34px;font-weight:800;color:var(--clay);font-family:var(--font-mono)}
+.row{display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px solid var(--line);font-size:13.5px}
+.row .r{color:var(--soft)}
+.pill{display:inline-block;background:#EEF3EF;color:#3F6B58;border:1px solid #BFD4C8;font-size:12px;padding:3px 10px;border-radius:20px;font-weight:700}
+.pill.off{background:#F3EDE2;color:#8A8474;border-color:var(--line)}
+.note{font-size:12.5px;color:var(--soft);line-height:1.6;margin-top:10px}
+.hide{display:none}
+#toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%);background:var(--ink);color:#F6F1E5;padding:11px 18px;font-size:13px;font-family:var(--font-mono);display:none;z-index:99}
+</style>
+</head>
+<body>
+<div class="termbar"><span>verbio@labs:~/my$ ./run.sh</span><a href="/">← verbiolabs.com</a></div>
+<div class="wrap">
+  <h1>마이페이지</h1>
+  <p class="sub">크레딧 · 구매 내역 · 전자책 권한 — 계정 하나로 전부.</p>
+
+  <!-- 비로그인 -->
+  <div class="card" id="login-box">
+    <h2>LOGIN</h2>
+    <p style="font-size:14px;margin-bottom:16px">3초 로그인하면 내 크레딧과 혜택이 보입니다.<br><span style="color:var(--soft);font-size:12.5px">결제·수강 때 쓴 이메일과 같은 계정을 권장합니다.</span></p>
+    <button class="btn kakao" onclick="login('kakao')">💬 카카오로 시작</button>
+    <button class="btn" onclick="login('google')">G 구글로 시작</button>
+  </div>
+
+  <!-- 로그인 후 -->
+  <div class="hide" id="me-box">
+    <div class="card">
+      <h2>MY CREDIT</h2>
+      <div class="big" id="credit-total">₩0</div>
+      <p class="note">크레딧은 <strong>주말 빌드 캠프</strong> 등 다음 단계 결제에 현금처럼 사용됩니다. 신청서에 이 계정 이메일만 적으면 자동 적용돼요.</p>
+      <div id="credit-list" style="margin-top:14px"></div>
+    </div>
+    <div class="card">
+      <h2>MY LIBRARY</h2>
+      <div class="row"><span>📖 클로드 완전정복 전자책 (37챕터 전권)</span><span id="ent-book" class="pill off">미보유</span></div>
+      <div class="row"><span>🔑 프롬프트 금고 20종</span><span id="ent-vault" class="pill off">미보유</span></div>
+      <div style="margin-top:16px"><a class="btn" href="/claude-guide">전자책 열기 ▶</a></div>
+      <p class="note">원데이·킷 결제가 확인되면 자동으로 열립니다. 결제했는데 미보유로 보이면 카카오 채널로 이메일을 알려주세요.</p>
+    </div>
+    <div class="card">
+      <h2>NEXT QUEST</h2>
+      <div class="row"><span>🏕 주말 빌드 캠프 — 내 서비스 실전 출시 (LV.3)</span><span class="r">크레딧 사용 가능</span></div>
+      <div style="margin-top:16px"><a class="btn ghost" href="/bootcamp">캠프 자세히 보기 ▸</a></div>
+    </div>
+    <p style="margin-top:6px"><span style="font-family:var(--font-mono);font-size:12.5px;color:var(--soft)" id="me-email"></span>
+    <button class="btn ghost" style="padding:6px 12px;font-size:12px;margin-left:10px" onclick="logout()">로그아웃</button></p>
+  </div>
+</div>
+<div id="toast"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<script src="/vl-track.js" defer></script>
+<script>
+const SB_URL='https://kpqrvvfcirkxlihcibqr.supabase.co';
+const SB_KEY='sb_publishable__ywsnui3UjB6Xls94pmbTQ_c13LyARM';
+const sb=window.supabase.createClient(SB_URL,SB_KEY);
+const $=id=>document.getElementById(id);
+function toast(m){const t=$('toast');t.textContent=m;t.style.display='block';setTimeout(()=>t.style.display='none',4000);}
+async function login(provider){
+  const {error}=await sb.auth.signInWithOAuth({provider,options:{redirectTo:location.origin+'/my'}});
+  if(error)toast('로그인 오류: '+error.message);
+}
+async function logout(){await sb.auth.signOut();location.reload();}
+function won(n){return '₩'+Number(n).toLocaleString('ko-KR');}
+async function render(){
+  const {data:{session}}=await sb.auth.getSession();
+  if(!session){$('login-box').classList.remove('hide');$('me-box').classList.add('hide');return;}
+  $('login-box').classList.add('hide');$('me-box').classList.remove('hide');
+  $('me-email').textContent=session.user.email;
+  // 크레딧
+  try{
+    const {data:cr,error}=await sb.from('credits').select('amount,reason,created_at').order('created_at',{ascending:false});
+    if(!error&&cr){
+      const total=cr.reduce((s,c)=>s+(c.amount||0),0);
+      $('credit-total').textContent=won(total);
+      $('credit-list').innerHTML=cr.slice(0,10).map(c=>
+        `<div class="row"><span>${(c.reason||'적립').replace(/</g,'&lt;')}</span><span class="r">${c.amount>=0?'+':''}${won(c.amount)} · ${(c.created_at||'').slice(0,10)}</span></div>`).join('')||'<p class="note">아직 적립 내역이 없습니다 — 원데이·캠프 결제 시 자동 적립됩니다.</p>';
+    }
+  }catch(e){}
+  // 전자책 권한
+  try{
+    const {data:ents}=await sb.from('entitlements').select('product');
+    if(ents&&ents.length){
+      const p=ents.map(e=>e.product);
+      if(p.some(x=>/book|full|kit/i.test(x))){$('ent-book').textContent='보유';$('ent-book').classList.remove('off');}
+      if(p.some(x=>/vault|kit|prompt/i.test(x))){$('ent-vault').textContent='보유';$('ent-vault').classList.remove('off');}
+    }
+  }catch(e){}
+}
+// OAuth 콜백 에러 표면화
+(function(){
+  const h=new URLSearchParams(location.hash.replace(/^#/,''));
+  if(h.get('error_description')){toast('로그인 실패: '+decodeURIComponent(h.get('error_description')));history.replaceState(null,'',location.pathname);}
+})();
+sb.auth.onAuthStateChange(()=>render());
+render();
+</script>
+</body>
+</html>

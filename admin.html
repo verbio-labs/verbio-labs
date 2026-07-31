@@ -214,5 +214,39 @@ document.querySelectorAll('.tab').forEach(b=>b.addEventListener('click',()=>{
 $('lg-pw').addEventListener('keydown',e=>{if(e.key==='Enter')doLogin();});
 boot();
 </script>
+
+<!-- 크레딧 부여 -->
+<section style="max-width:900px;margin:30px auto;padding:0 16px" id="credit-sec">
+  <h2 style="font-size:16px;margin-bottom:10px">💰 크레딧 부여 (캠프 크레딧 등)</h2>
+  <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">
+    <input id="cr-email" placeholder="이메일" style="padding:9px;border:1.5px solid #CFC7B4;font-size:13px;width:230px">
+    <input id="cr-amount" placeholder="금액 (예: 190000)" type="number" style="padding:9px;border:1.5px solid #CFC7B4;font-size:13px;width:150px">
+    <input id="cr-reason" placeholder="사유 (예: 원데이 참가 크레딧)" style="padding:9px;border:1.5px solid #CFC7B4;font-size:13px;width:240px">
+    <button onclick="grantCredit()" style="padding:9px 16px;background:#1F1E1A;color:#F6F1E5;border:none;cursor:pointer;font-size:13px">적립</button>
+  </div>
+  <p style="font-size:12px;color:#8A8474;margin-top:6px">원데이 입금확인자에게 190000 · 사유 "원데이 참가 크레딧(캠프 사용)" 권장. 차감은 음수 입력.</p>
+  <div id="cr-recent" style="margin-top:12px;font-size:13px"></div>
+</section>
+<script>
+async function grantCredit(){
+  const email=document.getElementById('cr-email').value.trim();
+  const amount=parseInt(document.getElementById('cr-amount').value,10);
+  const reason=document.getElementById('cr-reason').value.trim()||'적립';
+  if(!email||!amount){alert('이메일과 금액을 입력하세요');return;}
+  const {error}=await sb.from('credits').insert({email,amount,reason});
+  if(error){alert('실패: '+error.message);return;}
+  alert('적립 완료: '+email+' '+amount.toLocaleString()+'원');
+  loadCredits();
+}
+async function loadCredits(){
+  try{
+    const {data}=await sb.from('credits').select('email,amount,reason,created_at').order('created_at',{ascending:false}).limit(15);
+    if(!data)return;
+    document.getElementById('cr-recent').innerHTML='<b>최근 적립 15건</b><br>'+data.map(c=>
+      `${(c.created_at||'').slice(0,10)} · ${c.email} · ${c.amount>=0?'+':''}${Number(c.amount).toLocaleString()}원 · ${c.reason||''}`).join('<br>');
+  }catch(e){}
+}
+setTimeout(loadCredits, 1500);
+</script>
 </body>
 </html>
