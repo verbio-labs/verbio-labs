@@ -4,6 +4,8 @@
 User-agent: *
 Allow: /
 Disallow: /admin
+Disallow: /admin-ai
+Disallow: /my
 
 # ── AI 답변엔진 크롤러 (명시적 허용) ──
 User-agent: GPTBot
