@@ -721,7 +721,7 @@ fbq('init','1414432007033883');fbq('track','PageView');
     <canvas width="22" height="22"></canvas>
     <p class="evo-title">어라?! <span id="evo-name">치즈냥</span>의 상태가…!</p>
     <p class="evo-stage" id="evo-stage"></p>
-    <p class="evo-sub" id="evo-sub" style="font-size:12px;margin:0 0 12px;display:none">이만큼 키운 플레이어는 오프라인에서 다릅니다 — <a href="/oneday" style="color:var(--clay)">8/1 원데이에서 만나요 →</a></p>
+    <p class="evo-sub" id="evo-sub" style="font-size:12px;margin:0 0 12px;display:none">이만큼 키운 플레이어는 오프라인에서 다릅니다 — <a href="/bootcamp" style="color:var(--clay)">8/8~9 빌드 캠프에서 만나요 →</a></p>
     <button type="button" class="evo-btn" onclick="closeEvo()">▶ 계속 모험하기</button>
   </div>
 </div>
@@ -737,7 +737,7 @@ fbq('init','1414432007033883');fbq('track','PageView');
     <p class="sq-title">숨겨진 사이드 퀘스트 발견!</p>
     <p class="sq-name">「오프라인 퀘스트 — 부산 원데이 인텐시브」</p>
     <div class="sq-stats">
-      <div><span class="k">TYPE</span><span class="v">오프라인 · 하루 6시간 (8/1 토 · 부산 해운대)</span></div>
+      <div><span class="k">TYPE</span><span class="v">오프라인 · 주말 이틀 (8/8~9 토·일 · 부산)</span></div>
       <div><span class="k">REQ</span><span class="v">없음 — 지금 이 책을 읽는 수준이면 충분</span></div>
       <div><span class="k">COST</span><span class="v">얼리버드 ₩190,000 — 1회차 10석에서 마감</span></div>
       <div><span class="k">LOOT</span><span class="v">업무 템플릿 3종 + 배포된 도구 1개 + 수강료 전액 캠프 크레딧 전환</span></div>
@@ -775,7 +775,7 @@ fbq('init','1414432007033883');fbq('track','PageView');
         <b>③</b> <b>스타터 킷(₩33,000)</b> — 본편 37챕터 전권 + 프롬프트 금고 20종 + 디스코드 (SIDE QUEST 4챕터는 원데이 수료생 전용)
       </div>
       <a class="gate-kakao gate-oneday" href="/starter-kit" style="background:#1A1815;color:#F6F1E5">🔑 스타터 킷으로 여는 법 보기 (₩33,000)</a>
-      <a class="gate-kakao gate-oneday" href="https://verbiolabs.com/oneday" target="_blank" rel="noopener" style="background:#4E7A4E;color:#F6F1E5">🎮 8/1 원데이 인텐시브 보기</a>
+      <a class="gate-kakao gate-oneday" href="https://verbiolabs.com/oneday" target="_blank" rel="noopener" style="background:#4E7A4E;color:#F6F1E5">🎮 원데이 2기 대기 명단 올리기</a>
       <a class="gate-kakao" href="#" target="_blank" rel="noopener">💬 채널 추가하고 LV.2 보너스 코드 받기</a>
     </div>
     <div class="gate-code">
@@ -863,7 +863,7 @@ fbq('init','1414432007033883');fbq('track','PageView');
     <div class="wrap">
       <a class="oq-banner reveal" href="/oneday" id="oq-link">
         <span class="oq-tag">⚑ OFFLINE QUEST · BUSAN</span>
-        <span class="oq-h">8/1 하루 — 업무 템플릿 3종과 게시된 도구 1개를 들고 퇴근합니다</span>
+        <span class="oq-h">8/8~9 주말 이틀 — 내 서비스가 실제 URL로 배포되고 데모데이에서 시연됩니다</span>
         <span class="oq-meta" id="oq-dday">원데이 8/1 · 부트캠프 8/8~9 · 선착순 10석</span>
         <span class="oq-go">▶ 자세히 보기</span>
       </a>
@@ -4919,7 +4919,7 @@ async function tryCode(){
         var fc2=document.getElementById('float-cta');if(fc2)fc2.classList.remove('show');
         SFX.coin();closeGate();
         showToast('스타터 킷 인증 완료 — 전 챕터 + 프롬프트 금고 오픈!');
-        setTimeout(function(){showToast('킷 플레이어는 8/1 원데이 우선 안내 대상입니다 — 상단 배너에서 확인하세요');},4200);
+        setTimeout(function(){showToast('킷 플레이어는 원데이 2기 우선 안내 대상입니다 — 대기 명단을 올려두세요');},4200);
         renderVault();route();
         var vs=document.getElementById('vault-sec');if(vs&&location.hash.indexOf('lv')<0)setTimeout(function(){vs.scrollIntoView({behavior:'smooth'});},400);
         return;
@@ -5642,7 +5642,7 @@ const PLUGS={
     h:'이 챕터, 읽는 것과 출시하는 것의 거리 — 주말 이틀',
     p:'지금 배우는 하네스·에이전트 운용을 8/8~9(토·일) 부산에서 내 프로젝트로 직접 돌립니다. 이틀째 저녁, 당신의 서비스가 실제 URL로 배포되고 데모데이에서 시연됩니다. 1기 얼리버드 ₩990,000 — 2기부터 정가 ₩1,500,000.',
     btn:'🏕 8/8~9 주말 빌드 캠프 자리 확인',dark:true,href:'/bootcamp',
-    sub:'이틀이 부담이면 <a href="/oneday">8/1 원데이 인텐시브(₩190,000, 수강료 전액 캠프 크레딧) →</a>'},
+    sub:'이틀이 부담이면 <a href="/oneday">원데이 인텐시브 2기 대기 명단(수강료 전액 캠프 크레딧) →</a>'},
   camp:{ // lv8~9: 설계자에게 캠프
     h:'설계는 배웠습니다 — 이제 포트폴리오가 남았습니다',
     p:'여기까지 읽은 분에게 필요한 건 챕터가 아니라 출시 이력입니다. 8/8~9 주말 빌드 캠프에서 아키텍처 선택부터 배포·데모데이까지 — 이 책 LV.8~9의 판단을 실제 프로젝트에서 검증합니다. 멘토 1:3~4, 1기 얼리버드 ₩990,000(정가 ₩1,500,000).',
@@ -5650,8 +5650,8 @@ const PLUGS={
     sub:'완주 인증을 채널로 보내면 얼리버드 우선권 — <a href="https://pf.kakao.com/_xebtPX" target="_blank" rel="noopener">인증 보내기 →</a>'},
   oneday_owner:{ // 킷 구매자 전용 (무료·초중반 레벨 재방문)
     h:'킷 플레이어 전용 퀘스트 — 책 밖에서 하루',
-    p:'스타터 킷으로 여기까지 오셨죠. 8/1(토) 부산 해운대 원데이 인텐시브는 이 책의 실습을 강사 옆에서 하루에 압축하는 코스입니다. 수강료 ₩190,000은 전액 캠프 크레딧으로 이어집니다.',
-    btn:'🎮 8/1 원데이 자리 확인',dark:true,href:'/oneday',
+    p:'스타터 킷으로 여기까지 오셨죠. 부산 원데이 인텐시브는 이 책의 실습을 강사 옆에서 하루에 압축하는 코스입니다 — 1기 10석 성료, 2기는 대기 명단 순으로 열립니다. 수강료 전액이 캠프 크레딧으로 이어집니다.',
+    btn:'🎮 원데이 2기 대기 명단',dark:true,href:'/oneday',
     sub:'주말 이틀로 출시까지: <a href="/bootcamp">8/8~9 빌드 캠프 →</a>'},
   member2:{ // 멤버 구간 B: 챌린지 유도
     h:'7일 챌린지 — 혼자 말고 같이',
@@ -5660,8 +5660,8 @@ const PLUGS={
     sub:'혼자보다 옆에서 배우는 게 빠르다면 <a href="/oneday">부산 원데이 인텐시브 →</a>'},
   next:{ // 무료 구간 졸업 지점(lv1-4): 지금 살 수 있는 상품 우선
     h:'무료 구간 클리어 — 다음 스테이지는 두 갈래',
-    p:'여기까지 온 분은 생각보다 적습니다. 몸으로 익히려면 8/1(토) 부산 원데이 인텐시브 — 하루 6시간, 강사 옆에서 업무 템플릿 3종과 게시된 도구 1개를 들고 나갑니다. 선착순 10석, 얼리버드 ₩190,000. 책으로 계속 가려면 스타터 킷으로 29개 챕터를 여세요.',
-    btn:'🎮 8/1 원데이 자리 확인 (얼리버드 10석)',dark:true,href:'/oneday',
+    p:'여기까지 온 분은 생각보다 적습니다. 몸으로 익히려면 부산 원데이 인텐시브 — 하루 6시간, 강사 옆에서 실습으로 끝냅니다. 1기 10석이 성료로 마감돼 2기는 대기 명단 순으로 열려요. 책으로 계속 가려면 스타터 킷으로 29개 챕터를 여세요.',
+    btn:'🎮 원데이 2기 대기 명단 올리기',dark:true,href:'/oneday',
     sub:'전권은 <a href="/starter-kit">스타터 킷 ₩33,000 →</a> · 온라인 강의는 <a href="/courses">Q3 사전 등록 →</a>'},
   storyclear:{ // STORY 완주 지점(lv5-4): 완주 보상
     h:'● STORY 모드 완주 — 보상을 받아가세요',
@@ -6061,7 +6061,7 @@ const QUIZ=[
 const QCLASS=[
   {min:0, icon:'🌱',name:'NOVICE',ko:'견습 모험가',
    verdict:'완벽한 시작 지점에 서 있습니다. 지금 시작하는 사람이 1년 뒤 팀에서 "AI 잘 쓰는 사람"이 됩니다. STORY 모드를 순서대로 — 특히 LV.0-1은 건너뛰지 마세요.',
-   cta:[['#lv0-1','▶ LV.0-1부터 시작'],['/oneday','🎮 8/1 원데이 (얼리버드 ₩190,000)']]},
+   cta:[['#lv0-1','▶ LV.0-1부터 시작'],['/bootcamp','🏕 8/8~9 빌드 캠프']]},
   {min:7, icon:'⚔️',name:'RAIDER',ko:'실전형 용병',
    verdict:'이미 도구는 씁니다. 다음 병목은 실력이 아니라 시스템 — 프롬프트를 자산으로, 에이전트를 팀으로 바꾸는 단계입니다. STORY 후반을 빠르게 점검하고 EXPERT로 진입하세요.',
    cta:[['#lv4','▶ LV.4 점검'],['#lv6','◆ EXPERT 진입'],['/bootcamp','🏕 8/8~9 빌드 캠프 (얼리버드 ₩990,000)']]},
