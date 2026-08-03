@@ -56,7 +56,8 @@ h1{font-size:26px;margin-bottom:6px}
     </div>
     <div class="card">
       <h2>MY LIBRARY</h2>
-      <div class="row"><span>📖 클로드 완전정복 전자책 (37챕터 전권)</span><span id="ent-book" class="pill off">미보유</span></div>
+      <div class="row"><span>📖 클로드 완전정복 전자책 (본편 37챕터 전권)</span><span id="ent-book" class="pill off">미보유</span></div>
+      <div class="row"><span>🎓 SIDE QUEST — 원데이 필드 매뉴얼 4챕터</span><span id="ent-oneday" class="pill off">수료생 전용</span></div>
       <div class="row"><span>🔑 프롬프트 금고 20종</span><span id="ent-vault" class="pill off">미보유</span></div>
       <div style="margin-top:16px"><a class="btn" href="/claude-guide">전자책 열기 ▶</a></div>
       <p class="note">원데이·킷 결제가 확인되면 자동으로 열립니다. 결제했는데 미보유로 보이면 카카오 채널로 이메일을 알려주세요.</p>
@@ -107,6 +108,7 @@ async function render(){
     if(ents&&ents.length){
       const p=ents.map(e=>e.product);
       if(p.some(x=>/book|full|kit/i.test(x))){$('ent-book').textContent='보유';$('ent-book').classList.remove('off');}
+      if(p.some(x=>/oneday/i.test(x))){$('ent-oneday').textContent='보유';$('ent-oneday').classList.remove('off');}
       if(p.some(x=>/vault|kit|prompt/i.test(x))){$('ent-vault').textContent='보유';$('ent-vault').classList.remove('off');}
     }
   }catch(e){}
