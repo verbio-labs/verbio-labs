@@ -857,7 +857,7 @@ document.addEventListener('click',e=>{
    pending = 신청서 접수, 입금 대기 (Slack 알림 오면 +1, 입금 확인되면 pending-1 → taken+1, 미입금 이탈 시 -1) */
 const SEATS={
   oneday:{cap:10,taken:10,pending:0,label:'원데이 1기 — 성료',done:true}, /* 2026-08-03: 1기 진행 완료 → 만석 표기 + 전원 대기모드 */
-  camp:{cap:12,taken:0,pending:0,label:'부트캠프 1기'}
+  camp:{cap:8,taken:0,pending:0,label:'부트캠프 1기 — 소수 정예'}
 };
 const RECENT=[
   // 실제 신청자만 마스킹해 추가: '김*수님 · 원데이', '박*아님 · 캠프'

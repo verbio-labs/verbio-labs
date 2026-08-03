@@ -737,7 +737,7 @@ fbq('init','1414432007033883');fbq('track','PageView');
     <p class="sq-title">숨겨진 사이드 퀘스트 발견!</p>
     <p class="sq-name">「오프라인 퀘스트 — 부산 원데이 인텐시브」</p>
     <div class="sq-stats">
-      <div><span class="k">TYPE</span><span class="v">오프라인 · 주말 이틀 (부산 · 일정 조율 중)</span></div>
+      <div><span class="k">TYPE</span><span class="v">오프라인 · 주말 이틀 (부산 · 9/5~6 예정)</span></div>
       <div><span class="k">REQ</span><span class="v">없음 — 지금 이 책을 읽는 수준이면 충분</span></div>
       <div><span class="k">COST</span><span class="v">얼리버드 ₩190,000 — 1회차 10석에서 마감</span></div>
       <div><span class="k">LOOT</span><span class="v">업무 템플릿 3종 + 배포된 도구 1개 + 수강료 전액 캠프 크레딧 전환</span></div>
@@ -864,7 +864,7 @@ fbq('init','1414432007033883');fbq('track','PageView');
       <a class="oq-banner reveal" href="/oneday" id="oq-link">
         <span class="oq-tag">⚑ OFFLINE QUEST · BUSAN</span>
         <span class="oq-h">주말 이틀 — 내 서비스가 실제 URL로 배포되고 데모데이에서 시연됩니다</span>
-        <span class="oq-meta" id="oq-dday">원데이 1기 성료 · 빌드 캠프 사전 등록</span>
+        <span class="oq-meta" id="oq-dday">원데이 1기 성료 · 빌드 캠프 9/5~6 예정</span>
         <span class="oq-go">▶ 자세히 보기</span>
       </a>
     </div>
@@ -5626,7 +5626,7 @@ function nekoStart(){
   var d1=dd(2026,7,1), d2=dd(2026,7,8);
   var lk=document.getElementById('oq-link');
   if(d1>0)      el.textContent='8/1(토) 해운대 D-'+d1+' · 얼리버드 ₩190,000 · 선착순 10석';
-  else{el.textContent='주말 빌드 캠프 — 일정 조율 중 · 사전 등록 순 우선 안내 · 얼리버드 ₩990,000';if(lk)lk.href='/bootcamp';}
+  else{el.textContent='주말 빌드 캠프 9월 첫째 주(9/5~6 예정) · 소수 정예 6~8명 · 얼리버드 ₩990,000';if(lk)lk.href='/bootcamp';}
 })();
 
 /* ---------- 챕터 후킹 카드 자동 삽입 ---------- */
@@ -5638,12 +5638,12 @@ const PLUGS={
     sub:'결정 전에 물어보고 싶다면 <a href="https://open.kakao.com/o/pgvb1sCi" target="_blank" rel="noopener">오픈채팅 단톡방 →</a>'},
   bootcamp:{ // lv4·6·7: 캠프 본진
     h:'이 챕터, 읽는 것과 출시하는 것의 거리 — 주말 이틀',
-    p:'지금 배우는 하네스·에이전트 운용을 주말 이틀, 부산에서 내 프로젝트로 직접 돌립니다. 이틀째 저녁, 당신의 서비스가 실제 URL로 배포되고 데모데이에서 시연됩니다. 일정은 조율 중 — 사전 등록 순으로 우선 안내. 1기 얼리버드 ₩990,000.',
+    p:'지금 배우는 하네스·에이전트 운용을 주말 이틀(9/5~6 예정), 부산에서 내 프로젝트로 직접 돌립니다. 이틀째 저녁, 당신의 서비스가 실제 URL로 배포되고 데모데이에서 시연됩니다. 소수 정예 6~8명 — 1기 얼리버드 ₩990,000, 사전 등록자는 ₩890,000.',
     btn:'🏕 주말 빌드 캠프 사전 등록',dark:true,href:'/bootcamp',
     sub:'이틀이 부담이면 <a href="/oneday">원데이 인텐시브 2기 대기 명단(수강료 전액 캠프 크레딧) →</a>'},
   camp:{ // lv8~9: 설계자에게 캠프
     h:'설계는 배웠습니다 — 이제 포트폴리오가 남았습니다',
-    p:'여기까지 읽은 분에게 필요한 건 챕터가 아니라 출시 이력입니다. 주말 빌드 캠프에서 아키텍처 선택부터 배포·데모데이까지 — 이 책 LV.8~9의 판단을 실제 프로젝트에서 검증합니다. 멘토 1:3~4, 1기 얼리버드 ₩990,000(정가 ₩1,500,000) · 일정 조율 중, 사전 등록 순 안내.',
+    p:'여기까지 읽은 분에게 필요한 건 챕터가 아니라 출시 이력입니다. 주말 빌드 캠프(9/5~6 예정)에서 아키텍처 선택부터 배포·데모데이까지 — 이 책 LV.8~9의 판단을 실제 프로젝트에서 검증합니다. 소수 정예 6~8명, 멘토 1:3~4, 1기 얼리버드 ₩990,000(정가 ₩1,500,000).',
     btn:'🏛 빌드 캠프 사전 등록 — 부산',dark:true,href:'/bootcamp',
     sub:'완주 인증을 채널로 보내면 얼리버드 우선권 — <a href="https://pf.kakao.com/_xebtPX" target="_blank" rel="noopener">인증 보내기 →</a>'},
   oneday_owner:{ // 킷 구매자 전용 (무료·초중반 레벨 재방문)
@@ -5679,7 +5679,7 @@ function offlineLine(){
   var d1=Math.ceil((new Date(2026,7,1)-today)/864e5);
   var d2=Math.ceil((new Date(2026,7,8)-today)/864e5);
   if(d1>0) return '<span class="p-push">⏱ 부산 원데이 8/1 D-'+d1+' · 얼리버드 10석 — <a href="/oneday">자리 확인 →</a></span>';
-  return '<span class="p-push">⏱ 주말 빌드 캠프 — 일정 조율 중 · 얼리버드 ₩990,000 — <a href="/bootcamp">사전 등록 →</a></span>';
+  return '<span class="p-push">⏱ 빌드 캠프 9/5~6 예정 · 소수 정예 6~8명 · 사전 등록 ₩890,000 — <a href="/bootcamp">자리 확인 →</a></span>';
 }
 const BOOTCAMP_LVLS=['lv4','lv6','lv7','lvS']; // Claude Code·실전 운용 구간 = 캠프 타깃
 const CAMP_LVLS=['lv8','lv9']; // 설계자 구간 = 캠프 최우선
