@@ -186,8 +186,14 @@ a.rank-badge:hover{border-color:var(--clay);color:var(--ink)}
   padding:13px 20px;box-shadow:4px 4px 0 rgba(31,30,26,.25);text-decoration:none;margin-left:10px;
 }
 .btn-ghost:hover{transform:translate(1px,1px);box-shadow:3px 3px 0 rgba(31,30,26,.25)}
+.hero-cta{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:14px;margin:26px auto 0;max-width:920px}
+.hero-cta .btn-ghost{margin-left:0}
+.hero-cta .press-start{flex:0 0 auto}
+.cta-note{font-family:var(--font-mono);font-size:12px;color:var(--ink-soft);margin-top:12px;letter-spacing:.02em}
 @media(max-width:640px){
-  .btn-ghost{margin-left:0;margin-top:12px}
+  .btn-ghost{margin-left:0}
+  .hero-cta{gap:10px}
+  .hero-cta .press-start,.hero-cta .btn-ghost{width:100%;text-align:center}
 }
 .hero .coin{font-family:var(--font-pixel);font-size:13px;color:var(--ink-soft);margin-top:18px;letter-spacing:.1em}
 
@@ -433,7 +439,13 @@ fbq('init','1414432007033883');fbq('track','PageView');
     <br>
     <a class="rank-badge" href="#jiksi">🏆 직시 · <b>App Store 뉴스 카테고리 무료 앱 10위</b></a>
     <br>
-    <a class="press-start" href="/bootcamp" onclick="typeof fbq!=='undefined'&&fbq('track','ViewContent')">▶ 주말 빌드 캠프 부산 9/5~6 예정 — 내 서비스 실전 출시 (소수 정예 6~8명)</a> <a class="btn-ghost" href="/oneday">원데이 2기 대기 명단 ▸</a> <a class="btn-ghost" href="/starter-kit">스타터 킷 ▸</a> <a class="btn-ghost" href="#products">Explore Products ▸</a>
+    <div class="hero-cta">
+      <a class="press-start" href="/bootcamp" onclick="typeof fbq!=='undefined'&&fbq('track','ViewContent')">▶ 주말 빌드 캠프 — 내 서비스 출시</a>
+      <a class="btn-ghost" href="/oneday">원데이 2기 대기 ▸</a>
+      <a class="btn-ghost" href="/starter-kit">스타터 킷 ▸</a>
+      <a class="btn-ghost" href="#products">Explore ▸</a>
+    </div>
+    <p class="cta-note">부산 9/5~6 예정 · 소수 정예 6~8명 · 사전 등록 순 우선 안내</p>
     <p class="coin">INSERT COIN 필요 없음 · 부산에서 제작 · SINCE SIKBANG ENGLISH</p>
 
     <!-- By the numbers → 스테이터스 윈도우 -->
@@ -635,7 +647,7 @@ fbq('init','1414432007033883');fbq('track','PageView');
 
     <div class="fieldnote reveal">
       <p>“AI는 가르치기만 하는 사람이 아니라, <strong>직접 만들어 팔아본 사람</strong>에게 배워야 합니다. 우리는 AI 제품을 직접 출시하고, 매달 수천만 원의 자동화된 매출을 굴리면서 가르칩니다.”</p>
-      <span class="sign">— Jacob Ahn · Founder</span>
+      <span class="sign">— Jacob Ahn (안준영) · Founder, Verbio Labs · CTO, MetaLab</span>
     </div>
   </div>
 </section>
