@@ -94,6 +94,18 @@ a{color:var(--clay-deep)}
 .sec-head h2{font-size:24px;font-weight:700}
 .sec-head .rule{flex:1;border-top:2px dotted var(--line)}
 .sec-sub{color:var(--ink-soft);font-size:15px;margin-bottom:30px}
+/* ── 유튜브 lite 임베드 (클릭 시 로드) ── */
+.yt-lite{position:relative;width:100%;aspect-ratio:16/9;background:#0F0E0C;border:2px solid var(--ink);box-shadow:6px 6px 0 rgba(31,30,26,.2);cursor:pointer;overflow:hidden}
+.yt-lite img.yt-thumb{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s cubic-bezier(.2,.7,.3,1),filter .3s}
+.yt-lite:hover img.yt-thumb{transform:scale(1.03);filter:brightness(1.06)}
+.yt-lite .yt-play{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:88px;height:62px;background:rgba(217,119,87,.94);border:3px solid #FAF9F5;border-radius:14px;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 22px rgba(0,0,0,.35);transition:transform .18s}
+.yt-lite:hover .yt-play{transform:translate(-50%,-50%) scale(1.08)}
+.yt-lite .yt-play::after{content:"";border-style:solid;border-width:14px 0 14px 24px;border-color:transparent transparent transparent #FAF9F5;margin-left:5px}
+.yt-lite .yt-cap{position:absolute;left:0;right:0;bottom:0;background:linear-gradient(transparent,rgba(15,14,12,.92));color:#F6F1E5;font-family:var(--font-mono);font-size:12.5px;padding:30px 14px 11px;letter-spacing:.02em}
+.yt-lite iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.yt-wrap{max-width:820px;margin:0 auto}
+.yt-note{font-family:var(--font-mono);font-size:12px;color:var(--ink-soft);margin-top:10px;text-align:center}
+
 .proof-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:8px}
 .proof-strip figure{margin:0;position:relative;overflow:hidden;border:2px solid var(--ink);box-shadow:4px 4px 0 rgba(31,30,26,.18)}
 .proof-strip img{display:block;width:100%;aspect-ratio:3/2;object-fit:cover;transition:transform .5s cubic-bezier(.2,.7,.3,1)}
@@ -500,6 +512,13 @@ fbq('init','1414432007033883');fbq('track','PageView');
   <div class="wrap">
     <div class="sec-head reveal"><span class="tag">FIELD</span><h2>현장은 이런 분위기입니다</h2><span class="rule"></span></div>
     <p class="sec-sub reveal">아래는 8/1 원데이 1기 현장 사진입니다. 캠프도 같은 방식 — 다만 이틀간, 더 적은 인원으로, 각자 자기 서비스를 출시할 때까지 붙어 있습니다.</p>
+    <div class="yt-wrap reveal" style="margin-bottom:26px">
+      <div class="yt-lite" data-yt="zhe06RzpTOs" role="button" tabindex="0" aria-label="원데이 인텐시브 1기 현장 영상 재생">
+        <img class="yt-thumb" src="/photos/oneday-1.jpg" alt="원데이 인텐시브 1기 현장 — 영상 재생" loading="lazy" width="1400" height="933">
+        <span class="yt-play" aria-hidden="true"></span>
+        <span class="yt-cap">▶ 재생 — 원데이 1기 현장 실황 — 캠프도 같은 방식, 이틀간</span>
+      </div>
+    </div>
     <div class="proof-strip reveal">
       <figure><img src="/photos/oneday-3-sm.jpg" alt="부산 오프라인 강의 현장 — 참가자 전원이 노트북으로 실습하는 모습" loading="lazy" width="700" height="466"><figcaption>전원 실습 · 듣기만 하는 시간 없음</figcaption></figure>
       <figure><img src="/photos/oneday-2-sm.jpg" alt="강사가 화면을 짚으며 설명하는 모습" loading="lazy" width="700" height="466"><figcaption>막히는 지점을 그 자리에서</figcaption></figure>
@@ -1030,6 +1049,21 @@ try{var u=String(a[0]&&a[0].url||a[0]);
 if(u.indexOf('/rest/v1/orders')>-1&&(!a[1]||(a[1].method||'').toUpperCase()==='POST')){
 p.then(function(r){if(r&&r.ok&&typeof fbq!=='undefined')fbq('track','Lead');});}}catch(e){}
 return p;};})();
+</script>
+<script>
+/* 유튜브 lite 임베드 — 클릭해야 플레이어 로드 (페이지 속도 보호) */
+document.addEventListener('click',function(e){
+  var box=e.target.closest('.yt-lite'); if(!box||box.dataset.loaded) return;
+  var id=box.dataset.yt; if(!id) return;
+  box.dataset.loaded='1';
+  var f=document.createElement('iframe');
+  f.src='https://www.youtube-nocookie.com/embed/'+id+'?autoplay=1&rel=0&modestbranding=1&playsinline=1';
+  f.title='원데이 인텐시브 1기 현장 영상';
+  f.allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+  f.allowFullscreen=true;
+  box.innerHTML=''; box.appendChild(f);
+  if(typeof vlTrack==='function') vlTrack('play_oneday_video');
+});
 </script>
 </body>
 </html>
