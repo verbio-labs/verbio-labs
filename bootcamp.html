@@ -94,6 +94,13 @@ a{color:var(--clay-deep)}
 .sec-head h2{font-size:24px;font-weight:700}
 .sec-head .rule{flex:1;border-top:2px dotted var(--line)}
 .sec-sub{color:var(--ink-soft);font-size:15px;margin-bottom:30px}
+.proof-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:8px}
+.proof-strip figure{margin:0;position:relative;overflow:hidden;border:2px solid var(--ink);box-shadow:4px 4px 0 rgba(31,30,26,.18)}
+.proof-strip img{display:block;width:100%;aspect-ratio:3/2;object-fit:cover;transition:transform .5s cubic-bezier(.2,.7,.3,1)}
+.proof-strip figure:hover img{transform:scale(1.04)}
+.proof-strip figcaption{position:absolute;left:0;right:0;bottom:0;background:linear-gradient(transparent,rgba(31,30,26,.9));color:#EDE8DA;font-family:var(--font-mono);font-size:10.5px;padding:18px 8px 7px}
+@media(max-width:720px){.proof-strip{grid-template-columns:1fr}}
+
 .section{padding:76px 0 60px}
 .section.kraft{background:var(--kraft);border-top:1.5px solid var(--ink);border-bottom:1.5px solid var(--ink)}
 .reveal{opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .6s cubic-bezier(.2,.7,.3,1)}
@@ -484,6 +491,19 @@ fbq('init','1414432007033883');fbq('track','PageView');
           <li>데모데이 피드백 + AI Cartel 동료</li>
         </ul>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- 현장 분위기 -->
+<section class="section" id="field">
+  <div class="wrap">
+    <div class="sec-head reveal"><span class="tag">FIELD</span><h2>현장은 이런 분위기입니다</h2><span class="rule"></span></div>
+    <p class="sec-sub reveal">아래는 8/1 원데이 1기 현장 사진입니다. 캠프도 같은 방식 — 다만 이틀간, 더 적은 인원으로, 각자 자기 서비스를 출시할 때까지 붙어 있습니다.</p>
+    <div class="proof-strip reveal">
+      <figure><img src="/photos/oneday-3-sm.jpg" alt="부산 오프라인 강의 현장 — 참가자 전원이 노트북으로 실습하는 모습" loading="lazy" width="700" height="466"><figcaption>전원 실습 · 듣기만 하는 시간 없음</figcaption></figure>
+      <figure><img src="/photos/oneday-2-sm.jpg" alt="강사가 화면을 짚으며 설명하는 모습" loading="lazy" width="700" height="466"><figcaption>막히는 지점을 그 자리에서</figcaption></figure>
+      <figure><img src="/photos/oneday-1-sm.jpg" alt="수강생 옆에서 함께 문제를 해결하는 멘토링 장면" loading="lazy" width="700" height="466"><figcaption>캠프는 멘토 1:3~4로 더 밀착</figcaption></figure>
     </div>
   </div>
 </section>

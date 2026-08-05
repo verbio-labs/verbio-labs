@@ -18,7 +18,7 @@
 <meta property="og:url" content="https://verbiolabs.com/oneday">
 <meta property="og:title" content="원데이 인텐시브 — 1기 성료 · 2기 대기 명단 접수 중">
 <meta property="og:description" content="코딩 몰라도 됩니다. 하루 6시간 — 내가 만든 웹페이지·GitHub 포트폴리오·자동화 스킬·졸업작품을 들고 퇴근합니다. 1기 10석 성료 — 2기는 대기 명단 순으로 안내.">
-<meta property="og:image" content="https://verbiolabs.com/og-courses.png">
+<meta property="og:image" content="https://verbiolabs.com/og/oneday-field.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:locale" content="ko_KR">
@@ -94,6 +94,20 @@ a{color:var(--clay-deep)}
 .sec-head h2{font-size:24px;font-weight:700}
 .sec-head .rule{flex:1;border-top:2px dotted var(--line)}
 .sec-sub{color:var(--ink-soft);font-size:15px;margin-bottom:30px}
+/* ── 현장 갤러리 ── */
+.gal{display:grid;grid-template-columns:1.6fr 1fr;grid-template-rows:auto auto;gap:12px;margin-top:6px}
+.gal figure{margin:0;position:relative;border:2px solid var(--ink);box-shadow:5px 5px 0 rgba(31,30,26,.18);overflow:hidden;background:var(--ink)}
+.gal img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .5s cubic-bezier(.2,.7,.3,1)}
+.gal figure:hover img{transform:scale(1.03)}
+.gal .g1{grid-row:span 2;aspect-ratio:3/2.35}
+.gal .g2,.gal .g3{aspect-ratio:3/2}
+.gal figcaption{position:absolute;left:0;right:0;bottom:0;background:linear-gradient(transparent,rgba(31,30,26,.86));color:#F6F1E5;font-family:var(--font-mono);font-size:11.5px;padding:22px 12px 9px;letter-spacing:.02em}
+.gal-note{font-family:var(--font-mono);font-size:12px;color:var(--ink-soft);margin-top:12px;text-align:right}
+@media(max-width:720px){
+  .gal{grid-template-columns:1fr}
+  .gal .g1{grid-row:auto;aspect-ratio:3/2}
+}
+
 .section{padding:76px 0 60px}
 .section.kraft{background:var(--kraft);border-top:1.5px solid var(--ink);border-bottom:1.5px solid var(--ink)}
 .reveal{opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .6s cubic-bezier(.2,.7,.3,1)}
@@ -499,6 +513,30 @@ fbq('init','1414432007033883');fbq('track','PageView');
       <div class="seat-grid" id="seat-grid" aria-hidden="true"></div>
       <p class="seat-cap" id="seat-cap" aria-live="polite"></p>
     </div>
+  </div>
+</section>
+
+
+<!-- 1기 현장 갤러리 -->
+<section class="section" id="gallery">
+  <div class="wrap">
+    <div class="sec-head reveal"><span class="tag">1기 현장</span><h2>사진으로 보는 8/1 — 이런 하루였습니다</h2><span class="rule"></span></div>
+    <p class="sec-sub reveal">부산 해운대, 10석 만석. 모두 노트북 한 대씩 열어두고 실습으로만 6시간을 채웠습니다.</p>
+    <div class="gal reveal">
+      <figure class="g1">
+        <img src="/photos/oneday-3.jpg" alt="부산 원데이 인텐시브 1기 강의실 전경 — 수강생 전원이 노트북으로 클로드 실습을 따라가는 모습" loading="lazy" width="1400" height="933">
+        <figcaption>전원 실습 — 듣기만 하는 시간은 없었습니다</figcaption>
+      </figure>
+      <figure class="g2">
+        <img src="/photos/oneday-2-sm.jpg" alt="강사가 스킬 eval 테스트 슬라이드를 설명하는 장면" loading="lazy" width="700" height="466">
+        <figcaption>모듈 6 · 나만의 스킬(SOP) 만들기</figcaption>
+      </figure>
+      <figure class="g3">
+        <img src="/photos/oneday-1-sm.jpg" alt="수강생 화면을 함께 보며 막힌 부분을 그 자리에서 해결하는 모습" loading="lazy" width="700" height="466">
+        <figcaption>막히면 그 자리에서 — 10초 안에 해결</figcaption>
+      </figure>
+    </div>
+    <p class="gal-note">2026.08.01 · 부산 해운대 채움공간 · 1기 10석 성료</p>
   </div>
 </section>
 
