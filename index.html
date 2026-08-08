@@ -227,11 +227,11 @@ a.rank-badge:hover{border-color:var(--clay);color:var(--ink)}
   .edu-strip{grid-template-columns:1fr 1fr}
   .edu-cap{font-size:10px}
 }
-.proof-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.proof-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;max-width:820px;margin:0 auto}
 .proof-strip figure{margin:0;position:relative;overflow:hidden;border:2px solid #57544B}
-.proof-strip img{display:block;width:100%;aspect-ratio:3/2;object-fit:cover;transition:transform .5s cubic-bezier(.2,.7,.3,1)}
+.proof-strip img{display:block;width:100%;aspect-ratio:16/9;object-fit:cover;transition:transform .5s cubic-bezier(.2,.7,.3,1)}
 .proof-strip figure:hover img{transform:scale(1.04)}
-.proof-strip figcaption{position:absolute;left:0;right:0;bottom:0;background:linear-gradient(transparent,rgba(31,30,26,.9));color:#EDE8DA;font-family:var(--font-mono);font-size:10.5px;padding:18px 8px 7px}
+.proof-strip figcaption{position:absolute;left:0;right:0;bottom:0;background:linear-gradient(transparent,rgba(31,30,26,.9));color:#EDE8DA;font-family:var(--font-mono);font-size:10px;padding:16px 7px 6px}
 @media(max-width:720px){.proof-strip{grid-template-columns:1fr}}
 
 @media(max-width:640px){
@@ -505,7 +505,7 @@ fbq('init','1414432007033883');fbq('track','PageView');
 
 
 <!-- ═══ 1기 현장 · 소셜프루프 ═══ -->
-<section style="max-width:1140px;margin:0 auto;padding:42px 24px 10px">
+<section style="max-width:1000px;margin:0 auto;padding:38px 24px 10px">
   <div style="background:#1F1E1A;border:4px solid #1F1E1A;box-shadow:6px 6px 0 rgba(31,30,26,.25)">
     <div style="display:flex;align-items:center;gap:8px;padding:8px 14px;border-bottom:2px solid #3a3833;font-family:'IBM Plex Mono',monospace;font-size:12px;color:#EDE8DA">
       <span style="width:10px;height:10px;border-radius:50%;background:#B85C3E;display:inline-block"></span>
@@ -513,11 +513,11 @@ fbq('init','1414432007033883');fbq('track','PageView');
       <span style="width:10px;height:10px;border-radius:50%;background:#5E8D7A;display:inline-block"></span>
       <span style="margin-left:6px">verbio@labs:~$ ./oneday.sh --replay 1st</span>
     </div>
-    <div style="padding:26px 26px 28px;color:#FAF9F5">
-      <p style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#B99A45;margin:0 0 10px;letter-spacing:.08em">FIELD LOG · 2026-08-01 · 부산 해운대 · 10석 마감</p>
-      <h2 style="font-family:'Gowun Batang',serif;font-size:clamp(22px,3.4vw,32px);margin:0 0 12px;line-height:1.3">원데이 인텐시브 1기 — 이렇게 진행됐습니다</h2>
-      <p style="font-family:'Gowun Batang',serif;font-size:15px;color:#EDE8DA;margin:0 0 20px;line-height:1.7">AI가 처음인 열 분이 하루 만에 각자의 웹페이지·자동화 스킬·노션 연동 견적서 웹까지 만들어 갔습니다. 슬라이드가 아니라 손으로 한 하루.</p>
-      <div class="yt-lite" data-yt="zhe06RzpTOs" role="button" tabindex="0" aria-label="원데이 인텐시브 1기 현장 영상 재생" style="margin-bottom:14px">
+    <div style="padding:22px 22px 24px;color:#FAF9F5">
+      <p style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#B99A45;margin:0 0 8px;letter-spacing:.08em">FIELD LOG · 2026-08-01 · 부산 해운대 · 10석 마감</p>
+      <h2 style="font-family:'Gowun Batang',serif;font-size:clamp(20px,3vw,27px);margin:0 0 10px;line-height:1.3">원데이 인텐시브 1기 — 이렇게 진행됐습니다</h2>
+      <p style="font-family:'Gowun Batang',serif;font-size:14px;color:#EDE8DA;margin:0 0 16px;line-height:1.65">AI가 처음인 열 분이 하루 만에 각자의 웹페이지·자동화 스킬·노션 연동 견적서 웹까지 만들어 갔습니다. 슬라이드가 아니라 손으로 한 하루.</p>
+      <div class="yt-lite" data-yt="zhe06RzpTOs" role="button" tabindex="0" aria-label="원데이 인텐시브 1기 현장 영상 재생" style="max-width:660px;margin:0 auto 12px">
         <img class="yt-thumb" src="/photos/oneday-1.jpg" alt="원데이 인텐시브 1기 현장 영상" loading="lazy" width="1400" height="933">
         <span class="yt-play" aria-hidden="true"></span>
         <span class="yt-cap">▶ 재생 — 원데이 인텐시브 1기 현장 실황 (부산 해운대)</span>
