@@ -64,7 +64,8 @@
       "founder": {
         "@type": "Person",
         "name": "안준영 (Jacob)",
-        "jobTitle": ["Verbio Labs 대표", "메타랩 CTO"]
+        "jobTitle": ["Verbio Labs 대표", "메타랩 CTO"],
+        "description": "부산 기반 AI 제품 개발자 겸 강사. 삼성전자 임직원 200명 AI 세미나, 대학 딥러닝 강의 3년, 부산 지역 교원 대상 AI 활용 연수 진행."
       }
     },
     {
@@ -199,6 +200,32 @@ a.rank-badge:hover{border-color:var(--clay);color:var(--ink)}
 .yt-lite .yt-play::after{content:"";border-style:solid;border-width:13px 0 13px 22px;border-color:transparent transparent transparent #FAF9F5;margin-left:5px}
 .yt-lite .yt-cap{position:absolute;left:0;right:0;bottom:0;background:linear-gradient(transparent,rgba(15,14,12,.92));color:#F6F1E5;font-family:var(--font-mono);font-size:12px;padding:26px 12px 10px}
 .yt-lite iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+
+/* ── 기관 출강 실적 ── */
+.edu-sec{max-width:1140px;margin:0 auto;padding:44px 24px 12px}
+.edu-head{display:flex;align-items:center;gap:14px;margin-bottom:8px;flex-wrap:wrap}
+.edu-head .tag{font-family:var(--font-pixel);font-size:12px;background:var(--moss);color:#FAF9F5;padding:5px 11px;letter-spacing:.08em}
+.edu-head h2{font-size:clamp(20px,2.8vw,27px);font-weight:700}
+.edu-head .rule{flex:1;border-top:2px dotted var(--line);min-width:40px}
+.edu-sub{color:var(--ink-soft);font-size:15px;margin-bottom:24px}
+.edu-grid{display:grid;grid-template-columns:1.45fr 1fr;gap:14px}
+.edu-main{position:relative;border:2px solid var(--ink);box-shadow:6px 6px 0 rgba(31,30,26,.18);overflow:hidden;background:#0F0E0C}
+.edu-main video{display:block;width:100%;aspect-ratio:16/9;object-fit:cover}
+.edu-side{display:grid;grid-template-rows:repeat(2,1fr);gap:14px}
+.edu-cell{position:relative;border:2px solid var(--ink);box-shadow:5px 5px 0 rgba(31,30,26,.15);overflow:hidden;background:#0F0E0C}
+.edu-cell img,.edu-cell video{display:block;width:100%;aspect-ratio:16/9;object-fit:cover;transition:transform .6s cubic-bezier(.2,.7,.3,1)}
+.edu-cell:hover img{transform:scale(1.04)}
+.edu-cap{position:absolute;left:0;right:0;bottom:0;background:linear-gradient(transparent,rgba(15,14,12,.92));color:#F6F1E5;font-family:var(--font-mono);font-size:11.5px;padding:26px 12px 9px}
+.edu-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:14px}
+.edu-meta{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+.edu-chip{font-family:var(--font-mono);font-size:12px;border:1.5px solid var(--ink);background:var(--page);padding:8px 13px}
+.edu-chip b{color:var(--clay-deep)}
+.edu-cta{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-top:20px}
+@media(max-width:780px){
+  .edu-grid{grid-template-columns:1fr}
+  .edu-side{grid-template-rows:none;grid-template-columns:1fr 1fr}
+  .edu-strip{grid-template-columns:1fr}
+}
 .proof-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
 .proof-strip figure{margin:0;position:relative;overflow:hidden;border:2px solid #57544B}
 .proof-strip img{display:block;width:100%;aspect-ratio:3/2;object-fit:cover;transition:transform .5s cubic-bezier(.2,.7,.3,1)}
@@ -419,6 +446,7 @@ fbq('init','1414432007033883');fbq('track','PageView');
       <a href="#products">PRODUCTS</a>
       <a href="/courses">COURSES</a>
       <a href="/bootcamp">BOOTCAMP</a>
+      <a href="#training">연수</a>
       <a href="/claude-guide">전자책</a>
       <a href="/join">CARTEL</a>
       <a href="/my">MY</a>
@@ -505,6 +533,60 @@ fbq('init','1414432007033883');fbq('track','PageView');
     </div>
   </div>
 </section>
+<!-- ═══ 기관 출강 · 교원 연수 ═══ -->
+<section class="edu-sec reveal" id="training">
+  <div class="edu-head">
+    <span class="tag">기관 출강</span>
+    <h2>부산 지역 교원 대상 AI 연수 — 현장 기록</h2>
+    <span class="rule"></span>
+  </div>
+  <p class="edu-sub">학교 선생님들이 실제 업무(공문·가정통신문·수요조사·수업자료)를 들고 오면, 그 자리에서 클로드로 끝내고 갑니다. 사전 설문으로 요구를 받아 커리큘럼을 매번 새로 짭니다.</p>
+
+  <div class="edu-grid">
+    <figure class="edu-main" style="margin:0">
+      <video src="/video/edu-demo.mp4" poster="/video/edu-demo-poster.jpg" muted loop playsinline autoplay preload="none" aria-label="교원 연수 현장 — 실제 서비스 화면을 예시로 설명하는 장면"></video>
+      <figcaption class="edu-cap">직접 만들어 운영 중인 서비스를 예시로 — “가르치는 것을 실제로 만듭니다”</figcaption>
+    </figure>
+    <div class="edu-side">
+      <figure class="edu-cell" style="margin:0">
+        <img src="/photos/edu-coach.jpg" alt="교원 연수 현장 — 강사가 선생님 노트북 옆에서 직접 코칭하는 모습" loading="lazy" width="1280" height="720">
+        <figcaption class="edu-cap">막히면 그 자리에서 — 1:1 코칭</figcaption>
+      </figure>
+      <figure class="edu-cell" style="margin:0">
+        <img src="/photos/edu-lecture.jpg" alt="권한 설정을 설명하는 강의 장면" loading="lazy" width="1280" height="720">
+        <figcaption class="edu-cap">안전하게 쓰는 법부터 — 권한·개인정보</figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <div class="edu-strip">
+    <figure class="edu-cell" style="margin:0">
+      <img src="/photos/edu-room1-sm.jpg" alt="교원 연수 강의실 전경 — 전원 노트북 실습" loading="lazy" width="640" height="360">
+      <figcaption class="edu-cap">전원 실습 · 듣기만 하는 시간 없음</figcaption>
+    </figure>
+    <figure class="edu-cell" style="margin:0">
+      <video src="/video/edu-b1.mp4" muted loop playsinline autoplay preload="none" aria-label="강의실 현장 스케치"></video>
+      <figcaption class="edu-cap">실습 중인 교실</figcaption>
+    </figure>
+    <figure class="edu-cell" style="margin:0">
+      <img src="/photos/edu-room2-sm.jpg" alt="교원 연수 현장 — 각자 노트북으로 실습" loading="lazy" width="640" height="360">
+      <figcaption class="edu-cap">각자 «내 업무»로 실습</figcaption>
+    </figure>
+  </div>
+
+  <div class="edu-meta">
+    <span class="edu-chip">📍 부산 · 교원 대상 <b>AI 활용 연수</b></span>
+    <span class="edu-chip">📝 사전 설문 <b>14명</b> 요구 반영 커리큘럼</span>
+    <span class="edu-chip">🧰 공문·가정통신문 · 수요조사 분석 · <b>연수자료 PPT</b></span>
+    <span class="edu-chip">🏛 삼성전자 임직원 <b>200명</b> AI 세미나 · 대학 딥러닝 강의 <b>3년</b></span>
+  </div>
+
+  <div class="edu-cta">
+    <a class="press-start" href="mailto:lulu066666@gmail.com?subject=%EA%B8%B0%EA%B4%80%20AI%20%EC%97%B0%EC%88%98%20%EB%AC%B8%EC%9D%98&amp;body=%EA%B8%B0%EA%B4%80%EB%AA%85%2F%EC%9D%B8%EC%9B%90%2F%ED%9D%AC%EB%A7%9D%20%EC%9D%BC%EC%A0%95%EC%9D%84%20%EC%A0%81%EC%96%B4%EC%A3%BC%EC%84%B8%EC%9A%94.">▶ 기관·학교 연수 문의</a>
+    <span class="cta-note" style="margin:0">학교 · 교육청 · 기업 대상 출강 · 인원과 목적에 맞춰 커리큘럼을 새로 설계합니다</span>
+  </div>
+</section>
+
 <!-- ═══ 티커 ═══ -->
 <div class="ticker" aria-hidden="true">
   <span class="track">
@@ -861,6 +943,22 @@ document.addEventListener('click',function(e){
   box.innerHTML=''; box.appendChild(f);
   if(typeof vlTrack==='function') vlTrack('play_oneday_video');
 });
+</script>
+<script>
+/* 현장 영상 — 데이터 절약·모션 축소 환경에서는 자동재생 끄고 포스터만 */
+(function(){
+  try{
+    var save=(navigator.connection&&(navigator.connection.saveData||/2g/.test(navigator.connection.effectiveType||'')));
+    var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if(save||reduce){document.querySelectorAll('#training video').forEach(function(v){v.removeAttribute('autoplay');v.pause();v.setAttribute('controls','');});return;}
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){
+      var v=e.target;
+      if(e.isIntersecting){ if(v.dataset.src&&!v.src){v.src=v.dataset.src;} v.play().catch(function(){}); }
+      else v.pause();
+    });},{threshold:.25});
+    document.querySelectorAll('#training video').forEach(function(v){io.observe(v);});
+  }catch(e){}
+})();
 </script>
 </body>
 </html>
