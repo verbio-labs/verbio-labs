@@ -5132,7 +5132,9 @@ async function checkEntitlement(){
   /* 로그인 계정에 구매 권한이 있으면 전권+금고 자동 오픈 (관리자 승인 기반) */
   if(!sbAuth) return;
   try{
+    var _who=''; try{const {data:{session}}=await sbAuth.auth.getSession(); _who=session&&session.user&&session.user.email||'';}catch(e){}
     const {data,error}=await sbAuth.from('entitlements').select('product');
+    try{ authStatusBar(_who, !!(data&&data.length)); }catch(e){}
     if(!error&&data&&data.length){
       const grad=data.some(function(r){return /oneday/i.test(r.product||'');});
       if(grad&&!GATE.oneday){
@@ -5160,6 +5162,21 @@ async function checkEntitlement(){
       }
     }
   }catch(e){}
+}
+
+/* 로그인됐지만 권한이 없을 때 — 침묵 실패 방지 배너 */
+function authStatusBar(email, hasAccess){
+  var old=document.getElementById('auth-status'); if(old) old.remove();
+  if(hasAccess) return;
+  var d=document.createElement('div'); d.id='auth-status';
+  d.style.cssText='position:fixed;left:0;right:0;bottom:0;z-index:950;background:#1F1E1A;border-top:3px solid #D97757;color:#F6F1E5;font-family:var(--font-mono,monospace);font-size:12.5px;padding:11px 46px 11px 14px;line-height:1.6;text-align:center';
+  d.innerHTML='🔒 <b>'+ (email||'') +'</b> 계정으로 로그인됨 — 이 주소에는 아직 열람 권한이 없습니다.<br>'+
+    '<span style="color:#D8D3C4">신청서에 적은 주소와 다르다면, 위 주소를 그대로 </span>'+
+    '<a href="mailto:lulu066666@gmail.com?subject=%EC%A0%84%EC%9E%90%EC%B1%85%20%EC%97%B4%EB%9E%8C%20%EC%9A%94%EC%B2%AD&amp;body='+encodeURIComponent('로그인한 이메일: '+(email||''))+'" style="color:#E7C46B">담당자에게 전달</a>'+
+    '<span style="color:#D8D3C4">하시면 바로 열어드립니다.</span>'+
+    '<button onclick="navigator.clipboard&&navigator.clipboard.writeText(\''+(email||'')+'\');this.textContent=\'복사됨\'" style="margin-left:10px;background:#D97757;color:#FAF9F5;border:0;padding:5px 10px;font-family:inherit;font-size:11.5px;cursor:pointer">주소 복사</button>'+
+    '<button onclick="document.getElementById(\'auth-status\').remove()" aria-label="닫기" style="position:absolute;right:8px;top:50%;transform:translateY(-50%);background:none;border:0;color:#8A8474;font-size:16px;cursor:pointer;padding:4px 8px">✕</button>';
+  document.body.appendChild(d);
 }
 function authWho(email){
   var nav=document.querySelector('.termbar nav'); if(!nav||document.getElementById('auth-out'))return;
