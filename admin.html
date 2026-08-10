@@ -248,5 +248,47 @@ async function loadCredits(){
 }
 setTimeout(loadCredits, 1500);
 </script>
+
+<!-- 기관 연수 문의함 -->
+<section style="max-width:900px;margin:30px auto;padding:0 16px" id="inq-sec">
+  <h2 style="font-size:16px;margin-bottom:6px">🏛 기관·학교 연수 문의 <span id="inq-count" style="font-size:12px;color:#8A8474"></span></h2>
+  <p style="font-size:12px;color:#8A8474;margin-bottom:10px">메인 페이지 연수 문의 폼으로 접수된 건입니다. 「완료」를 누르면 처리됨으로 표시됩니다.</p>
+  <div id="inq-list" style="font-size:13px">불러오는 중…</div>
+</section>
+<script>
+async function loadInquiries(){
+  try{
+    const {data,error}=await sb.from('inquiries').select('*').order('created_at',{ascending:false}).limit(50);
+    const box=document.getElementById('inq-list');
+    if(error){box.textContent='불러오기 실패: '+error.message;return;}
+    if(!data||!data.length){box.textContent='아직 접수된 문의가 없습니다.';return;}
+    document.getElementById('inq-count').textContent='· 총 '+data.length+'건 (신규 '+data.filter(x=>x.status==='신규').length+')';
+    box.innerHTML=data.map(function(q){
+      var isNew=q.status==='신규';
+      return '<div style="border:1.5px solid '+(isNew?'#D97757':'#CFC7B4')+';background:'+(isNew?'#FFF7F2':'#fff')+';padding:12px 14px;margin-bottom:10px">'
+       +'<div style="display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap">'
+       +'<b style="font-size:14px">'+esc(q.org)+' · '+esc(q.contact_name)+'</b>'
+       +'<span style="font-size:12px;color:#8A8474">'+(q.created_at||'').slice(0,16).replace('T',' ')+' · '+esc(q.status)+'</span></div>'
+       +'<div style="margin-top:6px;line-height:1.75">'
+       +'📞 <b>'+esc(q.contact)+'</b>'
+       +(q.headcount?' · 👥 '+esc(q.headcount):'')
+       +(q.target?' · 🎯 '+esc(q.target):'')
+       +(q.preferred_date?' · 📅 '+esc(q.preferred_date):'')
+       +(q.message?'<br><span style="color:#5C5749">💬 '+esc(q.message)+'</span>':'')
+       +'</div>'
+       +(isNew?'<button onclick="doneInquiry(\''+q.id+'\')" style="margin-top:8px;padding:6px 12px;background:#1F1E1A;color:#F6F1E5;border:none;cursor:pointer;font-size:12px">완료 처리</button>':'')
+       +'</div>';
+    }).join('');
+  }catch(e){}
+}
+function esc(t){return String(t==null?'':t).replace(/&/g,'&amp;').replace(/</g,'&lt;');}
+async function doneInquiry(id){
+  const {error}=await sb.from('inquiries').update({status:'처리완료'}).eq('id',id);
+  if(error){alert('실패: '+error.message);return;}
+  loadInquiries();
+}
+setTimeout(loadInquiries, 1600);
+</script>
+
 </body>
 </html>

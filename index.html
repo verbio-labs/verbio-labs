@@ -232,6 +232,26 @@ a.rank-badge:hover{border-color:var(--clay);color:var(--ink)}
 .motion-off .reveal{opacity:1!important;transform:none!important}
 #motion-toggle:hover{border-color:var(--clay);color:var(--clay)}
 @media(max-width:640px){#motion-toggle{font-size:12px;padding:6px 9px;right:8px;bottom:8px}}
+
+/* ── 기관 연수 문의 폼 ── */
+.inq{max-width:640px;margin:22px auto 0;background:var(--page);border:2px solid var(--ink);box-shadow:6px 6px 0 rgba(31,30,26,.18);padding:22px}
+.inq h3{font-family:var(--font-body);font-size:19px;margin:0 0 4px}
+.inq .sub{font-family:var(--font-mono);font-size:12.5px;color:var(--ink-soft);margin-bottom:16px}
+.inq .row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.inq label{display:block;font-family:var(--font-mono);font-size:12.5px;color:var(--ink-soft);margin:10px 0 5px}
+.inq input,.inq select,.inq textarea{width:100%;font-family:var(--font-body);font-size:15px;padding:11px 12px;border:1.5px solid var(--line);background:#fff;color:var(--ink);border-radius:2px}
+.inq input:focus,.inq select:focus,.inq textarea:focus{outline:none;border-color:var(--clay);box-shadow:0 0 0 2px rgba(217,119,87,.18)}
+.inq textarea{min-height:88px;resize:vertical}
+.inq .bad{border-color:#C24C3B!important;box-shadow:0 0 0 1px #C24C3B}
+.inq .send{width:100%;margin-top:16px;background:var(--clay);color:var(--page);border:2px solid var(--ink);box-shadow:4px 4px 0 var(--ink);font-family:var(--font-mono);font-weight:700;font-size:15px;padding:14px;cursor:pointer}
+.inq .send:hover{transform:translate(2px,2px);box-shadow:2px 2px 0 var(--ink)}
+.inq .send:disabled{opacity:.6;cursor:default;transform:none}
+.inq .note{font-family:var(--font-mono);font-size:12px;color:var(--ink-soft);margin-top:10px;text-align:center}
+.inq .done{display:none;text-align:center;padding:14px 6px}
+.inq.sent .form-body{display:none}
+.inq.sent .done{display:block}
+.inq .done b{color:var(--clay-deep);font-size:17px}
+@media(max-width:640px){.inq .row{grid-template-columns:1fr}}
 .proof-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;max-width:820px;margin:0 auto}
 .proof-strip figure{margin:0;position:relative;overflow:hidden;border:2px solid #57544B}
 .proof-strip img{display:block;width:100%;aspect-ratio:16/9;object-fit:cover;transition:transform .5s cubic-bezier(.2,.7,.3,1)}
@@ -556,9 +576,35 @@ fbq('init','1414432007033883');fbq('track','PageView');
     <span class="edu-chip">🏛 삼성전자 임직원 <b>200명</b> AI 세미나 · 대학 딥러닝 강의 <b>3년</b></span>
   </div>
 
-  <div class="edu-cta">
-    <a class="press-start" href="mailto:lulu066666@gmail.com?subject=%EA%B8%B0%EA%B4%80%20AI%20%EC%97%B0%EC%88%98%20%EB%AC%B8%EC%9D%98&amp;body=%EA%B8%B0%EA%B4%80%EB%AA%85%2F%EC%9D%B8%EC%9B%90%2F%ED%9D%AC%EB%A7%9D%20%EC%9D%BC%EC%A0%95%EC%9D%84%20%EC%A0%81%EC%96%B4%EC%A3%BC%EC%84%B8%EC%9A%94.">▶ 기관·학교 연수 문의</a>
-    <span class="cta-note" style="margin:0">학교 · 교육청 · 기업 출강 — 인원과 목적에 맞춰 커리큘럼을 새로 설계합니다</span>
+
+  <div class="inq reveal" id="inq">
+    <div class="form-body">
+      <h3>기관·학교 연수 문의</h3>
+      <p class="sub">$ ./request_training.sh — 1분이면 충분합니다. 확인 후 직접 연락드립니다.</p>
+      <div class="row">
+        <div><label for="iq-org">기관·학교명 *</label><input id="iq-org" type="text" placeholder="예) 부산○○초등학교" autocomplete="organization"></div>
+        <div><label for="iq-name">담당자 성함 *</label><input id="iq-name" type="text" placeholder="예) 김선생" autocomplete="name"></div>
+      </div>
+      <div class="row">
+        <div><label for="iq-contact">연락처 (이메일 또는 전화) *</label><input id="iq-contact" type="text" placeholder="예) teacher@school.kr / 010-0000-0000"></div>
+        <div><label for="iq-head">예상 인원</label><input id="iq-head" type="text" placeholder="예) 15명"></div>
+      </div>
+      <div class="row">
+        <div><label for="iq-target">대상</label>
+          <select id="iq-target">
+            <option>교원 · 학교</option><option>공무원 · 기관</option><option>기업 임직원</option><option>학생</option><option>기타</option>
+          </select></div>
+        <div><label for="iq-date">희망 일정</label><input id="iq-date" type="text" placeholder="예) 10월 중 평일 오전 4시간"></div>
+      </div>
+      <label for="iq-msg">특별히 다루고 싶은 업무가 있다면</label>
+      <textarea id="iq-msg" placeholder="예) 공문·가정통신문 작성, 설문 결과 정리, 연수자료 PPT 만들기"></textarea>
+      <button type="button" class="send" id="iq-send">문의 보내기 ▶</button>
+      <p class="note">보내주시면 사전 설문 링크와 함께 커리큘럼 초안을 회신드립니다 · 문의는 무료입니다</p>
+    </div>
+    <div class="done">
+      <p><b>접수되었습니다 ✔</b></p>
+      <p style="margin-top:8px;font-size:14px;color:var(--ink-soft);line-height:1.7">담당자가 확인 후 <b>영업일 기준 1~2일 내</b>로 연락드리겠습니다.<br>급하신 경우 lulu066666@gmail.com 으로 바로 연락 주세요.</p>
+    </div>
   </div>
 </section>
 
@@ -711,7 +757,7 @@ fbq('init','1414432007033883');fbq('track','PageView');
         <div class="toc-body">
           <span class="toc-file">2026/teacher_training.log</span>
           <span class="toc-title">교원 · 기관 연수 · 학교와 교육청으로 갑니다.</span>
-          <span class="toc-desc">사전 설문으로 참가자의 실제 업무를 받아 커리큘럼을 매번 새로 설계합니다. 공문·가정통신문·수요조사 분석·연수자료 PPT — 그날 만들어서 들고 갑니다. <a href="#training">현장 기록 ▸</a> · <a href="mailto:lulu066666@gmail.com?subject=%EA%B8%B0%EA%B4%80%20AI%20%EC%97%B0%EC%88%98%20%EB%AC%B8%EC%9D%98">연수 문의 ▸</a></span>
+          <span class="toc-desc">사전 설문으로 참가자의 실제 업무를 받아 커리큘럼을 매번 새로 설계합니다. 공문·가정통신문·수요조사 분석·연수자료 PPT — 그날 만들어서 들고 갑니다. <a href="#training">현장 기록 ▸</a> · <a href="#inq">연수 문의 ▸</a></span>
         </div>
         <div class="toc-meta"><span class="ok">✔ 2026</span><br>부산시청 · 교원</div>
       </div>
@@ -992,5 +1038,35 @@ document.addEventListener('click',function(e){
   }catch(e){}
 })();
 </script>
+<script>
+/* 기관 연수 문의 폼 → Supabase */
+(function(){
+  var URL_='https://kpqrvvfcirkxlihcibqr.supabase.co', KEY_='sb_publishable__ywsnui3UjB6Xls94pmbTQ_c13LyARM';
+  var btn=document.getElementById('iq-send'); if(!btn) return;
+  function v(id){var el=document.getElementById(id); return el?el.value.trim():'';}
+  function mark(id,bad){var el=document.getElementById(id); if(el)el.classList.toggle('bad',!!bad); return !bad;}
+  btn.addEventListener('click',function(){
+    var ok=true;
+    ok=mark('iq-org', !v('iq-org'))&&ok;
+    ok=mark('iq-name', !v('iq-name'))&&ok;
+    ok=mark('iq-contact', !v('iq-contact'))&&ok;
+    if(!ok){ alert('기관명 · 담당자 성함 · 연락처는 꼭 필요합니다.'); return; }
+    btn.disabled=true; btn.textContent='보내는 중…';
+    fetch(URL_+'/rest/v1/inquiries',{method:'POST',
+      headers:{apikey:KEY_,Authorization:'Bearer '+KEY_,'Content-Type':'application/json',Prefer:'return=minimal'},
+      body:JSON.stringify({org:v('iq-org'),contact_name:v('iq-name'),contact:v('iq-contact'),
+        headcount:v('iq-head'),target:v('iq-target'),preferred_date:v('iq-date'),message:v('iq-msg')})
+    }).then(function(r){
+      if(!r.ok) throw new Error('fail');
+      document.getElementById('inq').classList.add('sent');
+      document.getElementById('inq').scrollIntoView({behavior:'smooth',block:'center'});
+      if(typeof vlTrack==='function') vlTrack('inquiry_training');
+      if(typeof fbq!=='undefined') fbq('track','Lead');
+    }).catch(function(){
+      btn.disabled=false; btn.textContent='문의 보내기 ▶';
+      alert('전송에 실패했습니다. lulu066666@gmail.com 으로 보내주시면 바로 확인하겠습니다.');
+    });
+  });
+})();</script>
 </body>
 </html>
