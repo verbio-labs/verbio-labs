@@ -25,7 +25,7 @@
 
 ## 회사 정보
 
-- 대표 실적: AI 스타트업 메타랩 CTO(현), 대학 딥러닝 강의 3년, 삼성전자 임직원 200명 AI 세미나, 부산 지역 교원 대상 AI 활용 연수(사전 설문 기반 맞춤 커리큘럼), 식빵영어 누적 수강생 4,000+, 직시(Jiksi, 국회 감시 앱 · App Store 뉴스 카테고리 10위 · iOS·Android 양대 스토어 출시), SpeakCoach AI 월 매출 ₩20M+, TopikIQ iOS·Android 배포.
+- 대표 실적: AI 스타트업 메타랩 CTO(현), 대학 딥러닝 강의 3년, 삼성전자 임직원 200명 AI 세미나, 부산시청 교원 연수(사전 설문 기반 맞춤 커리큘럼), 식빵영어 누적 수강생 4,000+, 직시(Jiksi, 국회 감시 앱 · App Store 뉴스 카테고리 10위 · iOS·Android 양대 스토어 출시), SpeakCoach AI 월 매출 ₩20M+, TopikIQ iOS·Android 배포.
 - 운영 제품: SpeakCoach AI(OPIc 영어 말하기 코치), TopikIQ(외국인용 한국어 학습 앱), Sikbang English(영어 교육).
 - 문의: lulu066666@gmail.com
 
