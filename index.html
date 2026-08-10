@@ -137,7 +137,7 @@ a{color:var(--clay-deep)}
 .termbar nav a:hover{color:var(--clay);border-bottom-color:var(--clay)}
 .cursor{display:inline-block;width:8px;height:15px;background:var(--clay);vertical-align:-2px;animation:blink 1.05s steps(1) infinite}
 @keyframes blink{50%{opacity:0}}
-.sfx-btn{font-family:var(--font-pixel);font-size:11px;background:transparent;color:#D8D3C4;border:1px solid #57544B;padding:3px 9px;cursor:pointer;letter-spacing:.05em}
+.sfx-btn{font-family:var(--font-pixel);font-size:12.5px;background:transparent;color:#D8D3C4;border:1px solid #57544B;padding:3px 9px;cursor:pointer;letter-spacing:.05em}
 .sfx-btn:hover{border-color:var(--clay);color:var(--clay)}
 .sfx-btn.off{color:#78736A;text-decoration:line-through}
 @media(max-width:834px){
@@ -151,12 +151,12 @@ a{color:var(--clay-deep)}
 
 /* ── 히어로 ── */
 .hero{padding:74px 0 50px;text-align:center;position:relative;overflow:hidden}
-.hero .float-px{position:absolute;font-family:var(--font-pixel);color:var(--clay);opacity:.35;user-select:none;pointer-events:none;animation:floaty 7s ease-in-out infinite}
+.hero .float-px{position:absolute;font-family:var(--font-pixel);color:var(--clay);opacity:.22;user-select:none;pointer-events:none}
 .hero .float-px:nth-child(2){animation-delay:-2s;color:var(--moss)}
 .hero .float-px:nth-child(3){animation-delay:-4s;color:var(--gold)}
 .hero .float-px:nth-child(4){animation-delay:-5.5s}
 @keyframes floaty{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-16px) rotate(6deg)}}
-.stamp{position:absolute;top:40px;right:4%;transform:rotate(8deg);border:2px dashed var(--clay);color:var(--clay);font-family:var(--font-pixel);font-size:11px;line-height:1.5;padding:10px 12px;text-align:center;opacity:.85;pointer-events:none}
+.stamp{position:absolute;top:40px;right:4%;transform:rotate(8deg);border:2px dashed var(--clay);color:var(--clay);font-family:var(--font-pixel);font-size:12.5px;line-height:1.5;padding:10px 12px;text-align:center;opacity:.85;pointer-events:none}
 @media(max-width:760px){.stamp{display:none}}
 .hero .ascii{font-family:var(--font-mono);font-size:clamp(6px,1.4vw,10.5px);line-height:1.25;color:var(--clay);white-space:pre;margin-bottom:26px;user-select:none;text-shadow:3px 3px 0 rgba(217,119,87,.15)}
 .hero .edition{font-family:var(--font-mono);font-size:12px;letter-spacing:.35em;color:var(--ink-soft);text-transform:uppercase;margin-bottom:14px}
@@ -173,10 +173,10 @@ a{color:var(--clay-deep)}
 .rank-badge b{color:var(--clay-deep)}
 a.rank-badge:hover{border-color:var(--clay);color:var(--ink)}
 .press-start{
-  display:inline-block;font-family:var(--font-arcade);font-size:11px;
+  display:inline-block;font-family:var(--font-arcade);font-size:12.5px;
   background:var(--clay);color:var(--page);padding:16px 26px;border:2px solid var(--ink);
   box-shadow:5px 5px 0 var(--ink);text-decoration:none;cursor:pointer;
-  transition:transform .05s,box-shadow .05s;animation:pulse 2.4s ease-in-out infinite;
+  transition:transform .05s,box-shadow .05s;
 }
 .press-start:hover{transform:translate(2px,2px);box-shadow:3px 3px 0 var(--ink)}
 .press-start:active{transform:translate(5px,5px);box-shadow:0 0 0 var(--ink)}
@@ -215,23 +215,28 @@ a.rank-badge:hover{border-color:var(--clay);color:var(--ink)}
 .edu-cell.main{box-shadow:6px 6px 0 rgba(31,30,26,.18)}
 .edu-cell>img,.edu-cell>video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s cubic-bezier(.2,.7,.3,1)}
 .edu-cell:hover>img{transform:scale(1.04)}
-.edu-cap{position:absolute;left:0;right:0;bottom:0;background:linear-gradient(transparent,rgba(15,14,12,.92));color:#F6F1E5;font-family:var(--font-mono);font-size:11px;padding:22px 10px 8px;line-height:1.45}
+.edu-cap{position:absolute;left:0;right:0;bottom:0;background:linear-gradient(transparent,rgba(15,14,12,.92));color:#F6F1E5;font-family:var(--font-mono);font-size:12.5px;padding:22px 10px 8px;line-height:1.45}
 .edu-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:12px}
 .edu-meta{display:flex;flex-wrap:wrap;gap:9px;margin-top:18px}
-.edu-chip{font-family:var(--font-mono);font-size:11.5px;border:1.5px solid var(--ink);background:var(--page);padding:7px 12px}
+.edu-chip{font-family:var(--font-mono);font-size:12.5px;border:1.5px solid var(--ink);background:var(--page);padding:7px 12px}
 .edu-chip b{color:var(--clay-deep)}
 .edu-cta{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-top:20px}
 @media(max-width:820px){
   .edu-grid{grid-template-columns:1fr}
   .edu-side{grid-template-rows:none;grid-template-columns:1fr 1fr}
   .edu-strip{grid-template-columns:1fr 1fr}
-  .edu-cap{font-size:10px}
+  .edu-cap{font-size:12px}
 }
+
+.motion-off .ticker .track,.motion-off .cursor,.motion-off .press-start,.motion-off .live{animation:none!important}
+.motion-off .reveal{opacity:1!important;transform:none!important}
+#motion-toggle:hover{border-color:var(--clay);color:var(--clay)}
+@media(max-width:640px){#motion-toggle{font-size:12px;padding:6px 9px;right:8px;bottom:8px}}
 .proof-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;max-width:820px;margin:0 auto}
 .proof-strip figure{margin:0;position:relative;overflow:hidden;border:2px solid #57544B}
 .proof-strip img{display:block;width:100%;aspect-ratio:16/9;object-fit:cover;transition:transform .5s cubic-bezier(.2,.7,.3,1)}
 .proof-strip figure:hover img{transform:scale(1.04)}
-.proof-strip figcaption{position:absolute;left:0;right:0;bottom:0;background:linear-gradient(transparent,rgba(31,30,26,.9));color:#EDE8DA;font-family:var(--font-mono);font-size:10px;padding:16px 7px 6px}
+.proof-strip figcaption{position:absolute;left:0;right:0;bottom:0;background:linear-gradient(transparent,rgba(31,30,26,.9));color:#EDE8DA;font-family:var(--font-mono);font-size:12px;padding:16px 7px 6px}
 @media(max-width:720px){.proof-strip{grid-template-columns:1fr}}
 
 @media(max-width:640px){
@@ -246,7 +251,7 @@ a.rank-badge:hover{border-color:var(--clay);color:var(--ink)}
 .status-window .cell{padding:18px 12px;text-align:center;border-right:1.5px dashed var(--line)}
 .status-window .cell:last-child{border-right:none}
 .status-window .num{font-family:var(--font-pixel);font-size:22px;color:var(--clay);display:block}
-.status-window .lbl{font-family:var(--font-mono);font-size:11px;color:var(--ink-soft);letter-spacing:.06em}
+.status-window .lbl{font-family:var(--font-mono);font-size:12.5px;color:var(--ink-soft);letter-spacing:.06em}
 @media(max-width:640px){
   .status-window{grid-template-columns:repeat(2,1fr)}
   .status-window .cell:nth-child(2){border-right:none}
@@ -255,7 +260,7 @@ a.rank-badge:hover{border-color:var(--clay);color:var(--ink)}
 
 /* ── 티커 ── */
 .ticker{border-top:1.5px solid var(--ink);border-bottom:1.5px solid var(--ink);background:var(--kraft);overflow:hidden;white-space:nowrap;padding:8px 0;font-family:var(--font-pixel);font-size:12.5px;color:var(--ink-soft);letter-spacing:.08em;user-select:none}
-.ticker .track{display:inline-block;animation:ticker 30s linear infinite}
+.ticker .track{display:inline-block;animation:ticker 60s linear infinite}
 .ticker .hl{color:var(--clay)}
 @keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
@@ -291,13 +296,13 @@ section.block{padding:74px 0 10px}
 .cart-body h3 .en{font-family:var(--font-mono);font-size:13px;font-weight:400;color:var(--ink-soft);display:block;letter-spacing:.04em}
 .cart-body .desc{font-size:15.5px;color:var(--ink-soft);margin:10px 0 16px}
 .pxtags{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:18px}
-.pxtags span{font-family:var(--font-mono);font-size:11px;border:1px solid var(--line);background:var(--kraft);padding:2.5px 9px;color:var(--ink-soft)}
+.pxtags span{font-family:var(--font-mono);font-size:12.5px;border:1px solid var(--line);background:var(--kraft);padding:2.5px 9px;color:var(--ink-soft)}
 .pxtags .hot{border-color:var(--clay);color:var(--clay-deep);background:#F7EBE4}
 .cart-sum{display:flex;border:1.5px solid var(--ink);margin:4px 0 18px;text-align:center;background:var(--page)}
 .cart-sum .cell{flex:1;padding:13px 8px;border-right:1.5px dashed var(--line)}
 .cart-sum .cell:last-child{border-right:none}
 .cart-sum .big{font-family:var(--font-pixel);font-size:19px;color:var(--clay);display:block}
-.cart-sum .sm{font-family:var(--font-mono);font-size:11px;color:var(--ink-soft)}
+.cart-sum .sm{font-family:var(--font-mono);font-size:12.5px;color:var(--ink-soft)}
 .cart-links{display:flex;gap:10px;flex-wrap:wrap}
 .cart-links a{
   font-family:var(--font-mono);font-size:12.5px;font-weight:600;text-decoration:none;
@@ -306,7 +311,7 @@ section.block{padding:74px 0 10px}
 }
 .cart-links a:hover{transform:translate(1px,1px);box-shadow:2px 2px 0 var(--ink)}
 .cart-links a.primary{background:var(--clay);color:var(--page)}
-.cart-note{font-family:var(--font-mono);font-size:11.5px;color:var(--ink-soft);margin-top:12px}
+.cart-note{font-family:var(--font-mono);font-size:12.5px;color:var(--ink-soft);margin-top:12px}
 /* SpeakCoach 인용부 */
 .sc-quote{
   border:1.5px dashed var(--line);background:var(--kraft);padding:20px 22px;
@@ -314,13 +319,13 @@ section.block{padding:74px 0 10px}
 }
 .sc-quote .q{font-size:19px;font-weight:700;margin-bottom:4px}
 .sc-quote .q em{font-style:normal;background:linear-gradient(transparent 62%,#F3D9A6 62%);padding:0 2px;color:var(--clay-deep)}
-.sc-quote .mic{font-family:var(--font-pixel);font-size:11px;color:var(--ink-soft);letter-spacing:.1em}
+.sc-quote .mic{font-family:var(--font-pixel);font-size:12.5px;color:var(--ink-soft);letter-spacing:.1em}
 .xpbar{margin-top:10px;display:flex;align-items:center;gap:10px}
-.xpbar .lbl{font-family:var(--font-mono);font-size:11px;color:var(--ink-soft);min-width:110px}
+.xpbar .lbl{font-family:var(--font-mono);font-size:12.5px;color:var(--ink-soft);min-width:110px}
 .xpbar .track{flex:1;height:12px;border:1.5px solid var(--ink);background:var(--page);padding:2px}
 .xpbar .fill{height:100%;background:repeating-linear-gradient(90deg,var(--gold) 0 6px,#D9BE6B 6px 12px)}
-.xpbar .pct{font-family:var(--font-pixel);font-size:11px;color:var(--ink-soft);min-width:46px;text-align:right}
-@media(max-width:640px){.xpbar .lbl{min-width:90px;font-size:10px}}
+.xpbar .pct{font-family:var(--font-pixel);font-size:12.5px;color:var(--ink-soft);min-width:46px;text-align:right}
+@media(max-width:640px){.xpbar .lbl{min-width:90px;font-size:12px}}
 /* TopikIQ 한글 분해 */
 .jamo{
   border:1.5px dashed var(--line);background:var(--kraft);padding:18px 22px;margin:4px 0 18px;
@@ -355,17 +360,17 @@ section.block{padding:74px 0 10px}
 .toc-item:hover{background:var(--kraft)}
 .toc-idx{font-family:var(--font-pixel);font-size:13px;color:var(--clay);width:38px;flex-shrink:0}
 .toc-body{flex:1;min-width:0}
-.toc-file{font-family:var(--font-mono);font-size:11.5px;color:var(--ink-soft);display:block;margin-bottom:2px}
+.toc-file{font-family:var(--font-mono);font-size:12.5px;color:var(--ink-soft);display:block;margin-bottom:2px}
 .toc-title{font-size:17px;font-weight:700;line-height:1.5}
 .toc-desc{font-size:13.5px;color:var(--ink-soft)}
 .toc-desc a{font-family:var(--font-mono);font-size:12px}
-.toc-meta{font-family:var(--font-mono);font-size:11px;color:var(--ink-soft);flex-shrink:0;text-align:right;line-height:1.9}
+.toc-meta{font-family:var(--font-mono);font-size:12.5px;color:var(--ink-soft);flex-shrink:0;text-align:right;line-height:1.9}
 .toc-meta .ok{color:var(--moss)}
 @media(max-width:600px){.toc-meta{display:none}}
 
 /* ── 연구노트 (교육 철학 인용) ── */
 .fieldnote{margin:44px 0 0;background:var(--kraft);border:1.5px solid var(--ink);border-left:8px solid var(--clay);padding:24px 28px;box-shadow:5px 5px 0 rgba(31,30,26,.12);position:relative}
-.fieldnote::before{content:"NOTE";position:absolute;top:-11px;left:18px;font-family:var(--font-pixel);font-size:11px;background:var(--clay);color:var(--page);padding:2px 10px}
+.fieldnote::before{content:"NOTE";position:absolute;top:-11px;left:18px;font-family:var(--font-pixel);font-size:12.5px;background:var(--clay);color:var(--page);padding:2px 10px}
 .fieldnote p{font-size:15.5px}
 .fieldnote .sign{display:block;text-align:right;margin-top:10px;font-family:var(--font-mono);font-size:12.5px;color:var(--ink-soft)}
 
@@ -384,11 +389,11 @@ section.block{padding:74px 0 10px}
 .guild .pillars{display:grid;grid-template-columns:1fr 1fr;gap:14px;max-width:640px;margin:24px auto 28px;text-align:left}
 @media(max-width:640px){.guild .pillars{grid-template-columns:1fr}}
 .guild .pillar{border:1.5px dashed #57544B;padding:16px 18px}
-.guild .pillar .pl{font-family:var(--font-pixel);font-size:11px;color:var(--gold);letter-spacing:.1em;margin-bottom:8px}
+.guild .pillar .pl{font-family:var(--font-pixel);font-size:12.5px;color:var(--gold);letter-spacing:.1em;margin-bottom:8px}
 .guild .pillar p{font-size:13.5px;margin:0;color:#D8D3C4}
 .guild .pillar em{font-style:normal;color:var(--clay)}
 .guild .join{
-  display:inline-block;font-family:var(--font-arcade);font-size:11px;
+  display:inline-block;font-family:var(--font-arcade);font-size:12.5px;
   background:var(--clay);color:var(--page);border:2px solid var(--page);
   padding:14px 22px;text-decoration:none;letter-spacing:.06em;
 }
@@ -405,7 +410,7 @@ footer ul{list-style:none}
 footer li{margin-bottom:5px}
 footer a{color:var(--ink-soft);text-decoration:none}
 footer a:hover{color:var(--clay)}
-.legal{border-top:1.5px dashed var(--line);border-bottom:1.5px dashed var(--line);padding:14px 0;margin-bottom:20px;font-size:11.5px;line-height:2}
+.legal{border-top:1.5px dashed var(--line);border-bottom:1.5px dashed var(--line);padding:14px 0;margin-bottom:20px;font-size:12.5px;line-height:2}
 .legal b{color:var(--ink);font-weight:600}
 footer .bottom{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:center}
 footer .logo{font-family:var(--font-pixel);font-size:14px;color:var(--ink)}
@@ -413,6 +418,7 @@ footer .logo .dot{color:var(--clay)}
 footer .barcode{width:110px;height:30px;background:repeating-linear-gradient(90deg,var(--ink) 0 2px,transparent 2px 4px,var(--ink) 4px 5px,transparent 5px 9px,var(--ink) 9px 12px,transparent 12px 14px);position:relative}
 footer .barcode::after{content:"NO.20260705";position:absolute;bottom:-16px;left:0;font-size:9px;letter-spacing:.2em}
 @media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}
   .hero .float-px,.press-start,.ticker .track,.cursor{animation:none!important}
 }
 </style>
@@ -486,19 +492,17 @@ fbq('init','1414432007033883');fbq('track','PageView');
     <br>
     <div class="hero-cta">
       <a class="press-start" href="/bootcamp" onclick="typeof fbq!=='undefined'&&fbq('track','ViewContent')">▶ 주말 빌드 캠프 — 내 서비스 출시</a>
-      <a class="btn-ghost" href="/oneday">원데이 2기 대기 ▸</a>
-      <a class="btn-ghost" href="/starter-kit">스타터 킷 ▸</a>
-      <a class="btn-ghost" href="#products">Explore ▸</a>
+      <a class="btn-ghost" href="#training">기관·학교 연수 문의 ▸</a>
     </div>
     <p class="cta-note">부산 9/5~6 예정 · 소수 정예 6~8명 · 사전 등록 순 우선 안내</p>
     <p class="coin">INSERT COIN 필요 없음 · 부산에서 제작 · SINCE SIKBANG ENGLISH</p>
 
     <!-- By the numbers → 스테이터스 윈도우 -->
     <div class="status-window reveal" role="list">
-      <div class="cell" role="listitem"><span class="num">3</span><span class="lbl">AI PRODUCTS</span></div>
-      <div class="cell" role="listitem"><span class="num">200명</span><span class="lbl">ENGINEERS @ SAMSUNG</span></div>
-      <div class="cell" role="listitem"><span class="num">4,000+</span><span class="lbl">누적 수강생 · 3YRS</span></div>
-      <div class="cell" role="listitem"><span class="num">TOP 10</span><span class="lbl">직시 · APP STORE 뉴스</span></div>
+      <div class="cell" role="listitem"><span class="num">3</span><span class="lbl">AI 제품 운영</span></div>
+      <div class="cell" role="listitem"><span class="num">200명</span><span class="lbl">삼성전자 임직원 세미나</span></div>
+      <div class="cell" role="listitem"><span class="num">4,000+</span><span class="lbl">누적 수강생 · 3년</span></div>
+      <div class="cell" role="listitem"><span class="num">부산시청</span><span class="lbl">교원 연수 출강 · 2026</span></div>
     </div>
   </div>
 </section>
@@ -748,7 +752,7 @@ fbq('init','1414432007033883');fbq('track','PageView');
       <span style="margin-left:6px">verbio@labs:~$ ./oneday.sh --replay 1st</span>
     </div>
     <div style="padding:22px 22px 24px;color:#FAF9F5">
-      <p style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#B99A45;margin:0 0 8px;letter-spacing:.08em">FIELD LOG · 2026-08-01 · 부산 해운대 · 10석 마감</p>
+      <p style="font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:#B99A45;margin:0 0 8px;letter-spacing:.08em">FIELD LOG · 2026-08-01 · 부산 해운대 · 10석 마감</p>
       <h2 style="font-family:'Gowun Batang',serif;font-size:clamp(20px,3vw,27px);margin:0 0 10px;line-height:1.3">원데이 인텐시브 1기 — 이렇게 진행됐습니다</h2>
       <p style="font-family:'Gowun Batang',serif;font-size:14px;color:#EDE8DA;margin:0 0 16px;line-height:1.65">AI가 처음인 열 분이 하루 만에 각자의 웹페이지·자동화 스킬·노션 연동 견적서 웹까지 만들어 갔습니다. 슬라이드가 아니라 손으로 한 하루.</p>
       <div class="yt-lite" data-yt="zhe06RzpTOs" role="button" tabindex="0" aria-label="원데이 인텐시브 1기 현장 영상 재생" style="max-width:660px;margin:0 auto 12px">
@@ -917,7 +921,7 @@ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
     <div style="padding:22px 22px 20px;text-align:center">
       <div style="font-size:34px;margin-bottom:8px">💬</div>
       <p style="font-family:'Galmuri11','IBM Plex Mono',monospace;font-size:16px;font-weight:700;color:#1F1E1A;margin:0 0 10px;line-height:1.5">채널 추가하면<br>LV.2 보너스 스테이지가 열립니다</p>
-      <p style="font-size:13px;color:#5C5749;margin:0 0 16px;line-height:1.7">환영 메시지로 <b>전자책 보너스 코드</b>가 바로 오고,<br>새 챕터·프롬프트 드랍 소식을 가장 먼저 받아요.<br><span style="color:#8A8474;font-size:11.5px">스팸 없음 · 언제든 차단 가능</span></p>
+      <p style="font-size:13px;color:#5C5749;margin:0 0 16px;line-height:1.7">환영 메시지로 <b>전자책 보너스 코드</b>가 바로 오고,<br>새 챕터·프롬프트 드랍 소식을 가장 먼저 받아요.<br><span style="color:#8A8474;font-size:12.5px">스팸 없음 · 언제든 차단 가능</span></p>
       <a href="https://pf.kakao.com/_xebtPX" target="_blank" rel="noopener" onclick="vlKakaoClose(true)" style="display:block;background:#FEE500;color:#1F1E1A;border:2px solid #1F1E1A;box-shadow:4px 4px 0 rgba(31,30,26,.4);padding:13px;font-family:'Galmuri11','IBM Plex Mono',monospace;font-size:14px;font-weight:700;text-decoration:none;margin-bottom:10px">💬 카카오 채널 친구추가 →</a>
       <button onclick="vlKakaoClose(false)" style="background:none;border:0;color:#8A8474;font-size:12px;cursor:pointer;text-decoration:underline">오늘은 그냥 볼게요</button>
     </div>
@@ -955,18 +959,36 @@ document.addEventListener('click',function(e){
 });
 </script>
 <script>
-/* 현장 영상 — 데이터 절약·모션 축소 환경에서는 자동재생 끄고 포스터만 */
+/* 현장 영상 — 보일 때만 재생 · 데이터 절약/모션 축소 시 정지 · 사용자가 끌 수 있게 */
 (function(){
+  function vids(){return Array.prototype.slice.call(document.querySelectorAll('video[autoplay]'));}
   try{
     var save=(navigator.connection&&(navigator.connection.saveData||/2g/.test(navigator.connection.effectiveType||'')));
     var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if(save||reduce){document.querySelectorAll('#training video').forEach(function(v){v.removeAttribute('autoplay');v.pause();v.setAttribute('controls','');});return;}
+    if(save||reduce){
+      vids().forEach(function(v){v.removeAttribute('autoplay');v.pause();v.setAttribute('controls','');});
+      return;
+    }
+    /* 화면에 보일 때만 재생 — 배터리·발열 절약 */
     var io=new IntersectionObserver(function(es){es.forEach(function(e){
       var v=e.target;
-      if(e.isIntersecting){ if(v.dataset.src&&!v.src){v.src=v.dataset.src;} v.play().catch(function(){}); }
-      else v.pause();
+      if(e.isIntersecting){ v.play().catch(function(){}); } else { v.pause(); }
     });},{threshold:.25});
-    document.querySelectorAll('#training video').forEach(function(v){io.observe(v);});
+    vids().forEach(function(v){io.observe(v);});
+
+    /* 모션 일시정지 토글 — 우하단 작은 버튼 */
+    var b=document.createElement('button');
+    b.id='motion-toggle'; b.type='button'; b.setAttribute('aria-label','움직임 일시정지');
+    b.textContent='❚❚ 움직임 멈춤';
+    b.style.cssText='position:fixed;right:12px;bottom:12px;z-index:800;background:rgba(31,30,26,.86);color:#F6F1E5;border:1.5px solid #57544B;font-family:var(--font-mono,monospace);font-size:12px;padding:7px 11px;cursor:pointer;border-radius:2px';
+    var off=false;
+    b.addEventListener('click',function(){
+      off=!off;
+      document.documentElement.classList.toggle('motion-off',off);
+      vids().forEach(function(v){ off?v.pause():v.play().catch(function(){}); });
+      b.textContent= off ? '▶ 움직임 재생' : '❚❚ 움직임 멈춤';
+    });
+    document.body.appendChild(b);
   }catch(e){}
 })();
 </script>
