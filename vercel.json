@@ -23,16 +23,12 @@
       "destination": "/starter-kit"
     },
     {
-      "source": "/play",
-      "destination": "https://www.notion.so/39ac7de0b17081bfaf49d6102defa74e"
-    },
-    {
       "source": "/gift",
       "destination": "https://www.notion.so/3a8c7de0b170811c9e4dedfe71e111f3"
     },
     {
       "source": "/qr",
-      "destination": "https://www.notion.so/39ac7de0b17081bfaf49d6102defa74e"
+      "destination": "/play"
     }
   ]
 }

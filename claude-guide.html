@@ -4,10 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>CLAUDE 완전정복 — VERBIO LABS</title>
-<meta name="description" content="클로드(Claude) 완전정복 인터랙티브 전자책 — 바이브 코딩, Claude Code, CLAUDE.md, MCP, 프롬프트 엔지니어링, AI 에이전트, 업무 자동화까지. 초보자에서 설계자까지 41챕터 로드맵. VERBIO LABS.">
+<meta name="description" content="클로드(Claude) 완전정복 인터랙티브 전자책 — 바이브 코딩, Claude Code, CLAUDE.md, MCP, 프롬프트 엔지니어링, AI 에이전트, 업무 자동화까지. 초보자에서 설계자까지 42챕터 로드맵. VERBIO LABS.">
 <!-- OG: 카톡/X 공유 미리보기 — og:image는 배포 시 1200x630 이미지 제작 후 경로 교체 -->
 <meta property="og:type" content="website">
-<meta property="og:title" content="CLAUDE 완전정복 — 인터랙티브 전자책 (41챕터 · LV.0~1 무료)">
+<meta property="og:title" content="CLAUDE 완전정복 — 인터랙티브 전자책 (42챕터 · LV.0~1 무료)">
 <meta property="og:description" content="바이브 코딩부터 AI 에이전트 설계까지. 30초 진단으로 내 시작 지점을 찾고, 게임처럼 클리어하는 Claude 로드맵.">
 <meta property="og:url" content="https://verbiolabs.com/claude-guide">
 <meta property="og:image" content="https://verbiolabs.com/og/claude-guide.png">
@@ -680,7 +680,7 @@ footer .barcode{width:110px;height:30px;background:repeating-linear-gradient(90d
 footer .barcode::after{content:"NO.20260704";position:absolute;bottom:-16px;left:0;font-size:9px;letter-spacing:.2em}
 </style>
 <link rel="canonical" href="https://verbiolabs.com/claude-guide">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Book","name":"Claude 완전정복 가이드","alternateName":"클로드 완전정복 전자책","author":{"@type":"Organization","name":"Verbio Labs"},"publisher":{"@type":"Organization","name":"Verbio Labs","url":"https://verbiolabs.com"},"inLanguage":"ko","bookFormat":"https://schema.org/EBook","url":"https://verbiolabs.com/claude-guide","description":"입문부터 프로덕션까지 41챕터 인터랙티브 웹북 — 프롬프트 엔지니어링, Claude Code, MCP, 컨텍스트 엔지니어링, AI 자동화.","offers":{"@type":"Offer","price":"33000","priceCurrency":"KRW","description":"LV.0~1 무료 열람, 전권+프롬프트 금고 20종은 스타터 킷"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Book","name":"Claude 완전정복 가이드","alternateName":"클로드 완전정복 전자책","author":{"@type":"Organization","name":"Verbio Labs"},"publisher":{"@type":"Organization","name":"Verbio Labs","url":"https://verbiolabs.com"},"inLanguage":"ko","bookFormat":"https://schema.org/EBook","url":"https://verbiolabs.com/claude-guide","description":"입문부터 프로덕션까지 42챕터 인터랙티브 웹북 — 프롬프트 엔지니어링, Claude Code, MCP, 컨텍스트 엔지니어링, AI 자동화.","offers":{"@type":"Offer","price":"33000","priceCurrency":"KRW","description":"LV.0~1 무료 열람, 전권+프롬프트 금고 20종은 스타터 킷"}}</script>
 <style>
 /* typo-fix-v3-20260713: 한글 요소는 한글 픽셀체(Galmuri11) — Press Start 2P는 한글 미지원 */
 .press-start,.dday,.pay-hero,.lp-name,.sq-go,.evo-btn,.oq-go,.vs-col h4,.vs-col a{font-family:'Galmuri11','Press Start 2P',monospace;letter-spacing:.5px}
@@ -835,7 +835,7 @@ fbq('init','1414432007033883');fbq('track','PageView');
       <h1>Claude <span class="stroke">완전정복</span> 가이드</h1>
       <p class="sub">
         "AI 처음인데요"에서 "시스템을 설계합니다"까지.<br>
-        3개의 모드, 41개의 챕터를 클리어하며 Claude를 무기로 만드는 여정.
+        3개의 모드, 42개의 챕터를 클리어하며 Claude를 무기로 만드는 여정.
       </p>
       <div class="typeline"><span class="dollar">$</span> sudo learn claude --from=zero --to=hero</div>
       <br>
@@ -953,7 +953,7 @@ fbq('init','1414432007033883');fbq('track','PageView');
         <h2>설계자의 10계명</h2>
         <span class="rule"></span>
       </div>
-      <p class="sec-sub reveal">41개 챕터를 10개의 법칙으로 압축했습니다. 벽에 붙여두고, 막힐 때마다 돌아오세요.</p>
+      <p class="sec-sub reveal">42개 챕터를 10개의 법칙으로 압축했습니다. 벽에 붙여두고, 막힐 때마다 돌아오세요.</p>
 
       <div class="laws reveal">
         <div class="law"><span class="ln">I</span>
@@ -3571,6 +3571,47 @@ message = client.messages.create(
     모르고 들이지 않기. ② 설치 스크립트(install.sh 등)는 Claude에게 "이 스크립트 안전한지 읽어줘"라고
     URL과 함께 먼저 검토시키는 게 프로의 루틴입니다.</p>
   </div>
+
+  <h2><span class="idx">§5.</span> SOP 심화 — 발굴 · 메타 프롬프트 · 자동화 사다리</h2>
+  <p>
+    남의 스킬을 쓰는 것과 <strong>내 업무를 SOP로 만드는 것</strong>은 다른 근육입니다.
+    핵심은 세 단계 — 무엇을 만들지 <em>선별</em>하고, 손으로 쓰지 않고 <em>기록시키고</em>,
+    사다리를 따라 <em>자동화 수준을 올리는</em> 것.
+  </p>
+  <p>
+    <strong>선별은 반복 × 시간 매트릭스로.</strong> 지난주에 한 일을 5개만 적고 각각에 두 질문을 던지세요 —
+    "한 달에 두 번 이상 하나?" "30분 이상 걸리나?" 둘 다 YES면 최우선 SOP감(주간보고·견적서·회의록),
+    자주 하지만 금방 끝나는 일은 묶어서 자동화(정기 안내문·확인 답장), 가끔이지만 오래 걸리는 일은
+    절차서만 먼저(분기 보고·정산 마감). 가끔이고 금방 끝나는 일은 만들지 마세요 — 그냥 하는 게 빠릅니다.
+    전부 자동화하려는 사람이 하나도 자동화하지 못합니다.
+  </p>
+  <p><strong>작성은 메타 프롬프트로.</strong> 일을 한 번 끝낸 직후, 이 한 마디면 됩니다:</p>
+  <div class="term">
+    <div class="term-head"><span class="dots"><i></i><i></i><i></i></span> claude — 일이 끝난 직후에</div>
+    <pre>방금 우리가 한 작업 과정을 처음부터 돌아봐.
+같은 일을 다음에 또 할 수 있게 SKILL.md 형식의 SOP로 정리해줘.
+- 내가 준 입력이 뭐였는지 / 어떤 순서로 진행했는지
+- 중간에 내가 고치라고 한 것들은 «하지 말 것»에 넣어줘</pre>
+  </div>
+  <p>
+    머리로 쓰면 이상적인 절차가 나오고, 기록을 시키면 <strong>예외 처리까지 담긴 진짜 절차</strong>가 나옵니다.
+    작업 중 "고쳐줘" 한마디 하나하나가 「하지 말 것」 규칙으로 승격되고, SOP 작성 시간이 따로 들지 않는다는 게
+    이 방식의 전부입니다.
+  </p>
+  <table class="vs-table">
+    <thead><tr><th>자동화 사다리</th><th>도구</th><th>예시</th></tr></thead>
+    <tbody>
+      <tr><td class="good"><strong>1단 — 부르면 일한다</strong></td><td>스킬 (수동 호출)</td><td>"견적서 만들어줘" 한 마디에 절차 전체</td></tr>
+      <tr><td class="good"><strong>2단 — 조건이 되면 끼어든다</strong></td><td>훅 · 커스텀 커맨드</td><td>커밋 전 자동 검사 · /weekly 한 단어로 주간보고</td></tr>
+      <tr><td class="good"><strong>3단 — 내가 없어도 돈다</strong></td><td>스케줄 실행 · API</td><td>매주 월 9시, 보고서가 알아서 도착</td></tr>
+    </tbody>
+  </table>
+  <p>
+    오늘은 1단이면 충분합니다. 2·3단은 <a href="#lv7-2">LV.7-2 하네스 커스터마이징</a>의 영역이고,
+    오프라인 캠프에서 실제로 장착합니다. 마지막으로 <strong>자산 관리 3원칙</strong> — 스킬 폴더는 git으로
+    버전 관리하고, 고칠 때마다 "왜"를 한 줄 기록하고, 동료에게는 zip으로 배포하세요.
+    잘 만든 SOP 하나가 팀 전체의 속도가 됩니다.
+  </p>
   <div class="savepoint">
     <ul>
       <li>MCP = 손발, 스킬 = 작업 매뉴얼 — 이 챕터는 원리가 아니라 보급.</li>
@@ -3587,10 +3628,133 @@ message = client.messages.create(
   <div class="level-clear"><p class="txt">CHAPTER CLEAR!</p><p class="xp">+200 XP EARNED</p><div class="ch-nav" data-autonav></div></div>
 </article>
 
-<!-- ▸▸▸ SQ-4 -->
+<!-- ▸▸▸ SQ-4 (세이브 포인트) -->
+<article class="chapter-page" id="ch-lvS-5" hidden>
+  <p class="ch-breadcrumb"><a href="#lvS">~/claude-guide/side-quest</a> / <strong>04_savepoint.md</strong></p>
+  <p class="ch-lv">SIDE QUEST — CHAPTER 04</p>
+  <h1>세이브 포인트 실전 — git init · 스테이징 · 커밋 전략</h1>
+  <p class="ch-lead">Claude가 명령어를 대신 쳐줘도, 흐름을 모르면 검수를 못 합니다. 세미나에서 "담고-찍고-올리고" 구호로 몸에 박았던 Git 실전 4단계 — 초기화부터 되돌리기까지.</p>
+  <div class="ch-meta"><span>⏱ 13min</span><span>◆ ★★☆☆☆</span><span>▲ XP +180</span></div>
+
+  <h2><span class="idx">§1.</span> git init — 장부를 여는 첫 명령</h2>
+  <p class="dropcap">
+    커밋도 푸시도 <strong>이것부터</strong>입니다. <code>git init</code>을 하지 않은 폴더에서 커밋을 시도하면
+    <code>fatal: not a git repository</code>가 뜨고, 초보자의 8할이 여기서 멈춥니다.
+    이 명령은 프로젝트 폴더당 <strong>딱 한 번</strong>만 실행합니다.
+  </p>
+  <div class="term">
+    <div class="term-head"><span class="dots"><i></i><i></i><i></i></span> terminal — 저장소 만들기</div>
+    <pre><span class="c-p">$</span> cd my-fortune          <span class="c-cm"># 내 프로젝트 폴더로 이동</span>
+<span class="c-p">$</span> git init               <span class="c-cm"># 이 폴더를 깃 저장소로</span>
+<span class="c-p">$</span> ls -la                 <span class="c-cm"># 숨김 파일까지 전부 보기 (Win: ls -Force)</span>
+<span class="c-ok">drwxr-xr-x   .git        ← 이게 보이면 성공</span></pre>
+  </div>
+  <p>
+    <strong>.git 폴더</strong>가 곧 «이력을 적어두는 장부»입니다. 이 폴더가 생기는 순간부터 모든 변경 기록이
+    자동으로 쌓이고, 반대로 이게 없으면 커밋 자체가 성립하지 않습니다. 내용은 Git이 관리하니
+    직접 열어 수정하지 마세요.
+  </p>
+  <table class="vs-table">
+    <thead><tr><th>증상</th><th>원인</th><th>처방</th></tr></thead>
+    <tbody>
+      <tr><td>.git이 안 보임</td><td>다른 폴더에 서 있음</td><td class="good"><code>pwd</code>로 위치 확인 → 맞는 폴더에서 <code>git init</code> 다시</td></tr>
+      <tr><td>ls -la가 안 먹힘</td><td>Windows PowerShell</td><td class="good"><code>ls -Force</code></td></tr>
+      <tr><td>처음부터 다시 하고 싶음</td><td>이력을 리셋하려는 경우</td><td class="good"><code>rm -rf .git</code> → <code>git init</code> ⚠ 커밋 이력 전멸</td></tr>
+    </tbody>
+  </table>
+  <div class="lore">
+    <p><strong>터미널이 부담되면 버튼으로:</strong> VS Code 왼쪽 <strong>[소스 제어]</strong> 아이콘(Ctrl+Shift+G) →
+    「<strong>리포지토리 초기화</strong>」 클릭. <code>git init</code>과 정확히 같은 일을 합니다. 누른 뒤
+    터미널에서 <code>ls -la</code>를 치면 <code>.git</code>이 생겨 있는 걸 눈으로 확인할 수 있어요 —
+    이 «명령 = 버튼» 대응을 한 번 확인해두면 GUI와 CLI 사이의 벽이 사라집니다.</p>
+  </div>
+
+  <h2><span class="idx">§2.</span> 스테이징 — 이번 세이브에 무엇을 담을까</h2>
+  <p>
+    커밋하려면 먼저 <strong>스테이징 영역에 올려야</strong> 합니다. 왜 한 단계를 더 거칠까요?
+    오늘 파일 5개를 고쳤는데 그중 3개만 완성됐다면 — 완성된 3개만 담아 커밋하고 나머지는 계속 작업하기
+    위해서입니다. 커밋은 «저장»이 아니라 <strong>«내가 고른 것들의 스냅샷»</strong>입니다.
+  </p>
+  <div class="term">
+    <div class="term-head"><span class="dots"><i></i><i></i><i></i></span> terminal — 담고 내리기</div>
+    <pre><span class="c-p">$</span> git status                        <span class="c-cm"># 뭐가 담겼고 안 담겼나 — 막히면 이것부터</span>
+<span class="c-p">$</span> git add index.html                <span class="c-cm"># 이 파일만 골라 담기</span>
+<span class="c-p">$</span> git add .                         <span class="c-cm"># 폴더 전부 담기</span>
+<span class="c-p">$</span> git restore --staged index.html   <span class="c-cm"># 담았던 걸 다시 내려놓기</span>
+<span class="c-p">$</span> git commit -m "운세 카드 랜덤 로직 추가"</pre>
+  </div>
+  <p>
+    파일은 <strong>세 가지 상태</strong>를 오갑니다 — ① 수정됨(아직 안 담김) → ② 담김(스테이징) →
+    ③ 커밋됨(세이브 확정). VS Code [소스 제어] 탭에서는 파일 옆 「＋」가 담기, 「−」가 내리기입니다.
+    그리고 <strong>애초에 담기면 안 되는 것</strong>(node_modules, .env 비밀키)은 <code>.gitignore</code>에
+    적어두면 목록에 아예 뜨지 않습니다 — 키 유출 사고의 90%가 이 한 파일로 예방됩니다.
+  </p>
+  <div class="lore">
+    <p>Claude에게는 말로 지정하면 됩니다: <em>"index.html만 스테이징해서 커밋해줘"</em>,
+    <em>"지금까지 작업 전부 커밋해줘"</em>. 명령을 외우는 게 목적이 아니라,
+    <strong>무엇이 담기는지 검수할 수 있는 눈</strong>을 갖는 게 목적입니다.</p>
+  </div>
+
+  <h2><span class="idx">§3.</span> 커밋 메시지와 커밋 전략</h2>
+  <p>
+    좋은 커밋 메시지는 <strong>미래의 나에게 보내는 쪽지</strong>입니다. 원칙은 셋 —
+    ① 무엇을 + 왜, ② 한 줄 요약 50자 안쪽, ③ 우리 규칙은 한국어(CLAUDE.md에 이미 선언).
+    "수정", "ㅇㅇ", "asdf"는 3개월 뒤 아무 도움이 안 됩니다. "운세 카드 7장 랜덤 로직 추가"처럼 쓰세요.
+  </p>
+  <table class="vs-table">
+    <thead><tr><th>언제 커밋하나 — 5가지 신호</th><th>이유</th></tr></thead>
+    <tbody>
+      <tr><td class="good">기능 하나가 «작동»하게 됐을 때</td><td>돌아올 가치가 있는 지점</td></tr>
+      <tr><td class="good">위험한 실험을 시작하기 <b>직전</b></td><td>실패해도 원상복구 1초</td></tr>
+      <tr><td class="good">큰 정리(리팩터링) 앞뒤로</td><td>변경 범위를 분리해서 추적</td></tr>
+      <tr><td class="good">자리를 뜰 때 · 하루를 마칠 때</td><td>내일의 나를 위한 저장</td></tr>
+      <tr><td class="good">AI에게 큰 작업을 시키기 <b>전</b></td><td>에이전트 시대의 새 규칙 — 되돌릴 지점 확보</td></tr>
+    </tbody>
+  </table>
+  <p>
+    전략은 상황에 따라 갈립니다. <strong>혼자</strong>라면 자주·작게, 브랜치 없이 main 하나로 충분합니다 —
+    되돌릴 지점만 촘촘하면 됩니다. <strong>팀</strong>이라면 머리말 규칙을 합의하세요:
+    <code>feat</code>(기능) · <code>fix</code>(버그) · <code>docs</code>(문서). 목록만 훑어도 히스토리가 읽힙니다.
+    그리고 공통 원칙 하나 — <strong>깨진 코드는 커밋하지 않습니다.</strong> 안 돌아가는 지점으로
+    돌아가 봐야 소용이 없으니까요.
+  </p>
+
+  <h2><span class="idx">§4.</span> 되돌리기 — 세이브 로드</h2>
+  <div class="term">
+    <div class="term-head"><span class="dots"><i></i><i></i><i></i></span> terminal — 세이브 목록</div>
+    <pre><span class="c-p">$</span> git log --oneline
+<span class="c-u">a1b2c3d</span>  운세 카드 랜덤 로직 추가
+<span class="c-u">9f8e7d6</span>  다크모드 버튼 추가
+<span class="c-u">5c4b3a2</span>  최초 커밋</pre>
+  </div>
+  <p>
+    되돌리는 명령은 종류가 많고 위험도도 제각각이라, 외우기보다 <strong>말로 요청하고 검수</strong>하는 편이 낫습니다:
+    <em>"지금까지 커밋 목록 보여줘"</em> · <em>"방금 커밋만 취소해줘 — 작업 내용은 남기고"</em> ·
+    <em>"index.html을 마지막 커밋 상태로 되돌려줘"</em>.
+    다만 <code>git reset --hard</code>와 <code>git push --force</code>는 <strong>커밋하지 않은 작업을 통째로 날립니다</strong> —
+    실행 전 Claude에게 "이거 위험한가?"를 먼저 물어보는 습관을 권합니다.
+  </p>
+  <div class="savepoint">
+    <ul>
+      <li>순서는 하나 — <strong>init(장부 열기) → add(담기) → commit(찍기) → push(올리기)</strong>.</li>
+      <li>.git 폴더가 있어야 저장소다. <code>ls -la</code>로 눈으로 확인하는 습관.</li>
+      <li>스테이징은 «고르는 단계» — 완성된 것만 담아 커밋한다.</li>
+      <li>되돌리기는 커밋한 지점으로만 간다 — 그래서 커밋 전략이 곧 안전벨트다.</li>
+    </ul>
+  </div>
+  <div class="tryit">
+    <p><strong>실습:</strong> 아무 폴더나 하나 만들어 <code>git init</code> → 파일 2개 생성 →
+    그중 <strong>하나만</strong> <code>git add</code>로 담아 커밋 → <code>git log --oneline</code>으로 확인해보세요.
+    "고를 수 있다"는 감각이 손에 잡히면 이 챕터는 끝입니다.</p>
+    <p class="reward">REWARD: +180 XP · 칭호 [세이브 포인트 관리자] 획득</p>
+  </div>
+  <div class="level-clear"><p class="txt">CHAPTER CLEAR!</p><p class="xp">+180 XP EARNED</p><div class="ch-nav" data-autonav></div></div>
+</article>
+
+<!-- ▸▸▸ SQ-5 -->
 <article class="chapter-page" id="ch-lvS-4" hidden>
-  <p class="ch-breadcrumb"><a href="#lvS">~/claude-guide/side-quest</a> / <strong>04_project-x.md</strong></p>
-  <p class="ch-lv">SIDE QUEST — CHAPTER 04 · 🔥 졸업작품</p>
+  <p class="ch-breadcrumb"><a href="#lvS">~/claude-guide/side-quest</a> / <strong>05_project-x.md</strong></p>
+  <p class="ch-lv">SIDE QUEST — CHAPTER 05 · 🔥 졸업작품</p>
   <h1>PROJECT X — 노션 연동 견적서 웹 풀 워크스루</h1>
   <p class="ch-lead">노션에 견적을 쓰면 → 클라이언트가 웹 링크로 보고 → PDF로 받는 실제 서비스. 세미나 졸업작품을 집에서 완주할 수 있게 전 단계를 옮겼습니다. 코드는 한 줄도 직접 안 씁니다.</p>
   <div class="ch-meta"><span>⏱ 20min</span><span>◆ ★★★☆☆</span><span>▲ XP +250</span></div>
@@ -4661,7 +4825,7 @@ description: 우리 팀 기준 코드리뷰
 
 <span class="c-k">## 핵심 문서</span>
 - [클로드 완전정복 전자책](/claude-guide): 입문→설계자
-  41챕터 가이드 (LV.0~1 무료). 바이브 코딩, 하네스, 루프 엔지니어링
+  42챕터 가이드 (LV.0~1 무료). 바이브 코딩, 하네스, 루프 엔지니어링
 - [온라인 강의](/courses): First AI(4주) · Korean SaaS(6주)
 - [오프라인 부트캠프](/bootcamp): 부산, 주말 2일에 출시
 
@@ -5029,7 +5193,8 @@ LEVELS.push(
      {id:'lvS-1',file:'01_field-setup.md',title:'장비 브링업 — VS Code부터 Claude Code까지 풀코스',time:'16min',diff:2,xp:180},
      {id:'lvS-2',file:'02_cockpit-habits.md',title:'조종석 습관 — 리추얼·/init·플랜 승인·토큰 계기판',time:'14min',diff:2,xp:170},
      {id:'lvS-3',file:'03_armory.md',title:'오픈소스 병기고 — MCP·스킬 창고·skill-creator',time:'15min',diff:3,xp:200},
-     {id:'lvS-4',file:'04_project-x.md',title:'PROJECT X — 노션 연동 견적서 웹 풀 워크스루',time:'20min',diff:3,xp:250}
+     {id:'lvS-5',file:'04_savepoint.md',title:'세이브 포인트 실전 — git init·스테이징·커밋 전략',time:'13min',diff:2,xp:180},
+     {id:'lvS-4',file:'05_project-x.md',title:'PROJECT X — 노션 연동 견적서 웹 풀 워크스루',time:'20min',diff:3,xp:250}
    ]}
 );
 /* STORY(기본기) 트랙 마킹 */
@@ -5476,7 +5641,7 @@ function renderParty(){
   document.getElementById('party-stage').textContent='LV.'+st+' · '+CAT_STAGES[st]+(st===0?' — 첫 챕터를 완독하면 부화합니다!':'');
   document.getElementById('party-xp').style.width=pct+'%';
   const nextP=[1,25,50,75,100][Math.min(st,4)];
-  document.getElementById('party-next').textContent = st>=5 ? '★ 최종 진화 완료 — 41챕터의 전설' : 'XP '+xp+' / '+CAT_MAX_XP+' · 다음 진화까지 '+Math.max(0,Math.ceil(CAT_MAX_XP*nextP/100-xp))+' XP';
+  document.getElementById('party-next').textContent = st>=5 ? '★ 최종 진화 완료 — 42챕터의 전설' : 'XP '+xp+' / '+CAT_MAX_XP+' · 다음 진화까지 '+Math.max(0,Math.ceil(CAT_MAX_XP*nextP/100-xp))+' XP';
   const fed=fedToday();
   document.getElementById('party-fed').textContent='오늘의 츄르 '+'♥'.repeat(Math.min(fed,3))+'♡'.repeat(Math.max(0,3-fed))+(fed>3?' +'+(fed-3):'')+(fed>=3?' — 배부른 냥이':' — 챕터 완독마다 한 마리')+' · 보스 과제 '+questStore.done.length+'/'+Object.keys(QUESTS).length;
   catRepaint();
@@ -5685,7 +5850,7 @@ const PLUGS={
     sub:'얼리버드 좌석 현황은 <a href="/bootcamp">여기서 확인 →</a>'},
   cartel:{ // LEGEND 완주 지점(lv9-4): 커뮤니티 입구
     h:'👑 마지막 문 — AI CARTEL IN BUSAN',
-    p:'책의 끝은 커뮤니티의 입구입니다. 배운 것을 실제로 만드는 부산의 AI 메이커 크루 — 받기만 하는 사람을 거르는 기브앤테이크 지원제로 운영합니다. 41챕터를 완주한 당신이라면, 지원서가 두렵지 않을 겁니다.',
+    p:'책의 끝은 커뮤니티의 입구입니다. 배운 것을 실제로 만드는 부산의 AI 메이커 크루 — 받기만 하는 사람을 거르는 기브앤테이크 지원제로 운영합니다. 42챕터를 완주한 당신이라면, 지원서가 두렵지 않을 겁니다.',
     btn:'🏛 AI Cartel 지원하기',dark:true,href:'/join',
     sub:'// 부산 · 오프라인 모임 · 지원제'}
 };

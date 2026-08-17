@@ -1,0 +1,1735 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
+<title>원데이 실습 프롬프트 — Verbio Labs</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%94%97%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/galmuri@latest/dist/galmuri.css" rel="stylesheet">
+<style>
+/* ============================================================
+   VERBIO LABS · /play — 원데이 실습 프롬프트 모음
+   레트로 브랜드 톤(index.html / claude-guide.html)과 동일 팔레트
+   ============================================================ */
+:root{
+  --paper:#F0EEE6; --page:#FAF9F5; --ink:#1F1E1A; --ink-soft:#5C5749;
+  --clay:#D97757; --clay-deep:#B85C3E; --moss:#5E8D7A; --gold:#B99A45;
+  --kraft:#E7DFCE; --line:#CFC7B4;
+  --font-body:'Gowun Batang',serif;
+  --font-mono:'IBM Plex Mono',monospace;
+  --font-pixel:'Galmuri11','IBM Plex Mono',monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:var(--paper);color:var(--ink);
+  font-family:var(--font-body);line-height:1.85;font-size:16.5px;
+  word-break:keep-all;overflow-wrap:break-word;
+  /* 복사 억제: 본문 전체 선택 불가 — 코드/.copyable 만 예외 */
+  -webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.035 0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+pre,code,.copyable,input{-webkit-user-select:text;-moz-user-select:text;-ms-user-select:text;user-select:text}
+::selection{background:var(--clay);color:var(--page)}
+a{color:var(--clay-deep)}
+:focus-visible{outline:2px solid var(--clay);outline-offset:3px}
+
+/* ---------- 게이트 ----------
+   ※ 접근 «제어»용 장치이지 완전한 보안이 아닙니다.
+      본문 마크업은 소스에 그대로 존재하며, 개발자도구로 열람이 가능합니다.
+      목적: 수업 참가자에게만 안내된 코드로 정상 경로 진입을 유도하는 것. */
+#gate{position:fixed;inset:0;z-index:9000;background:var(--paper);display:flex;align-items:center;justify-content:center;padding:22px}
+#gate.off{display:none}
+.gate-box{max-width:420px;width:100%;border:2px solid var(--ink);background:var(--page);box-shadow:7px 7px 0 var(--ink);padding:32px 26px;text-align:center}
+.gate-emoji{font-size:34px;line-height:1}
+.gate-title{font-family:var(--font-pixel);font-size:15px;margin:14px 0 8px;letter-spacing:.02em}
+.gate-sub{font-size:13.5px;color:var(--ink-soft);margin-bottom:18px;line-height:1.7}
+#gate-input{width:100%;font-family:var(--font-mono);font-size:15px;letter-spacing:.12em;text-align:center;padding:13px 12px;border:2px solid var(--ink);background:var(--paper);color:var(--ink)}
+#gate-btn{width:100%;margin-top:12px;font-family:var(--font-pixel);font-size:13px;border:2px solid var(--ink);background:var(--clay);color:var(--page);padding:13px;cursor:pointer;box-shadow:3px 3px 0 var(--ink)}
+#gate-btn:active{transform:translate(3px,3px);box-shadow:none}
+#gate-err{min-height:20px;margin-top:11px;font-size:12.5px;color:var(--clay-deep);font-weight:700}
+.gate-fine{margin-top:18px;font-size:11.5px;color:#78736A}
+.gate-fine a{color:#78736A}
+
+/* ---------- 헤더 ---------- */
+.topbar{
+  position:fixed;top:0;left:0;right:0;z-index:60;
+  background:var(--ink);color:#D8D3C4;
+  font-family:var(--font-mono);font-size:12.5px;
+  border-bottom:3px solid var(--clay);
+}
+.topbar-in{max-width:1240px;margin:0 auto;padding:9px 18px;display:flex;align-items:center;gap:14px}
+.topbar .logo{font-family:var(--font-pixel);font-size:12px;color:var(--gold);text-decoration:none;letter-spacing:.06em;white-space:nowrap}
+.topbar .logo:hover{color:var(--clay)}
+.topbar .sep{color:#57544B}
+.topbar .now{color:#8FB5A8;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#toc-toggle{display:none;margin-left:auto;font-family:var(--font-pixel);font-size:11px;background:transparent;color:#D8D3C4;border:1px solid #57544B;padding:5px 10px;cursor:pointer}
+#toc-toggle:hover{border-color:var(--clay);color:var(--clay)}
+
+/* ---------- 목차 ---------- */
+#toc{
+  position:fixed;top:46px;bottom:0;left:max(14px,calc(50% - 660px));width:252px;
+  overflow-y:auto;padding:24px 12px 60px;z-index:40;display:none;
+}
+#toc h3{font-family:var(--font-pixel);font-size:11px;color:var(--clay-deep);letter-spacing:.08em;margin-bottom:10px;padding-left:8px}
+#toc a{
+  display:block;font-size:12.5px;line-height:1.5;padding:5px 8px;margin-bottom:1px;
+  color:var(--ink-soft);text-decoration:none;border-left:2px solid transparent;
+}
+#toc a:hover{color:var(--clay-deep);background:rgba(217,119,87,.07)}
+#toc a.on{color:var(--clay-deep);font-weight:700;border-left-color:var(--clay);background:rgba(217,119,87,.1)}
+#toc a[hidden]{display:none}
+#toc::-webkit-scrollbar{width:6px}
+#toc::-webkit-scrollbar-thumb{background:var(--line)}
+
+/* ---------- 목차: 테마 그룹 + 빠른 필터 ---------- */
+#toc-filter{
+  display:block;width:100%;font-family:var(--font-mono);font-size:12px;color:var(--ink);
+  background:var(--page);border:1.5px solid var(--line);padding:7px 9px;margin:0 0 10px;
+}
+#toc-filter::placeholder{color:#9A9384}
+#toc-filter:focus{border-color:var(--clay);outline:none}
+#toc-empty{display:none;font-size:12px;color:var(--ink-soft);padding:6px 8px;line-height:1.6}
+#toc.no-hit #toc-empty{display:block}
+.toc-g{margin-bottom:3px}
+.toc-g[hidden]{display:none}
+.toc-g-hd{
+  display:flex;align-items:center;gap:7px;width:100%;text-align:left;cursor:pointer;
+  font-family:var(--font-pixel);font-size:11.5px;line-height:1.5;color:var(--ink);
+  background:transparent;border:0;border-left:2px solid transparent;padding:7px 8px;
+}
+.toc-g-hd:hover{color:var(--clay-deep);background:rgba(217,119,87,.06)}
+.toc-g-ico{font-size:9px;color:var(--ink-soft);display:inline-block;transition:transform .15s ease}
+.toc-g.open .toc-g-ico{transform:rotate(90deg)}
+.toc-g-t{flex:1}
+.toc-g-n{
+  font-family:var(--font-mono);font-size:9.5px;color:var(--ink-soft);
+  border:1px solid var(--line);border-radius:9px;padding:0 6px;
+}
+.toc-g.cur>.toc-g-hd{color:var(--clay-deep);border-left-color:var(--clay);background:rgba(217,119,87,.1)}
+.toc-g.cur>.toc-g-hd .toc-g-n{border-color:var(--clay);color:var(--clay-deep)}
+.toc-g-body{display:none;margin:1px 0 6px 9px;padding-left:8px;border-left:1px dotted var(--line)}
+.toc-g.open>.toc-g-body{display:block}
+
+/* ---------- 읽기 진행 바 · 맨 위로 ---------- */
+#progress{
+  position:absolute;left:0;bottom:-3px;height:3px;width:0;
+  background:var(--clay-deep);transition:width .08s linear;
+}
+#totop{
+  position:fixed;right:20px;bottom:22px;z-index:70;display:none;
+  font-family:var(--font-pixel);font-size:11px;line-height:1.4;cursor:pointer;
+  border:2px solid var(--ink);background:var(--page);color:var(--ink);
+  padding:9px 12px;box-shadow:3px 3px 0 var(--ink);
+}
+#totop.show{display:block}
+#totop:hover{background:var(--clay);color:var(--page)}
+#totop:active{transform:translate(3px,3px);box-shadow:none}
+
+/* ---------- h2 시간 칩 ---------- */
+.time-chip{
+  display:inline-block;vertical-align:middle;margin-left:8px;
+  font-family:var(--font-mono);font-size:10px;font-weight:500;letter-spacing:.02em;
+  color:var(--clay-deep);background:var(--kraft);
+  border:1px solid var(--line);border-radius:2px;padding:1px 6px;white-space:nowrap;
+}
+
+main{max-width:780px;margin:0 auto;padding:74px 18px 40px}
+
+/* ---------- 카드 ---------- */
+.lead{
+  border:2px solid var(--ink);background:var(--kraft);box-shadow:5px 5px 0 var(--ink);
+  padding:18px 20px;margin-bottom:26px;font-size:14.5px;line-height:1.8;
+}
+.card{
+  border:2px solid var(--ink);background:var(--page);box-shadow:5px 5px 0 var(--ink);
+  padding:24px 22px 26px;margin-bottom:28px;scroll-margin-top:64px;
+}
+.card h2{
+  font-family:var(--font-pixel);font-size:15.5px;line-height:1.6;
+  margin:0 0 16px;padding-bottom:12px;border-bottom:2px solid var(--line);
+}
+.card p{margin:0 0 12px}
+.card p:last-child{margin-bottom:0}
+.card ul,.card ol{margin:0 0 14px;padding-left:24px}
+.card li{margin-bottom:6px;line-height:1.8}
+.card li>ul,.card li>ol{margin-top:6px;margin-bottom:4px}
+.card h4{font-size:15px;margin:20px 0 10px}
+strong{font-weight:700}
+u{text-underline-offset:3px}
+p code,li code,h4 code,td code{
+  font-family:var(--font-mono);font-size:.87em;background:var(--kraft);
+  border:1px solid var(--line);padding:1px 5px;border-radius:2px;
+}
+.quote{border-left:3px solid var(--clay);background:var(--kraft);padding:12px 16px;margin:0 0 16px;font-size:14.5px;line-height:1.8}
+.note{font-size:13.5px;color:var(--ink-soft);line-height:1.75;margin:0 0 12px}
+.tip{font-size:13.5px;line-height:1.75;background:#F3F5EE;border-left:3px solid var(--moss);padding:11px 14px;margin:0 0 14px}
+.warn{font-size:13.5px;line-height:1.75;background:#FBEFE9;border-left:3px solid var(--clay);padding:11px 14px;margin:0 0 14px}
+.pin{font-size:14px;line-height:1.8;background:#FAF4E4;border-left:3px solid var(--gold);padding:11px 14px;margin:0 0 14px}
+.divider{border:0;border-top:2px dashed var(--line);margin:30px 0}
+details{border:1.5px solid var(--line);background:#FBF7EC;padding:12px 14px;margin:0 0 14px;font-size:13.5px}
+summary{cursor:pointer;font-weight:700}
+.mono-list{font-family:var(--font-mono);font-size:13px}
+
+/* ---------- 코드 카드 ---------- */
+.code{border:2px solid var(--ink);background:var(--ink);margin:0 0 16px;box-shadow:3px 3px 0 rgba(31,30,26,.2)}
+.code-hd{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:6px 8px 6px 12px;border-bottom:1px solid #3A3831}
+.code-lang{font-family:var(--font-mono);font-size:10.5px;color:#78736A;letter-spacing:.1em;text-transform:uppercase}
+.code-copy{
+  font-family:var(--font-pixel);font-size:10px;border:1.5px solid var(--gold);
+  background:transparent;color:var(--gold);padding:4px 10px;cursor:pointer;white-space:nowrap;
+}
+.code-copy:hover{background:var(--gold);color:var(--ink)}
+.code-copy.done{background:var(--moss);border-color:var(--moss);color:var(--page)}
+.code pre{
+  margin:0;padding:14px 14px;overflow-x:auto;
+  font-family:var(--font-mono);font-size:12.5px;line-height:1.75;
+  color:#EDE8DA;white-space:pre;tab-size:2;
+}
+.code pre::-webkit-scrollbar{height:7px}
+.code pre::-webkit-scrollbar-thumb{background:#57544B}
+
+/* ---------- 버튼 ---------- */
+.btn{
+  display:inline-block;font-family:var(--font-pixel);font-size:12px;
+  border:2px solid var(--ink);background:var(--gold);color:var(--ink);
+  padding:11px 16px;cursor:pointer;text-decoration:none;box-shadow:3px 3px 0 var(--ink);
+  margin:2px 0 14px;
+}
+.btn:active{transform:translate(3px,3px);box-shadow:none}
+.btn.clay{background:var(--clay);color:var(--page)}
+
+/* ---------- 푸터 ---------- */
+footer{
+  border-top:2px solid var(--line);margin-top:10px;padding:26px 18px 50px;
+  text-align:center;font-size:12.5px;color:var(--ink-soft);line-height:1.9;
+}
+
+/* ---------- 인쇄 억제 ---------- */
+.print-only{display:none}
+@media print{
+  main{display:none}
+  #toc,.topbar,footer,#gate,#totop{display:none}
+  .print-only{display:block;padding:40px;text-align:center;font-size:16px}
+}
+
+/* ---------- 반응형 ---------- */
+@media(min-width:1100px){
+  #toc{display:block}
+}
+@media(max-width:1099px){
+  #toc-toggle{display:block}
+  #toc{
+    display:none;position:fixed;top:46px;left:0;right:0;bottom:auto;width:100%;
+    max-height:62vh;background:var(--page);border-bottom:2px solid var(--ink);
+    box-shadow:0 6px 0 rgba(31,30,26,.15);padding:16px 14px 20px;
+  }
+  #toc.open{display:block}
+}
+@media(max-width:560px){
+  body{font-size:16px}
+  .card{padding:20px 16px 22px}
+  .card h2{font-size:14px}
+  .code pre{font-size:12px}
+}
+</style>
+</head>
+<body>
+
+<!-- ===== 게이트 (접근 제어 · 완전 보안 아님) ===== -->
+<div id="gate">
+  <div class="gate-box">
+    <div class="gate-emoji">🔗</div>
+    <div class="gate-title">수업에서 안내받은 코드를 입력하세요</div>
+    <p class="gate-sub">원데이 인텐시브 참가자 전용 페이지입니다.<br>진행자가 알려드린 입장 코드를 넣어주세요.</p>
+    <input id="gate-input" type="text" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="입장 코드" aria-label="입장 코드">
+    <button id="gate-btn" type="button">입장하기</button>
+    <div id="gate-err" role="alert"></div>
+    <p class="gate-fine">수강 문의: <a href="https://verbiolabs.com" target="_blank" rel="noopener">verbiolabs.com</a></p>
+  </div>
+</div>
+
+<div class="print-only">인쇄는 지원하지 않아요 — 화면에서 확인해 주세요. (verbiolabs.com/play)</div>
+
+<header class="topbar" hidden>
+  <div class="topbar-in">
+    <a class="logo" href="/">VERBIO LABS</a>
+    <span class="sep">·</span>
+    <span class="now">원데이 실습 프롬프트 모음</span>
+    <button id="toc-toggle" type="button" aria-expanded="false">☰ 목차</button>
+  </div>
+  <div id="progress" aria-hidden="true"></div>
+</header>
+
+<nav id="toc" hidden aria-label="섹션 목차">
+  <h3>SECTIONS</h3>
+  <input id="toc-filter" type="search" autocomplete="off" spellcheck="false" placeholder="🔎 섹션 검색 (예: git, 실습, 스킬)" aria-label="섹션 빠른 검색">
+  <div id="toc-list"></div>
+  <p id="toc-empty">일치하는 섹션이 없어요 — 다른 단어로 찾아보세요.</p>
+</nav>
+
+<main hidden>
+
+<div class="lead">노트북: 주소창에 <a href="http://verbiolabs.com/play">verbiolabs.com/play</a> · 폰: QR 스캔 — 그대로 복사→붙여넣기 하세요. 순서는 수업 진행 순서와 같습니다. (보너스 A·B·C는 맨 아래, 집에서!)</div>
+
+<section class="card" id="s1">
+<h2>0. 준비 · 📽 PPT: 오리엔테이션 「5분 세팅」 (10:13)</h2>
+<ul>
+<li><a href="http://claude.ai" target="_blank" rel="noopener">claude.ai</a> 로그인 (구글 계정 권장)</li>
+<li><a href="https://github.com" target="_blank" rel="noopener">github.com</a> 무료 가입 (같은 구글 계정으로 — 오후 실습② 커밋·푸시에 필수!)</li>
+<li><a href="https://www.notion.so" target="_blank" rel="noopener">notion.so</a> 무료 가입 (같은 구글 계정 — 졸업작품의 데이터 창고!)</li>
+<li>오후 Claude Code 실습은 Pro 플랜 필요</li>
+<li>노트북 브라우저에 이 페이지(<a href="http://verbiolabs.com/play">verbiolabs.com/play</a>)를 열고 북마크(⌘D/Ctrl+D) + 탭 고정 — 오늘 QR 다시 찍을 일 없습니다</li>
+</ul>
+</section>
+
+<section class="card" id="s2">
+<h2>1. VS Code 설치 + 확장 4종 · 📽 PPT: STAGE 0 「도구 ③」 (10:20경)</h2>
+<p>다운로드: <a href="https://code.visualstudio.com" target="_blank" rel="noopener">code.visualstudio.com</a> → 파란 Download 버튼 → 전부 기본값 설치</p>
+<p>확장 아이콘 클릭(⌘⇧X / Ctrl+Shift+X) → 이름 검색 → Install:</p>
+<div class="code"><div class="code-hd"><span class="code-lang">javascript</span><button class="code-copy" type="button">복사</button></div><pre>Claude Code for VS Code</pre></div>
+<div class="code"><div class="code-hd"><span class="code-lang">javascript</span><button class="code-copy" type="button">복사</button></div><pre>Chat for Claude Code</pre></div>
+<div class="code"><div class="code-hd"><span class="code-lang">javascript</span><button class="code-copy" type="button">복사</button></div><pre>Live Server</pre></div>
+<div class="code"><div class="code-hd"><span class="code-lang">javascript</span><button class="code-copy" type="button">복사</button></div><pre>Korean Language Pack</pre></div>
+<p class="note">※ 제작사 확인(Anthropic/Microsoft) · 한국어: ⌘⇧P → “Display Language” → 한국어 · Live Server는 HTML 우클릭 → “Open with Live Server”</p>
+<p class="tip">💡 이후 모든 터미널 작업은 VS Code 안에서: 메뉴 [터미널]→[새 터미널] (단축키 Ctrl+`)</p>
+</section>
+
+<section class="card" id="s3">
+<h2>2. VS Code 터미널 첫 인사 미션 (9줄) · 📽 PPT: STAGE 0 「터미널 미션」 (10:30경)</h2>
+<div class="code"><div class="code-hd"><span class="code-lang">javascript</span><button class="code-copy" type="button">복사</button></div><pre>cd ~
+pwd
+ls -la
+mkdir workspace
+cd workspace
+pwd
+echo "hello, terminal" &gt; welcome.txt
+cat welcome.txt</pre></div>
+<p class="note">※ Windows PowerShell은 <code>ls -la</code> 대신 <code>ls</code> 만 입력. 나머지 동일.</p>
+</section>
+
+<section class="card" id="s4">
+<h2>2-1. 개발환경 — Node.js · Git · 📽 PPT: STAGE 0 「개발환경 Mac/Win」 (10:40경)</h2>
+<p><strong>Mac — Homebrew(도구상자) 먼저, 그다음 한 줄:</strong></p>
+<div class="code"><div class="code-hd"><span class="code-lang">bash</span><button class="code-copy" type="button">복사</button></div><pre>/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"</pre></div>
+<div class="code"><div class="code-hd"><span class="code-lang">bash</span><button class="code-copy" type="button">복사</button></div><pre>brew install node git</pre></div>
+<p><strong>Windows — Node.js 설치 (화면 그대로 6단계):</strong></p>
+<ol>
+<li>브라우저에서 <a href="https://nodejs.org" target="_blank" rel="noopener">https://nodejs.org</a> 접속 → 첫 화면 초록 버튼 <strong>Download Node.js (LTS)</strong> 클릭 (LTS = 안정판, 자동 선택됨)</li>
+<li>다운로드된 <code>node-v22.x.x-x64.msi</code> 더블클릭 (안 보이면 브라우저 우상단 ↓ 다운로드 목록)</li>
+<li>설치 마법사: 라이선스 동의 체크 → Next 계속 (아무것도 바꾸지 않기)</li>
+<li>⚠ <strong>함정!</strong> “Tools for Native Modules” 화면의 체크박스는 <strong>체크하지 마세요</strong> — 체크하면 설치가 10분 이상 걸립니다</li>
+<li>파란 창 “이 앱이 디바이스를 변경하도록 허용?” → <strong>예</strong> → Install → Finish (게시자 OpenJS Foundation이면 정상)</li>
+<li>PowerShell을 <strong>반드시 새로 열고</strong> <code>node --version</code> → v22 같은 숫자가 나오면 성공 (설치 전에 열려 있던 창은 인식 못함!)</li>
+</ol>
+<p><strong>Windows — Git for Windows 설치:</strong></p>
+<ul>
+<li><a href="https://git-scm.com/downloads/win" target="_blank" rel="noopener">https://git-scm.com/downloads/win</a> → 다운로드 → 전부 기본값으로 다음·다음·설치</li>
+</ul>
+<p><strong>확인 (공통 — 터미널 새로 열고):</strong></p>
+<div class="code"><div class="code-hd"><span class="code-lang">bash</span><button class="code-copy" type="button">복사</button></div><pre>node --version
+git --version</pre></div>
+</section>
+
+<section class="card" id="s5">
+<h2>2-2. Git 이름표 달기 · 📽 PPT: STAGE 0 「Git 이름표」 (10:50경)</h2>
+<p>먼저 <a href="https://github.com" target="_blank" rel="noopener">github.com</a> 무료 가입 → 가입한 이메일과 똑같이:</p>
+<div class="code"><div class="code-hd"><span class="code-lang">bash</span><button class="code-copy" type="button">복사</button></div><pre>git config --global user.name "아이디/닉네임"
+git config --global user.email "본인 이메일"</pre></div>
+<p>확인 (입력한 값이 그대로 나오면 성공):</p>
+<div class="code"><div class="code-hd"><span class="code-lang">bash</span><button class="code-copy" type="button">복사</button></div><pre>git config --global user.name
+git config --global user.email</pre></div>
+<p class="note">※ 이 설정이 없으면 커밋(변경사항 저장) 때 오류가 납니다. 모든 저장 기록에 “누가 했는지” 이름표가 남아요.</p>
+</section>
+
+<section class="card" id="s6">
+<h2>2-3. Claude Code 설치 · 📽 PPT: STAGE 0 「클로드 설치 Mac/Win」 (10:55경)</h2>
+<p><strong>Mac (터미널):</strong></p>
+<div class="code"><div class="code-hd"><span class="code-lang">bash</span><button class="code-copy" type="button">복사</button></div><pre>curl -fsSL https://claude.ai/install.sh | bash</pre></div>
+<p><strong>Windows — VS Code 터미널에서 (현장 검증된 방법):</strong></p>
+<p>메뉴 [터미널] → [새 터미널] (단축키 Ctrl + `) — 따로 PowerShell 앱을 찾지 않아도 됩니다. 거기에 이 한 줄:</p>
+<div class="code"><div class="code-hd"><span class="code-lang">powershell</span><button class="code-copy" type="button">복사</button></div><pre>winget install Anthropic.ClaudeCode</pre></div>
+<p class="tip">💡 winget = 윈도우 10·11에 내장된 「앱 설치 도구」. VS Code 터미널(PowerShell)에서 그대로 실행되고 관리자 권한도 필요 없습니다. <strong>자동 업데이트가 안 되니</strong> 가끔 <code>winget upgrade Anthropic.ClaudeCode</code> 로 최신화해 주세요.</p>
+<p><u><em><strong>안 될 때만 — 대체 방법:</strong></em></u></p>
+<div class="code"><div class="code-hd"><span class="code-lang">powershell</span><button class="code-copy" type="button">복사</button></div><pre>irm https://claude.ai/install.ps1 | iex</pre></div>
+<p class="note">※ 그래도 안 되면 <u>VS Code를 껐다 켜고</u> <strong>새 터미널</strong>에서 다시 — 설치 전에 열려 있던 터미널은 인식 못합니다.</p>
+<p><strong>설치 확인 (공통):</strong></p>
+<div class="code"><div class="code-hd"><span class="code-lang">bash</span><button class="code-copy" type="button">복사</button></div><pre>claude --version</pre></div>
+<p>공식 문서: <a href="https://code.claude.com/docs/en/setup" target="_blank" rel="noopener">https://code.claude.com/docs/en/setup</a></p>
+</section>
+
+<section class="card" id="s7">
+<h2>2-3-1. 오늘의 프로젝트 폴더 만들기 · 📽 PPT: STAGE 0 「복습 산책」 (10:57경)</h2>
+<p>오늘 실습⓪~③이 전부 이 폴더에서 진행됩니다. 이름은 <strong>my-fortune 그대로</strong> 쓰세요(뒤 명령이 어긋나지 않게).</p>
+<div class="code"><div class="code-hd"><span class="code-lang">bash</span><button class="code-copy" type="button">복사</button></div><pre>cd ~/workspace
+mkdir my-fortune
+cd my-fortune
+pwd</pre></div>
+<p class="note">※ <code>~/workspace</code>가 없다고 나오면 <code>mkdir ~/workspace</code> 먼저. 마지막 <code>pwd</code>로 «지금 내가 이 폴더에 서 있다»를 눈으로 확인하는 게 핵심입니다.</p>
+</section>
+
+<section class="card" id="s8">
+<h2>2-3-2. 클로드 로그인 &amp; 모델 고르기 · 📽 PPT: STAGE 0 「로그인·첫 실행」 (10:59경)</h2>
+<div class="code"><div class="code-hd"><span class="code-lang">bash</span><button class="code-copy" type="button">복사</button></div><pre>claude</pre></div>
+<p>→ 3컷으로 흘러갑니다: ① 터미널에 로그인 안내 → ② 브라우저가 열리고 계정 승인 → ③ 터미널로 자동 복귀.</p>
+<p>확인 · 모델 변경:</p>
+<div class="code"><div class="code-hd"><span class="code-lang">bash</span><button class="code-copy" type="button">복사</button></div><pre>/status</pre></div>
+<div class="code"><div class="code-hd"><span class="code-lang">bash</span><button class="code-copy" type="button">복사</button></div><pre>/model</pre></div>
+<p class="tip">💡 배우는 단계엔 <strong>Sonnet 또는 Haiku</strong> — 토큰을 아끼며 연습하세요. Max 요금제라면 <code>/model</code>에서 <strong>opusplan</strong>(계획은 Opus, 구현은 Sonnet으로 자동 분업)이 절약 기어입니다.</p>
+</section>
+
+<section class="card" id="s9">
+<h2>2-3-3. 기초 슬래시 명령어 — 클로드의 설정 버튼들 · 📽 PPT: STAGE 0 「기초 명령어」 (11:01경)</h2>
+<p>claude 대화창 안에서 <code>/</code>를 치면 목록이 뜹니다. 오늘 쓰는 것만:</p>
+<ul>
+<li><code>/help</code> — 명령 목록</li>
+<li><code>/status</code> — 로그인·모델·프로젝트 상태 한눈에</li>
+<li><code>/model</code> — 모델 변경 (Sonnet · Haiku · opusplan)</li>
+<li><code>/usage</code> — 내 요금제 한도 확인</li>
+<li><code>/clear</code> — 대화 리셋 (주제가 바뀔 때)</li>
+<li><code>/compact</code> — 대화 압축 (이어가야 하는데 길어질 때)</li>
+<li><code>/init</code> — <a href="http://CLAUDE.md" target="_blank" rel="noopener">CLAUDE.md</a> 생성 (2-5에서)</li>
+<li><code>/terminal-setup</code> — Shift+Enter 줄바꿈 활성화</li>
+<li><code>/permissions</code> — 권한 설정 열기 (2-5-1에서)</li>
+<li><code>/agents</code> — 서브에이전트 관리 (파이널에서)</li>
+<li><code>/mcp</code> — 연결된 MCP 확인 (실습⑤에서)</li>
+<li><code>/plugin</code> — 플러그인 설치·관리 (2-7 병기고에서)</li>
+</ul>
+<p class="tip">💡 <strong>컨텍스트 윈도우 = 클로드의 책상 크기.</strong> 대화가 길어지면 오래된 내용부터 책상 밖으로 밀려납니다. 주제가 바뀌면 <code>/clear</code>, 맥락을 이어가야 하면 <code>/compact</code>. 「아까 말한 거 기억 못 하네?」의 정체가 이겁니다.</p>
+</section>
+
+<section class="card" id="s10">
+<h2>2-3★. 토큰 가계부 ccusage · 📽 PPT: STAGE 0 「ccusage」 (11:03경)</h2>
+<div class="code"><div class="code-hd"><span class="code-lang">bash</span><button class="code-copy" type="button">복사</button></div><pre>npx ccusage@latest</pre></div>
+<p>더 보기:</p>
+<div class="code"><div class="code-hd"><span class="code-lang">bash</span><button class="code-copy" type="button">복사</button></div><pre>npx ccusage daily</pre></div>
+<div class="code"><div class="code-hd"><span class="code-lang">bash</span><button class="code-copy" type="button">복사</button></div><pre>npx ccusage monthly</pre></div>
+<div class="code"><div class="code-hd"><span class="code-lang">bash</span><button class="code-copy" type="button">복사</button></div><pre>npx ccusage blocks --live</pre></div>
+<p class="note">※ 날짜별·모델별 토큰을 비용으로 환산해 표로 보여줍니다. <code>/usage</code>는 한도, ccusage는 가계부. 저장소는 GitHub에서 ccusage 검색.</p>
+</section>
+
+<section class="card" id="s11">
+<h2>2-4. 클로드 켜기 전 3步 리추얼 · 📽 PPT: STAGE 0 「첫 실행·리추얼」 (11:05경)</h2>
+<div class="code"><div class="code-hd"><span class="code-lang">bash</span><button class="code-copy" type="button">복사</button></div><pre>cd my-fortune
+pwd
+claude</pre></div>
+<p class="note">※ 본인 프로젝트 폴더(예: claude-code-mastery)면 그 이름으로. 클로드는 지금 서 있는 폴더를 작업실로 삼습니다.</p>
+<p class="tip">💡 여러 줄 프롬프트 쓰는 법 — 클로드 대화창에서 엔터는 곧 전송! 줄을 바꾸려면: ① <code>\</code> 입력 후 엔터 (어디서나 됨) ② claude 안에서 <code>/terminal-setup</code> 한 번 실행 → 이후 Shift+Enter로 줄바꿈. 화면 청소는 <code>clear</code></p>
+<p class="tip">💡 모델은 <code>/model</code>에서 <strong>Sonnet 또는 Haiku</strong> — 배우는 단계엔 토큰을 아끼며 연습하세요.</p>
+</section>
+
+<section class="card" id="s12">
+<h2>2-5. 프로젝트 초기화 — /init &amp; CLAUDE.md · 📽 PPT: STAGE 0 「초기화 ⑦-2」 (11:10경)</h2>
+<p>① 먼저 <code>/init</code> <strong>하나만</strong> 보냅니다 (엔터 1번째):</p>
+<div class="code"><div class="code-hd"><span class="code-lang">bash</span><button class="code-copy" type="button">복사</button></div><pre>/init</pre></div>
+<p>→ 클로드가 폴더를 스캔해 <a href="http://CLAUDE.md" target="_blank" rel="noopener">CLAUDE.md</a>(매 대화마다 읽는 프로젝트 지시서)를 자동 생성.</p>
+<p class="warn">⚠ 빈 폴더면 /init이 “지어낼 내용이 없다”며 거부합니다 → 정상! /init은 “초기화”가 아니라 “폴더를 읽고 지시서를 써주는” 명령이라 읽을 게 있어야 해요. 그럴 땐 바로 ②로 — ② 프롬프트만 보내도 클로드가 <a href="http://CLAUDE.md" target="_blank" rel="noopener">CLAUDE.md</a>를 새로 만들어 규칙을 넣습니다.</p>
+<p class="tip">💡 실습⓪ 보스전이 끝나면(11:35경) 폴더에 index.html이 생긴 상태 — 그때 <code>/init</code>을 한 번 더 치면 클로드가 진짜로 코드를 스캔해 <a href="http://CLAUDE.md" target="_blank" rel="noopener">CLAUDE.md</a>를 채워주는 걸 경험할 수 있습니다.</p>
+<p>② /init 결과가 다 나온 뒤, 대화창에 규칙을 보냅니다 (엔터 2번째 — 한 번에 이어붙이지 말 것):</p>
+<div class="code"><div class="code-hd"><span class="code-lang">javascript</span><button class="code-copy" type="button">복사</button></div><pre>CLAUDE.md에 아래 규칙을 추가해줘:
+
+## 언어 및 커뮤니케이션 규칙
+- 기본 응답 언어: 한국어
+- 코드 주석: 한국어로 작성
+- 커밋 메시지: 한국어로 작성
+- 문서화: 한국어로 작성
+- 변수명/함수명: 영어 (코드 표준 준수)</pre></div>
+<p class="note">＊ 손으로 만들 때(빈 폴더였다면): ① 파일명은 반드시 <strong>대문자 </strong><a href="http://CLAUDE.md" target="_blank" rel="noopener"><strong>CLAUDE.md</strong></a> (소문자 <a href="http://claude.md" target="_blank" rel="noopener">claude.md</a>는 GitHub에서 무시됨) ② “추가해줘:” 같은 채팅 문구는 파일에 넣지 말고 <code>##</code>부터 규칙만 ③ 위치는 클로드 실행 폴더 최상단</p>
+<p><strong>📌 왜 이 파일이 오늘 만드는 파일 중 가장 중요한가</strong></p>
+<p>클로드는 세션이 끝나면 대화를 전부 잊습니다. 딱 하나, 매 세션 시작 때 자동으로 다시 읽는 파일이 <a href="http://CLAUDE.md" target="_blank" rel="noopener">CLAUDE.md</a> — 채팅에 친 지시는 오늘만 유효하지만, 이 파일에 쓴 지시는 영구 유효합니다. 같은 모델을 써도 결과가 다른 이유가 이 파일의 품질입니다.</p>
+<p><strong>잘 쓰는 법 5가지:</strong></p>
+<ol>
+<li>짧고 명령형으로 — “~해라 / ~하지 마라”. 길어질수록 희석됩니다</li>
+<li>반복 지시는 전부 이관 — 같은 말 두 번 쳤다면 그 즉시 <a href="http://CLAUDE.md" target="_blank" rel="noopener">CLAUDE.md</a>행 (오늘의 승격 공식)</li>
+<li>금지사항을 먼저 — “하지 마라”가 “해라”보다 강력 (예: 과장 표현 금지)</li>
+<li>자주 쓰는 명령·폴더 구조 기록 — 클로드가 헤매지 않게</li>
+<li>대화하며 키우기 — “방금 그 규칙 <a href="http://CLAUDE.md" target="_blank" rel="noopener">CLAUDE.md</a>에 추가해줘” 한 줄이면 끝</li>
+</ol>
+<p class="tip">💡 개인 취향(존댓말·언어)은 홈의 <code>~/.claude/CLAUDE.md</code>에, 프로젝트 규칙은 프로젝트 폴더의 <a href="http://CLAUDE.md" target="_blank" rel="noopener">CLAUDE.md</a>에 — 클로드는 둘 다 읽습니다.</p>
+</section>
+
+<section class="card" id="s13">
+<h2>2-5-1. 권한과 모드 — Shift+Tab 사이클 · 📽 PPT: STAGE 0 「안전 ⑦-3~⑦-6」 (11:12경)</h2>
+<p>클로드는 <strong>허락을 받고</strong> 일합니다. 파일을 고치거나 명령을 실행하기 전에 매번 물어봐요. 그 «묻는 정도»를 바꾸는 게 모드입니다.</p>
+<p><strong>Shift+Tab을 누를 때마다 모드가 순환합니다</strong> (현재 모드는 입력창 아래에 표시됩니다):</p>
+<ol>
+<li><strong>일반</strong> — 수정·실행마다 승인 요청 (기본)</li>
+<li><strong>auto-accept edits</strong> — 파일 수정은 묻지 않고 진행</li>
+<li><strong>plan mode</strong> — 코드를 건드리지 않고 계획만 먼저 (오늘 실습의 기본값)</li>
+</ol>
+<p>권한 설정 열기:</p>
+<div class="code"><div class="code-hd"><span class="code-lang">bash</span><button class="code-copy" type="button">복사</button></div><pre>/permissions</pre></div>
+<p class="warn">⚠ <strong>꼭 막아둘 것(deny)</strong> — <code>rm -rf</code> 계열 · <code>git push --force</code> · <code>.env</code> 등 비밀키 파일 열람·전송 · 결제/배포 관련 명령. 「위험한 건 아예 잠가둔다」가 초보 구간의 안전벨트입니다.</p>
+<p class="tip">💡 <strong>유용한 것 3개</strong> — <code>Esc</code>(작업 중단) · <code>/clear</code>(맥락 리셋) · 조용할 때 “지금 어디까지 됐어?”(상태 물어보기).</p>
+</section>
+
+<section class="card" id="s14">
+<h2>2-6. 플랜 승인 · 📽 PPT: STAGE 0 「안전벨트·플랜 승인」 (11:15경)</h2>
+<p>plan 모드가 끝나면 승인 화면이 뜹니다:</p>
+<ul>
+<li><strong>1. Yes, and auto-accept edits</strong> — 다 맡김</li>
+<li><strong>2. Yes, and manually approve edits</strong> — 단계마다 확인 (<strong>추천</strong>)</li>
+<li><strong>3. No, keep planning</strong> — 계획 다시</li>
+</ul>
+<p>승인 전 <strong>3체크</strong>: ① 뭘 만들려는가(내가 시킨 것과 같은가) ② 어떤 파일을 만들고/고치는가 ③ 빠졌거나 과한 것은 없는가</p>
+<p>계획을 고치고 싶으면 승인하지 말고 채팅으로:</p>
+<div class="code"><div class="code-hd"><span class="code-lang">javascript</span><button class="code-copy" type="button">복사</button></div><pre>계획에서 [빼고 싶은 것]는 빼고 다시 짜줘</pre></div>
+<p class="note">※ 3번은 실패가 아니라 대화 — 계획 단계의 수정이 제일 쌉니다.</p>
+</section>
+
+<section class="card" id="s15">
+<h2>2-7. 병기고 — 남이 만든 무기부터 장착 · 📽 PPT: 「ARSENAL FIRST」 (11:20경 · 15분)</h2>
+<p class="quote">오늘 모든 실습이 «맨손»이 아니라 «장비를 낀 상태»에서 돌아갑니다. 요리를 배우는데 칼부터 갈고 시작하느냐, 맨손으로 시작해 나중에 칼을 받느냐의 차이입니다.</p>
+<p><strong>왜 «먼저» 깔아야 하나 — 3가지 이유</strong></p>
+<ol>
+<li><strong>결과 품질이 시작부터 달라집니다</strong> — 같은 프롬프트라도 «작업 순서를 강제하는 규칙»이 깔려 있으면 결과가 다릅니다. 나중에 깔면 오늘 만든 걸 다시 만들어야 해요.</li>
+<li><strong>내가 몰라도 프로의 순서로 일합니다</strong> — 계획 → 검증 → 구현 → 회고. 숙련자가 지키는 순서를 플러그인이 대신 강제합니다.</li>
+<li><strong>직접 만들 필요가 없습니다</strong> — 전 세계가 검증한 부품이 무료로 공개돼 있습니다. 오늘 할 일은 «만들기»가 아니라 «고르고 조립하기».</li>
+</ol>
+<p><strong>부품 4종 — 뭐가 뭔지 30초 정리</strong></p>
+<ul>
+<li>🧠 <strong>스킬(Skill)</strong> — «이 작업은 이렇게 해라» 작업 매뉴얼 · <a href="http://SKILL.md" target="_blank" rel="noopener">SKILL.md</a> 한 장 · <strong>웹·CLI 모두 가능</strong></li>
+<li>🔌 <strong>플러그인(Plugin)</strong> — 스킬·커맨드·훅을 묶은 «세트 상품» · <code>/plugin install</code> · <strong>CLI 전용</strong></li>
+<li>🪝 <strong>훅(Hook)</strong> — «저장할 때마다 검사» 같은 자동 개입 · settings.json · <strong>CLI 전용</strong></li>
+<li>🔗 <strong>MCP</strong> — 외부 도구(브라우저·노션·DB)와 연결 · <code>claude mcp add</code> · <strong>CLI 전용</strong>(웹은 원격 커넥터만)</li>
+</ul>
+<p class="tip">💡 <strong>웹 클로드(GUI)에서도 되는 것</strong> — 스킬은 설정 → Skills에서 zip 업로드로 그대로 씁니다(<strong>무료 플랜 포함</strong>). MCP는 원격 커넥터만. 플러그인·훅은 CLI 전용.</p>
+<p><strong>장착 ① Superpowers — 프로의 작업 순서를 강제</strong> (claude 안에서 두 줄):</p>
+<div class="code"><div class="code-hd"><span class="code-lang">javascript</span><button class="code-copy" type="button">복사</button></div><pre>/plugin marketplace add obra/superpowers</pre></div>
+<div class="code"><div class="code-hd"><span class="code-lang">javascript</span><button class="code-copy" type="button">복사</button></div><pre>/plugin install superpowers@superpowers</pre></div>
+<p>깔면 뭐가 달라지나: “만들어줘” 한마디에 바로 코드를 쏟아내지 않고 — <strong>계획을 세우고 → 테스트를 먼저 짜고 → 구현하고 → 스스로 검증</strong>합니다.</p>
+<ul>
+<li>실습⓪ 보스전 → 계획을 먼저 보여주고 승인받습니다. 엉뚱한 걸 만들 확률이 뚝 떨어집니다</li>
+<li>실습③ 개발 루프 → 수정 → 자체 점검 → 재수정이 «시키지 않아도» 돕니다</li>
+<li>파이널 프로젝트 → 중간에 길을 잃지 않습니다. 큰 작업일수록 차이가 커집니다</li>
+</ul>
+<p class="note">※ 설치 확인: claude 재시작 → <code>/help</code>에 새 명령이 보이면 성공. 저장소: <a href="https://github.com/obra/superpowers" target="_blank" rel="noopener">github.com/obra/superpowers</a></p>
+<p><strong>장착 ② Ponytail — 초보에게 가장 값어치 있는 장비</strong> (claude 안에서 두 줄):</p>
+<div class="code"><div class="code-hd"><span class="code-lang">javascript</span><button class="code-copy" type="button">복사</button></div><pre>/plugin marketplace add DietrichGebert/ponytail</pre></div>
+<div class="code"><div class="code-hd"><span class="code-lang">javascript</span><button class="code-copy" type="button">복사</button></div><pre>/plugin install ponytail@ponytail</pre></div>
+<p>한 줄 요약: «가장 짧고 단순한 코드만 쓰게» 클로드를 붙잡아 둡니다. 화려하게 만들려는 습성을 눌러줘요.</p>
+<ul>
+<li>❌ 없을 때: 파일이 5개로 늘어남 / 처음 보는 라이브러리를 끌어옴 / 에러가 어디서 났는지 못 찾음 / 고쳐달라 하면 더 복잡해짐</li>
+<li>⭕ 있을 때: 파일 하나로 끝냄 / 내가 읽을 수 있는 코드가 나옴 / 에러 위치가 바로 보임 / 내일의 내가 고칠 수 있음</li>
+</ul>
+<p class="note">※ «내가 이해 못 하는 코드는 내 것이 아니다» — 초보 구간에서 이 원칙 하나가 완주율을 가릅니다.</p>
+<p><strong>깔았으면 «어떻게» 쓰나 — 3가지 습관</strong></p>
+<ol>
+<li><strong>그냥 평소처럼 시키세요</strong> — 따로 부르는 명령이 없습니다. 설치되면 알아서 발동(«자동으로 켜지는 안전벨트»). 예: “운세 페이지 만들어줘” → 계획부터 나옵니다</li>
+<li><strong>안 발동하면 이름을 부르세요</strong> — 가끔 조용할 때가 있습니다. 예: “superpowers 방식으로 계획부터 세워줘”</li>
+<li><strong>충돌하면 하나만 남기세요</strong> — 규칙이 서로 다투면 결과가 이상해집니다. 초보 구간엔 Ponytail 우선. <code>/plugin</code>으로 목록 확인 → 잠시 끄기</li>
+</ol>
+<p class="pin">🎯 오늘 이후 규칙: 새 부품은 «한 번에 하나만» 깔고 이틀 써보기 — 뭐가 달라졌는지 알 수 있어야 내 것이 됩니다. (더 많은 부품은 아래 「9-2. 커뮤니티 스킬 맛집 7선」)</p>
+</section>
+
+<section class="card" id="s16">
+<h2>3. 실습 ⓪ 보스전 — 오늘의 운세 페이지 · 📽 PPT: 「실습⓪ 보스전」 (11:20–11:35)</h2>
+<p>Shift+Tab으로 plan mode 전환 후 아래 복붙:</p>
+<div class="code"><div class="code-hd"><span class="code-lang">javascript</span><button class="code-copy" type="button">복사</button></div><pre>오늘의 운세를 뽑아주는 웹페이지를 만들어줘.
+버튼을 누르면 카드 7장 중 랜덤으로 1장을 보여주고,
+운세 메시지를 표시해줘.
+신비로운 네이비 컬러로.</pre></div>
+</section>
+
+<section class="card" id="s17">
+<h2>4. 실습 ① 내 글쓰기 · 📽 PPT: M1 「실습①」 (11:45–12:00)</h2>
+<p>아래 틀의 [ ] 만 내 상황으로 바꿔서 복붙:</p>
+<div class="code"><div class="code-hd"><span class="code-lang">javascript</span><button class="code-copy" type="button">복사</button></div><pre>[맥락] 저는 [내 직업/상황]이고, [써야 하는 글]을 쓰려 합니다.
+[목적] 이 글로 [읽는 사람이 하길 바라는 행동]을 이루려 합니다.
+[조건] [존댓말/반말], [글자 수], [형식], [금지사항]을 지켜주세요.</pre></div>
+<p><strong>채워진 예시 3종 — 내 상황과 닮은 걸 골라 [ ]만 바꿔도 됩니다:</strong></p>
+<p>학원 원장 — 신학기 안내 문자:</p>
+<div class="code"><div class="code-hd"><span class="code-lang">javascript</span><button class="code-copy" type="button">복사</button></div><pre>[맥락] 저는 초중등 영어학원 원장이고, 신학기 개강 안내 문자를 학부모께 보내야 합니다.
+[목적] 학부모가 안심하고 재등록 링크를 누르게 하려 합니다.
+[조건] 예의 바른 존댓말, 300자 이내, 문자메시지 형식, 과장 표현 금지.</pre></div>
+<p>쇼핑몰 사장 — 배송 지연 안내:</p>
+<div class="code"><div class="code-hd"><span class="code-lang">javascript</span><button class="code-copy" type="button">복사</button></div><pre>[맥락] 저는 온라인 쇼핑몰을 운영하고, 택배 파업으로 배송이 3일 지연되어 공지를 써야 합니다.
+[목적] 고객이 주문 취소 대신 기다리게 하는 것.
+[조건] 진심 어린 존댓말, 5문장 이내, 적립금 1,000원 보상 안내 포함, 변명조 금지.</pre></div>
+<p>직장인 — 주간보고 메일:</p>
+<div class="code"><div class="code-hd"><span class="code-lang">javascript</span><button class="code-copy" type="button">복사</button></div><pre>[맥락] 저는 마케팅팀 대리이고, 팀장께 보낼 주간 업무 보고 메일을 씁니다.
+[목적] 이번 주 성과 3가지가 한눈에 들어와 추가 질문 없이 통과되는 것.
+[조건] 간결한 존댓말, 개조식(불릿), A4 반 장 이내, 숫자 중심.</pre></div>
+<p><strong>다듬기 5종 (후속 턴용):</strong></p>
+<div class="code"><div class="code-hd"><span class="code-lang">javascript</span><button class="code-copy" type="button">복사</button></div><pre>더 짧게, 핵심만</pre></div>
+<div class="code"><div class="code-hd"><span class="code-lang">javascript</span><button class="code-copy" type="button">복사</button></div><pre>[누구]에게 말하듯한 톤으로 바꿔줘</pre></div>
+<div class="code"><div class="code-hd"><span class="code-lang">javascript</span><button class="code-copy" type="button">복사</button></div><pre>3가지 버전으로 써줘</pre></div>
+<div class="code"><div class="code-hd"><span class="code-lang">javascript</span><button class="code-copy" type="button">복사</button></div><pre>여기서 [부분]만 고쳐줘</pre></div>
+<div class="code"><div class="code-hd"><span class="code-lang">javascript</span><button class="code-copy" type="button">복사</button></div><pre>빠진 게 뭐야? 스스로 검토해줘</pre></div>
+</section>
+
+<section class="card" id="s18">
+<h2>4-1. git init — 폴더를 「저장소」로 만들기 · 📽 PPT: M2 「가장 먼저」 (12:05)</h2>
+<p class="quote">커밋·푸시보다 <strong>이게 먼저</strong>입니다. init을 안 한 폴더에서 커밋하면 <code>fatal: not a git repository</code> 에러가 납니다.</p>
+<p>터미널에서 (프로젝트 폴더당 딱 한 번만):</p>
+<div class="code"><div class="code-hd"><span class="code-lang">bash</span><button class="code-copy" type="button">복사</button></div><pre>cd my-fortune        # 내 프로젝트 폴더로 이동
+git init             # 이 폴더를 깃 저장소로 만들기
+ls -la               # 숨김 파일까지 전부 보기</pre></div>
+<p>→ 목록에 <strong><code>.git</code></strong> 디렉토리가 보이면 성공입니다.</p>
+<p class="tip">💡 <strong>.git 폴더가 뭔가요</strong> — 깃이 「이력을 적어두는 장부」입니다. 이 폴더가 생기는 순간부터 모든 변경 기록이 자동으로 쌓입니다. 이게 없으면 커밋 자체가 불가능해요. (직접 열어 수정하지 말 것)</p>
+<p><strong>막힐 때:</strong></p>
+<ul>
+<li><code>.git</code>이 안 보여요 → 폴더 위치가 다릅니다. <code>pwd</code>로 지금 위치 확인 → 맞는 폴더에서 <code>git init</code> 다시</li>
+<li>Windows에서 <code>ls -la</code>가 안 돼요 → PowerShell은 <code>ls -Force</code></li>
+<li>처음부터 완전히 다시 하고 싶어요 → <code>rm -rf .git</code> 후 <code>git init</code> (Windows: <code>Remove-Item -Recurse -Force .git</code>)</li>
+</ul>
+<div class="code"><div class="code-hd"><span class="code-lang">bash</span><button class="code-copy" type="button">복사</button></div><pre>rm -rf .git
+git init
+ls -la</pre></div>
+<p class="warn">⚠ <code>rm -rf .git</code>은 <strong>지금까지의 커밋 이력이 전부 사라집니다.</strong> 새 프로젝트로 리셋할 때만 쓰세요.</p>
+<p class="note">🖱 <strong>터미널이 부담되면</strong> — VS Code 왼쪽 <strong>[소스 제어]</strong> 아이콘(Ctrl+Shift+G) → 「<strong>리포지토리 초기화</strong>」 버튼 한 번 = <code>git init</code>과 똑같습니다. 누른 뒤 터미널에서 <code>ls -la</code> 하면 <code>.git</code>이 생긴 걸 확인할 수 있어요.</p>
+</section>
+
+<section class="card" id="s19">
+<h2>4-2. 스테이징 — 「이번 세이브에 무엇을 담을까」 · 📽 PPT: M2 「스테이징」 (12:06)</h2>
+<p>커밋을 하려면 먼저 <strong>스테이징 영역에 올려야</strong> 합니다. 오늘 파일 5개를 고쳤는데 그중 3개만 완성됐다면 — 그 3개만 담아 커밋하고 나머지는 계속 작업하면 됩니다. 커밋은 「저장」이 아니라 <strong>「내가 고른 것들의 스냅샷」</strong>이에요.</p>
+<p><strong>파일의 세 가지 상태</strong> : ① 수정됨(아직 안 담김) → ② 담김(스테이징 완료) → ③ 커밋됨(세이브 확정)</p>
+<div class="code"><div class="code-hd"><span class="code-lang">bash</span><button class="code-copy" type="button">복사</button></div><pre>git status                      # 지금 무엇이 담겼고 안 담겼는지 — 막히면 무조건 이것부터</pre></div>
+<div class="code"><div class="code-hd"><span class="code-lang">bash</span><button class="code-copy" type="button">복사</button></div><pre>git add index.html              # 이 파일만 골라 담기 (파일명 여러 개 나열 가능)</pre></div>
+<div class="code"><div class="code-hd"><span class="code-lang">bash</span><button class="code-copy" type="button">복사</button></div><pre>git add .                       # 폴더 안 전부 담기 — 오늘 실습은 대부분 이것</pre></div>
+<div class="code"><div class="code-hd"><span class="code-lang">bash</span><button class="code-copy" type="button">복사</button></div><pre>git restore --staged index.html # 담았던 걸 다시 내려놓기 (작업 내용은 그대로)</pre></div>
+<p class="note">🖱 <strong>VS Code에서는 클릭으로</strong> — [소스 제어] 탭에서 파일 옆 「＋」가 담기, 「−」가 내리기.</p>
+<p class="note">🙈 <strong>애초에 담기면 안 되는 것</strong>(node_modules · .env 비밀키)은 <code>.gitignore</code>에 적어두면 목록에 아예 뜨지 않습니다.</p>
+<p>클로드에게 말로 지정해도 됩니다:</p>
+<div class="code"><div class="code-hd"><span class="code-lang">javascript</span><button class="code-copy" type="button">복사</button></div><pre>index.html만 스테이징해서 커밋해줘</pre></div>
+</section>
+
+<section class="card" id="s20">
+<h2>4-3. 커밋 메시지 · 커밋 전략 · 📽 PPT: M2 「커밋 전략」 (12:08)</h2>
+<p><strong>좋은 커밋 메시지 3원칙</strong></p>
+<ol>
+<li><strong>무엇을 + 왜</strong> — 미래의 나에게 보내는 쪽지입니다</li>
+<li>한 줄 요약은 <strong>50자 안쪽</strong>, 명사형으로</li>
+<li>우리 규칙: <strong>한국어로</strong> (<a href="http://CLAUDE.md" target="_blank" rel="noopener">CLAUDE.md</a>에 이미 적어둔 규칙)</li>
+</ol>
+<ul>
+<li>✕ “수정” · “ㅇㅇ” · “asdf”</li>
+<li>○ “운세 카드 7장 랜덤 로직 추가”</li>
+</ul>
+<p><strong>언제 커밋하나 — 5가지 신호</strong></p>
+<ol>
+<li>기능 하나가 「작동」하게 됐을 때</li>
+<li>위험한 실험을 시작하기 <strong>직전</strong></li>
+<li>큰 정리(리팩터링) 앞뒤로</li>
+<li>자리를 뜰 때 · 하루를 마칠 때</li>
+<li>AI에게 큰 작업을 시키기 전 — <strong>되돌릴 지점 확보</strong></li>
+</ol>
+<p><strong>커밋 전략 — 상황별로</strong></p>
+<ul>
+<li><strong>나 혼자 (오늘)</strong> : 자주·작게. 브랜치 없이 main 하나로 — 되돌릴 지점만 촘촘하면 충분합니다</li>
+<li><strong>팀으로 (캠프에서)</strong> : 머리말 규칙을 합의 — <code>feat</code>(기능) · <code>fix</code>(버그) · <code>docs</code>(문서). 목록만 봐도 히스토리가 읽힙니다</li>
+<li><strong>깨진 코드는 커밋 금지</strong> : 「작동하는 상태」만 세이브 — 안 돌아가는 지점으로 돌아가 봐야 소용없습니다</li>
+</ul>
+<p class="pin">🎯 오늘의 규칙은 하나 — <strong>실습 하나 끝날 때마다 커밋 한 번.</strong></p>
+</section>
+
+<section class="card" id="s21">
+<h2>4-4. 되돌리기 — 세이브 로드 · 📽 PPT: M2 「되돌리기」 (12:09)</h2>
+<p>세이브 목록 보기:</p>
+<div class="code"><div class="code-hd"><span class="code-lang">bash</span><button class="code-copy" type="button">복사</button></div><pre>git log --oneline</pre></div>
+<div class="code"><div class="code-hd"><span class="code-lang">javascript</span><button class="code-copy" type="button">복사</button></div><pre>a1b2c3d  운세 카드 랜덤 로직 추가
+9f8e7d6  다크모드 버튼 추가
+5c4b3a2  최초 커밋</pre></div>
+<p>명령을 외울 필요는 없습니다 — 클로드에게 말로 하세요:</p>
+<div class="code"><div class="code-hd"><span class="code-lang">javascript</span><button class="code-copy" type="button">복사</button></div><pre>지금까지 커밋 목록 보여줘</pre></div>
+<div class="code"><div class="code-hd"><span class="code-lang">javascript</span><button class="code-copy" type="button">복사</button></div><pre>방금 커밋만 취소해줘 — 작업 내용은 남기고</pre></div>
+<div class="code"><div class="code-hd"><span class="code-lang">javascript</span><button class="code-copy" type="button">복사</button></div><pre>index.html을 마지막 커밋 상태로 되돌려줘</pre></div>
+<p class="warn">⚠ <strong>오늘 치지 말 것</strong> : <code>git reset --hard</code> · <code>git push --force</code> — 커밋 안 한 작업이 통째로 사라집니다. 필요하면 클로드에게 먼저 “이거 위험한가?”라고 물어보세요.</p>
+<p class="tip">💡 되돌리기는 <strong>커밋한 지점으로만</strong> 갑니다. 커밋이 없으면 돌아갈 곳도 없어요 — 이게 커밋 전략이 필요한 이유입니다.</p>
+<p class="pin">📌 <strong>한 줄 정리</strong> — ① <code>git init</code>으로 장부를 열고 → ② <code>add</code>로 담고 → ③ <code>commit</code>으로 찍고 → ④ <code>push</code>로 올린다. 되돌리기는 ③이 있어야 가능합니다.</p>
+</section>
+
+<section class="card" id="s22">
+<h2>5. 실습 ② 첫 커밋 · 첫 푸시 · 📽 PPT: M2 「실습②」 (12:10–12:30)</h2>
+<p>클로드에게 그대로 (이 한 줄에 <code>git init</code> → <code>add</code> → <code>commit</code>이 전부 들어 있습니다):</p>
+<div class="code"><div class="code-hd"><span class="code-lang">javascript</span><button class="code-copy" type="button">복사</button></div><pre>이 폴더를 git 저장소로 만들고 지금까지 작업 전부 커밋해줘</pre></div>
+<p class="note">※ 직접 확인해보고 싶다면 — 실행 후 터미널에서 <code>ls -la</code>로 <code>.git</code> 생성 확인, <code>git log --oneline</code>으로 커밋이 찍혔는지 확인.</p>
+<p><a href="http://github.com" target="_blank" rel="noopener">github.com</a> → New repository (이름 my-fortune · Public · README 체크 안 함) → 주소 복사 후:</p>
+<div class="code"><div class="code-hd"><span class="code-lang">javascript</span><button class="code-copy" type="button">복사</button></div><pre>이 주소를 origin으로 연결하고 push 해줘: [레포 주소]</pre></div>
+<p class="note">※ 인증 실패 시: "gh auth login 해줘" 또는 에러를 통째로 복붙</p>
+</section>
+
+<section class="card" id="s23">
+<h2>5-1. UI 워크플로우 — 클로드에게 「보여주기」 · 📽 PPT: M3 「UI 워크플로우」 (13:52)</h2>
+<p>화면을 말로 설명하기 어려울 때는 <strong>그림을 주세요.</strong> 스크린샷을 찍어 claude 대화창에 그대로 붙여넣기(⌘V / Ctrl+V)하면 클로드가 보고 고칩니다.</p>
+<div class="code"><div class="code-hd"><span class="code-lang">javascript</span><button class="code-copy" type="button">복사</button></div><pre>스크린샷 참고 — 이 화면에서 [바꾸고 싶은 부분]을 [이렇게] 고쳐줘</pre></div>
+<p>맥 스크린샷(클립보드로 복사): ⌃⇧⌘4 · 윈도우: Win+Shift+S</p>
+<p class="tip">💡 8-1의 Playwright MCP를 붙이면 — 사람이 찍어줄 필요 없이 클로드가 직접 브라우저를 열고 스크린샷을 찍어 자기 작업을 검증합니다.</p>
+</section>
+
+<section class="card" id="s24">
+<h2>6. 실습 ③ 개발 루프 한 바퀴 · 📽 PPT: M3 「실습③」 (13:55–14:10)</h2>
+<p>my-fortune 폴더에서 순서대로 (한 번에 하나씩!):</p>
+<div class="code"><div class="code-hd"><span class="code-lang">javascript</span><button class="code-copy" type="button">복사</button></div><pre>아직 코드 작성하지 마. index.html을 읽고 구조를 3줄로 설명해줘</pre></div>
+<div class="code"><div class="code-hd"><span class="code-lang">javascript</span><button class="code-copy" type="button">복사</button></div><pre>think hard — 다크모드 토글 버튼을 추가하는 계획을 세워줘</pre></div>
+<div class="code"><div class="code-hd"><span class="code-lang">javascript</span><button class="code-copy" type="button">복사</button></div><pre>계획대로 구현해줘. 각 단계마다 '이게 맞나?' 자기검증하며 진행해</pre></div>
+<div class="code"><div class="code-hd"><span class="code-lang">javascript</span><button class="code-copy" type="button">복사</button></div><pre>완료된 작업을 커밋하고 README도 갱신해줘</pre></div>
+<p class="note">※ 다크모드가 부담이면 “배경색 바꾸는 버튼”으로 축소 — 루프 체험이 목적!</p>
+</section>
+
+<section class="card" id="s25">
+<h2>7. 실습 ④ 내 스타터킷 · 📽 PPT: M4 「실습④」 (14:20–14:50)</h2>
+<p>새 폴더 my-starter-kit → 3步 리추얼 → 플랜 모드 후 복붙:</p>
+<div class="code"><div class="code-hd"><span class="code-lang">javascript</span><button class="code-copy" type="button">복사</button></div><pre>너는 시니어 웹 개발자야. 단계별로 생각하며 진행해줘.
+
+Next.js + TailwindCSS + shadcn/ui 기반의 재사용 가능한 스타터킷을 만들어줘.
+
+1. 폴더 구조를 먼저 설계해서 보여줘
+2. CLAUDE.md를 만들고 규칙 포함: 기본 응답 언어 한국어 / 코드 주석·커밋 메시지·문서화 한국어 / 변수명·함수명 영어
+3. README.md에 시작 방법을 적어줘
+4. 공식문서를 참고해서 최신 방식으로:
+   https://nextjs.org/docs
+   https://tailwindcss.com/docs
+   https://ui.shadcn.com/docs</pre></div>
+<p class="pin">📌 <strong>정답지(프로 완성형)</strong> — 막히면 구조만 봐도 방향이 잡힙니다: <a href="https://github.com/gymcoding/claude-nextjs-starters" target="_blank" rel="noopener">github.com/gymcoding/claude-nextjs-starters</a> (짐코딩님 공개 교안 · <a href="http://CLAUDE.md" target="_blank" rel="noopener">CLAUDE.md</a>·docs/·.husky 구성 참고)</p>
+<p>완성 후:</p>
+<div class="code"><div class="code-hd"><span class="code-lang">javascript</span><button class="code-copy" type="button">복사</button></div><pre>git 저장소 만들고 GitHub에 올려줘</pre></div>
+</section>
+
+<section class="card" id="s26">
+<h2>7-1. 오늘 이후 꽂아볼 「손」 5개 · 📽 PPT: M5 「MCP 5개」 (14:56)</h2>
+<p>MCP = AI 도구의 <strong>USB-C 규격</strong>. 한 번 꽂으면 클로드가 그 도구를 손처럼 씁니다.</p>
+<ul>
+<li><strong>Context7</strong> — 최신 공식문서 참조 (바로 아래 실습⑤)</li>
+<li><strong>Playwright</strong> — 브라우저 조작·스크린샷 (8-1)</li>
+<li><strong>Notion</strong> — 내 노션 DB를 읽고 쓰기 (파이널 PROJECT X가 바로 이 길)</li>
+<li><strong>Filesystem</strong> — 지정한 폴더만 안전하게 열람</li>
+<li><strong>Slack · Gmail 등 원격 커넥터</strong> — 업무 도구 연결 (이쪽은 웹 클로드에서도 사용 가능)</li>
+</ul>
+<p class="note">※ 설치 전 체크: 공식/유명 저장소인가 · 어떤 권한을 요구하는가. 한 번에 하나씩 꽂고 써보세요.</p>
+</section>
+
+<section class="card" id="s27">
+<h2>8. 실습 ⑤ MCP · Context7 연결 · 📽 PPT: M5 「실습⑤」 (15:15–15:35)</h2>
+<p><strong>설치 — 공식 한 줄 (Mac·Windows 동일, claude 밖 터미널에서):</strong></p>
+<div class="code"><div class="code-hd"><span class="code-lang">bash</span><button class="code-copy" type="button">복사</button></div><pre>npx ctx7 setup --claude</pre></div>
+<p>→ 브라우저가 열리면 로그인(구글 OK) → 무료 API 키 자동 발급 → 모드 선택은 <strong>MCP</strong>.</p>
+<p class="tip">💡 왜 로그인이 필요하나요? 키 없이 쓰면 요청 제한에 걸립니다 — 같은 와이파이 10명이면 금방 막혀요. (구방식 <code>claude mcp add --transport http context7 …</code>는 키 없이 연결돼서 비추)</p>
+<p>확인: claude 재시작 → <code>/mcp</code> → context7 보이면 성공. 테스트:</p>
+<div class="code"><div class="code-hd"><span class="code-lang">javascript</span><button class="code-copy" type="button">복사</button></div><pre>use context7 — Next.js 최신 문서 기준으로 내 스타터킷 README를 보강해줘</pre></div>
+<p>서버 더 찾기: <a href="https://github.com/modelcontextprotocol/servers" target="_blank" rel="noopener">MCP 공식 서버 모음</a> · <a href="https://smithery.ai" target="_blank" rel="noopener">Smithery</a></p>
+</section>
+
+<section class="card" id="s28">
+<h2>8-1. 오픈소스 강추 ① — Playwright MCP · 📽 PPT: M5 「강추①」 (15:33)</h2>
+<p>클로드에게 「눈」을 다는 도구 — 브라우저 조작 + 스크린샷. 터미널에서(claude 밖에서):</p>
+<div class="code"><div class="code-hd"><span class="code-lang">javascript</span><button class="code-copy" type="button">복사</button></div><pre>claude mcp add playwright npx @playwright/mcp@latest</pre></div>
+<p>확인: claude 재시작 → <code>/mcp</code> → playwright ✓. 테스트:</p>
+<div class="code"><div class="code-hd"><span class="code-lang">javascript</span><button class="code-copy" type="button">복사</button></div><pre>playwright로 내 운세 페이지를 열고 스크린샷을 찍어줘</pre></div>
+<p>저장소: <a href="https://github.com/microsoft/playwright-mcp" target="_blank" rel="noopener">github.com/microsoft/playwright-mcp</a></p>
+</section>
+
+<section class="card" id="s29">
+<h2>8-2. 오픈소스 강추 ② — 공식 스킬 창고 · 📽 PPT: M6 「강추②」 (15:48)</h2>
+<p>Anthropic이 직접 공개한 스킬 모음 — 워드·PPT·엑셀·PDF를 파일로 생성. claude 안에서:</p>
+<div class="code"><div class="code-hd"><span class="code-lang">javascript</span><button class="code-copy" type="button">복사</button></div><pre>/plugin marketplace add anthropics/skills</pre></div>
+<div class="code"><div class="code-hd"><span class="code-lang">javascript</span><button class="code-copy" type="button">복사</button></div><pre>/plugin install document-skills@anthropic-agent-skills</pre></div>
+<p class="warn">⚠ 안 뜨면: ①의 마켓 등록이 먼저입니다. 그래도 안 뜨면 <code>/plugin</code> → Browse → <strong>document-skills</strong> 선택 → Install.</p>
+<p>테스트 (파이널 프로젝트 트랙 B의 재료):</p>
+<div class="code"><div class="code-hd"><span class="code-lang">javascript</span><button class="code-copy" type="button">복사</button></div><pre>우리 서비스 소개서를 5장짜리 pptx로 만들어줘</pre></div>
+<p>저장소: <a href="https://github.com/anthropics/skills" target="_blank" rel="noopener">github.com/anthropics/skills</a></p>
+</section>
+
+<section class="card" id="s30">
+<h2>9. 실습 ⑥ 견적서 스킬 만들기 · 📽 PPT: M6 「실습⑥」 (15:50–16:10)</h2>
+<p>먼저 설치 2줄 (claude 안에서 — 강추②에서 마켓 등록했다면 둘째 줄만):</p>
+<div class="code"><div class="code-hd"><span class="code-lang">javascript</span><button class="code-copy" type="button">복사</button></div><pre>/plugin marketplace add anthropics/skills</pre></div>
+<div class="code"><div class="code-hd"><span class="code-lang">javascript</span><button class="code-copy" type="button">복사</button></div><pre>/plugin install example-skills@anthropic-agent-skills</pre></div>
+<p class="tip">💡 <strong>skill-creator는 example-skills 묶음 안에</strong> 들어있습니다 — 이름으로 검색해도 단독으로는 안 나와요. 설치 후 <code>/skill-creator</code>가 보이면 성공.</p>
+<p>그다음 아래를 복붙 ([ ]만 내 상황으로):</p>
+<div class="code"><div class="code-hd"><span class="code-lang">javascript</span><button class="code-copy" type="button">복사</button></div><pre>/skill-creator 견적서 초안을 자동 생성하는 스킬을 만들어줘.
+
+- 고객사명, 프로젝트 내용, 업무 항목과 단가를 입력하면 견적서 초안이 나와야 해
+- 항목별 금액 테이블, 소계, 부가세(10%), 총합계 자동 계산
+- 결제 계좌 정보, 견적 유효기간(30일) 포함
+- 아웃풋은 PDF 파일로 생성
+- 자체 검증 체크리스트 포함 (필수 항목 누락 확인)
+- "견적서 만들어줘", "견적서 제작해줘" 같은 요청에 자동 트리거
+
+스킬 제작 이후 eval test도 진행해줘.</pre></div>
+<p>테스트 (한 줄로 자동 트리거 확인):</p>
+<div class="code"><div class="code-hd"><span class="code-lang">javascript</span><button class="code-copy" type="button">복사</button></div><pre>DEF 스타트업 AI 자동화 건, 단가 100만원 기준으로 견적서 만들어줘</pre></div>
+<p>개선 반영:</p>
+<div class="code"><div class="code-hd"><span class="code-lang">javascript</span><button class="code-copy" type="button">복사</button></div><pre>해당 수정사항들 반영해서 스킬에 반영해줘</pre></div>
+<p class="note">※ 파일명은 반드시 대문자 <a href="http://SKILL.md" target="_blank" rel="noopener">SKILL.md</a> · 트리거 안 되면 <code>/스킬이름</code> 직접 호출 · eval = 스킬 적용 전/후 A/B 점수 비교</p>
+</section>
+
+<section class="card" id="s31">
+<h2>9★. SOP 매뉴얼 상세 — SKILL.md 해부 · 📽 PPT: M6 「SOP 해부·폴더·품질」 (15:54–16:00)</h2>
+<p class="quote">스킬은 «코딩»이 아니라 <strong>신입에게 넘기는 업무 인수인계서</strong>입니다. 사람에게 설명하듯 쓰면 그게 곧 좋은 스킬.</p>
+<p><a href="http://SKILL.md" target="_blank" rel="noopener"><strong>SKILL.md</strong></a><strong> 뼈대 — 이 다섯 칸이 전부입니다</strong> (내 상황으로 바꿔 쓰세요):</p>
+<div class="code"><div class="code-hd"><span class="code-lang">javascript</span><button class="code-copy" type="button">복사</button></div><pre>---
+name: 견적서-작성기
+description: 고객사·항목·단가를 주면 부가세까지 계산된 견적서를 만든다. “견적서 만들어줘”에 발동.
+---
+
+## 언제 쓰나
+- 고객이 견적을 요청했을 때
+
+## 입력받을 것
+- 고객사명 / 항목·수량·단가 / 유효기간
+- 없으면 지어내지 말고 되물을 것
+
+## 작업 순서
+1) 항목 표 생성 2) 소계 3) 부가세 10% 4) 총합
+5) 계좌·유효기간 삽입 6) PDF로 저장
+
+## 출력 형식
+- A4 1장 · 회사 로고 자리 비워둘 것
+
+## 하지 말 것
+- 금액 임의 할인 · 근거 없는 항목 추가</pre></div>
+<p><strong>다섯 칸이 하는 일:</strong></p>
+<ol>
+<li><strong>이름·설명</strong> — 언제 발동할지 결정하는 «검색어». 여기가 부실하면 아예 안 불려나옵니다</li>
+<li><strong>언제 쓰나</strong> — 상황을 적어야 클로드가 스스로 판단합니다</li>
+<li><strong>입력받을 것</strong> — «없으면 되물어라»가 핵심 (지어내기 방지 장치)</li>
+<li><strong>작업 순서</strong> — 번호를 매기세요. 순서가 곧 품질입니다</li>
+<li><strong>하지 말 것</strong> — 금지가 지시보다 강합니다. 사고를 여기서 막습니다</li>
+</ol>
+<p><strong>스킬은 «폴더» 하나 — 그대로 배포됩니다:</strong></p>
+<div class="code"><div class="code-hd"><span class="code-lang">javascript</span><button class="code-copy" type="button">복사</button></div><pre>내-견적서-스킬/
+├── SKILL.md          ← 필수. 이것만 있어도 동작
+├── REFERENCE.md      ← 길어지는 내용은 분리
+├── templates/
+│     └── 견적서_양식.md
+└── scripts/
+      └── calc.py      ← 계산이 복잡하면 스크립트로</pre></div>
+<ul>
+<li>폴더째 압축(zip)하면 그대로 «배포 가능한 제품»이 됩니다 · 동료에게 주면 그 사람 클로드에서도 똑같이 동작</li>
+<li><a href="http://SKILL.md" target="_blank" rel="noopener">SKILL.md</a>가 길어지면 <a href="http://REFERENCE.md" target="_blank" rel="noopener">REFERENCE.md</a>로 쪼개세요 — 필요할 때만 읽습니다</li>
+<li>반복 계산·변환은 스크립트로 빼면 결과가 흔들리지 않습니다</li>
+</ul>
+<p class="tip">🌐 <strong>웹 클로드(GUI)에서도 쓰는 법 — 터미널 없이:</strong> <a href="http://claude.ai" target="_blank" rel="noopener">claude.ai</a> → 설정(Customize) → <strong>Skills</strong> → 폴더를 zip으로 압축해 업로드 → 켜기. <strong>무료 플랜에서도 됩니다.</strong> ※ 단, 「설정 → 기능」에서 «코드 실행 및 파일 생성»이 켜져 있어야 합니다. → 오늘 CLI에서 만든 스킬을 내일 웹에서도 씁니다.</p>
+<p><strong>안 불려나오는 스킬의 3가지 원인 (나쁜 예 → 좋은 예)</strong></p>
+<ol>
+<li>✕ <strong>설명이 추상적</strong> — “description: 문서를 잘 만든다” → ⭕ “description: 고객사·항목·단가를 주면 부가세 계산된 견적서 PDF를 만든다. ‘견적서 만들어줘’에 발동”</li>
+<li>✕ <strong>트리거 문장이 없다</strong> — 언제 쓰는지 안 적음 → ⭕ “견적서/견적/단가표 요청이 오면 이 스킬을 쓴다”를 본문에 명시</li>
+<li>✕ <strong>할 일이 뭉뚱그려져 있다</strong> — “잘 정리해서 만들어라” → ⭕ 1) 표 2) 소계 3) 부가세 4) 총합 5) 저장 — 번호로 쪼갤 것</li>
+</ol>
+<p>점검 한 줄 — 클로드에게 그대로:</p>
+<div class="code"><div class="code-hd"><span class="code-lang">javascript</span><button class="code-copy" type="button">복사</button></div><pre>이 스킬 언제 쓰는 건지, 설명만 보고 알겠어? 애매하면 고쳐줘</pre></div>
+<p><strong>무엇을 스킬로 만들까 — 3초 판별법</strong></p>
+<ul>
+<li>⭕ 이 셋 중 하나면 스킬감: ① 한 달에 두 번 이상 하는 일 ② 매번 같은 설명을 반복하는 일 ③ 사람이 바뀌면 품질이 흔들리는 일</li>
+<li>❌ 반대로 만들지 말 것: 한 번만 할 일 · 매번 조건이 완전히 달라지는 일 · 규칙을 아직 나도 모르는 일(먼저 손으로 3번 해보고)</li>
+<li>후보 6종: 🧾 견적서·청구서(항목→부가세→PDF) · 📨 정기 안내문(대상별 톤 고정) · 📊 월간 보고서(엑셀→차트→요약) · 🗒 회의록 정제(결정·할일·기한) · 🎬 콘텐츠 대본(훅→본문→CTA) · 📅 일정·정산 정리(→ PROJECT S)</li>
+</ul>
+<p><strong>학교 적용 — 견적서 대신 선생님은 이런 스킬을</strong> (실습⑥ 프롬프트의 «견적서» 자리에 그대로 치환):</p>
+<ul>
+<li>📋 <strong>평가 루브릭 생성기</strong> — 과목·학년·평가요소를 주면 4단계 루브릭 표가 나오게</li>
+<li>📨 <strong>가정통신문 공장</strong> — 행사명·일시·준비물만 주면 학교 톤으로 완성문 + 문자 축약본</li>
+<li>🗒 <strong>회의록 정제기</strong> — 회의 메모를 붙이면 결정·할일·담당·기한 표로</li>
+<li>📅 <strong>주간학습계획 도우미</strong> — 단원·차시를 주면 주간계획안 초안 + 준비물 목록</li>
+</ul>
+<details>
+<summary><strong>16:11 「엑셀→보고서」 라이브 데모</strong> — 샘플 CSV와 프롬프트는 이 페이지 아래쪽 「📊 [부록] 엑셀→보고서 데모」 섹션에 있습니다 (파일 다운로드 포함).</summary>
+</details>
+</section>
+
+<section class="card" id="s32">
+<h2>9★★. SOP 심화 — 발굴 · 메타 프롬프트 · 자동화 사다리 · 📽 PPT: M6 「SOP 발굴·작성·사다리」 (16:02–16:07)</h2>
+<p><strong>① 발굴 — 반복 × 시간 매트릭스 (2분 워크숍)</strong></p>
+<p>지난주에 한 일을 5개만 적고, 각각에 두 질문 — «한 달에 두 번 이상 하나?» «30분 이상 걸리나?»</p>
+<ul>
+<li><strong>자주×오래</strong> → 1순위 · 최우선 SOP감 (주간보고·견적서·회의록)</li>
+<li><strong>자주×금방</strong> → 2순위 · 묶어서 자동화 (정기 안내문·확인 답장)</li>
+<li><strong>가끔×오래</strong> → 3순위 · 절차서만 먼저 (분기 보고·정산 마감)</li>
+<li><strong>가끔×금방</strong> → 만들지 마세요. 그냥 하는 게 빠릅니다</li>
+</ul>
+<p>둘 다 YES인 것 하나가 오늘 실습⑥의 재료. 나머지는 후보 목록에 — 한 달에 하나씩만 늘리세요.</p>
+<p><strong>② 작성 — SOP는 손으로 쓰지 않습니다</strong> (일을 한 번 끝낸 직후, 메타 프롬프트):</p>
+<div class="code"><div class="code-hd"><span class="code-lang">javascript</span><button class="code-copy" type="button">복사</button></div><pre>방금 우리가 한 작업 과정을 처음부터 돌아봐.
+같은 일을 다음에 또 할 수 있게 SKILL.md 형식의 SOP로 정리해줘.
+- 내가 준 입력이 뭐였는지
+- 어떤 순서로 진행했는지
+- 중간에 내가 고치라고 한 것들은 «하지 말 것»에 넣어줘
+- 다섯 칸 뼈대(이름·설명 / 언제 / 입력 / 순서 / 금지) 그대로</pre></div>
+<p>왜 이 방식이나 — 머리로 쓰면 이상적 절차가 나오고, 기록을 시키면 <strong>예외 처리까지 담긴 진짜 절차</strong>가 나옵니다. 작업 중 “고쳐줘” 한마디가 「하지 말 것」 규칙으로 승격되고, 일 끝나고 한 마디면 끝이라 SOP 작성 시간이 따로 들지 않습니다.</p>
+<p><strong>③ 자동화 3단 사다리 — 오늘은 1단, 캠프에서 2·3단</strong></p>
+<ol>
+<li><strong>1단 · 부르면 일한다(수동)</strong> — 스킬. “견적서 만들어줘” 한 마디에 절차 전체 → ✅ 오늘 실습⑥</li>
+<li><strong>2단 · 조건이 되면 끼어든다(반자동)</strong> — 훅(커밋 전 자동 검사) · 커스텀 커맨드(/weekly 한 단어로 주간보고) → 캠프에서</li>
+<li><strong>3단 · 내가 없어도 돈다(완전자동)</strong> — 스케줄 실행·API 연동, 매주 월 9시 보고서가 알아서 도착 → 캠프에서</li>
+</ol>
+<p class="pin">💼 <strong>자산 관리 3원칙</strong> — ① 스킬 폴더는 git으로 버전 관리 ② 고칠 때마다 «왜»를 한 줄 기록 ③ 동료에게 zip으로 배포 — 잘 만든 SOP 하나가 팀 전체의 속도가 됩니다.</p>
+</section>
+
+<section class="card" id="s33">
+<h2>9★★★. 복붙용 완성형 SKILL.md 5종 — 베껴서 시작하세요</h2>
+<p class="quote">그대로 복사해 폴더 안에 대문자 <a href="http://SKILL.md" target="_blank" rel="noopener">SKILL.md</a>로 저장하면 바로 동작합니다(CLI는 그대로 인식, 웹은 zip 압축 후 설정→Skills 업로드). [ ]만 내 상황으로.</p>
+<p><strong>① 주간보고-작성기</strong></p>
+<div class="code"><div class="code-hd"><span class="code-lang">javascript</span><button class="code-copy" type="button">복사</button></div><pre>---
+name: 주간보고-작성기
+description: 이번 주 한 일 메모를 주면 팀장 보고용 주간보고를 만든다. “주간보고 써줘”에 발동.
+---
+## 언제 쓰나
+- 주간보고·주요 업무 정리 요청 시
+## 입력받을 것
+- 이번 주 한 일(메모 복붙) / 다음 주 계획 / 이슈·막힐 점 — 없으면 되물을 것
+## 작업 순서
+1) 한 일을 성과 중심 3~5개로 묶기 2) 숫자·결과 먼저 3) 다음 주 계획 3개
+4) 이슈·요청사항 별도 표기 5) 개조식으로 A4 반 장 이내
+## 출력 형식
+- [성과/계획/이슈] 3단 구성 · 간결한 존댓말
+## 하지 말 것
+- 안 한 일 부풀리기 · 모호한 표현(“진행 중” 대신 진척률 %)</pre></div>
+<p><strong>② 회의록-정제기</strong></p>
+<div class="code"><div class="code-hd"><span class="code-lang">javascript</span><button class="code-copy" type="button">복사</button></div><pre>---
+name: 회의록-정제기
+description: 회의 메모·전사본을 붙이면 결정·할일·담당·기한 표로 정리한다. “회의록 정리해줘”에 발동.
+---
+## 언제 쓰나
+- 회의 직후 메모·음성 전사본 정리 요청 시
+## 입력받을 것
+- 회의 메모 전문 / 참석자 / 회의 목적
+## 작업 순서
+1) 결정사항만 먼저 추출 2) 할 일을 담당·기한과 함께 표로
+3) 미결 안건은 «다음 회의로» 섹션에 4) 원본에 없는 내용 추가 금지
+## 출력 형식
+- [결정 / 할 일(담당·기한) / 미결] 표 3개
+## 하지 말 것
+- 발언자 추측 · 결정 안 된 걸 결정처럼 쓰기</pre></div>
+<p><strong>③ 견적서-작성기</strong> — 위 「9★ SOP 매뉴얼 상세」의 <a href="http://SKILL.md" target="_blank" rel="noopener">SKILL.md</a> 뼈대가 그대로 완성본입니다.</p>
+<p><strong>④ 콘텐츠-대본기</strong></p>
+<div class="code"><div class="code-hd"><span class="code-lang">javascript</span><button class="code-copy" type="button">복사</button></div><pre>---
+name: 콘텐츠-대본기
+description: 주제와 플랫폼을 주면 훅→본문→CTA 구조 대본을 만든다. “대본 써줘”에 발동.
+---
+## 언제 쓰나
+- 숯폼·릴스·블로그 등 콘텐츠 대본 요청 시
+## 입력받을 것
+- 주제 / 플랫폼(길이 결정) / 타겟 시청자 / 유도할 행동(CTA)
+## 작업 순서
+1) 첫 3초 훅 3개 제시 → 고르게 2) 본문은 «문제→전환→해결»
+3) 말하듯 짧은 문장 4) 마지막 CTA 한 문장 5) [자막/내레이션] 구분 표기
+## 하지 말 것
+- 과장·허위 · 무단 인용 · 숯폼 기준 3분 초과 분량</pre></div>
+<p><strong>⑤ 고객응대-답장기</strong></p>
+<div class="code"><div class="code-hd"><span class="code-lang">javascript</span><button class="code-copy" type="button">복사</button></div><pre>---
+name: 고객응대-답장기
+description: 고객 문의·불만 메시지를 붙이면 상황별 답장 초안을 만든다. “답장 써줘”에 발동.
+---
+## 언제 쓰나
+- 고객 문의·환불·불만 답장이 필요할 때
+## 입력받을 것
+- 고객 메시지 원문 / 상황(환불 가능 여부) / 보상 가능 범위
+- 규정에 없는 보상은 제안하지 말고 되물을 것
+## 작업 순서
+1) 공감 한 문장 먼저 2) 사실 확인·조치 내용 3) 보상·대안 제시
+4) 답장 2종(정중/간결) 5) 감정 표현 수위 점검
+## 하지 말 것
+- 책임 인정 문장 남발 · 규정 없는 환불 약속 · 변명조</pre></div>
+</section>
+
+<section class="card" id="s34">
+<h2>9-1. 오픈소스 강추 ③ — claude-code-templates · 📽 PPT: M7 「강추③ aitmpl」 (16:14)</h2>
+<p>에이전트·커맨드·훅·MCP를 한 줄로 설치하는 창고. 설치 없이 바로:</p>
+<div class="code"><div class="code-hd"><span class="code-lang">javascript</span><button class="code-copy" type="button">복사</button></div><pre>npx claude-code-templates@latest</pre></div>
+<p>브라우저로 구경: <a href="https://aitmpl.com" target="_blank" rel="noopener">aitmpl.com</a> — 부품 고르면 설치 명령 복사 가능. 홈 미션: 내 업무와 닮은 부품 1개 설치해보기.</p>
+</section>
+
+<section class="card" id="s35">
+<h2>9-2. 커뮤니티 스킬 맛집 7선 · 📽 PPT: 부록 「HOME LAB 1~7」 (집에서 · 오늘 밤 1개 설치 미션)</h2>
+<p><code>/plugin</code> 명령은 claude 안에서, <code>npx</code> 명령은 터미널에서 — <strong>Mac·Windows 모두 동일하게 동작합니다.</strong></p>
+<p class="note">※ <strong>1·2번(Superpowers·Ponytail)은 오전 「2-7. 병기고」에서 이미 설치했습니다</strong> — 집에서는 3번부터 하나씩 골라 깔아보세요(한 번에 하나씩, 이틀 써보기).</p>
+<ol>
+<li>
+<strong>Superpowers</strong> — 프로의 작업 순서(계획→테스트→구현) 자동 발동 풀세트: <a href="https://github.com/obra/superpowers" target="_blank" rel="noopener">github.com/obra/superpowers</a>
+<div class="code"><div class="code-hd"><span class="code-lang">javascript</span><button class="code-copy" type="button">복사</button></div><pre>/plugin marketplace add obra/superpowers</pre></div>
+<div class="code"><div class="code-hd"><span class="code-lang">javascript</span><button class="code-copy" type="button">복사</button></div><pre>/plugin install superpowers@superpowers</pre></div>
+</li>
+<li>
+<strong>Ponytail</strong> — 가장 짧고 단순한 코드만 쓰게 강제(초보 추천): <a href="https://github.com/DietrichGebert/ponytail" target="_blank" rel="noopener">github.com/DietrichGebert/ponytail</a>
+<div class="code"><div class="code-hd"><span class="code-lang">javascript</span><button class="code-copy" type="button">복사</button></div><pre>/plugin marketplace add DietrichGebert/ponytail</pre></div>
+<div class="code"><div class="code-hd"><span class="code-lang">javascript</span><button class="code-copy" type="button">복사</button></div><pre>/plugin install ponytail@ponytail</pre></div>
+</li>
+<li>
+<strong>Taste Skill</strong> — AI 티 나는 디자인 탈출, 미적 감각 이식: <a href="https://github.com/Leonxlnx/taste-skill" target="_blank" rel="noopener">github.com/Leonxlnx/taste-skill</a>
+<div class="code"><div class="code-hd"><span class="code-lang">bash</span><button class="code-copy" type="button">복사</button></div><pre>npx skills add https://github.com/Leonxlnx/taste-skill</pre></div>
+</li>
+<li>
+<strong>last30days</strong> — 레딧·X·유튜브 최근 30일 여론 리서치: <a href="https://github.com/mvanhorn/last30days-skill" target="_blank" rel="noopener">github.com/mvanhorn/last30days-skill</a>
+<div class="code"><div class="code-hd"><span class="code-lang">javascript</span><button class="code-copy" type="button">복사</button></div><pre>/plugin marketplace add mvanhorn/last30days-skill</pre></div>
+<div class="code"><div class="code-hd"><span class="code-lang">javascript</span><button class="code-copy" type="button">복사</button></div><pre>/plugin install last30days@last30days-skill</pre></div>
+<p>실행: <code>/last30days 조사할 주제</code></p>
+</li>
+<li>
+<strong>Caveman</strong> — 원시인 말투로 토큰 ~65% 절약: <a href="https://github.com/JuliusBrussee/caveman" target="_blank" rel="noopener">github.com/JuliusBrussee/caveman</a>
+<p>설치 전 검토 습관: 클로드에게 "이 스크립트 안전한지 읽어줘" + URL 먼저.</p>
+<p>Mac (터미널):</p>
+<div class="code"><div class="code-hd"><span class="code-lang">bash</span><button class="code-copy" type="button">복사</button></div><pre>curl -fsSL https://raw.githubusercontent.com/JuliusBrussee/caveman/main/install.sh | bash</pre></div>
+<p>Windows (PowerShell):</p>
+<div class="code"><div class="code-hd"><span class="code-lang">powershell</span><button class="code-copy" type="button">복사</button></div><pre>irm https://raw.githubusercontent.com/JuliusBrussee/caveman/main/install.ps1 | iex</pre></div>
+</li>
+<li>
+<strong>Matt Pocock Skills</strong> — 유명 TS 교육자의 스킬 모음(<a href="http://SKILL.md" target="_blank" rel="noopener">SKILL.md</a> 교과서): <a href="https://github.com/mattpocock/skills" target="_blank" rel="noopener">github.com/mattpocock/skills</a>
+<div class="code"><div class="code-hd"><span class="code-lang">bash</span><button class="code-copy" type="button">복사</button></div><pre>npx skills@latest add mattpocock/skills</pre></div>
+<p>설치 후 1회: <code>/setup-matt-pocock-skills</code></p>
+</li>
+<li>
+<strong>ECC</strong> — 스킬+훅+메모리+보안 종합세트(상급): <a href="https://github.com/affaan-m/ECC" target="_blank" rel="noopener">github.com/affaan-m/ECC</a>
+<div class="code"><div class="code-hd"><span class="code-lang">javascript</span><button class="code-copy" type="button">복사</button></div><pre>/plugin marketplace add https://github.com/affaan-m/ECC</pre></div>
+<div class="code"><div class="code-hd"><span class="code-lang">javascript</span><button class="code-copy" type="button">복사</button></div><pre>/plugin install ecc@ecc</pre></div>
+<p class="warn">⚠ 플러그인으로 설치했다면 레포의 <a href="http://install.sh" target="_blank" rel="noopener">install.sh</a>는 실행하지 마세요(중복 설치됨).</p>
+</li>
+</ol>
+<p class="note">※ 설치 전 <a href="http://SKILL.md" target="_blank" rel="noopener">SKILL.md</a> 한번 읽어보는 습관!</p>
+</section>
+
+<section class="card" id="s36">
+<h2>10. 실습 ⑦ PROJECT X 파이널 — 졸업작품 (30분) · 📽 PPT: FINAL 「16:15–16:45」</h2>
+<p>🎯 오늘의 졸업작품 = <strong>노션 연동 견적서 웹(PROJECT X)</strong>. — 시간강사·프리랜서라면 아래 「🗓 PROJECT S — 강사 스케줄·정산 앱」을 대신 고르셔도 됩니다(난이도 동급 · 노션·API 준비물 없음). 아래 미션 3개를 순서대로 — 각 미션의 명령어와 상세 설명은 바로 아래 「🚀 PROJECT X 상세 가이드」의 해당 단계에 있습니다.</p>
+<p><strong>미션 1 (16:15 · 3분) = 상세 가이드 1단계</strong> — 스타터 clone → rm -rf .git → npm i (npm이 도는 동안 바로 미션 2로!)</p>
+<p><strong>미션 2 (16:18 · 7분) = 상세 가이드 5·6단계</strong> — ⭐ 견적서 DB 템플릿 복제:</p>
+<a class="btn clay" href="https://www.notion.so/75aca9f107d34affac471f21215d3b19" target="_blank" rel="noopener">견적서 DB 템플릿 열기 →</a>
+<p>→ 우상단 「복제」 1클릭 → 키 발급(<a href="http://notion.so/profile/integrations" target="_blank" rel="noopener">notion.so/profile/integrations</a>) → 내 사본 DB에 연결 → .env.local 저장</p>
+<p><strong>미션 3 (16:25 · 20분) = 상세 가이드 7단계</strong> — 구현 프롬프트 3연발. PPT 진행표의 「프롬프트①·②·③」 = 7단계의 코드 블록 3개를 위에서부터 순서대로 부르는 번호입니다 (① 목록 페이지 → ② 상세 페이지 → ③ 검수 루프)</p>
+<p class="pin">🏁 <strong>합격선: 노션에 입력한 견적이 </strong><a href="http://localhost:3000" target="_blank" rel="noopener"><strong>localhost:3000</strong></a><strong> 목록에 뜨면 완주!</strong> PDF·상세 페이지는 되면 보너스. 아래 트랙 A·B는 시간이 남을 때만 하세요.</p>
+<p><strong>(보너스) 트랙 A — 내 비즈니스 랜딩페이지.</strong> 새 폴더 my-landing → 3步 리추얼 → 플랜 모드 후 복붙 ([ ]만 내 것으로):</p>
+<div class="code"><div class="code-hd"><span class="code-lang">javascript</span><button class="code-copy" type="button">복사</button></div><pre>내 서비스를 소개하는 랜딩페이지를 만들어줘.
+
+- 서비스명: [내 서비스/가게 이름]
+- 한 줄 소개: [무엇을 하는 곳인지]
+- 섹션: 히어로(큰 제목+한 줄 소개+CTA 버튼) / 서비스 소개 3가지 / 고객 후기 2개(샘플) / 연락 방법
+- 분위기: [색상/톤 — 예: 따뜻한 베이지, 신뢰감 있는 네이비]
+- 기술: HTML 단일 파일 + TailwindCSS CDN, 모바일에서도 예쁘게</pre></div>
+<p>마무리 루프 + 저장:</p>
+<div class="code"><div class="code-hd"><span class="code-lang">javascript</span><button class="code-copy" type="button">복사</button></div><pre>빠진 게 뭐야? 스스로 검토하고 1가지만 개선해줘</pre></div>
+<div class="code"><div class="code-hd"><span class="code-lang">javascript</span><button class="code-copy" type="button">복사</button></div><pre>git 저장소 만들고 지금까지 전부 커밋해줘</pre></div>
+<p>→ <a href="http://github.com" target="_blank" rel="noopener">github.com</a>에서 레포 my-landing 생성(실습②와 동일) 후:</p>
+<div class="code"><div class="code-hd"><span class="code-lang">javascript</span><button class="code-copy" type="button">복사</button></div><pre>이 주소를 origin으로 연결하고 push 해줘: [레포 주소]</pre></div>
+<p><strong>(보너스) 트랙 B — 내 서비스 소개서 (문서형).</strong> 강추② 스킬 설치 확인 후:</p>
+<div class="code"><div class="code-hd"><span class="code-lang">javascript</span><button class="code-copy" type="button">복사</button></div><pre>우리 서비스 소개서를 5장짜리 pptx로 만들어줘.
+구성: 표지(서비스명+슬로건) / 고객의 문제 / 우리의 해결책 / 가격·플랜 / 연락처
+내용: [서비스 한 줄 소개] / [대상 고객] / [가격]</pre></div>
+<p>마무리:</p>
+<div class="code"><div class="code-hd"><span class="code-lang">javascript</span><button class="code-copy" type="button">복사</button></div><pre>빠진 게 뭐야? 스스로 검토하고 1가지만 개선해줘</pre></div>
+<p class="note">※ 막히면 트랙 다운: 운세 페이지에 “내 소개 섹션”만 추가해도 졸업 — 완성이 우선!</p>
+</section>
+
+<section class="card" id="s37">
+<h2>🚀 PROJECT X 상세 가이드 · 📽 PPT: FINAL 가이드 7장과 1:1 대응 (수업에서 못 끝낸 부분은 여기서 이어서)</h2>
+<p class="quote">노션에 견적 내용을 입력하면 → 클라이언트가 웹 링크로 확인하고 → PDF로 다운받는 MVP. 재료는 전부 오늘 배운 것: 내 스타터킷(실습④) + Git·GitHub + <a href="http://CLAUDE.md" target="_blank" rel="noopener">CLAUDE.md</a> + 서브에이전트.</p>
+<p><strong>1단계 — 프로젝트 뼈대 복제 (Mac·Win 공통) — 아무것도 바꾸지 말고 그대로 복붙:</strong></p>
+<div class="code"><div class="code-hd"><span class="code-lang">bash</span><button class="code-copy" type="button">복사</button></div><pre>cd ~/workspace
+git clone https://github.com/gymcoding/claude-nextjs-starters invoice-web
+cd invoice-web</pre></div>
+<p class="tip">💡 줄별 의미:</p>
+<ul>
+<li><code>cd ~/workspace</code> — 작업 폴더로 이동 (없다고 나오면 <code>mkdir ~/workspace</code> 먼저)</li>
+<li><code>git clone 주소 invoice-web</code> — 인터넷의 코드를 통째로 복사. <strong>주소는 위 교안 레포 그대로 쓰면 됩니다(바꿀 것 없음!)</strong>. 마지막 invoice-web은 “이 이름의 폴더로 복사해줘”라는 뜻 — <strong>폴더를 미리 만들지 마세요, clone이 자동으로 만듭니다</strong></li>
+<li><code>cd invoice-web</code> — 방금 생긴 그 폴더로 입장</li>
+</ul>
+<p>Git 연결 해제 — Mac(터미널):</p>
+<div class="code"><div class="code-hd"><span class="code-lang">bash</span><button class="code-copy" type="button">복사</button></div><pre>rm -rf .git</pre></div>
+<p>Windows(PowerShell):</p>
+<div class="code"><div class="code-hd"><span class="code-lang">powershell</span><button class="code-copy" type="button">복사</button></div><pre>Remove-Item -Recurse -Force .git</pre></div>
+<p>프로젝트 열기: VS Code → [파일] → [폴더 열기] → invoice-web 선택 → 새 터미널(Ctrl+`) 열고:</p>
+<div class="code"><div class="code-hd"><span class="code-lang">bash</span><button class="code-copy" type="button">복사</button></div><pre>npm i</pre></div>
+<p class="tip">💡 npm i = npm install 줄임말. package.json에 적힌 라이브러리 전부를 내 컴퓨터로 받아오는 과정입니다. 끝난 뒤 왼쪽 파일 탐색기에 <strong>node_modules</strong> 폴더가 보이면 성공 — 여기까지 되면 PRD 만들 준비 완료.</p>
+<p class="tip">💡 clone 뒤에 한 칸 띄고 이름을 쓰면 그 이름의 폴더로 복제됩니다. <code>.git</code> 삭제는 원본 스타터킷 레포와 분리해 실수 푸시를 막는 안전장치입니다.</p>
+<p class="tip">💡 위 교안 레포는 <a href="https://github.com/gymcoding/claude-nextjs-starters" target="_blank" rel="noopener">짐코딩님 공개 교안</a>(출처 표기)입니다. 실습④에서 만든 내 스타터킷은 문서·구조 선언용이라 실행이 안 돼요 — 실행형으로 키우는 건 캠프에서.</p>
+<p><strong>2단계 — 메타 프롬프트로 PRD 만들기</strong></p>
+<p class="warn">⚠ <strong>PRD_</strong><a href="http://PROMPT.md" target="_blank" rel="noopener"><strong>PROMPT.md</strong></a><strong>·</strong><a href="http://PRD.md" target="_blank" rel="noopener"><strong>PRD.md</strong></a><strong> 파일은 여러분이 만드는 게 아닙니다 — 폴더도, 파일도, 안의 내용도 전부 클로드가 만듭니다.</strong> 여러분이 하는 일은 아래 프롬프트를 복붙하는 것뿐.</p>
+<p class="tip">💡 .md = 그냥 텍스트 문서(마크다운 — 제목·목록 표시가 되는 메모장 파일). PRD = 클로드에게 주는 공사 설계도입니다. 설계도 안에는 클로드가 이런 걸 씁니다: 프로젝트 목적 / 주요 기능(목록·상세·PDF) / 노션 DB 필드 구조 / 화면 구성 / MVP 범위(뭐를 안 만들지) / 구현 순서. 설계도를 클로드가 쓰고, 여러분은 읽고 승인만 — 실습①의 [맥락][목적][조건] 공식의 프로젝트 확대판입니다.</p>
+<p>(claude 실행 후 그대로 복붙 — 준비물 없음, 처음부터 됩니다):</p>
+<div class="code"><div class="code-hd"><span class="code-lang">javascript</span><button class="code-copy" type="button">복사</button></div><pre>당신은 클로드 코드 프롬프트 엔지니어입니다.
+노션에 입력한 견적서 내용을
+클라이언트가 웹으로 확인하고 PDF로 다운받을 수 있는
+MVP PRD 문서를 작성하는 메타 프롬프트를 생성해주세요.
+
+참고: 이 프로젝트의 CLAUDE.md를 읽고 기술 스택을 파악해줘
+결과는 docs/PRD_PROMPT.md 파일로 저장해줘</pre></div>
+<p class="tip">💡 <a href="http://CLAUDE.md" target="_blank" rel="noopener">CLAUDE.md</a>는 교안 레포에 이미 들어 있습니다 — 내가 쓴 적 없어도 OK. docs 폴더도 없으면 클로드가 만들어서 저장합니다.</p>
+<p>생성된 내용을 복사해 다시:</p>
+<div class="code"><div class="code-hd"><span class="code-lang">javascript</span><button class="code-copy" type="button">복사</button></div><pre>이 프롬프트대로 docs/PRD.md를 작성해줘</pre></div>
+<p class="tip">💡 MVP = 핵심 가치를 검증하는 최소 시제품. 작게 만들어 빨리 검증하고 반응 보고 확장(애자일) — 그래서 “MVP PRD”입니다.</p>
+<p><strong>3단계 — 서브에이전트 채용</strong> (처음이어도 이대로: ① claude 안에서 <code>/agents</code> 입력 → ② Create new agent → ③ 이름·설명 붙여넣기 → ④ 모델 선택 → 저장. 모델은 prd-generator는 Sonnet, notion-api-expert는 Opus 추천):</p>
+<div class="code"><div class="code-hd"><span class="code-lang">javascript</span><button class="code-copy" type="button">복사</button></div><pre>prd-generator: PRD 문서 전문 작성자. 핵심 정보를 명확하고 간결하게. 절대 불필요한 내용을 생성하지 말 것 — 모든 컨텍스트는 토큰이다.</pre></div>
+<div class="code"><div class="code-hd"><span class="code-lang">javascript</span><button class="code-copy" type="button">복사</button></div><pre>notion-api-expert: 웹에서 노션 API 데이터베이스를 정말 잘 다루는 전문가입니다.</pre></div>
+<p>사용법 — @ 멘션:</p>
+<div class="code"><div class="code-hd"><span class="code-lang">javascript</span><button class="code-copy" type="button">복사</button></div><pre>@notion-api-expert 노션 API로 데이터베이스를 읽는 방법을 분석해줘 — plan mode로</pre></div>
+<p><strong>4단계 — (선택) bypass 모드로 구현 가속:</strong></p>
+<div class="code"><div class="code-hd"><span class="code-lang">bash</span><button class="code-copy" type="button">복사</button></div><pre>claude --dangerously-skip-permissions</pre></div>
+<p class="warn">⚠ 모든 수정을 승인 없이 진행(화면에 bypass permissions on 표시). 혼자 하는 개인 프로젝트에서만 — 회사·팀 코드에서는 금지에 가깝게 조심.</p>
+<p><strong>5단계 — 노션 견적서 DB 만들기 (필드 7개):</strong></p>
+<p>⚡ 수업에서는 템플릿 → 우상단 「복제」 1클릭이 기본!</p>
+<a class="btn clay" href="https://www.notion.so/75aca9f107d34affac471f21215d3b19" target="_blank" rel="noopener">견적서 DB 템플릿 열기 →</a>
+<p>누르는 순간 <strong>내 노션에 사본이 생기며 화면이 자동으로 그 사본으로 바뀝니다</strong>(좌측 사이드바 페이지 목록에도 등장). 이후 모든 작업은 이 사본에서 합니다 — 원본 템플릿은 편집 권한이 없어요. 직접 만들 땐: 새 페이지 → <code>/database</code> → 「데이터베이스 - <strong>전체 페이지</strong>」(인라인으로 만들면 주소창 URL이 DB ID가 아닌 함정!) → 기본 '이름' 필드는 클릭해 '고객사명'으로 이름 변경 → 필드 추가:</p>
+<ul>
+<li>고객사명(제목) · 프로젝트명(텍스트) · 견적 항목(텍스트 — 한 줄에 하나 “디자인 | 1 | 1,000,000”) · 총액(숫자·원 형식) · 상태(선택: 초안/발송/승인) · 유효기간(날짜) · 메모(텍스트)</li>
+</ul>
+<p class="tip">💡 행 하나 = 견적서 한 장. 테스트용 가짜 견적 2~3행을 미리 넣어두세요 (빈 DB로는 화면 확인 불가).</p>
+<p><strong>6단계 — API 열쇠 발급 (3분, 한 번만):</strong></p>
+<ol>
+<li><a href="https://www.notion.so/profile/integrations" target="_blank" rel="noopener">notion.so/profile/integrations</a> 접속 (노션 로그인 상태) → <strong>New integration</strong> — <a href="http://developers.notion.com" target="_blank" rel="noopener">developers.notion.com</a> → View my integrations도 같은 곳입니다</li>
+<li>이름 예: invoice-web → 워크스페이스 선택 → Submit</li>
+<li><strong>Internal Integration Secret 복사</strong> (ntn_으로 시작 · 유출 시 같은 화면에서 재발급)</li>
+</ol>
+<p class="tip">💡 데이터 흐름 = 정거장 4개: 노션 DB(원본) → Notion API(열쇠 있는 요청만 응답) → 내 앱 서버(파싱·계산) → 브라우저(견적서 화면). 에러가 나면 어느 정거장인지만 찾으면 됩니다 — 401=열쇠, 빈 목록=DB 연결, 계산 틀림=앱 코드.</p>
+<ol>
+<li>⚠ <strong>최다 실수 1위:</strong> <strong>복제로 생긴 내 사본 DB</strong>(사이드바에서 열기 — 원본 템플릿 아님!) 우상단 ⋯ → 연결(Connections) → invoice-web 추가 — 이 클릭을 빼먹으면 코드가 완벽해도 빈 화면입니다</li>
+<li>DB 제목 위 ⋯ → 「링크 복사」로 나온 URL 사용 (인라인 DB는 주소창 URL이 페이지 ID인 함정 — ID 추출은 클로드가)</li>
+</ol>
+<p>열쇠 보관은 클로드에게:</p>
+<div class="code"><div class="code-hd"><span class="code-lang">javascript</span><button class="code-copy" type="button">복사</button></div><pre>.env.local 파일에 NOTION_TOKEN과 NOTION_DATABASE_ID를 저장하고, .gitignore에 포함돼 있는지 확인해줘. 이 값: [키] [DB URL]</pre></div>
+<p class="warn">⚠ .env = 비밀 금고. 깃허브에 올라가면 전 세계 공개입니다. .env 수정 후엔 개발 서버 재시작 필수.</p>
+<p><strong>7단계 — 구현 프롬프트 3연발 (= 미션 3 · PPT 진행표의 프롬프트①②③):</strong></p>
+<p>아래 코드 블록 3개를 <strong>위에서부터 한 번에 하나씩</strong> claude 대화창에 복붙하세요. 앞 프롬프트 작업이 끝난 뒤 다음 것을 보냅니다.</p>
+<p><strong>프롬프트 ① = 첫 번째 블록 · 목록 페이지 (16:25)</strong> — 노션 견적을 카드 목록으로. 이게 브라우저에 뜨면 합격선 통과!</p>
+<p><strong>프롬프트 ② = 두 번째 블록 · 상세 페이지 (16:33 · 보너스)</strong> — 클릭 시 상세 + 부가세 자동 계산</p>
+<p><strong>프롬프트 ③ = 세 번째 블록 · 검수 루프</strong> — 빠진 것 자가검토 + 1가지 개선</p>
+<div class="code"><div class="code-hd"><span class="code-lang">javascript</span><button class="code-copy" type="button">복사</button></div><pre>@notion-api-expert의 분석과 docs/PRD.md를 바탕으로 1단계를 구현해줘: 노션 DB에서 견적 목록을 읽어 카드 형태로 보여주는 페이지. plan mode로 계획부터.</pre></div>
+<div class="code"><div class="code-hd"><span class="code-lang">javascript</span><button class="code-copy" type="button">복사</button></div><pre>견적을 클릭하면 상세 페이지로 이동하게 해줘. 항목 텍스트를 파싱해 표로 보여주고, 소계·부가세(10%)·총합계를 자동 계산해서 표시해.</pre></div>
+<div class="code"><div class="code-hd"><span class="code-lang">javascript</span><button class="code-copy" type="button">복사</button></div><pre>빠진 게 뭐야? 스스로 검토하고 1가지만 개선해줘</pre></div>
+<p>실행 확인: <code>npm run dev</code> → 브라우저에서 <a href="http://localhost:3000" target="_blank" rel="noopener">localhost:3000</a> (저장할 때마다 자동 갱신)</p>
+<p><strong>8단계 — PDF (쉬운 길 먼저):</strong></p>
+<p>A. 쉬운 길(5분 · MVP 합격) — PPT 진행표 16:40의 「PDF 버튼 프롬프트」가 바로 이거:</p>
+<div class="code"><div class="code-hd"><span class="code-lang">javascript</span><button class="code-copy" type="button">복사</button></div><pre>상세 페이지에 PDF 저장 버튼을 추가해줘. 클릭하면 브라우저 인쇄 대화상자가 열리고, 인쇄용 CSS로 버튼·메뉴는 숨기고 견적서만 A4에 깔끔하게 나오게.</pre></div>
+<p>B. 제대로(v2에서):</p>
+<div class="code"><div class="code-hd"><span class="code-lang">javascript</span><button class="code-copy" type="button">복사</button></div><pre>서버에서 진짜 PDF 파일을 생성해 다운로드하게 바꿔줘. 라이브러리는 네가 조사해서 이 스택에 제일 맞는 걸 제안하고, 장단점 설명 후 승인받고 진행해.</pre></div>
+<p><strong>✓ 완성 체크리스트:</strong></p>
+<ul>
+<li>[ ] 노션에 새 견적 행 추가 → 새로고침하면 웹에 뜨는가</li>
+<li>[ ] 소계·부가세·총합계 계산이 맞는가</li>
+<li>[ ] PDF가 A4 한 장으로 깔끔한가</li>
+<li>[ ] .env.local이 깃허브에 안 올라갔는가</li>
+<li>[ ] 새 GitHub 레포 푸시 + Vercel 배포(아래 가이드 4편)</li>
+<li>[ ] 디스코드 #쇼케이스에 링크 제출 🎉</li>
+</ul>
+<p><strong>⚠ 막혔을 때 3대장:</strong></p>
+<ol>
+<li><code>401 unauthorized</code> → 키 재복사 + 개발 서버 재시작 (.env 수정 후 필수)</li>
+<li>목록이 텅 빔 → 6단계-4(DB에 통합 연결) 누락이 대부분</li>
+<li>빌드/실행 에러 → 에러 전체를 복사해 클로드에게 통째로: “이 에러 원인 분석하고 고쳐줘”</li>
+</ol>
+<p>확장 아이디어(같은 구조): 개인 블로그 · 포트폴리오 · FAQ 페이지 · 레시피 모음 — 노션에 쓰면 사이트에 자동 반영.</p>
+<p>완성하면 디스코드 #쇼케이스에 링크 제출! 참고 교안: <a href="https://app.notion.com/p/2a06a10d310b80908669e7d63357329e" target="_blank" rel="noopener">짐코딩님 PRD·MVP 공개 자료</a> · 공식 문서: <a href="https://code.claude.com/docs/en/best-practices" target="_blank" rel="noopener">개발 워크플로우 베스트 프랙티스</a></p>
+</section>
+
+<section class="card" id="s38">
+<h2>🗓 PROJECT S — 강사 스케줄·정산 앱 (선택 트랙) · 📽 PPT: 「PROJECT S」 8장과 1:1 대응</h2>
+<p class="quote">견적서 웹(PROJECT X) 대신 고를 수 있는 파이널입니다. <strong>기관에서 수업이 들어오면 3초 만에 등록하고, 이번 달 들어올 돈이 한 화면에 보입니다.</strong> 시간강사·프리랜서라면 이쪽을 추천 — 난이도는 비슷하고 체감 효용은 더 큽니다.</p>
+<p><strong>왜 만드나 — 강사의 진짜 고통은 «돈이 안 보인다»</strong></p>
+<ul>
+<li>지금: 카톡으로 «○일 2시간 가능하세요?» → 캘린더에 대충 메모 / 기관마다 다른 단가를 매번 기억으로 더듬 / 월말에 캘린더 뒤져 계산기 / 입금 여부는 통장을 뒤짐 / 3.3% 떼고 얼마 들어오는지 매번 재계산</li>
+<li>오늘 만들면: 기관을 «한 번만» 등록(단가가 따라옴) / 수업은 날짜·시간만, 금액은 자동 / 확정 수입·입금 완료·미수금이 한 줄에 / 기관별 매출 순위 자동 / 세금 신고용 CSV 버튼 하나</li>
+</ul>
+<p class="pin">🎯 핵심 가치 한 줄: «달력»이 아니라 <strong>«장부»</strong>를 만드는 겁니다. 강사에게 필요한 건 일정이 아니라 돈의 흐름입니다.</p>
+<p><strong>벤치마킹 — 이미 있는 앱에서 «훔칠» 기능만 추립니다</strong></p>
+<ul>
+<li><strong>TutorBird</strong> ($15/월) — 달력에 수업만 넣으면 청구서가 자동 계산 → 우리도: <strong>일정 = 금액</strong></li>
+<li><strong>Teachworks</strong> ($16/월~) — 시급·정액·선불 패키지 등 요금제를 대상별로 다르게 → 우리도: <strong>기관별 단가 프리셋</strong></li>
+<li><strong>MyMusicStaff</strong> ($15/월) — 출석 체크 → 미수금 자동 추적 → 우리도: <strong>상태(예정·완료·입금)</strong></li>
+</ul>
+<p class="note">※ 이 셋의 공통 골격이 정답: «대상(기관) 등록 → 단가 저장 → 일정 입력 → 자동 계산 → 상태 추적 → 집계». 월 $15짜리 SaaS의 핵심을 오늘 만들고, 우리 상황(3.3% 원천징수·기관 정산)만 얹습니다.</p>
+<p><strong>오늘 만들 범위 — MVP 6기능</strong></p>
+<ol>
+<li><strong>기관 등록</strong> — 이름·시간당 단가·담당자·메모 → 한 번 등록하면 계속 재사용</li>
+<li><strong>수업 추가</strong> — 기관 선택 → 날짜·시작·종료 → 시간수 × 단가 = 금액 자동</li>
+<li><strong>반복 일정</strong> — «매주 화 10～12시, 8주» 한 번에 생성 → 학기 단위 등록이 30초</li>
+<li><strong>상태 관리</strong> — 예정 → 완료 → 입금완료 (클릭 전환) → 미수금이 저절로 드러남</li>
+<li><strong>월별 집계</strong> — 확정 수입·입금 완료·미수금·기관별 순위 → 세전/세후(3.3%) 동시 표시</li>
+<li><strong>내보내기</strong> — CSV 다운로드·인쇄용 청구서 → 세무 신고·기관 제출용</li>
+</ol>
+<p class="warn">⚠ 오늘 안 만드는 것: 로그인 · 결제 · 알림 · 다중 사용자 · 앱스토어 출시. «나 혼자 쓰는 장부»가 목표입니다.</p>
+<p><strong>데이터는 딱 두 덩어리</strong></p>
+<ul>
+<li>① <strong>기관(orgs)</strong> — id · 이름 · 시간당단가 · 담당자 · 메모   (예: 부산○○중 / 60,000원 / 김주무관)</li>
+<li>② <strong>수업(lessons)</strong> — id · 기관id · 날짜 · 시작～종료 · 시간수 · 단가(스냅샷) · 금액 · 상태 · 메모   (예: 3/12 10:00~12:00 / 2h / 120,000 / 예정)</li>
+<li>관계는 <strong>1 : N</strong> — 기관 하나에 수업 여러 개</li>
+</ul>
+<p class="warn">⚠ <strong>초보가 놓치는 핵심 — 단가 스냅샷:</strong> 단가를 수업에도 «복사해서» 저장하세요. 내년에 기관 단가가 오르면, 작년 수업 금액까지 같이 바뀌어버립니다. 이 한 줄이 «장부»와 «달력»을 가르는 차이입니다.</p>
+<p class="tip">💾 저장은 어디에? — 내 브라우저 안(localStorage). 서버·로그인·DB 없이도 데이터가 남고 인터넷 없어도 열립니다. 대신 <strong>«백업(JSON 내보내기)» 버튼을 꼭 만드세요</strong> — 브라우저 데이터를 지우면 함께 사라집니다.</p>
+<p><strong>화면은 셋이면 충분</strong></p>
+<ul>
+<li><strong>A. 이번 달 대시보드</strong> — 확정 수입 / 입금 완료 / 미수금 / 세후(3.3%) + 기관별 순위 막대그래프</li>
+<li><strong>B. 수업 목록·추가</strong> — ＋ 수업 추가(기관 선택) · 행 클릭으로 상태 전환</li>
+<li><strong>C. 기관 관리</strong> — 기관·단가 목록 · ＋ 기관 추가 · ⬇ CSV 내보내기 / 백업</li>
+</ul>
+<p class="note">※ 화면이 넷을 넘어가면 오늘 안에 못 끝냅니다 — 기능을 늘리고 싶으면 화면이 아니라 «버튼»으로 붙이세요.</p>
+<p><strong>🏆 완성 예시 — 「먼슬리」를 보고 시작합니다</strong></p>
+<p>강사가 실제로 쓰는 완성본(토스 톤 UI · 달력 · 건당 금액 · 월 합계 · 기관별 차트 · 전월 대비 · 붙여넣기 일괄 등록)을 수업에서 보여드리고, <strong>파일을 그대로 드립니다</strong>(수료 특전). 오늘 여러분은 이것의 MVP를 직접 만듭니다 — 정답지가 있는 시험이니 막히면 완성본 구조를 훔쳐보세요.</p>
+<p><strong>⚡ 토큰 아끼는 세팅 5수칙 (시작 전 30초)</strong></p>
+<ol>
+<li><code>/model</code> → <strong>Sonnet</strong> — 스펙만 좋으면 충분합니다</li>
+<li><strong>Ponytail ON</strong> — 오전 「2-7 병기고」에서 이미 장착. 짧은 코드 강제 = 토큰 절약</li>
+<li><strong>plan mode 승인 후 진행</strong> — 엉뚱한 방향으로 토큰 태우는 걸 계획 단계에서 차단</li>
+<li><strong>한 번에 하나</strong> — ①이 돌아간 뒤 ②. 재작업이 최대의 토큰 낭비</li>
+<li>길어지면 <code>/compact</code>, 방향 틀면 <code>/clear</code> 후 스펙 카드부터 다시</li>
+</ol>
+<p><strong>⓪ 스펙 카드 — 프롬프트보다 먼저 이걸 보냅니다</strong> (스펙이 좋으면 Sonnet도 Opus처럼 일합니다):</p>
+<div class="code"><div class="code-hd"><span class="code-lang">javascript</span><button class="code-copy" type="button">복사</button></div><pre>아래 스펙대로 시간강사용 스케줄·정산 앱을 만들 거야. 지금은 만들지 말고 기억만 해.
+- 단일 HTML 1개 · localStorage 저장 · 외부 라이브러리 금지(폰트 제외)
+- 탭 3개: 달력(기본) / 리포트 / 기관
+- 기관: 이름·색·건당 단가 / 수업: 날짜·시작~종료·금액·상태(예정/완료/입금완료)
+- 수업 저장 시 그 시점 단가를 수업에 복사(스냅샷) — 나중에 단가 바꿔도 과거 금액 불변
+- 달력 상단: 이번 달 확정 수입(완료+입금완료 합) 크게 + 예정 포함 금액 보조 표시
+- 전월 대비: 이번 달 N일까지 vs 지난달 같은 N일까지 비교(월초 왜곡 방지) · 지난달 0원이면 % 숨김
+- 세금 3.3%: 건별 계산 후 합산 (합계에 세율 재적용 금지)</pre></div>
+<p><strong>구현 프롬프트 3연발 — 한 번에 하나씩</strong></p>
+<p>① 뼈대 — 이것만으로 «돌아가는 앱»이 나옵니다:</p>
+<div class="code"><div class="code-hd"><span class="code-lang">javascript</span><button class="code-copy" type="button">복사</button></div><pre>아까 준 스펙대로 1단계만 만들어줘.
+① 기관 등록(이름·건당 단가)
+② 달력에서 날짜 눌러 수업 추가(금액 자동)
+③ 달력 상단에 이번 달 확정 수입 + 예정 포함
+여기까지만. plan mode로 계획부터.</pre></div>
+<p>② 강사 현실 반영:</p>
+<div class="code"><div class="code-hd"><span class="code-lang">javascript</span><button class="code-copy" type="button">복사</button></div><pre>아래를 추가해줘.
+- 반복 일정: “매주 화 10~12시, 8주” 한 번에 생성
+- 상태 전환: 예정 → 완료 → 입금완료 (클릭)
+- 원천징수 3.3% “실수령액” 표시(건별 계산 후 합산)
+- 단가 스냅샷이 스펙대로 됐는지 스스로 검증해줘</pre></div>
+<p>③ 마감 — 안 하면 나중에 웁니다:</p>
+<div class="code"><div class="code-hd"><span class="code-lang">javascript</span><button class="code-copy" type="button">복사</button></div><pre>- 기관별 수업 횟수 가로 막대 TOP5
+- 전월 대비 배지(스펙의 N일까지 규칙)
+- CSV 내보내기 · 폰에서도 안 깨지게
+- 마지막으로: “스펙과 다른 곳 없어? 스스로 대조하고 1가지만 개선해줘”</pre></div>
+<p class="note">※ 실행: 만들어진 HTML 파일을 <strong>더블클릭</strong>하면 브라우저에서 바로 열립니다. 서버도 인터넷도 필요 없습니다. ①만 돌아가도 합격!</p>
+<p class="tip">💡 웹 클로드 아티팩트로는 왜 안 되나요? — 아티팩트는 localStorage를 못 써서 새로고침하면 데이터가 날아갑니다. 그래서 <strong>CLI로 만들고, 결과물은 내 PC에서 여는 단일 HTML</strong>로 가는 겁니다.</p>
+<p><strong>오늘 이후 — 이 앱이 자라는 경로</strong></p>
+<ul>
+<li><strong>오늘 밤</strong> — Vercel에 올리기: 폰 브라우저에서 열어 «앱처럼» 홈화면에 추가. 이동 중에 수업 등록</li>
+<li><strong>이번 주</strong> — 청구서 PDF 버튼: 실습⑥에서 만든 스킬과 붙이면 자동 생성</li>
+<li><strong>이번 달</strong> — 데이터가 쌓이면: «어느 기관이 제일 돈이 되나» «몇 월이 비수기인가»를 클로드에게 물어보세요</li>
+<li><strong>캠프에서</strong> — 여러 기기 동기화: Supabase 붙여 로그인·백업까지 — 진짜 서비스가 되는 지점</li>
+</ul>
+</section>
+
+<section class="card" id="s39">
+<h2>🏁 파이널 체크 — 내 인벤토리 7종 · 📽 PPT: FINAL CHECK (16:45)</h2>
+<p>수업이 끝나기 전에 하나씩 열어보세요. 모두 갖췄다면 오늘 목표 달성입니다.</p>
+<ol>
+<li><strong>운세 웹페이지</strong> — 브라우저에서 열리고 버튼이 눌린다 (실습⓪)</li>
+<li><strong>GitHub 레포 my-fortune</strong> — <a href="http://github.com/내아이디/my-fortune" target="_blank" rel="noopener">github.com/내아이디/my-fortune</a> 새로고침 → 파일이 보인다 (실습②)</li>
+<li><strong>v2 업그레이드</strong> — 색/모드 바꾸는 버튼 작동 + 커밋 2회 이상 (실습③)</li>
+<li><strong>스타터킷 my-starter-kit</strong> — 레포 2호 + <a href="http://CLAUDE.md" target="_blank" rel="noopener">CLAUDE.md</a> + README (실습④)</li>
+<li><strong>MCP 연결</strong> — claude에서 <code>/mcp</code> → context7 ✓ (실습⑤)</li>
+<li><strong>견적서 스킬</strong> — “견적서 만들어줘” 한 줄에 발동한다 (실습⑥)</li>
+<li><strong>졸업작품</strong> — PROJECT X 또는 PROJECT S가 내 화면에서 돌아간다 (실습⑦)</li>
+</ol>
+<p class="pin">🎉 <strong>쇼케이스</strong> — 디스코드 #쇼케이스에 결과물 링크나 스크린샷을 올려주세요. 남의 결과물을 보는 게 다음 아이디어의 재료입니다.</p>
+</section>
+
+<section class="card" id="s40">
+<h2>📊 [부록] 엑셀→보고서 데모 — 샘플 CSV · 📽 PPT: M7 「비포/애프터」 (수업 중 16:11 시연 · 집에서 따라하기)</h2>
+<p>📥 <strong>제일 쉬운 길: 아래 파일을 다운받아 → VS Code 왼쪽 파일 탐색기에 드래그로 넣으면 끝!</strong></p>
+<button class="btn" type="button" id="csv-dl">📥 매출.csv 다운로드</button>
+<p>(다운로드가 안 되면) 아래를 복사해 메모장에 붙이고 <strong>매출.csv</strong> 이름으로 저장 → claude 실행 폴더에 넣기:</p>
+<div class="code"><div class="code-hd"><span class="code-lang">javascript</span><button class="code-copy" type="button">복사</button></div><pre>날짜,채널,품목,수량,단가,금액,결제수단
+07-14,스레드,스타터 킷,3,33000,99000,카드
+07-15,인스타그램,원데이 클래스,1,190000,190000,계좌이체
+07-15,지인추천,컨설팅,1,500000,500000,계좌이체
+07-16,스레드,원데이 클래스,1,190000,190000,카드
+07-19,스레드,원데이 클래스,2,190000,380000,카드
+07-20,스레드,스타터 킷,5,33000,165000,카드
+07-21,인스타그램,스타터 킷,1,33000,-33000,환불
+07-24,지인추천,컨설팅,2,500000,1000000,계좌이체
+07-25,스레드,스타터 킷,4,33000,132000,카드
+07-27,스레드,원데이 클래스,1,190000,190000,카드</pre></div>
+<p>(위는 일부 — 다운로드 파일에는 무료 전자책 행 포함 20행)</p>
+<p>그다음 클로드에게 한 마디:</p>
+<div class="code"><div class="code-hd"><span class="code-lang">javascript</span><button class="code-copy" type="button">복사</button></div><pre>매출.csv를 읽고 월간 매출 보고서를 만들어줘.
+- 요약 3줄 (총매출은 환불 반영한 순매출로)
+- 품목별 매출 표와 막대차트, 베스트셀러 하이라이트
+- 채널별(스레드/인스타/검색/지인추천) 비교 — 어디서 돈이 오는지
+- 무료 전자책 배포량과 유료 전환의 관계 한 줄 코멘트
+- 다음 달 제안 2개
+결과는 보고서.html로 — 차트는 색이 있게, 인쇄해도 깔끔하게.</pre></div>
+<p class="tip">💡 같은 방법이 회사의 진짜 매출 파일에도 그대로 통합니다 — 단, 민감한 실데이터는 이름·연락처를 지우고 쓰세요.</p>
+</section>
+
+<section class="card" id="s41">
+<h2>🏫 학교 버전 — 수요조사·성적도 똑같이 됩니다 · 📽 PPT: M7 「학교 데이터」 (16:13)</h2>
+<p>위 매출 CSV 자리에 <strong>구글폼 응답 CSV · 성적 엑셀 · 설문 결과</strong>를 넣으면 그대로 동작합니다.</p>
+<div class="code"><div class="code-hd"><span class="code-lang">javascript</span><button class="code-copy" type="button">복사</button></div><pre>첨부한 설문 결과(CSV)를 읽고 학부모·교직원용 보고서를 만들어줘.
+- 핵심 요약 3줄
+- 문항별 응답 분포 표 + 막대차트
+- 주관식 응답은 비슷한 것끼리 묶어 3가지 주제로 정리
+- 개선이 필요한 지점 2개와 다음 학기 제안 2개
+결과는 보고서.html로 — 인쇄해도 깔끔하게, 학생 이름은 절대 표기하지 말 것.</pre></div>
+<p class="note">※ 성적 분석으로 바꿀 때는 “반별·문항별 정답률과 취약 단원 3개, 보충 지도 자료 제안”으로 바꿔서 그대로.</p>
+</section>
+
+<section class="card" id="s42">
+<h2>⚙ 자동화 레시피 3종 + 직업별 적용 지도 · 📽 PPT: M7 「자동화 레시피·적용 지도」 (16:12–16:13)</h2>
+<p><strong>레시피 ① 반복 문서 공장</strong> — 양식 + 재료를 넘기면 완성본이 나오게 (실습⑥ 스킬화)</p>
+<p><strong>레시피 ② 데이터 → 보고서</strong> — CSV를 읽혀 요약·차트·제안까지 (위 부록)</p>
+<p><strong>레시피 ③ 내 도구 만들기</strong> — 계산기·체크리스트처럼 매번 손으로 하던 걸 페이지로 (보너스 C · PROJECT S)</p>
+<p>직업별로 이번 주에 바로 쓸 것:</p>
+<ul>
+<li><strong>교사</strong> — 가정통신문 공장 · 평가 루브릭 생성 · 수요조사 보고서</li>
+<li><strong>강사·프리랜서</strong> — 스케줄·정산 앱(PROJECT S) · 견적서 · 수업 자료 제작</li>
+<li><strong>자영업·쇼핑몰</strong> — 상세페이지 문구 · 월간 매출 보고서 · 고객 응대 템플릿</li>
+<li><strong>직장인</strong> — 주간보고 · 회의록 정제 · 사내 자료 요약</li>
+<li><strong>기획·마케터</strong> — 랜딩페이지 · 경쟁사 리서치 · 콘텐츠 대본</li>
+</ul>
+</section>
+
+<section class="card" id="s43">
+<h2>🔒 학생·고객 정보를 다룰 때 3원칙 · 📽 PPT: WRAP 「개인정보」 (16:50)</h2>
+<ol>
+<li><strong>익명화 먼저</strong> — 이름·연락처·생년월일은 지우거나 A·B·C로 바꿔서 넣기</li>
+<li><strong>원본 대신 요약본</strong> — 민감 자료는 통째로 올리지 말고 필요한 부분만</li>
+<li><strong>계정·기기 정책 확인</strong> — 기관 계정 정책을 먼저 확인하고, 공용 PC에선 반드시 로그아웃</li>
+</ol>
+<p class="note">※ 결과물을 공유할 때도 마찬가지 — 측면 캡처·링크에 개인정보가 남아 있지 않은지 한 번 더 확인.</p>
+</section>
+
+<section class="card" id="s44">
+<h2>집에서 이어하기 — 스크린샷 가이드 4편</h2>
+<p>수업에서 간 길을 집에서 다시 걸을 때 — 화면 그대로 따라하기:</p>
+<ul>
+<li>Git 설치: <a href="https://honjobs.com/50" target="_blank" rel="noopener">honjobs.com/50</a> (복습용)</li>
+<li>GitHub 가입 &amp; 연동: <a href="https://honjobs.com/51" target="_blank" rel="noopener">honjobs.com/51</a> (실습② 보강)</li>
+<li>Supabase 시작: <a href="https://honjobs.com/52" target="_blank" rel="noopener">honjobs.com/52</a> (캠프 예습)</li>
+<li>Vercel 배포: <a href="https://honjobs.com/53" target="_blank" rel="noopener">honjobs.com/53</a> (★오늘 밤 도전 — 졸업작품에 진짜 주소 달기!)</li>
+</ul>
+</section>
+
+<section class="card" id="s45">
+<h2>홈 미션 — 자동화 지시문 템플릿 (집에서)</h2>
+<div class="code"><div class="code-hd"><span class="code-lang">javascript</span><button class="code-copy" type="button">복사</button></div><pre>매주 [요일], [받는 파일/자료]을 받아서
+[처리 내용 — 정리/요약/변환]한 뒤
+[결과물 형식]으로 만들어줘.
+규칙: [항상 지켜야 할 조건]</pre></div>
+</section>
+
+<hr class="divider">
+
+<section class="card" id="s46">
+<h2>보너스 A. 내 자료 분석 — 3스텝 (웹 클로드 · 집에서)</h2>
+<p>파일 업로드 후 순서대로:</p>
+<div class="code"><div class="code-hd"><span class="code-lang">javascript</span><button class="code-copy" type="button">복사</button></div><pre>이 문서의 핵심을 5줄로 요약해줘.</pre></div>
+<div class="code"><div class="code-hd"><span class="code-lang">javascript</span><button class="code-copy" type="button">복사</button></div><pre>목차·주요 숫자·결론만 표로 정리해줘.</pre></div>
+<div class="code"><div class="code-hd"><span class="code-lang">javascript</span><button class="code-copy" type="button">복사</button></div><pre>[진짜 궁금한 질문 — 예: 이 조건이면 위약금이 얼마야?]</pre></div>
+<p><strong>검증 습관 (필수):</strong></p>
+<div class="code"><div class="code-hd"><span class="code-lang">javascript</span><button class="code-copy" type="button">복사</button></div><pre>그 숫자가 나온 부분의 원문을 그대로 보여줘.</pre></div>
+</section>
+
+<section class="card" id="s47">
+<h2>보너스 B. 나만의 프로젝트 — 지침 템플릿 (웹 클로드 · 집에서)</h2>
+<p>Projects 생성 → Instructions 칸에 복붙 후 [ ] 수정:</p>
+<div class="code"><div class="code-hd"><span class="code-lang">javascript</span><button class="code-copy" type="button">복사</button></div><pre>아래 규칙을 항상 지켜.
+- 우리는 [회사/서비스 한 줄 소개]
+- 고객은 [주 고객층]
+- 항상 [톤: 예의 바른 존댓말 등]
+- 금지: [과장 표현, 수익 보장 등]
+- 선호 형식: [문자메시지/이메일 등]</pre></div>
+<p>파일 3개 업로드: 가격표 · 소개서 · 잘 쓴 결과물 샘플</p>
+<p>테스트 한 줄:</p>
+<div class="code"><div class="code-hd"><span class="code-lang">javascript</span><button class="code-copy" type="button">복사</button></div><pre>신학기 안내 문자 써줘</pre></div>
+</section>
+
+<section class="card" id="s48">
+<h2>보너스 C. 도구 만들기 — 주문서 4칸 (Artifacts · 집에서)</h2>
+<div class="code"><div class="code-hd"><span class="code-lang">javascript</span><button class="code-copy" type="button">복사</button></div><pre>[무엇을] [도구 이름]을 만들어줘.
+[입력] 사용자가 [고를 수 있는 옵션들]을 선택하면
+[출력] [화면에 보여줄 결과]를 크게 보여줘.
+[느낌] [누가 쓰는지 + 분위기]로 만들어줘.</pre></div>
+<p>예시 (수강료 계산기):</p>
+<div class="code"><div class="code-hd"><span class="code-lang">javascript</span><button class="code-copy" type="button">복사</button></div><pre>수강료 계산기를 만들어줘.
+과목 수(1~3개)와 형제 할인 여부를 고르면
+월 수강료와 할인 금액을 크게 보여줘.
+학부모용이니 깔끔하고 큰 글씨로.</pre></div>
+<p class="pin">🎁 <strong>수료 특전 — 핵심 프롬프트 선물 12종</strong> (업무 문서·교사·홍보 제작): <a href="https://verbiolabs.com/gift" target="_blank" rel="noopener">verbiolabs.com/gift</a></p>
+<p>더 많은 프롬프트: 스타터 킷 프롬프트 금고 20종 → <a href="https://verbiolabs.com/starter-kit" target="_blank" rel="noopener">https://verbiolabs.com/starter-kit</a></p>
+<p>오늘 내용 복습: <a href="https://verbiolabs.com/claude-guide" target="_blank" rel="noopener">https://verbiolabs.com/claude-guide</a></p>
+<p><a href="https://app.notion.com/p/3a8c7de0b170811c9e4dedfe71e111f3" target="_blank" rel="noopener">🎁 클로드 핵심 프롬프트 선물 — 원데이 수료 특전</a></p>
+</section>
+</main>
+
+<footer hidden>
+© Verbio Labs · 이 페이지의 무단 복제·재배포를 금합니다 · 복습은 <a href="https://verbiolabs.com/claude-guide" target="_blank" rel="noopener">verbiolabs.com/claude-guide</a>
+</footer>
+
+<button id="totop" type="button" aria-label="맨 위로 이동">↑ 맨 위로</button>
+
+<script>
+(function(){
+  'use strict';
+
+  /* ============================================================
+     1) 게이트 — 수업 안내 코드로 진입
+     ※ 접근 «제어»이지 «보안»이 아닙니다.
+        본문 마크업은 HTML 소스에 그대로 있으므로 개발자도구로 열람 가능합니다.
+        목적은 정상 경로(수업 코드) 유도이며, 기밀 보호 수단이 아닙니다.
+     ============================================================ */
+  var ALLOWED = [
+    "b023d43296f9fc6b2d7a31635ad98dedbe3d58b9fa77248245c2cf287b5e4a65",
+    "e63a3c824f75f5ef929c927d563c88c6b2b3b0b9d9e2cad800f9bfa00aa56472"
+  ];
+  var KEY = 'vb.play.ok';
+
+  var gate  = document.getElementById('gate');
+  var input = document.getElementById('gate-input');
+  var btn   = document.getElementById('gate-btn');
+  var err   = document.getElementById('gate-err');
+
+  function reveal(){
+    gate.classList.add('off');
+    ['header.topbar','#toc','main','footer'].forEach(function(sel){
+      var el = document.querySelector(sel);
+      if (el) el.removeAttribute('hidden');
+    });
+    buildToc();
+    observeSections();
+    queueScroll();
+  }
+
+  async function sha256hex(str){
+    var buf = new TextEncoder().encode(str);
+    var hash = await crypto.subtle.digest('SHA-256', buf);
+    return Array.from(new Uint8Array(hash))
+      .map(function(b){ return b.toString(16).padStart(2,'0'); })
+      .join('');
+  }
+
+  async function tryEnter(){
+    var raw = (input.value || '').trim().toUpperCase(); // 대소문자 무시
+    if (!raw){ err.textContent = '코드를 입력해 주세요.'; return; }
+    var hex;
+    try { hex = await sha256hex(raw); }
+    catch(e){ err.textContent = '이 브라우저에서는 확인할 수 없어요 — 최신 브라우저로 열어주세요.'; return; }
+    if (ALLOWED.indexOf(hex) !== -1){
+      try { localStorage.setItem(KEY, '1'); } catch(e){}
+      err.textContent = '';
+      reveal();
+    } else {
+      err.textContent = '코드가 맞지 않아요 — 진행자에게 확인해 주세요';
+      input.select();
+    }
+  }
+
+  btn.addEventListener('click', tryEnter);
+  input.addEventListener('keydown', function(e){ if (e.key === 'Enter') tryEnter(); });
+
+  /* ※ 재방문(입장 기록 있음) 자동 통과 처리는 스크립트 «맨 끝»에서 실행합니다
+        — reveal()이 쓰는 목차 요소들이 아래에서 준비되기 때문입니다. */
+
+  /* ============================================================
+     2) 목차 — 수업 흐름 8테마 그룹 + 현재 섹션 하이라이트
+     ------------------------------------------------------------
+     · 섹션 id → 그룹 매핑은 아래 TOC_GROUPS 하나만 고치면 됩니다.
+     · 매핑되지 않은 섹션은 «마지막 그룹»에 자동 편입 (목차 누락 방지).
+     ============================================================ */
+  var TOC_GROUPS = [
+    { t:'🌅 아침 세팅',        ids:['s1','s2','s3','s4','s5','s6'] },
+    { t:'🎛 클로드 조종석',     ids:['s7','s8','s9','s10','s11','s12','s13','s14'] },
+    { t:'⚔️ 병기고 & 첫 빌드',  ids:['s15','s16','s17'] },
+    { t:'💾 Git 세이브 포인트', ids:['s18','s19','s20','s21','s22'] },
+    { t:'🔁 오후 개발 루프',    ids:['s23','s24','s25','s26','s27','s28','s29'] },
+    { t:'📋 Skills · SOP',     ids:['s30','s31','s32','s33','s34','s35'] },
+    { t:'🏆 파이널 프로젝트',   ids:['s36','s37','s38','s39'] },
+    { t:'🏠 부록 · 집에서',     ids:['s40','s41','s42','s43','s44','s45','s46','s47','s48'] }
+  ];
+
+  var tocEl    = document.getElementById('toc');
+  var listEl   = document.getElementById('toc-list');
+  var filterEl = document.getElementById('toc-filter');
+  var links    = [];
+  var groups   = [];      // { el, body, linkEls }
+  var groupOf  = {};      // 섹션 id → 그룹 객체
+  var currentId = null;
+
+  /* 제목 끝의 시간 정보만 골라냄 — (10:13) (11:20경 · 15분) (12:10–12:30) 등.
+     («수업 중 16:11 시연 …» 같은 문장형 괄호는 제외) */
+  var TAIL_PAREN = /\(([^()]{1,18})\)\s*$/;
+  function timeOf(text){
+    var m = TAIL_PAREN.exec(String(text).trim());
+    if (!m) return '';
+    var v = m[1].trim();
+    if (!/\d{1,2}:\d{2}/.test(v)) return '';
+    if (!/^[0-9:.\-–—~\s·경분초]+$/.test(v)) return '';
+    return v;
+  }
+  function tocLabel(h2text){
+    var label = h2text.split(' · 📽')[0].trim();
+    if (timeOf(label)) label = label.slice(0, label.lastIndexOf('(')).trim();
+    return label;
+  }
+
+  function buildToc(){
+    if (links.length) return;
+    var secs = Array.prototype.slice.call(document.querySelectorAll('main section.card[id]'));
+    var order = {}, byId = {};
+    secs.forEach(function(s, i){ order[s.id] = i; byId[s.id] = s; });
+
+    /* 1) 매핑 배분 */
+    var taken = {};
+    var buckets = TOC_GROUPS.map(function(g){
+      var arr = [];
+      g.ids.forEach(function(id){
+        if (byId[id] && !taken[id]){ taken[id] = 1; arr.push(byId[id]); }
+      });
+      return { t: g.t, secs: arr };
+    });
+    if (!buckets.length) buckets = [{ t:'SECTIONS', secs:[] }];
+    /* 2) 매핑 누락분은 마지막 그룹으로 (문서 순서 유지) */
+    var last = buckets[buckets.length - 1];
+    secs.forEach(function(s){ if (!taken[s.id]) last.secs.push(s); });
+    buckets.forEach(function(b){ b.secs.sort(function(x, y){ return order[x.id] - order[y.id]; }); });
+
+    /* 3) 렌더 */
+    buckets.forEach(function(b){
+      if (!b.secs.length) return;
+      var wrap = document.createElement('div');
+      wrap.className = 'toc-g';
+
+      var hd = document.createElement('button');
+      hd.type = 'button';
+      hd.className = 'toc-g-hd';
+      hd.setAttribute('aria-expanded', 'false');
+      hd.innerHTML = '<span class="toc-g-ico" aria-hidden="true">▶</span>' +
+                     '<span class="toc-g-t"></span>' +
+                     '<span class="toc-g-n"></span>';
+      hd.querySelector('.toc-g-t').textContent = b.t;
+      hd.querySelector('.toc-g-n').textContent = b.secs.length;
+
+      var body = document.createElement('div');
+      body.className = 'toc-g-body';
+
+      var g = { el: wrap, body: body, linkEls: [] };
+
+      b.secs.forEach(function(sec){
+        var h = sec.querySelector('h2');
+        if (!h) return;
+        var full = h.textContent;
+        var a = document.createElement('a');
+        a.href = '#' + sec.id;
+        a.textContent = tocLabel(full);
+        a.dataset.target = sec.id;
+        a.addEventListener('click', function(){ tocEl.classList.remove('open'); });
+        body.appendChild(a);
+        links.push(a);
+        g.linkEls.push(a);
+        groupOf[sec.id] = g;
+
+        /* 본문 h2 옆 시간 칩 */
+        var t = timeOf(full);
+        if (t && !h.querySelector('.time-chip')){
+          var chip = document.createElement('span');
+          chip.className = 'time-chip';
+          chip.textContent = '⏱ ' + t;
+          h.appendChild(document.createTextNode(' '));
+          h.appendChild(chip);
+        }
+      });
+
+      hd.addEventListener('click', function(){
+        var open = wrap.classList.toggle('open');
+        wrap.dataset.pin = open ? '1' : '';
+        hd.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+
+      wrap.appendChild(hd);
+      wrap.appendChild(body);
+      listEl.appendChild(wrap);
+      groups.push(g);
+    });
+
+    /* 초기 상태 — 주소의 #앵커 그룹(없으면 첫 그룹)을 펼쳐둠
+       (IntersectionObserver가 없는 환경에서도 목차가 닫혀 보이지 않게) */
+    var hash = (location.hash || '').replace(/^#/, '');
+    var initId = (hash && groupOf[hash]) ? hash : (links[0] && links[0].dataset.target);
+    if (initId){
+      currentId = initId;
+      links.forEach(function(a){ a.classList.toggle('on', a.dataset.target === initId); });
+      syncGroups(initId);
+    }
+  }
+
+  /* 현재 섹션의 그룹만 펼침 + 하이라이트 (사용자가 직접 연 그룹은 유지) */
+  function syncGroups(id){
+    var cur = id ? groupOf[id] : null;
+    groups.forEach(function(g){
+      var isCur = (g === cur);
+      g.el.classList.toggle('cur', isCur);
+      if (isCur) g.el.classList.add('open');
+      else if (g.el.dataset.pin !== '1') g.el.classList.remove('open');
+      var hd = g.el.querySelector('.toc-g-hd');
+      if (hd) hd.setAttribute('aria-expanded', g.el.classList.contains('open') ? 'true' : 'false');
+    });
+  }
+
+  function observeSections(){
+    var secs = document.querySelectorAll('main section.card[id]');
+    if (!('IntersectionObserver' in window) || !secs.length) return;
+    var visible = {};
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){ visible[en.target.id] = en.isIntersecting; });
+      var current = null;
+      Array.prototype.forEach.call(secs, function(s){
+        if (!current && visible[s.id]) current = s.id;
+      });
+      if (!current || current === currentId) return;
+      currentId = current;
+      links.forEach(function(a){ a.classList.toggle('on', a.dataset.target === current); });
+      if (!(filterEl && filterEl.value.trim())) syncGroups(current);
+      var on = listEl.querySelector('a.on');
+      if (on && window.innerWidth >= 1100){
+        var top = on.offsetTop, h = tocEl.clientHeight, st = tocEl.scrollTop;
+        if (top < st + 40 || top > st + h - 60) tocEl.scrollTop = top - h / 2;
+      }
+    }, { rootMargin: '-60px 0px -65% 0px', threshold: 0 });
+    Array.prototype.forEach.call(secs, function(s){ io.observe(s); });
+  }
+
+  /* 빠른 필터 — 제목 매칭 섹션만, 그룹 헤더는 매칭 자식이 있을 때만 */
+  function applyFilter(){
+    var q = (filterEl.value || '').trim().toLowerCase();
+    var hits = 0;
+    groups.forEach(function(g){
+      var n = 0;
+      g.linkEls.forEach(function(a){
+        var hit = !q || a.textContent.toLowerCase().indexOf(q) !== -1;
+        a.hidden = !hit;
+        if (hit) n++;
+      });
+      g.el.hidden = (n === 0);
+      if (q) g.el.classList.toggle('open', n > 0);
+      hits += n;
+    });
+    tocEl.classList.toggle('no-hit', q !== '' && hits === 0);
+    if (!q) syncGroups(currentId);
+  }
+
+  if (filterEl){
+    filterEl.addEventListener('input', applyFilter);
+    filterEl.addEventListener('keydown', function(e){
+      if (e.key === 'Escape'){ filterEl.value = ''; applyFilter(); }
+    });
+  }
+
+  var tocBtn = document.getElementById('toc-toggle');
+  tocBtn.addEventListener('click', function(){
+    var open = tocEl.classList.toggle('open');
+    tocBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+
+  /* ============================================================
+     2-1) 읽기 진행 바 + 「↑ 맨 위로」
+     ============================================================ */
+  var barEl = document.getElementById('progress');
+  var topBtn = document.getElementById('totop');
+  var ticking = false;
+
+  function onScroll(){
+    var st = window.pageYOffset || document.documentElement.scrollTop || 0;
+    var max = (document.documentElement.scrollHeight || 0) - window.innerHeight;
+    var p = max > 0 ? Math.max(0, Math.min(1, st / max)) : 0;
+    if (barEl) barEl.style.width = (p * 100).toFixed(2) + '%';
+    if (topBtn) topBtn.classList.toggle('show', st > 600);
+    ticking = false;
+  }
+  function queueScroll(){
+    if (ticking) return;
+    ticking = true;
+    (window.requestAnimationFrame || setTimeout)(onScroll);
+  }
+  window.addEventListener('scroll', queueScroll, { passive: true });
+  window.addEventListener('resize', queueScroll);
+  if (topBtn) topBtn.addEventListener('click', function(){
+    if (window.scrollTo) window.scrollTo({ top: 0, behavior: 'smooth' });
+    else window.scrollTo(0, 0);
+  });
+  onScroll();
+
+  /* ============================================================
+     3) 코드 카드 복사 버튼
+     ============================================================ */
+  document.addEventListener('click', function(e){
+    var b = e.target.closest ? e.target.closest('.code-copy') : null;
+    if (!b) return;
+    var pre = b.closest('.code').querySelector('pre');
+    var text = pre.textContent;
+    var done = function(){
+      b.classList.add('done');
+      b.textContent = '복사됨 ✓';
+      setTimeout(function(){ b.classList.remove('done'); b.textContent = '복사'; }, 1500);
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(text).then(done, function(){ fallback(text, done); });
+    } else {
+      fallback(text, done);
+    }
+  });
+
+  function fallback(text, cb){
+    var ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.cssText = 'position:fixed;top:-1000px;opacity:0';
+    document.body.appendChild(ta);
+    ta.select();
+    try { document.execCommand('copy'); cb(); } catch(e){}
+    document.body.removeChild(ta);
+  }
+
+  /* ============================================================
+     4) 본문 우클릭 차단 (코드 카드 안에서는 허용)
+     ============================================================ */
+  document.addEventListener('contextmenu', function(e){
+    var inMain = e.target.closest ? e.target.closest('main') : null;
+    if (!inMain) return;
+    var inCode = e.target.closest('.code');
+    if (!inCode) e.preventDefault();
+  });
+
+  /* ============================================================
+     5) 매출.csv 다운로드 (BOM 포함 Blob)
+     ============================================================ */
+  var CSV = [
+    '날짜,채널,품목,수량,단가,금액,결제수단',
+    '07-14,스레드,스타터 킷,3,33000,99000,카드',
+    '07-15,인스타그램,원데이 클래스,1,190000,190000,계좌이체',
+    '07-15,지인추천,컨설팅,1,500000,500000,계좌이체',
+    '07-16,스레드,원데이 클래스,1,190000,190000,카드',
+    '07-17,무료 전자책,무료 전자책,12,0,0,무료',
+    '07-19,스레드,원데이 클래스,2,190000,380000,카드',
+    '07-20,스레드,스타터 킷,5,33000,165000,카드',
+    '07-21,인스타그램,스타터 킷,1,33000,-33000,환불',
+    '07-22,무료 전자책,무료 전자책,18,0,0,무료',
+    '07-24,지인추천,컨설팅,2,500000,1000000,계좌이체',
+    '07-25,스레드,스타터 킷,4,33000,132000,카드',
+    '07-26,검색,스타터 킷,2,33000,66000,카드',
+    '07-27,스레드,원데이 클래스,1,190000,190000,카드',
+    '07-28,무료 전자책,무료 전자책,9,0,0,무료',
+    '07-29,인스타그램,원데이 클래스,1,190000,190000,카드',
+    '07-30,검색,컨설팅,1,500000,500000,계좌이체',
+    '07-30,스레드,스타터 킷,3,33000,99000,카드',
+    '07-31,스레드,원데이 클래스,1,190000,190000,계좌이체',
+    '07-31,무료 전자책,무료 전자책,15,0,0,무료',
+    '07-31,지인추천,스타터 킷,2,33000,66000,카드'
+  ].join('\n');
+
+  var dl = document.getElementById('csv-dl');
+  if (dl) dl.addEventListener('click', function(){
+    var blob = new Blob(['﻿' + CSV], { type: 'text/csv;charset=utf-8;' });
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement('a');
+    a.href = url;
+    a.download = '매출.csv';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    setTimeout(function(){ URL.revokeObjectURL(url); }, 1000);
+    dl.textContent = '다운로드됨 ✓';
+    setTimeout(function(){ dl.textContent = '📥 매출.csv 다운로드'; }, 1500);
+  });
+
+  /* ============================================================
+     6) 재방문 자동 통과 (게이트 통과 기록이 있을 때)
+     ============================================================ */
+  var already = false;
+  try { already = localStorage.getItem(KEY) === '1'; } catch(e){}
+  if (already) reveal(); else setTimeout(function(){ input.focus(); }, 120);
+
+})();
+</script>
+</body>
+</html>

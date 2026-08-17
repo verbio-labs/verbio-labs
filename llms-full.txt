@@ -6,7 +6,7 @@
 
 ### 1. 클로드 완전정복 전자책 (무료~)
 - URL: https://verbiolabs.com/claude-guide
-- 총 41챕터 인터랙티브 웹북(SIDE QUEST 4챕터는 원데이 인텐시브 수료생 전용). LV.0(계정 만들기)부터 LV.9(LLM 위키·컨텍스트 엔지니어링·AEO/GEO)까지.
+- 총 42챕터 인터랙티브 웹북(SIDE QUEST 4챕터는 원데이 인텐시브 수료생 전용). LV.0(계정 만들기)부터 LV.9(LLM 위키·컨텍스트 엔지니어링·AEO/GEO)까지.
 - LV.0~1 구간은 가입 없이 무료 열람. 전권은 스타터 킷 구매 시.
 - 다루는 주제: 바이브 코딩, 프롬프트 엔지니어링, CLAUDE.md, Claude Code, MCP, Skills, 서브에이전트, 훅, 평가(EDD), llms.txt.
 

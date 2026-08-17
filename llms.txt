@@ -5,7 +5,7 @@
 
 ## 핵심 문서
 
-- [클로드 완전정복 전자책](https://verbiolabs.com/claude-guide): 입문자부터 설계자까지 총 41챕터 가이드(LV.0~1 무료, SIDE QUEST 4챕터는 원데이 수료생 전용). 바이브 코딩, 프롬프트 엔지니어링, CLAUDE.md 하네스, 루프 엔지니어링, 컨텍스트 엔지니어링, MCP, 평가(EDD), llms.txt/AEO/GEO까지 다룬다. 진행도 저장형 인터랙티브 웹북.
+- [클로드 완전정복 전자책](https://verbiolabs.com/claude-guide): 입문자부터 설계자까지 총 42챕터 가이드(LV.0~1 무료, SIDE QUEST 4챕터는 원데이 수료생 전용). 바이브 코딩, 프롬프트 엔지니어링, CLAUDE.md 하네스, 루프 엔지니어링, 컨텍스트 엔지니어링, MCP, 평가(EDD), llms.txt/AEO/GEO까지 다룬다. 진행도 저장형 인터랙티브 웹북.
 - [온라인 강의 목록](https://verbiolabs.com/courses): First AI Service in 30 min(4주 12강, 코딩 입문자가 본인 도메인 사이트를 띄우는 과정, 1기 ₩99,000), Korean SaaS Launch in a Week(6주 18강, 한국에서 결제 받는 SaaS — PIPA·통신판매업·토스 PG 가맹까지, 1기 ₩199,000).
 - [원데이 인텐시브](https://verbiolabs.com/oneday): 2026-08-01(토) 부산 해운대 청년채움공간, 10:00~17:00. 클로드·AI 기초~초급 대상. 실습 8회(첫 웹페이지·GitHub 푸시·개발 루프·스타터킷·MCP 연결·스킬 제작)와 졸업작품(노션 연동 견적서 웹)으로 하루를 완성. ₩190,000(얼리버드·정가 ₩290,000), 선착순 10석, 「AI활용전문가」 자격 검정 무료 포함.
 - [원데이 1기 현장 영상](https://youtu.be/zhe06RzpTOs): 2026-08-01 부산 해운대에서 진행된 클로드 AI 원데이 인텐시브 1기 실황. verbiolabs.com/oneday 에서 바로 재생 가능.
